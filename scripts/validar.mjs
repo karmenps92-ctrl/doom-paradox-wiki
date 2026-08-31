@@ -80,6 +80,7 @@ for (const sec of ["verdugos", "pecadores", "mapas", "galeria"]){
   const usadas = new Set((datos[sec] || []).map(e => e.imagen).filter(Boolean));
   for (const archivo of readdirSync(dir)){
     if (archivo.startsWith(".")) continue;
+    if (!/\.(png|jpe?g|webp|gif|avif|svg)$/i.test(archivo)) continue;
     if (![...usadas].some(u => u.endsWith("/" + archivo)))
       avisos.push(`assets/img/${sec}/${archivo} no lo usa ninguna ficha`);
   }
