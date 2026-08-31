@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="Emblema de Doom Paradox">
+  <defs>
+    <filter id="e-tinta" x="-30%" y="-30%" width="160%" height="160%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="4" seed="9" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="9" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <radialGradient id="e-nucleo" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"  stop-color="#ff2b1f"/>
+      <stop offset="42%" stop-color="#8e0a10"/>
+      <stop offset="78%" stop-color="#2a0406"/>
+      <stop offset="100%" stop-color="#080405"/>
+    </radialGradient>
+  </defs>
+
+  <g filter="url(#e-tinta)">
+    <!-- coágulos orbitales -->
+    <g fill="#8e0a10" opacity=".95">
+      <ellipse cx="60" cy="12"  rx="13" ry="8"/>
+      <ellipse cx="103" cy="38" rx="10" ry="7" transform="rotate(35 103 38)"/>
+      <ellipse cx="103" cy="84" rx="9"  ry="7" transform="rotate(-35 103 84)"/>
+      <ellipse cx="60" cy="109" rx="13" ry="8"/>
+      <ellipse cx="17" cy="84"  rx="10" ry="7" transform="rotate(35 17 84)"/>
+      <ellipse cx="17" cy="38"  rx="9"  ry="7" transform="rotate(-35 17 38)"/>
+    </g>
+    <!-- ojo -->
+    <ellipse cx="17" cy="38" rx="4.4" ry="3" fill="#ff3a2a"/>
+    <ellipse cx="17" cy="38" rx="1.5" ry="2.6" fill="#0a0203"/>
+  </g>
+
+  <!-- núcleo -->
+  <circle cx="60" cy="60" r="34" fill="url(#e-nucleo)"/>
+  <circle cx="60" cy="60" r="34" fill="none" stroke="#e8e2da" stroke-width="1.1" opacity=".85"/>
+
+  <!-- anillo roto -->
+  <g fill="none" stroke="#e8e2da" stroke-width="1.4" stroke-linecap="round" opacity=".9">
+    <path d="M60 6 A54 54 0 0 1 114 60"/>
+    <path d="M114 60 A54 54 0 0 1 60 114" opacity=".55"/>
+    <path d="M60 114 A54 54 0 0 1 6 60"/>
+    <path d="M6 60 A54 54 0 0 1 60 6" opacity=".55"/>
+  </g>
+
+  <!-- marca central -->
+  <g fill="#efe9e1" opacity=".92" font-family="Georgia,'Times New Roman',serif" text-anchor="middle">
+    <text x="60" y="57" font-size="15" letter-spacing="1.5">DOOM</text>
+    <text x="60" y="75" font-size="12" letter-spacing="1.2" opacity=".8">PARADOX</text>
+  </g>
+  <path d="M28 66 h64" stroke="#ff2b1f" stroke-width=".8" opacity=".5"/>
+</svg>

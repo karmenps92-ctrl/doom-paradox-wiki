@@ -1,0 +1,26 @@
+name: Reportar un error
+description: Un dato equivocado, un enlace roto o algo que se ve mal
+title: "[Correccion] "
+labels: ["correccion"]
+body:
+  - type: input
+    id: pagina
+    attributes:
+      label: Pagina afectada
+      placeholder: "#/verdugos/nombre-del-verdugo"
+    validations:
+      required: true
+  - type: textarea
+    id: problema
+    attributes:
+      label: Que esta mal
+    validations:
+      required: true
+  - type: textarea
+    id: correcto
+    attributes:
+      label: Que deberia decir
+  - type: input
+    id: prueba
+    attributes:
+      label: Prueba (captura, video, enlace)

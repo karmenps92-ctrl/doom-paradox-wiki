@@ -1,0 +1,28 @@
+{
+  "seccion": "mapas",
+  "nota": "CONTENIDO DE EJEMPLO. Las coordenadas x e y de cada punto van en porcentaje sobre la imagen (0 a 100).",
+  "entradas": [
+    {
+      "id": "mapa-ejemplo",
+      "nombre": "Mapa de ejemplo",
+      "zona": "Interior",
+      "dificultad": "Media",
+      "jugadores": "1 verdugo / 4 pecadores",
+      "salidas": "2",
+      "estado": "borrador",
+      "imagen": "assets/img/mapas/mapa-ejemplo.png",
+      "resumen": "Sube una captura cenital del mapa y marca los puntos importantes.",
+      "descripcion": "## Como se lee este plano\nCada numero del plano es un punto documentado: generadores, escondites, rutas de escape o zonas de peligro.",
+      "puntos": [
+        { "x": 28, "y": 34, "titulo": "Punto de ejemplo", "tipo": "Escondite", "texto": "Describe que hay aqui y por que importa." },
+        { "x": 62, "y": 48, "titulo": "Segundo punto", "tipo": "Objetivo", "texto": "Otro punto con su explicacion.\n\n- Admite listas.\n- Y varias lineas." },
+        { "x": 45, "y": 78, "titulo": "Salida", "tipo": "Escape", "texto": "Ruta de salida y condiciones para abrirla." }
+      ],
+      "secretos": ["Anota aqui los secretos confirmados."],
+      "consejos": ["Ruta recomendada al empezar la partida."],
+      "verdugos": [],
+      "ost": [],
+      "actualizado": "2026-08-31"
+    }
+  ]
+}

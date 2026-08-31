@@ -1,0 +1,45 @@
+name: Enviar fan art
+description: Publicar un dibujo o edicion en la galeria de la wiki
+title: "[Fan art] "
+labels: ["galeria"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Tu obra se publica con tu nombre y un enlace a tu perfil. Puedes pedir que se retire cuando quieras.
+  - type: input
+    id: titulo
+    attributes:
+      label: Titulo de la obra
+    validations:
+      required: true
+  - type: input
+    id: autor
+    attributes:
+      label: Como quieres que te acreditemos
+      placeholder: Nombre, alias o @usuario
+    validations:
+      required: true
+  - type: input
+    id: perfil
+    attributes:
+      label: Enlace a tu perfil (opcional)
+      placeholder: Twitter, Instagram, DeviantArt, Roblox...
+  - type: textarea
+    id: imagen
+    attributes:
+      label: La obra
+      description: Arrastra el archivo aqui. Formatos png, jpg o webp.
+    validations:
+      required: true
+  - type: textarea
+    id: comentario
+    attributes:
+      label: Algo que contar sobre ella
+  - type: checkboxes
+    id: permiso
+    attributes:
+      label: Permiso
+      options:
+        - label: Es obra mia (o tengo permiso del autor) y autorizo su publicacion en esta wiki con credito.
+          required: true

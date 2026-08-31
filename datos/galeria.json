@@ -1,0 +1,17 @@
+{
+  "seccion": "galeria",
+  "nota": "CONTENIDO DE EJEMPLO. Toda obra se publica con credito al autor y enlace a su perfil. Si el autor pide retirarla, se borra la entrada.",
+  "entradas": [
+    {
+      "id": "obra-ejemplo",
+      "titulo": "Obra de ejemplo",
+      "autor": "Nombre del artista",
+      "fuente": "",
+      "fecha": "2026-08-31",
+      "imagen": "assets/img/galeria/obra-ejemplo.png",
+      "descripcion": "Sustituye esta entrada por el primer fan art recibido.",
+      "etiquetas": ["ejemplo"],
+      "permiso": "pendiente"
+    }
+  ]
+}

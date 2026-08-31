@@ -1,0 +1,19 @@
+name: Revisar propuestas
+
+on:
+  pull_request:
+    paths:
+      - "datos/**"
+      - "assets/**"
+      - "scripts/**"
+
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Validar los archivos de /datos
+        run: node scripts/validar.mjs

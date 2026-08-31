@@ -1,0 +1,53 @@
+name: Proponer una ficha
+description: Anadir un verdugo, pecador, mapa o tema de la OST a la wiki
+title: "[Ficha] "
+labels: ["contenido"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Gracias por documentar. No hace falta saber programar: rellena lo que sepas y el resto se completa despues.
+  - type: dropdown
+    id: seccion
+    attributes:
+      label: Seccion
+      options: [Verdugo, Pecador, Mapa, OST]
+    validations:
+      required: true
+  - type: input
+    id: nombre
+    attributes:
+      label: Nombre
+      placeholder: Como aparece dentro del juego
+    validations:
+      required: true
+  - type: input
+    id: resumen
+    attributes:
+      label: Resumen en una frase
+      placeholder: Lo que se lee en la tarjeta del catalogo
+  - type: textarea
+    id: descripcion
+    attributes:
+      label: Descripcion
+      description: Comportamiento, habilidades, lore, consejos... lo que tengas.
+  - type: input
+    id: peligro
+    attributes:
+      label: Nivel de amenaza (0-5)
+      placeholder: "4"
+  - type: textarea
+    id: imagenes
+    attributes:
+      label: Imagenes
+      description: Arrastra aqui capturas o arte. Indica quien las hizo.
+  - type: dropdown
+    id: certeza
+    attributes:
+      label: Como de seguro es esto
+      options:
+        - Confirmado en el juego
+        - Visto una vez, sin confirmar
+        - Teoria de la comunidad
+    validations:
+      required: true

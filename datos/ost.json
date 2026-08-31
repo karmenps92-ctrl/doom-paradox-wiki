@@ -1,0 +1,34 @@
+{
+  "seccion": "ost",
+  "nota": "CONTENIDO DE EJEMPLO. 'archivo' apunta a un mp3/ogg dentro de assets/audio. Si el tema solo esta en YouTube, deja archivo vacio y rellena youtube.",
+  "entradas": [
+    {
+      "id": "tema-ejemplo",
+      "titulo": "Tema de ejemplo",
+      "autor": "Compositor por acreditar",
+      "duracion": 0,
+      "escena": "Menu principal",
+      "estado": "borrador",
+      "archivo": "",
+      "youtube": "",
+      "descripcion": "Explica donde suena el tema, que instrumentos lleva y que anuncia dentro de la partida.",
+      "mapas": [],
+      "verdugos": [],
+      "actualizado": "2026-08-31"
+    },
+    {
+      "id": "tema-persecucion",
+      "titulo": "Persecucion (ejemplo)",
+      "autor": "Compositor por acreditar",
+      "duracion": 0,
+      "escena": "Cuando un verdugo te ve",
+      "estado": "borrador",
+      "archivo": "",
+      "youtube": "",
+      "descripcion": "Segundo tema de muestra para ver la lista con varias pistas.",
+      "mapas": ["mapa-ejemplo"],
+      "verdugos": [],
+      "actualizado": "2026-08-31"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "seccion": "pecadores",
+  "nota": "CONTENIDO DE EJEMPLO. Sustituye estas fichas por los pecadores reales del juego.",
+  "entradas": [
+    {
+      "id": "pecador-ejemplo-uno",
+      "nombre": "Pecador I",
+      "alias": "Ejemplo de personaje jugable",
+      "clase": "Superviviente",
+      "culpa": "Sin definir",
+      "estado": "borrador",
+      "imagen": "assets/img/pecadores/pecador-ejemplo-uno.png",
+      "resumen": "Plantilla de pecador: culpa, habilidad y estilo de juego.",
+      "descripcion": "## Culpa\nQue hizo este personaje para acabar aqui.\n\n## Estilo de juego\nPara quien es: sigilo, apoyo, senuelo, velocista.",
+      "stats": { "Velocidad": 3, "Sigilo": 4, "Aguante": 2, "Reparacion": 3 },
+      "habilidades": [
+        { "nombre": "Habilidad activa", "tipo": "activa", "enfriamiento": "60 s", "texto": "Que hace y cuando conviene usarla." }
+      ],
+      "consejos": ["Consejo de uso.", "Error tipico que se debe evitar."],
+      "verdugos": [],
+      "mapas": [],
+      "ost": [],
+      "etiquetas": ["ejemplo", "plantilla"],
+      "actualizado": "2026-08-31"
+    },
+    {
+      "id": "pecador-ejemplo-dos",
+      "nombre": "Pecador II",
+      "clase": "Apoyo",
+      "estado": "borrador",
+      "imagen": "",
+      "resumen": "Segunda ficha de muestra para ver la rejilla con varios elementos.",
+      "descripcion": "",
+      "stats": { "Velocidad": 2, "Sigilo": 2, "Aguante": 5 },
+      "habilidades": [],
+      "consejos": [],
+      "etiquetas": ["ejemplo"],
+      "actualizado": "2026-08-31"
+    }
+  ]
+}

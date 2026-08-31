@@ -1,0 +1,54 @@
+{
+  "seccion": "verdugos",
+  "nota": "CONTENIDO DE EJEMPLO. Sustituye estas fichas por los verdugos reales del juego. Todas estan marcadas como borrador.",
+  "entradas": [
+    {
+      "id": "verdugo-ejemplo-uno",
+      "nombre": "Verdugo I",
+      "alias": "Ejemplo de ficha completa",
+      "pecado": "Ira",
+      "peligro": 4,
+      "estado": "borrador",
+      "origen": "Sin definir",
+      "aparicion": "Sin definir",
+      "imagen": "assets/img/verdugos/verdugo-ejemplo-uno.png",
+      "resumen": "Ficha de muestra: copia esta estructura para documentar un verdugo real.",
+      "cita": "Sustituye esta cita por una linea del personaje.",
+      "descripcion": "Este bloque admite texto largo con **negrita**, *cursiva*, `codigo` y enlaces.\n\n## Comportamiento\nDescribe aqui como patrulla, que lo atrae y como reacciona al ruido.\n\n- Un punto por linea para las listas.\n- Otro punto.\n\n> Las citas se marcan con el simbolo mayor que.",
+      "stats": { "Velocidad": 3, "Sigilo": 2, "Dano": 5, "Percepcion": 4 },
+      "habilidades": [
+        { "nombre": "Habilidad de ejemplo", "tipo": "activa", "enfriamiento": "45 s", "texto": "Explica el efecto, el alcance y como esquivarla." },
+        { "nombre": "Pasiva de ejemplo", "tipo": "pasiva", "enfriamiento": "", "texto": "Efecto permanente que cambia las reglas del mapa." }
+      ],
+      "consejos": [
+        "Escribe aqui una tactica probada.",
+        "Otra linea de consejo."
+      ],
+      "curiosidades": ["Detalle de lore o guino visual."],
+      "citas": [],
+      "mapas": [],
+      "ost": [],
+      "etiquetas": ["ejemplo", "plantilla"],
+      "actualizado": "2026-08-31",
+      "fuente": ""
+    },
+    {
+      "id": "verdugo-ejemplo-dos",
+      "nombre": "Verdugo II",
+      "alias": "Ficha minima",
+      "pecado": "Gula",
+      "peligro": 2,
+      "estado": "borrador",
+      "imagen": "",
+      "resumen": "Ficha corta: solo lo imprescindible. Sin imagen se dibuja un marcador de tinta.",
+      "descripcion": "Una ficha puede empezar con dos frases y crecer despues.",
+      "stats": { "Velocidad": 2, "Sigilo": 4, "Dano": 3 },
+      "habilidades": [],
+      "consejos": [],
+      "mapas": [],
+      "ost": [],
+      "etiquetas": ["ejemplo"],
+      "actualizado": "2026-08-31"
+    }
+  ]
+}
