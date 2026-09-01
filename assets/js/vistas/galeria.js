@@ -38,7 +38,7 @@ export async function vistaGaleria(raiz, sec){
         </p>
       </div>
 
-      ${comentarios("galeria", "la galeria")}
+      ${comentarios("galeria", "la galería")}
     </div></section>
 
     <div class="lupa" id="lupa" hidden>
@@ -66,10 +66,25 @@ export async function vistaGaleria(raiz, sec){
           ${esc(o.autor || "anónimo")}${o.fecha ? " · " + esc(o.fecha) : ""}
         </figcaption>
       </figure>`).join("")
-      : `<p class="vacio">Nada por aquí todavía.</p>`;
+      : vacioGaleria(autor || texto);
     revelar(mosaico);
 
     $$("figure[data-obra]", mosaico).forEach(f => f.addEventListener("click", () => abrirLupa(lista[Number(f.dataset.obra)])));
+  }
+
+  /* La galería nace vacía a propósito: el hueco tiene que invitar,
+     no parecer un error. */
+  function vacioGaleria(filtrando){
+    if (filtrando) return `<p class="vacio">Ninguna obra coincide con ese filtro.</p>`;
+    return `
+      <div class="galeria-vacia">
+        <div class="marco-vacio" aria-hidden="true"><span>?</span></div>
+        <h3>El muro está en blanco</h3>
+        <p>Aquí van los dibujos, las ediciones y los renders de la comunidad.
+        Todavía no hay ninguno: la primera obra que llegue abre la galería.</p>
+        <p class="galeria-vacia-nota">Se publica con tu nombre y tu enlace, y se retira en cuanto lo pidas.</p>
+        <a class="boton" data-variante="lleno" href="${esc(urlIssue("fan-art.yml", "[Fan art] "))}" target="_blank" rel="noopener">Ser el primero</a>
+      </div>`;
   }
 
   function abrirLupa(o){

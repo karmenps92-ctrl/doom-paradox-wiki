@@ -96,6 +96,10 @@ export async function vistaFicha(raiz, sec, id){
         </div>
 
         <aside>
+          <div class="panel indice" id="indice-ficha" hidden>
+            <h4>En esta ficha</h4>
+            <ol class="indice-lista"></ol>
+          </div>
           ${statsPanel(e.stats)}
           ${relacionPanel("Aparece en", mapasRel, "mapas")}
           ${relacionPanel("Temas ligados", ostRel, "ost")}
@@ -125,9 +129,48 @@ export async function vistaFicha(raiz, sec, id){
       </div>
     </article>`;
 
+  indiceDeFicha(raiz);
   animarStats(raiz);
   revelar(raiz);
   montarComentarios(raiz);
+}
+
+/* Índice lateral: recoge los subtítulos de la prosa, permite saltar a
+   ellos sin tocar el hash (que aquí es la ruta) y marca por dónde vas. */
+function indiceDeFicha(raiz){
+  const caja = raiz.querySelector("#indice-ficha");
+  const lista = caja?.querySelector(".indice-lista");
+  const titulos = Array.from(raiz.querySelectorAll(".prosa h3"));
+  if (!caja || !lista || titulos.length < 2) return;
+
+  lista.innerHTML = titulos.map((h, i) =>
+    `<li><button type="button" data-ir="${i}">${esc(h.textContent)}</button></li>`).join("");
+  caja.hidden = false;
+
+  const botones = Array.from(lista.querySelectorAll("button"));
+  botones.forEach((b, i) => b.addEventListener("click", () => {
+    titulos[i].scrollIntoView({ behavior: "smooth", block: "start" });
+  }));
+
+  // Marca el último subtítulo que ha pasado por debajo de la cabecera.
+  const marcar = () => {
+    const limite = window.innerHeight * 0.28;
+    let activo = 0;
+    titulos.forEach((h, i) => { if (h.getBoundingClientRect().top <= limite) activo = i; });
+    botones.forEach((b, i) => b.toggleAttribute("data-activo", i === activo));
+  };
+  const alDesplazar = marcar;   // seis rectángulos por scroll: sale más barato que un rAF
+  window.addEventListener("scroll", alDesplazar, { passive: true });
+  window.addEventListener("resize", alDesplazar, { passive: true });
+  // el índice muere con la vista: al cambiar de ruta se sustituye el HTML
+  new MutationObserver((_, obs) => {
+    if (!document.body.contains(caja)){
+      window.removeEventListener("scroll", alDesplazar);
+      window.removeEventListener("resize", alDesplazar);
+      obs.disconnect();
+    }
+  }).observe(raiz, { childList: true });
+  marcar();
 }
 
 function capitalizar(t){ return t ? String(t)[0].toUpperCase() + String(t).slice(1) : t; }
