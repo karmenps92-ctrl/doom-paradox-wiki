@@ -1,28 +1,91 @@
 {
   "seccion": "mapas",
-  "nota": "CONTENIDO DE EJEMPLO. Las coordenadas x e y de cada punto van en porcentaje sobre la imagen (0 a 100).",
+  "nota": "Escenarios en construccion a fecha de agosto de 2026. Las coordenadas de los puntos son PROVISIONALES: al subir el plano real de cada mapa hay que recolocarlas (x e y en porcentaje, de 0 a 100).",
   "entradas": [
     {
-      "id": "mapa-ejemplo",
-      "nombre": "Mapa de ejemplo",
-      "zona": "Interior",
-      "dificultad": "Media",
-      "jugadores": "1 verdugo / 4 pecadores",
-      "salidas": "2",
-      "estado": "borrador",
-      "imagen": "assets/img/mapas/mapa-ejemplo.png",
-      "resumen": "Sube una captura cenital del mapa y marca los puntos importantes.",
-      "descripcion": "## Como se lee este plano\nCada numero del plano es un punto documentado: generadores, escondites, rutas de escape o zonas de peligro.",
+      "id": "bosque-encantado",
+      "nombre": "Bosque encantado",
+      "zona": "Exterior",
+      "estado": "canon",
+      "imagen": "",
+      "resumen": "El mapa mas avanzado: lago, dos puentes y un pasadizo de flores. Su iluminacion aguanta incluso en graficos minimos.",
+      "descripcion": "## Estado\nEs el escenario mas trabajado del juego. Lo modela cyn_rebelcream (cuatro horas seguidas solo para una zona) y las texturas y ajustes tecnicos los mete wise_rabbit_96212.\n\nEl equipo destaco dos cosas al probarlo: la **iluminacion**, que sostiene el ambiente incluso con la calidad grafica al minimo, y el pasadizo de flores.\n\n## Evento del lago\nLa propuesta sobre la mesa es que cada cierto tiempo salga un **monstruo del lago** que tape uno de los dos puentes, alternando: primero uno, luego el otro. Obliga a replantear la ruta a mitad de partida.\n\n## Ideas sin aprobar\n- Casitas pequenas de duendes y duendes paseando que se puedan atravesar.\n- Pajaros moviendose sobre los arboles.\n- Un hada que cure 20 de vida a quien este a punto de morir y de un buff de velocidad de 10 segundos. Como contrapeso se propuso que, durante esos mismos 10 segundos, el verdugo cargue sus habilidades el triple de rapido.",
       "puntos": [
-        { "x": 28, "y": 34, "titulo": "Punto de ejemplo", "tipo": "Escondite", "texto": "Describe que hay aqui y por que importa." },
-        { "x": 62, "y": 48, "titulo": "Segundo punto", "tipo": "Objetivo", "texto": "Otro punto con su explicacion.\n\n- Admite listas.\n- Y varias lineas." },
-        { "x": 45, "y": 78, "titulo": "Salida", "tipo": "Escape", "texto": "Ruta de salida y condiciones para abrirla." }
+        { "x": 30, "y": 55, "titulo": "Lago", "tipo": "Zona", "texto": "El centro del mapa. De aqui saldria el monstruo que bloquea los puentes." },
+        { "x": 44, "y": 42, "titulo": "Puente norte", "tipo": "Paso", "texto": "Uno de los dos cruces sobre el lago. Bloqueable por el evento." },
+        { "x": 52, "y": 66, "titulo": "Puente sur", "tipo": "Paso", "texto": "El segundo cruce. La idea es que se bloqueen alternandose, nunca los dos a la vez." },
+        { "x": 70, "y": 38, "titulo": "Pasadizo de flores", "tipo": "Ruta", "texto": "La zona mas comentada del mapa por su iluminacion." }
       ],
-      "secretos": ["Anota aqui los secretos confirmados."],
-      "consejos": ["Ruta recomendada al empezar la partida."],
+      "secretos": [],
+      "consejos": [
+        "Si el monstruo tapa un puente, el otro sigue abierto: no te quedes esperando en la orilla.",
+        "El mapa se ve bien incluso en graficos minimos, asi que bajarlos no te da ventaja visual."
+      ],
+      "verdugos": [],
+      "ost": ["ambiente-mapa"],
+      "actualizado": "2026-08-31",
+      "fuente": "#avances y #programacion, 18-20/8/2026"
+    },
+    {
+      "id": "mapa-sus",
+      "nombre": "Mapa SUS",
+      "zona": "Interior",
+      "estado": "canon",
+      "imagen": "",
+      "resumen": "Nave espacial construida sobre el plano de The Skeld, con zona de meteoritos, camaras y puertas con minijuego.",
+      "descripcion": "## De donde sale\nEl mapa se esta armando tomando como plano de referencia **The Skeld**, la nave de Among Us. cyn_rebelcream monta las zonas y el suelo, y wise_rabbit_96212 se encarga de las camaras y del apartado tecnico.\n\n## Zonas y sistemas\nEl area de meteoritos la levanto wise_rabbit y despues se reestructuro para corregir las medidas de entrada y de pared, conservando sus texturas.\n\nLa propuesta aceptada es que **algunas puertas se abran con un minijuego**, al estilo del mapa Polus de Among Us. Las texturas de metal se cambiaron porque no convencian a nadie.\n\n## Nota tecnica\nLas partes invisibles y los CanCollide se habian resuelto con codigo; se sustituyeron por las propiedades normales de Roblox Studio.",
+      "puntos": [
+        { "x": 50, "y": 50, "titulo": "Sala central", "tipo": "Zona", "texto": "Nucleo del plano, equivalente a la cafeteria del mapa original." },
+        { "x": 74, "y": 32, "titulo": "Zona de meteoritos", "tipo": "Evento", "texto": "Construida por wise_rabbit_96212 y reestructurada despues para ajustar entradas y paredes." },
+        { "x": 26, "y": 40, "titulo": "Camaras", "tipo": "Sistema", "texto": "Sistema de vigilancia montado sobre el mapa." },
+        { "x": 60, "y": 72, "titulo": "Puertas con minijuego", "tipo": "Paso", "texto": "Se abren superando un minijuego, al estilo del mapa Polus." }
+      ],
+      "secretos": [],
+      "consejos": [],
       "verdugos": [],
       "ost": [],
-      "actualizado": "2026-08-31"
+      "actualizado": "2026-08-31",
+      "fuente": "#programacion, 18-20/8/2026"
+    },
+    {
+      "id": "lobby",
+      "nombre": "Lobby",
+      "zona": "Lobby",
+      "estado": "canon",
+      "imagen": "",
+      "resumen": "La sala de espera: bar clausurado, cocina abandonada, balcon, jardin y una biblioteca con NPC.",
+      "descripcion": "## Que hay\nEl lobby tiene un **bar clausurado**, una **cocina abandonada**, un segundo piso que hace de balcon, un pequeno **jardin** y una **biblioteca**.\n\nEn la biblioteca ya hay un NPC colocado, reciclado de un proyecto anterior de cyn_rebelcream que nunca vio la luz. Le faltan los dialogos.\n\n## Ideas sobre la mesa\n- Que al entrar en los ajustes la camara se mueva a la biblioteca y cada libro sea una seccion: volumen, privacidad, hitboxes... Propuesta de springxd12.\n- Que la biblioteca sirva ademas para contar el pasado de pecadores y verdugos.\n- Que el NPC suelte dialogos cada cierto tiempo.\n\n## Interfaz\nEl boton de tienda y el de espectar ya estan hechos. Tambien esta disenado el apartado de emotes y de pases de juego.",
+      "puntos": [
+        { "x": 28, "y": 46, "titulo": "Bar clausurado", "tipo": "Zona", "texto": "Cerrado de momento." },
+        { "x": 44, "y": 60, "titulo": "Cocina abandonada", "tipo": "Zona", "texto": "" },
+        { "x": 62, "y": 30, "titulo": "Balcon", "tipo": "Zona", "texto": "El segundo piso del lobby." },
+        { "x": 76, "y": 58, "titulo": "Jardin", "tipo": "Zona", "texto": "" },
+        { "x": 50, "y": 22, "titulo": "Biblioteca", "tipo": "Zona", "texto": "Con un NPC ya colocado, pendiente de dialogos. Candidata a albergar el menu de ajustes y el archivo de lore." }
+      ],
+      "secretos": [],
+      "consejos": [],
+      "verdugos": [],
+      "ost": [],
+      "actualizado": "2026-08-31",
+      "fuente": "#ideas y #avisos, 17-20/8/2026"
+    },
+    {
+      "id": "mapa-de-noli",
+      "nombre": "Mapa de Noli",
+      "zona": "Especial",
+      "estado": "borrador",
+      "imagen": "",
+      "resumen": "Escenario propio de Noli donde caen rayos que matan, en palabras de S.U.A, a medias.",
+      "descripcion": "Noli es el unico verdugo con mapa propio confirmado. Su rasgo distintivo son los **rayos**: si te cae uno, mueres *a medias*.\n\nLa idea de los rayos nacio como modificador general de partida, pero S.U.A la reservo para este mapa y para la ronda especial de Noli.",
+      "puntos": [],
+      "secretos": [],
+      "consejos": [
+        "Vigila el cielo tanto como al verdugo."
+      ],
+      "verdugos": ["noli"],
+      "ost": [],
+      "actualizado": "2026-08-31",
+      "fuente": "#creacion-personajes, 6/8/2026"
     }
   ]
 }

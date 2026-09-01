@@ -11,7 +11,7 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const raiz = join(dirname(fileURLToPath(import.meta.url)), "..");
-const SECCIONES = ["verdugos", "pecadores", "mapas", "ost", "galeria"];
+const SECCIONES = ["verdugos", "pecadores", "mapas", "mecanicas", "ost", "galeria"];
 
 const errores = [];
 const avisos = [];
@@ -74,7 +74,7 @@ for (const [sec, arr] of Object.entries(datos))
           avisos.push(`datos/${sec}.json (${e.id}): referencia a ${campo}/${ref} que no existe`);
 
 /* imagenes huerfanas */
-for (const sec of ["verdugos", "pecadores", "mapas", "galeria"]){
+for (const sec of ["verdugos", "pecadores", "mapas", "mecanicas", "galeria"]){
   const dir = join(raiz, "assets", "img", sec);
   if (!existsSync(dir)) continue;
   const usadas = new Set((datos[sec] || []).map(e => e.imagen).filter(Boolean));

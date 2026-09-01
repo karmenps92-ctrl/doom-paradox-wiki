@@ -36,9 +36,10 @@ export function md(texto = ""){
     if (lineas.every(l => l.startsWith("> ")))
       return `<blockquote>${lineas.map(l => enLinea(l.slice(2))).join("<br>")}</blockquote>`;
 
+    // Un subtitulo puede llevar pegado su parrafo o su lista debajo.
     if (lineas[0].startsWith("## "))
       return `<h3>${enLinea(lineas[0].slice(3))}</h3>` +
-             (lineas.length > 1 ? `<p>${lineas.slice(1).map(enLinea).join("<br>")}</p>` : "");
+             (lineas.length > 1 ? md(lineas.slice(1).join("\n")) : "");
 
     return `<p>${lineas.map(enLinea).join("<br>")}</p>`;
   }).join("");

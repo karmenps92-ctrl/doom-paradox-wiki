@@ -91,14 +91,16 @@ export async function vistaMapa(raiz, sec, id){
             </ol></div>` : ""}
           ${panelRef("Verdugos del mapa", verdugosRel, "verdugos")}
           ${panelRef("Musica", ostRel, "ost")}
+          ${(m.dificultad || m.jugadores || m.salidas || m.zona) ? `
           <div class="panel">
             <h4>Datos</h4>
             <ul class="datos" style="border:0;background:transparent;grid-template-columns:1fr">
+              ${m.zona ? `<li style="padding-left:0"><b>Zona</b><span>${esc(m.zona)}</span></li>` : ""}
               ${m.dificultad ? `<li style="padding-left:0"><b>Dificultad</b><span>${esc(m.dificultad)}</span></li>` : ""}
               ${m.jugadores ? `<li style="padding-left:0"><b>Jugadores</b><span>${esc(m.jugadores)}</span></li>` : ""}
               ${m.salidas ? `<li style="padding-left:0"><b>Salidas</b><span>${esc(m.salidas)}</span></li>` : ""}
             </ul>
-          </div>
+          </div>` : ""}
         </div>
       </div>
 

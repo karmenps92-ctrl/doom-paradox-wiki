@@ -22,6 +22,7 @@ GitHub crea la propuesta por ti. Un robot revisa que el archivo no quede roto.
 | Verdugos  | `datos/verdugos.json` |
 | Pecadores | `datos/pecadores.json`|
 | Mapas     | `datos/mapas.json`    |
+| Mecanicas | `datos/mecanicas.json`|
 | OST       | `datos/ost.json`      |
 | Galeria   | `datos/galeria.json`  |
 

@@ -1,17 +1,16 @@
 {
   "seccion": "galeria",
-  "nota": "CONTENIDO DE EJEMPLO. Toda obra se publica con credito al autor y enlace a su perfil. Si el autor pide retirarla, se borra la entrada.",
-  "entradas": [
-    {
-      "id": "obra-ejemplo",
-      "titulo": "Obra de ejemplo",
-      "autor": "Nombre del artista",
-      "fuente": "",
-      "fecha": "2026-08-31",
-      "imagen": "assets/img/galeria/obra-ejemplo.png",
-      "descripcion": "Sustituye esta entrada por el primer fan art recibido.",
-      "etiquetas": ["ejemplo"],
-      "permiso": "pendiente"
-    }
-  ]
+  "nota": "Vacia a proposito: aqui solo entra arte con permiso explicito de su autor. Toda obra se publica con credito y enlace, y se retira en cuanto el autor lo pida. Copia la estructura de abajo para anadir una.",
+  "ejemplo": {
+    "id": "identificador-en-minusculas",
+    "titulo": "Titulo de la obra",
+    "autor": "Como quiere que se le acredite",
+    "fuente": "Enlace a su perfil",
+    "fecha": "2026-08-31",
+    "imagen": "assets/img/galeria/identificador-en-minusculas.png",
+    "descripcion": "Que representa la obra.",
+    "etiquetas": ["noli", "fan art"],
+    "permiso": "concedido por el autor el 2026-08-31"
+  },
+  "entradas": []
 }

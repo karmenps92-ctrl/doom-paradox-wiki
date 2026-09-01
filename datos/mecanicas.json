@@ -1,0 +1,150 @@
+{
+  "seccion": "mecanicas",
+  "nota": "Reglas del mundo y sistemas de partida recogidos del desarrollo. Lo que aparece como borrador son propuestas discutidas por el equipo que aun no estan aprobadas.",
+  "entradas": [
+    {
+      "id": "el-infierno",
+      "nombre": "El infierno llamado Doom Paradox",
+      "tipo": "Mundo",
+      "estado": "canon",
+      "imagen": "",
+      "resumen": "Un limbo gobernado por una entidad lovecraftiana que se alimenta del sufrimiento humano.",
+      "descripcion": "Doom Paradox es, dentro de la ficcion, **un infierno**. Un limbo cerrado donde los condenados, los *pecadores*, intentan escapar mientras los *verdugos* los cazan.\n\nEl juego se define como asimetrico al estilo de Dead by Daylight: un bando corre y repara, el otro persigue.\n\n> Inspirado en Dead by Daylight y el estilo asimetrico, trata sobre un infierno manejado por una entidad lovecraftiana que disfruta y se alimenta del sufrimiento humano.\n\nCada pecador tiene una relacion con algun verdugo. Esa deuda personal es el nudo del lore y lo que ordena los duelos de LMS.",
+      "etiquetas": ["lore", "premisa"],
+      "actualizado": "2026-08-31",
+      "fuente": "#general, presentacion del proyecto"
+    },
+    {
+      "id": "el-anfitrion",
+      "nombre": "El Anfitrion",
+      "tipo": "Mundo",
+      "estado": "borrador",
+      "imagen": "",
+      "resumen": "La entidad que sostiene el limbo. No se entretiene: se alimenta.",
+      "descripcion": "El Anfitrion es la entidad que gobierna Doom Paradox. El equipo lo comparo con **A.M.**, la inteligencia de *No tengo boca y debo gritar*: no mata por diversion, se sostiene con el sufrimiento ajeno.\n\nEsa es la diferencia que S.U.A marco entre el Anfitrion y Noli: **Noli se entretiene, el Anfitrion se alimenta**.\n\nS.U.A confirmo que planea meterse a si mismo en el juego junto al Anfitrion, en forma de avatar.",
+      "etiquetas": ["lore", "entidad"],
+      "actualizado": "2026-08-31",
+      "fuente": "#creacion-personajes y #ideas, 6-17/8/2026"
+    },
+    {
+      "id": "lms",
+      "nombre": "LMS (Last Man Standing)",
+      "tipo": "Modo de partida",
+      "estado": "canon",
+      "imagen": "",
+      "resumen": "El duelo final uno contra uno, con title card propia y musica compuesta a medida.",
+      "descripcion": "## Que es\nCuando queda un solo pecador vivo empieza el LMS: un cara a cara con el verdugo. Cada enfrentamiento tiene su **title card** (ya esta hecha la mitad de las de verdugos) y su propia pista de musica.\n\n## Duelos definidos\n- Neor **vs** Yiyi\n- Konut **vs** Domeli\n- Goldens **vs** Goldens\n- Retro/classics **vs** classics/retro\n- NoliFloo **vs** cualquiera\n- Rubi **vs** MR-Scoler\n- Ronn **vs** Pinguinikula\n- 1x **vs** Shedletsky\n- c00ldud **vs** 007n7\n- Herobrine **vs** Steve\n- Flowers **vs** Latt\n- Paciente 0 **vs** Andromeda\n- Benny **vs** 0_0\n- Noli **vs** 007n7\n- Todas las skins de Undertale y Project Deep Red\n\n## Descartado\nSe propuso dar pequenos buffs a ambos bandos al entrar en LMS. S.U.A lo rechazo: no le convencia, y desde el equipo se senalo que un buff repentino resulta confuso para quien acaba de empezar a jugar.",
+      "etiquetas": ["lms", "duelo"],
+      "actualizado": "2026-08-31",
+      "fuente": "#musica-doblaje y #conceptos, 12/7 - 21/8/2026"
+    },
+    {
+      "id": "double-trouble",
+      "nombre": "Ronda Double Trouble",
+      "tipo": "Modo de partida",
+      "estado": "borrador",
+      "imagen": "",
+      "resumen": "Si dos jugadores empatan en puntos, o casi, la ronda se convierte en un doble.",
+      "descripcion": "Propuesta de S.U.A: cuando dos jugadores tengan el mismo nivel de puntos, o una diferencia minima, la partida arranca como **Double Trouble** en lugar de una ronda normal.",
+      "etiquetas": ["ronda-especial"],
+      "actualizado": "2026-08-31",
+      "fuente": "#creacion-personajes, 6/8/2026"
+    },
+    {
+      "id": "rondas-especiales",
+      "nombre": "Rondas especiales",
+      "tipo": "Modo de partida",
+      "estado": "borrador",
+      "imagen": "",
+      "resumen": "Noli's Shows, escondite y huidas de una amenaza gigante: rondas que cambian las reglas enteras.",
+      "descripcion": "Ademas de la partida normal, el equipo tiene apuntadas varias rondas que sustituyen las reglas:\n\n- **Noli's Shows** — la ronda propia de Noli: juegas a sus pruebas y ganas puntos.\n- **Hide and Seek** — ronda de escondite.\n- **Huida** — escapar de una amenaza gigante, al estilo de las persecuciones de Sonic.\n\nLa idea sobre la mesa es alternarlas: dos rondas normales y a la tercera una especial. En las rondas especiales no salen modificadores pequenos, porque la ronda ya es la modificacion.",
+      "etiquetas": ["ronda-especial", "noli"],
+      "actualizado": "2026-08-31",
+      "fuente": "#creacion-personajes, 6/8/2026"
+    },
+    {
+      "id": "modificadores",
+      "nombre": "Modificadores de partida",
+      "tipo": "Sistema",
+      "estado": "borrador",
+      "imagen": "",
+      "resumen": "Alteraciones aleatorias que cambian la tematica de una partida y afectan a los dos bandos.",
+      "descripcion": "La propuesta de gabo0422356 es que algunas partidas arranquen con un modificador que cambie su tematica, de forma que ninguna se parezca a la anterior. Se cito como referencia los modos de *Die of Death*.\n\nIdeas lanzadas: lluvia de bananas, crateres de los que salen manos que te arrastran, zonas que se convierten en lava.\n\nDos reglas ya acordadas:\n\n- Los modificadores afectan **a verdugos y a pecadores por igual**.\n- Los rayos quedaron descartados como modificador general: se reservaron para el mapa y la ronda de Noli.",
+      "etiquetas": ["aleatorio", "partida"],
+      "actualizado": "2026-08-31",
+      "fuente": "#creacion-personajes, 6/8/2026"
+    },
+    {
+      "id": "eventos-medio-tiempo",
+      "nombre": "Eventos de medio tiempo",
+      "tipo": "Sistema",
+      "estado": "borrador",
+      "imagen": "",
+      "resumen": "A mitad de partida, cada mapa hace algo: arde, le caen meteoritos o suelta a su monstruo.",
+      "descripcion": "Idea de S.U.A para que los escenarios no sean decorado: **a la mitad de la partida cada mapa dispara su propio evento**.\n\nEjemplos citados: que el mapa se prenda fuego, que caigan meteoritos. En el bosque encantado, el evento previsto es el monstruo del lago bloqueando uno de los puentes.",
+      "etiquetas": ["mapa", "partida"],
+      "actualizado": "2026-08-31",
+      "fuente": "#creacion-personajes y #avances, 6-19/8/2026"
+    },
+    {
+      "id": "muertes-relacionadas",
+      "nombre": "Muertes y dialogos por relacion",
+      "tipo": "Sistema",
+      "estado": "borrador",
+      "imagen": "",
+      "resumen": "Si el verdugo tiene historia con el pecador que mata, la animacion y lo que dice cambian.",
+      "descripcion": "Propuesta de cyn_rebelcream aceptada por S.U.A el 22/8/2026: cuando un verdugo mate a un pecador con el que tiene relacion de lore, **la animacion de muerte y el dialogo son distintos** de los genericos.\n\nEs la extension natural de la regla de que cada pecador arrastra una deuda con algun verdugo.",
+      "etiquetas": ["lore", "animacion"],
+      "actualizado": "2026-08-31",
+      "fuente": "#ideas, 22/8/2026"
+    },
+    {
+      "id": "clasificacion-gore",
+      "nombre": "Gore y clasificacion +16",
+      "tipo": "Sistema",
+      "estado": "canon",
+      "imagen": "",
+      "resumen": "El juego apunta a la clasificacion mas alta de Roblox para poder mantener el gore.",
+      "descripcion": "S.U.A queria que Doom Paradox tuviera gore, y el equipo lo resolvio apuntando a la **clasificacion +16 de Roblox**, la mas alta disponible.\n\nEl ejemplo que puso el propio S.U.A es la muerte por defecto de Noli: le clava la estrella al pecador por la garganta hasta el estomago y lo hace explotar.\n\nLo que si esta vetado por el equipo: publicar contenido indebido o sexualizado del juego.",
+      "etiquetas": ["gore", "clasificacion"],
+      "actualizado": "2026-08-31",
+      "fuente": "#verdugos y #avisos, 14-20/8/2026"
+    },
+    {
+      "id": "cuerpos-r15",
+      "nombre": "Cuerpos R15 en un juego R6",
+      "tipo": "Sistema",
+      "estado": "canon",
+      "imagen": "",
+      "resumen": "El juego esta configurado en R6, pero los personajes pueden usar cuerpos R15.",
+      "descripcion": "Aunque los jugadores estan configurados en **R6**, se confirmo que dentro del juego se pueden montar cuerpos **R15**. Sally fue el primer personaje construido asi, combinando piezas desde el creador de avatares.\n\nEso abre la puerta a siluetas que no son el bloque clasico de Roblox: cuerpos delgados, mangas largas, proporciones distintas.",
+      "etiquetas": ["tecnico", "modelado"],
+      "actualizado": "2026-08-31",
+      "fuente": "#verdugos, 20/8/2026"
+    },
+    {
+      "id": "skins-y-tienda",
+      "nombre": "Skins, tienda y encuestas",
+      "tipo": "Sistema",
+      "estado": "borrador",
+      "imagen": "",
+      "resumen": "Boton de tienda y de espectar ya hechos; las skins de la comunidad entrarian por encuesta semanal.",
+      "descripcion": "## Lo que ya existe\nEstan hechos el boton de tienda y el de espectar, y disenado el apartado de emotes y pases de juego.\n\n## Como entrarian las skins de la comunidad\nLa propuesta es hacer una **encuesta semanal** en el servidor de fans: la skin ganadora entra primero, y las demas se van metiendo despues sin descartarse.\n\n## Colaboracion\nS.U.A confirmo que negocia una colaboracion con otro juego asimetrico de Vocaloids que traeria varias skins. El primer candidato que menciono fue 1x1x1x1.",
+      "etiquetas": ["skins", "comunidad", "tienda"],
+      "actualizado": "2026-08-31",
+      "fuente": "#ideas y #avisos, 18-20/8/2026"
+    },
+    {
+      "id": "power-ups",
+      "nombre": "Objetos rompibles del mapa",
+      "tipo": "Sistema",
+      "estado": "canon",
+      "imagen": "",
+      "resumen": "Cajas y televisores repartidos por el escenario que algunos verdugos pueden romper para ganar buffs.",
+      "descripcion": "El mapa genera cajas y televisores que el verdugo puede destruir. Es la pasiva **Power Ups Exes** de DPX: cada objeto roto le da 1.2 segundos de mas velocidad y mas dano.\n\nPara el pecador son un aviso doble: marcan por donde ha pasado el verdugo y son un recurso que conviene negarle.",
+      "etiquetas": ["mapa", "buff"],
+      "actualizado": "2026-08-31",
+      "fuente": "#verdugos, 20/8/2026"
+    }
+  ]
+}

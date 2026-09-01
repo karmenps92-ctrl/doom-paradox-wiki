@@ -9,12 +9,14 @@ export const SITIO = {
   subtitulo: "WIKI",
   lema: "Todo pecado encuentra su verdugo",
   descripcion:
-    "Archivo abierto del universo de Doom Paradox: sus verdugos, sus pecadores, los mapas donde se cazan y la musica que los acompana.",
+    "Doom Paradox es un juego asimetrico de terror para Roblox: un infierno gobernado por una entidad " +
+    "lovecraftiana que se alimenta del sufrimiento humano. Los pecadores intentan escapar; los verdugos " +
+    "cobran la deuda. Este es el archivo abierto de sus personajes, mapas, mecanicas y musica.",
 
   /* --- Enlaces externos (deja "" para ocultar el boton) --- */
   enlaces: {
-    juego: "",                    // ej: https://www.roblox.com/games/0000000000/Doom-Paradox
-    discord: "",                  // ej: https://discord.gg/xxxxxxx
+    juego: "",                                  // pon aqui el enlace de la experiencia cuando salga
+    discord: "https://discord.gg/yZCafC3E7",    // servidor de fans anunciado el 18/8/2026 (borralo si no quieres publicarlo)
     grupoRoblox: "",
     youtube: ""
   },
@@ -39,9 +41,10 @@ export const SITIO = {
   },
 
   /* --- Secciones del archivo ---
-     id  -> nombre del JSON dentro de /datos
-     ruta-> ruta publica (#/verdugos)
-     vista-> como se dibuja (catalogo | mapas | ost | galeria)  */
+     id          -> nombre del JSON dentro de /datos
+     ruta        -> ruta publica (#/verdugos)
+     vista       -> como se dibuja (catalogo | mapas | ost | galeria)
+     campoFiltro -> campo por el que se agrupan los botones de filtro */
   secciones: [
     {
       id: "verdugos",
@@ -50,9 +53,11 @@ export const SITIO = {
       vista: "catalogo",
       tono: "sangre",
       singular: "Verdugo",
+      campoFiltro: "origen",
       lema: "Los que cobran la deuda.",
       descripcion:
-        "Entidades que persiguen a los pecadores. Cada uno impone sus propias reglas al mapa: aprendelas o pagalas."
+        "Los asesinos de Doom Paradox. Veinticuatro entidades confirmadas, entre creaciones originales, " +
+        "clasicos de Roblox y viejos conocidos de las creepypastas. Cada uno impone sus propias reglas al mapa."
     },
     {
       id: "pecadores",
@@ -61,9 +66,11 @@ export const SITIO = {
       vista: "catalogo",
       tono: "ceniza",
       singular: "Pecador",
+      campoFiltro: "origen",
       lema: "Los que todavia pueden huir.",
       descripcion:
-        "Personajes jugables. Cada pecador arrastra una culpa distinta y una habilidad que nace de ella."
+        "Los supervivientes. Veinte condenados que reparan, se esconden y corren. Cada pecador arrastra una " +
+        "relacion con algun verdugo: esa deuda es el nudo del lore."
     },
     {
       id: "mapas",
@@ -72,9 +79,24 @@ export const SITIO = {
       vista: "mapas",
       tono: "humo",
       singular: "Mapa",
+      campoFiltro: "zona",
       lema: "El escenario tambien caza.",
       descripcion:
-        "Planos comentados, rutas de escape, generadores, escondites y secretos documentados por la comunidad."
+        "Los escenarios del limbo y el lobby que los une. Planos comentados, eventos de medio tiempo, " +
+        "rutas y secretos documentados por el equipo."
+    },
+    {
+      id: "mecanicas",
+      nombre: "Mecanicas",
+      ruta: "mecanicas",
+      vista: "catalogo",
+      tono: "humo",
+      singular: "Mecanica",
+      campoFiltro: "tipo",
+      lema: "Como funciona el infierno.",
+      descripcion:
+        "Modos de partida, sistemas y reglas del mundo: LMS, Double Trouble, rondas especiales, " +
+        "modificadores y todo lo que cambia una partida por dentro."
     },
     {
       id: "ost",
@@ -83,9 +105,10 @@ export const SITIO = {
       vista: "ost",
       tono: "humo",
       singular: "Tema",
+      campoFiltro: "escena",
       lema: "La banda sonora del paradox.",
       descripcion:
-        "Temas originales del juego con su contexto: donde suenan, quien los compuso y que anuncian."
+        "Chase themes, temas de LMS y ambientes de mapa. Cada verdugo tiene su propia persecucion sonando detras."
     },
     {
       id: "galeria",
@@ -94,9 +117,10 @@ export const SITIO = {
       vista: "galeria",
       tono: "ceniza",
       singular: "Obra",
+      campoFiltro: "autor",
       lema: "Lo que la comunidad dibuja.",
       descripcion:
-        "Fan art enviado por jugadores. Cada obra pertenece a quien la firma."
+        "Fan art y arte del equipo. Cada obra pertenece a quien la firma."
     }
   ]
 };

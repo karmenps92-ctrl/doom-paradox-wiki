@@ -99,16 +99,30 @@ export async function vistaCreditos(raiz){
     </section>
     <section class="seccion"><div class="contenedor">
       <div class="prosa">
-        <h3>Doom Paradox</h3>
-        <p>Rellena aqui el equipo del juego: direccion, arte, programacion, musica.
-        Se edita en <code>assets/js/vistas/estaticas.js</code>.</p>
+        <h3>Equipo de Doom Paradox</h3>
+        <p>Nombres tal y como aparecen en el servidor de desarrollo. Si alguien quiere figurar de otra
+        forma, o no figurar, se cambia en cuanto lo pida.</p>
+        <ul>
+          <li><strong>S.U.A</strong> — direccion del proyecto, diseno de personajes, arte y voces.</li>
+          <li><strong>cyn_rebelcream</strong> — modelado y mapas, diseno de Sally, skins y accesorios.</li>
+          <li><strong>wise_rabbit_96212</strong> — programacion y build: camaras, texturas y sistemas de mapa.</li>
+          <li><strong>kukinazo</strong> — composicion: chase themes, temas de LMS y ambientes.</li>
+          <li><strong>irvinincio</strong> — composicion.</li>
+          <li><strong>gabo0422356</strong> — conceptos, doblaje y difusion.</li>
+          <li><strong>springxd12</strong> — interfaz (tienda, espectar) y skins.</li>
+          <li><strong>magma_mp4</strong> — doblaje (Konut).</li>
+          <li><strong>enrique_nomas</strong> — doblaje (Wood Stone).</li>
+        </ul>
+        <p>Y el resto del equipo del servidor de desarrollo, que ha aportado conceptos, pruebas y arte.</p>
 
         <h3>Wiki</h3>
-        <p>Diseno y mantenimiento del archivo, mas todas las personas que han abierto una propuesta.</p>
+        <p>Archivo abierto: lo que leas aqui sale del desarrollo del juego y de las propuestas de la
+        comunidad. Cada ficha indica de que canal y de que fecha viene su informacion.</p>
 
         <h3>Aviso</h3>
-        <p>Wiki no oficial mantenida por la comunidad salvo que se indique lo contrario.
-        Todo el arte pertenece a sus autores. Roblox es marca de Roblox Corporation, sin relacion con este proyecto.</p>
+        <p>Wiki mantenida por la comunidad. El arte pertenece a sus autores y se retira a peticion.
+        Roblox es marca de Roblox Corporation, sin relacion con este proyecto. Los personajes invitados
+        y de creepypasta pertenecen a sus respectivos creadores.</p>
       </div>
       ${comentarios("creditos", "los creditos")}
     </div></section>`;

@@ -11,8 +11,8 @@ import { iniciales } from "./inicio.js";
 export async function vistaCatalogo(raiz, sec){
   const { entradas, error } = await cargarSeccion(sec.id);
 
-  // El campo por el que se filtra depende de la seccion.
-  const campo = sec.id === "verdugos" ? "pecado" : (sec.id === "pecadores" ? "clase" : "zona");
+  // El campo por el que se filtra lo decide config.js.
+  const campo = sec.campoFiltro || "tipo";
   const valores = [...new Set(entradas.map(e => e[campo]).filter(Boolean))].sort();
 
   raiz.innerHTML = `

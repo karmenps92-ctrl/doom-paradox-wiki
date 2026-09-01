@@ -58,6 +58,23 @@ export async function vistaInicio(raiz){
       </div>
     </section>
 
+    <section class="seccion" data-revelar>
+      <div class="contenedor" style="max-width:70ch">
+        <p class="etiqueta"><span class="raya"></span>La premisa</p>
+        <p class="cita-bloque" style="padding-top:1.2rem">
+          Un infierno manejado por una entidad lovecraftiana que disfruta y se alimenta del sufrimiento humano.
+        </p>
+        <p style="text-align:center;color:var(--ceniza)">
+          Los pecadores intentan escapar. Los verdugos cobran la deuda. Y cada pecador arrastra una
+          relacion con alguno de ellos: ese vinculo decide como muere.
+        </p>
+        <p style="text-align:center;margin-top:1.6rem">
+          <a class="boton" href="#/mecanicas/el-infierno">Leer el lore</a>
+          <a class="boton" href="#/mecanicas">Ver las mecanicas</a>
+        </p>
+      </div>
+    </section>
+
     ${bloques}
 
     <section class="seccion" data-revelar>

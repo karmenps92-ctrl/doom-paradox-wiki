@@ -54,10 +54,12 @@ export async function vistaFicha(raiz, sec, id){
               ${e.alias ? `<p class="entrada-alias">${esc(e.alias)}</p>` : ""}
               ${e.resumen ? `<p class="entrada-resumen">${esc(e.resumen)}</p>` : ""}
               <ul class="datos">
+                ${dato("Tipo", e.tipo)}
                 ${dato(sec.id === "verdugos" ? "Pecado que castiga" : "Culpa", e.pecado || e.culpa)}
                 ${dato("Clase", e.clase)}
                 ${dato("Origen", e.origen)}
                 ${e.peligro ? `<li><b>Amenaza</b><span>${peligro(e.peligro)}</span></li>` : ""}
+                ${dato("Voz", e.voz)}
                 ${dato("Aparicion", e.aparicion)}
                 ${dato("Estado", e.estado)}
               </ul>
@@ -80,6 +82,12 @@ export async function vistaFicha(raiz, sec, id){
 
           ${listaBloque("Como sobrevivir", (e.consejos || []).length
             ? `<ul>${(e.consejos || []).map(c => `<li>${esc(c)}</li>`).join("")}</ul>` : "")}
+
+          ${listaBloque("Skins", (e.skins || []).map(s => `
+            <div class="habilidad">
+              <b>${esc(s.nombre || "")}</b>
+              <p>${esc(s.texto || "")}</p>
+            </div>`).join(""))}
 
           ${listaBloque("Curiosidades", (e.curiosidades || []).length
             ? `<ul>${(e.curiosidades || []).map(c => `<li>${esc(c)}</li>`).join("")}</ul>` : "")}

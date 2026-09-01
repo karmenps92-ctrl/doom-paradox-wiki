@@ -7,8 +7,8 @@ programar.
 
 ## Que trae
 
-- **Cuatro secciones dirigidas por datos**: Verdugos, Pecadores, Mapas y OST, mas la Galeria
-  de fan art. Anadir una entrada al JSON crea su pagina automaticamente.
+- **Cinco secciones dirigidas por datos**: Verdugos, Pecadores, Mapas, Mecanicas y OST, mas la
+  Galeria de fan art. Anadir una entrada al JSON crea su pagina automaticamente.
 - **Buscador global** con `Ctrl + K` (o `/`), tolerante a acentos y a erratas.
 - **Fichas de personaje** con atributos animados, habilidades, consejos y referencias
   cruzadas entre secciones (un verdugo enlaza a sus mapas y a su tema musical).
@@ -87,12 +87,18 @@ assets/audio/              temas de la OST
 scripts/validar.mjs        validador de datos
 ```
 
-## Contenido de ejemplo
+## De donde sale el contenido
 
-Las fichas que vienen de fabrica estan marcadas como `"estado": "borrador"` y sirven de
-plantilla. Sustituyelas por los personajes reales; si una entrada no tiene imagen, la wiki
-dibuja un marcador de tinta con sus iniciales, asi que se puede publicar antes de tener el
-arte terminado.
+Las fichas se han volcado desde el servidor de desarrollo del juego (agosto de 2026). Cada
+entrada lleva un campo `fuente` con el canal y la fecha de donde salio el dato, y un campo
+`estado`:
+
+- `canon` — confirmado por el equipo.
+- `borrador` — propuesta discutida pero sin aprobar, o ficha que existe en el roster pero
+  todavia no esta escrita.
+
+Ninguna ficha tiene imagen todavia: mientras falte, la wiki dibuja un marcador de tinta con
+las iniciales del personaje, asi que se puede publicar antes de tener el arte terminado.
 
 ## Creditos y derechos
 
