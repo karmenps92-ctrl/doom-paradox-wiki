@@ -18,13 +18,13 @@
       "id": "el-anfitrion",
       "nombre": "El Anfitrion",
       "tipo": "Mundo",
-      "estado": "borrador",
+      "estado": "canon",
       "imagen": "",
-      "resumen": "La entidad que sostiene el limbo. No se entretiene: se alimenta.",
-      "descripcion": "El Anfitrion es la entidad que gobierna Doom Paradox. El equipo lo comparo con **A.M.**, la inteligencia de *No tengo boca y debo gritar*: no mata por diversion, se sostiene con el sufrimiento ajeno.\n\nEsa es la diferencia que S.U.A marco entre el Anfitrion y Noli: **Noli se entretiene, el Anfitrion se alimenta**.\n\nS.U.A confirmo que planea meterse a si mismo en el juego junto al Anfitrion, en forma de avatar.",
-      "etiquetas": ["lore", "entidad"],
+      "resumen": "La entidad que sostiene el limbo. No se entretiene: se alimenta. Y no condena a sus verdugos, los contrata.",
+      "descripcion": "El Anfitrion es la entidad que gobierna Doom Paradox. El equipo lo comparo con **A.M.**, la inteligencia de *No tengo boca y debo gritar*: no mata por diversion, se sostiene con el sufrimiento ajeno.\n\nEsa es la diferencia que S.U.A marco entre el Anfitrion y Noli: **Noli se entretiene, el Anfitrion se alimenta**.\n\n## Como recluta\nLa historia de [Yi Xi](#/verdugos/yi-xi) es el primer caso documentado de como suma verdugos a su mundo, y sienta la regla: **el Anfitrion no condena, negocia**.\n\nAparece como una figura oscura justo despues del peor acto de la persona, se presenta por su nombre y ofrece un trato: darle exactamente aquello que la ha llevado hasta ahi, a cambio de que se quede en su mundo. A Yi Xi le ofrecio comida infinita.\n\nS.U.A confirmo ademas que planea meterse a si mismo en el juego junto al Anfitrion, en forma de avatar.",
+      "etiquetas": ["lore", "entidad", "trato"],
       "actualizado": "2026-08-31",
-      "fuente": "#creacion-personajes y #ideas, 6-17/8/2026"
+      "fuente": "#creacion-personajes, #ideas y lore de Yi Xi, 6/8 - 31/8/2026"
     },
     {
       "id": "lms",
@@ -33,7 +33,7 @@
       "estado": "canon",
       "imagen": "",
       "resumen": "El duelo final uno contra uno, con title card propia y musica compuesta a medida.",
-      "descripcion": "## Que es\nCuando queda un solo pecador vivo empieza el LMS: un cara a cara con el verdugo. Cada enfrentamiento tiene su **title card** (ya esta hecha la mitad de las de verdugos) y su propia pista de musica.\n\n## Duelos definidos\n- Neor **vs** Yiyi\n- Konut **vs** Domeli\n- Goldens **vs** Goldens\n- Retro/classics **vs** classics/retro\n- NoliFloo **vs** cualquiera\n- Rubi **vs** MR-Scoler\n- Ronn **vs** Pinguinikula\n- 1x **vs** Shedletsky\n- c00ldud **vs** 007n7\n- Herobrine **vs** Steve\n- Flowers **vs** Latt\n- Paciente 0 **vs** Andromeda\n- Benny **vs** 0_0\n- Noli **vs** 007n7\n- Todas las skins de Undertale y Project Deep Red\n\n## Descartado\nSe propuso dar pequenos buffs a ambos bandos al entrar en LMS. S.U.A lo rechazo: no le convencia, y desde el equipo se senalo que un buff repentino resulta confuso para quien acaba de empezar a jugar.",
+      "descripcion": "## Que es\nCuando queda un solo pecador vivo empieza el LMS: un cara a cara con el verdugo. Cada enfrentamiento tiene su **title card** (ya esta hecha la mitad de las de verdugos) y su propia pista de musica.\n\n## Duelos definidos\n- Neor **vs** Yiyi\n- Konut **vs** Domeli\n- Goldens **vs** Goldens\n- Retro/classics **vs** classics/retro\n- NoliFloo **vs** cualquiera\n- Rubi **vs** MR-Scoler\n- Ronn **vs** Pinguinikula\n- 1x **vs** Shedletsky\n- c00ldud **vs** 007n7\n- Herobrine **vs** Steve\n- Flowers **vs** Latt\n- Paciente 0 **vs** Andromeda\n- Benny **vs** 0_0\n- Noli **vs** 007n7\n- Todas las skins de Undertale y Project Deep Red — un cruce entre skins, no entre personajes: entran ahi cosas como las skins Double y Monster de Yi Xi.\n\n## Descartado\nSe propuso dar pequenos buffs a ambos bandos al entrar en LMS. S.U.A lo rechazo: no le convencia, y desde el equipo se senalo que un buff repentino resulta confuso para quien acaba de empezar a jugar.",
       "etiquetas": ["lms", "duelo"],
       "actualizado": "2026-08-31",
       "fuente": "#musica-doblaje y #conceptos, 12/7 - 21/8/2026"

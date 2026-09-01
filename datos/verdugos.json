@@ -506,22 +506,99 @@
     {
       "id": "yi-xi",
       "nombre": "Yi Xi",
-      "alias": "",
+      "alias": "El apetito que nunca se llena",
       "origen": "Original",
-      "peligro": 3,
-      "estado": "borrador",
+      "peligro": 5,
+      "estado": "canon",
       "imagen": "",
-      "resumen": "En el roster confirmado. Ficha pendiente de escribir.",
-      "descripcion": "Verdugo confirmado en la lista oficial del 11/8/2026.",
-      "habilidades": [],
-      "consejos": [],
-      "curiosidades": [],
+      "resumen": "Cocinera y carnicera: ve a todo el mapa, castiga a los heridos y su cuchillo decide que moveset esta usando.",
+      "descripcion": "## Historia\nYi Xi era una chica japonesa que vivia en Estados Unidos. Un dia conocio a un chico, S##, del que se enamoro perdidamente: lo invito a salir y se hicieron novios. Durante un tiempo fueron felices los dos solos.\n\nPero Yi Xi lo amaba con locura, y esa locura tenia consecuencias para cualquiera que se atreviera a hacerle algo a el. Un dia fue al extremo: **ato a S## a una silla y lo cocino**, para tenerlo siempre a su lado.\n\nDespues fue a esconder los huesos en un bosque cercano a su pueblo. Un pueblo de canibales.\n\nMientras ocultaba los restos, una figura oscura aparecio a su espalda y se presento como [el Anfitrion](#/mecanicas/el-anfitrion), con un trato tentador:\n\n> A cambio de poseer comida infinita, tendras que quedarte en mi mundo... Tu que dices, ¿YI XI?\n\nAcepto sin rechistar. Asi llego al Paradox.\n\n## Como juega\nYi Xi es una bola de nieve: cada mordisco que acierta la hace mas rapida, y cada golpe y cada muerte llenan su barra de Apetito hasta desbloquear la definitiva.\n\nSu rasgo unico es el **cuchillo de carnicero**: si lo lanza y falla, se queda en el suelo y ella pierde las habilidades que dependen de el hasta que vaya a recogerlo. A cambio desbloquea un segundo moveset a manos desnudas mucho mas brutal.",
+      "habilidades": [
+        {
+          "nombre": "Voracious Appetite",
+          "tipo": "pasiva",
+          "enfriamiento": "acumulable",
+          "texto": "Cada vez que acierta Bite of Gluttony gana velocidad de movimiento. El efecto se acumula."
+        },
+        {
+          "nombre": "Appetite",
+          "tipo": "pasiva",
+          "enfriamiento": "",
+          "texto": "Una barra que se llena con cada golpe y cada muerte. Al completarse desbloquea Appetite for Vanity."
+        },
+        {
+          "nombre": "M1",
+          "tipo": "ataque basico",
+          "enfriamiento": "",
+          "texto": "Ataque basico con cuchillo. 24 de dano."
+        },
+        {
+          "nombre": "Bite of Gluttony",
+          "tipo": "activa",
+          "enfriamiento": "",
+          "texto": "Muerde al pecador que tenga cerca. 20 de dano. Si acierta, activa Voracious Appetite (acumulable) y llena una parte de la barra de Apetito."
+        },
+        {
+          "nombre": "Butcher's Vision",
+          "tipo": "activa",
+          "enfriamiento": "",
+          "texto": "Durante 20 segundos todos los pecadores del mapa son visibles para Yi Xi. Los que estan por debajo del 50% de vida se marcan en un rojo intenso."
+        },
+        {
+          "nombre": "Flying Knife",
+          "tipo": "activa",
+          "enfriamiento": "",
+          "texto": "Lanza su cuchillo de carnicero hacia donde este mirando (en movil, hacia donde toques la pantalla). 12 de dano. Si falla, puede ir a recogerlo o pasar a su moveset sin cuchillo."
+        },
+        {
+          "nombre": "A Good Dish",
+          "tipo": "activa",
+          "enfriamiento": "",
+          "texto": "Agarra el cuchillo y quita 30 puntos de vida, recargando 40 puntos de su barra de Apetito."
+        },
+        {
+          "nombre": "Appetite for Vanity",
+          "tipo": "definitiva",
+          "enfriamiento": "se recarga con cada muerte",
+          "texto": "Mientras un contador se agota, todos los pecadores son visibles para Yi Xi. En este modo recibe un bonus del 10% en sus habilidades y se mueve mas rapido; las misiones solo quitan tiempo cuando todo vuelve a la normalidad."
+        },
+        {
+          "nombre": "M1 sin cuchillo",
+          "tipo": "sin cuchillo",
+          "enfriamiento": "",
+          "texto": "Un zarpazo a mano desnuda. 19 de dano."
+        },
+        {
+          "nombre": "Wild",
+          "tipo": "sin cuchillo",
+          "enfriamiento": "",
+          "texto": "Agarra a un pecador y empieza a morderlo hasta casi despedazarlo. Se abre un minijuego de Point and Click: si el pecador falla, muere en el acto."
+        }
+      ],
+      "skins": [
+        { "nombre": "Vegan", "texto": "Basada en una parodia de Butcher Vanity." },
+        { "nombre": "Neko", "texto": "Basada en otra cancion de Yi Xi (titulo pendiente de confirmar)." },
+        { "nombre": "Ghoul", "texto": "Basada en los enemigos del mismo nombre de Tokyo Ghoul." },
+        { "nombre": "Double", "texto": "Basicamente Chara, de Undertale." },
+        { "nombre": "Monster", "texto": "Basada en el diseno de la M4 del juego Project Deep Red." }
+      ],
+      "consejos": [
+        "Mantente por encima del 50% de vida: Butcher's Vision marca en rojo a quien este por debajo.",
+        "No le dejes encadenar mordiscos. La velocidad de Voracious Appetite se acumula y ya no la pierde.",
+        "Si falla el Flying Knife, el cuchillo se queda en el suelo: hasta que lo recoja pierde su M1 con cuchillo y A Good Dish.",
+        "Sin cuchillo es mas peligrosa de cerca, no menos: Wild acaba en muerte instantanea si fallas el Point and Click."
+      ],
+      "curiosidades": [
+        "Su historia es el unico caso documentado de como el Anfitrion recluta a sus verdugos: un trato, no una condena.",
+        "El pueblo donde crecio ya era de canibales antes de que ella hiciera nada.",
+        "Dos de sus skins, Double y Monster, entran en el LMS cruzado de skins de Undertale y Project Deep Red."
+      ],
       "mapas": [],
-      "ost": [],
+      "ost": ["chase-vanity"],
       "pecadores": [],
-      "etiquetas": ["ficha-pendiente"],
+      "etiquetas": ["gula", "vision", "cuchillo", "definitiva", "canibalismo"],
       "actualizado": "2026-08-31",
-      "fuente": "#creacion-personajes, 11/8/2026"
+      "fuente": "S.U.A, canal de verdugos (transcrito el 31/8/2026)"
     },
     {
       "id": "winky",

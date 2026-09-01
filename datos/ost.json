@@ -71,9 +71,9 @@
       "estado": "borrador",
       "archivo": "",
       "youtube": "",
-      "descripcion": "Compuesto y pendiente de ecualizar.\n\n**Por confirmar:** Vanity no aparece en la lista publica de verdugos del 11/8/2026. Falta aclarar si es un personaje sin anunciar, una skin o un nombre antiguo.",
+      "descripcion": "Tema de persecucion de **Yi Xi**. Compuesto y pendiente de ecualizar.\n\nEl nombre viene de la cancion en la que se basa el personaje: su definitiva se llama *Appetite for Vanity* y su skin Vegan parodia *Butcher Vanity*.",
       "mapas": [],
-      "verdugos": [],
+      "verdugos": ["yi-xi"],
       "actualizado": "2026-08-31",
       "fuente": "#musica-doblaje, 17/8/2026"
     },

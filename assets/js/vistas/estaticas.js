@@ -100,20 +100,10 @@ export async function vistaCreditos(raiz){
     <section class="seccion"><div class="contenedor">
       <div class="prosa">
         <h3>Equipo de Doom Paradox</h3>
-        <p>Nombres tal y como aparecen en el servidor de desarrollo. Si alguien quiere figurar de otra
-        forma, o no figurar, se cambia en cuanto lo pida.</p>
-        <ul>
-          <li><strong>S.U.A</strong> — direccion del proyecto, diseno de personajes, arte y voces.</li>
-          <li><strong>cyn_rebelcream</strong> — modelado y mapas, diseno de Sally, skins y accesorios.</li>
-          <li><strong>wise_rabbit_96212</strong> — programacion y build: camaras, texturas y sistemas de mapa.</li>
-          <li><strong>kukinazo</strong> — composicion: chase themes, temas de LMS y ambientes.</li>
-          <li><strong>irvinincio</strong> — composicion.</li>
-          <li><strong>gabo0422356</strong> — conceptos, doblaje y difusion.</li>
-          <li><strong>springxd12</strong> — interfaz (tienda, espectar) y skins.</li>
-          <li><strong>magma_mp4</strong> — doblaje (Konut).</li>
-          <li><strong>enrique_nomas</strong> — doblaje (Wood Stone).</li>
-        </ul>
-        <p>Y el resto del equipo del servidor de desarrollo, que ha aportado conceptos, pruebas y arte.</p>
+        <p>Doom Paradox lo dirige <strong>S.U.A</strong> y lo saca adelante el equipo del servidor de
+        desarrollo: arte, modelado, programacion, musica, doblaje y pruebas.</p>
+        <p>Nombres tal y como aparecen en el servidor. Si alguien quiere figurar de otra forma, o no
+        figurar, se cambia en cuanto lo pida.</p>
 
         <h3>Wiki</h3>
         <p>Archivo abierto: lo que leas aqui sale del desarrollo del juego y de las propuestas de la
