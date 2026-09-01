@@ -602,6 +602,9 @@ code{
    11. PROSA
    ============================================================ */
 .prosa{max-width:var(--ancho-texto); font-size:var(--t-0)}
+/* una columna de prosa suelta (créditos, avisos) se centra sola */
+.contenedor > .prosa{margin-inline:auto}
+.cuerpo-entrada .prosa{margin-inline:0}
 .prosa > p:first-child::first-letter{
   float:left; font-family:var(--display); font-weight:400;
   font-size:3.4em; line-height:.82; margin:.06em .12em 0 0;
@@ -1073,6 +1076,28 @@ a.pista-nombre:hover{color:var(--sangre-viva)}
 }
 .pie-nav a:hover{color:var(--sangre-viva)}
 .pie-nota{font-size:.78rem; color:#5b565f; max-width:60ch; margin-inline:auto}
+
+/* ============================================================
+   19b. CASCADA DE APARICIÓN
+   Las tarjetas de una misma fila no entran a la vez: caen de
+   izquierda a derecha. El retardo es corto a propósito.
+   ============================================================ */
+.rejilla > [data-revelar]:nth-child(4n+2){transition-delay:70ms}
+.rejilla > [data-revelar]:nth-child(4n+3){transition-delay:140ms}
+.rejilla > [data-revelar]:nth-child(4n+4){transition-delay:210ms}
+
+.pista[data-revelar]:nth-child(2){transition-delay:50ms}
+.pista[data-revelar]:nth-child(3){transition-delay:100ms}
+.pista[data-revelar]:nth-child(4){transition-delay:150ms}
+.pista[data-revelar]:nth-child(5){transition-delay:200ms}
+.pista[data-revelar]:nth-child(n+6){transition-delay:250ms}
+
+.mosaico figure[data-revelar]:nth-child(3n+2){transition-delay:80ms}
+.mosaico figure[data-revelar]:nth-child(3n+3){transition-delay:160ms}
+
+@media (prefers-reduced-motion:reduce){
+  [data-revelar]{transition-delay:0ms !important}
+}
 
 /* ============================================================
    20. RESPONSIVE
