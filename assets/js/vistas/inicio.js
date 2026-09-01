@@ -66,11 +66,11 @@ export async function vistaInicio(raiz){
         </p>
         <p style="text-align:center;color:var(--ceniza)">
           Los pecadores intentan escapar. Los verdugos cobran la deuda. Y cada pecador arrastra una
-          relacion con alguno de ellos: ese vinculo decide como muere.
+          relación con alguno de ellos: ese vínculo decide cómo muere.
         </p>
         <p style="text-align:center;margin-top:1.6rem">
           <a class="boton" href="#/mecanicas/el-infierno">Leer el lore</a>
-          <a class="boton" href="#/mecanicas">Ver las mecanicas</a>
+          <a class="boton" href="#/mecanicas">Ver las mecánicas</a>
         </p>
       </div>
     </section>
@@ -81,9 +81,9 @@ export async function vistaInicio(raiz){
       <div class="contenedor">
         <div class="aviso">
           <b>Esta wiki la escribe la comunidad</b>
-          <p>Falta algo o hay un dato mal? Puedes proponer cambios sin saber programar:
-          cada seccion se guarda en un archivo de texto dentro del repositorio.
-          <a href="#/guia">Mira la guia</a> o
+          <p>¿Falta algo o hay un dato mal? Puedes proponer cambios sin saber programar:
+          cada sección se guarda en un archivo de texto dentro del repositorio.
+          <a href="#/guia">Mira la guía</a> o
           <a href="${esc(urlIssue("correccion.yml"))}" target="_blank" rel="noopener">abre un reporte</a>.</p>
         </div>
       </div>
@@ -105,7 +105,7 @@ function bloqueVacio(sec){
       <p class="banda-bajada">${esc(sec.lema)}</p>
     </section>
     <section class="seccion"><div class="contenedor">
-      <p class="vacio">Todavia no hay nada documentado aqui. <a href="#/guia">Se el primero</a>.</p>
+      <p class="vacio">Todavía no hay nada documentado aquí. <a href="#/guia">Sé el primero</a>.</p>
     </div></section>`;
 }
 

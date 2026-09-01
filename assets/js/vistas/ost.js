@@ -19,7 +19,7 @@ export async function vistaOst(raiz, sec){
       <p class="banda-bajada">${esc(sec.descripcion)}</p>
     </section>
     <section class="seccion"><div class="contenedor">
-      ${entradas.length ? entradas.map((t, i) => filaPista(t, i)).join("") : `<p class="vacio">Todavia no hay temas subidos.</p>`}
+      ${entradas.length ? entradas.map((t, i) => filaPista(t, i)).join("") : `<p class="vacio">Todavía no hay temas subidos.</p>`}
 
       <div class="reproductor" id="reproductor" hidden>
         <div class="repro-info">
@@ -30,11 +30,11 @@ export async function vistaOst(raiz, sec){
       </div>
 
       <div class="aviso" style="margin-top:3rem">
-        <b>Como anadir un tema</b>
-        <p>Sube el archivo a <code>assets/audio/</code> (mp3 u ogg ligero) y describelo en
+        <b>Cómo añadir un tema</b>
+        <p>Sube el archivo a <code>assets/audio/</code> (mp3 u ogg ligero) y descríbelo en
         <a href="${esc(urlEditar("ost"))}" target="_blank" rel="noopener">datos/ost.json</a>.
-        Si el tema solo esta en YouTube, basta con poner su enlace.
-        Tambien puedes <a href="${esc(urlIssue("nueva-entrada.yml", "[OST] "))}" target="_blank" rel="noopener">proponerlo</a>.</p>
+        Si el tema solo está en YouTube, basta con poner su enlace.
+        También puedes <a href="${esc(urlIssue("nueva-entrada.yml", "[OST] "))}" target="_blank" rel="noopener">proponerlo</a>.</p>
       </div>
     </div></section>`;
 
@@ -72,12 +72,12 @@ export async function vistaTema(raiz, sec, id){
           title="${esc(t.titulo)}" loading="lazy" allowfullscreen referrerpolicy="no-referrer"></iframe></div>` : ""}
 
       <div class="cuerpo-entrada">
-        <div class="prosa">${t.descripcion ? md(t.descripcion) : "<p class=\"vacio\">Sin notas todavia.</p>"}</div>
+        <div class="prosa">${t.descripcion ? md(t.descripcion) : "<p class=\"vacio\">Sin notas todavía.</p>"}</div>
         <aside>
           <div class="panel"><h4>Ficha</h4>
             <ul class="datos" style="border:0;background:transparent;grid-template-columns:1fr">
               ${t.escena ? `<li style="padding-left:0"><b>Suena en</b><span>${esc(t.escena)}</span></li>` : ""}
-              ${t.duracion ? `<li style="padding-left:0"><b>Duracion</b><span>${duracion(t.duracion)}</span></li>` : ""}
+              ${t.duracion ? `<li style="padding-left:0"><b>Duración</b><span>${duracion(t.duracion)}</span></li>` : ""}
               ${t.estado ? `<li style="padding-left:0"><b>Estado</b><span>${esc(t.estado)}</span></li>` : ""}
             </ul>
           </div>
@@ -112,7 +112,7 @@ function filaPista(t, i){
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4l13 8-13 8z"/></svg>
       </button>
       <div style="min-width:0">
-        <a class="pista-nombre" href="#/ost/${esc(t.id)}">${esc(t.titulo || "Sin titulo")}</a>
+        <a class="pista-nombre" href="#/ost/${esc(t.id)}">${esc(t.titulo || "Sin título")}</a>
         <div class="pista-meta">
           ${esc(t.autor || t.compositor || "autor por acreditar")}
           ${t.escena ? " · " + esc(t.escena) : ""}
@@ -174,6 +174,8 @@ function marcar(raiz, id){
   $$(".pista", raiz).forEach(f => f.dataset.sonando = String(f.dataset.pista === id));
 }
 
+let picos = new Float32Array(64);
+
 function dibujarOnda(lienzo){
   if (!lienzo) return;
   const AC = window.AudioContext || window.webkitAudioContext;
@@ -184,6 +186,7 @@ function dibujarOnda(lienzo){
       const fuente = ctxAudio.createMediaElementSource(audio);
       analizador = ctxAudio.createAnalyser();
       analizador.fftSize = 512;
+      analizador.smoothingTimeConstant = 0.82;
       fuente.connect(analizador).connect(ctxAudio.destination);
       fuenteConectada = true;
     }catch(_){ return; }
@@ -191,22 +194,46 @@ function dibujarOnda(lienzo){
   ctxAudio.resume();
   const ctx = lienzo.getContext("2d");
   const datos = new Uint8Array(analizador.frequencyBinCount);
+  const n = 64;
+  if (picos.length !== n) picos = new Float32Array(n);
 
   (function bucle(){
     animando = requestAnimationFrame(bucle);
     analizador.getByteFrequencyData(datos);
     const w = lienzo.width, h = lienzo.height;
     ctx.clearRect(0, 0, w, h);
-    const n = 64, paso = Math.floor(datos.length / n);
+
+    const paso = Math.floor(datos.length / n);
+    const barW = (w / n) - 2;
+
     for (let i = 0; i < n; i++){
       const v = datos[i * paso] / 255;
-      const alto = Math.max(2, v * h);
+      const alto = Math.max(3, v * (h * 0.82));
       const x = (i / n) * w;
+
+      // Actualizar picos que caen
+      if (v > picos[i]) {
+        picos[i] = v;
+      } else {
+        picos[i] = Math.max(0, picos[i] - 0.016);
+      }
+      const picoY = h - Math.max(3, picos[i] * (h * 0.82));
+
+      // Barra principal con gradiente incandescente
       const g = ctx.createLinearGradient(0, h, 0, h - alto);
-      g.addColorStop(0, "rgba(168,13,18,.9)");
-      g.addColorStop(1, "rgba(226,35,26,.35)");
+      g.addColorStop(0, "rgba(120,10,15, 0.85)");
+      g.addColorStop(0.55, "rgba(226,35,26, 0.95)");
+      g.addColorStop(1, "rgba(255,210,180, 0.98)");
+
       ctx.fillStyle = g;
-      ctx.fillRect(x, h - alto, w / n - 2, alto);
+      ctx.fillRect(x, h - alto, barW, alto);
+
+      // Pico brillante superior
+      ctx.fillStyle = "rgba(255,245,230, 0.95)";
+      ctx.shadowColor = "rgba(226,35,26, 0.8)";
+      ctx.shadowBlur = 6;
+      ctx.fillRect(x, picoY - 2, barW, 2);
+      ctx.shadowBlur = 0;
     }
   })();
 }

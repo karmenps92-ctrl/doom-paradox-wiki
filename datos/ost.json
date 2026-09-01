@@ -1,6 +1,6 @@
 {
   "seccion": "ost",
-  "nota": "Composicion a cargo de kukinazo e irvinincio. Cuando subais los archivos a assets/audio, poned la ruta en 'archivo' y el reproductor de la wiki los toca directamente.",
+  "nota": "Composición a cargo de kukinazo e irvinincio. Cuando subais los archivos a assets/audio, poned la ruta en 'archivo' y el reproductor de la wiki los toca directamente.",
   "entradas": [
     {
       "id": "lazos-rotos",
@@ -11,54 +11,62 @@
       "estado": "canon",
       "archivo": "",
       "youtube": "",
-      "descripcion": "Tema del Last Man Standing entre **John Doe y Jane Doe**. Se compuso antes que el chase theme de la pareja: el propio autor conto que salio primero el LMS y que a partir de ahi construiria la persecucion.\n\nEs la primera pieza terminada de la banda sonora.",
+      "descripcion": "Tema del Last Man Standing entre **John Doe y Jane Doe**. Se compuso antes que el chase theme de la pareja: el propio autor contó que salió primero el LMS y que a partir de ahí construiría la persecución.\n\nEs la primera pieza terminada de la banda sonora.",
       "mapas": [],
-      "verdugos": ["john-doe"],
+      "verdugos": [
+        "john-doe"
+      ],
       "actualizado": "2026-08-31",
-      "fuente": "#musica-doblaje, 20/8/2026"
+      "fuente": "#música-doblaje, 20/8/2026"
     },
     {
       "id": "ambiente-mapa",
-      "titulo": "Musica para ambientar",
+      "titulo": "Música para ambientar",
       "autor": "kukinazo",
       "duracion": 0,
       "escena": "Mapa",
       "estado": "canon",
       "archivo": "",
       "youtube": "",
-      "descripcion": "Pieza de ambiente pensada para sonar de fondo en mapa, sin persecucion. Entregada el 17/8/2026.",
-      "mapas": ["bosque-encantado"],
+      "descripcion": "Pieza de ambiente pensada para sonar de fondo en mapa, sin persecución. Entregada el 17/8/2026.",
+      "mapas": [
+        "bosque-encantado"
+      ],
       "verdugos": [],
       "actualizado": "2026-08-31",
-      "fuente": "#musica-doblaje, 17/8/2026"
+      "fuente": "#música-doblaje, 17/8/2026"
     },
     {
       "id": "chase-c00ldud",
       "titulo": "Chase de c00ldud",
       "autor": "kukinazo",
       "duracion": 0,
-      "escena": "Persecucion",
+      "escena": "Persecución",
       "estado": "borrador",
       "archivo": "",
       "youtube": "",
-      "descripcion": "Tema de persecucion de c00ldud. En produccion: le faltaban varias capas a fecha de agosto de 2026.\n\nHubo una version anterior publicada por irvinincio que se mantiene, mientras que el chase de 1x1x1x1 es el que se rehace con los cambios pedidos por S.U.A.",
+      "descripcion": "Tema de persecución de c00ldud. En producción: le faltaban varias capas a fecha de agosto de 2026.\n\nHubo una versión anterior publicada por irvinincio que se mantiene, mientras que el chase de 1x1x1x1 es el que se rehace con los cambios pedidos por S.U.A.",
       "mapas": [],
-      "verdugos": ["c00ldud"],
+      "verdugos": [
+        "c00ldud"
+      ],
       "actualizado": "2026-08-31",
-      "fuente": "#musica-doblaje y #avisos, 13-17/8/2026"
+      "fuente": "#música-doblaje y #avisos, 13-17/8/2026"
     },
     {
       "id": "chase-1x1x1x1",
       "titulo": "Chase de 1x1x1x1",
       "autor": "irvinincio",
       "duracion": 0,
-      "escena": "Persecucion",
+      "escena": "Persecución",
       "estado": "borrador",
       "archivo": "",
       "youtube": "",
-      "descripcion": "Version antigua descartada. Se rehace desde cero siguiendo los requisitos que dio S.U.A el 13/8/2026.",
+      "descripcion": "Versión antigua descartada. Se rehace desde cero siguiendo los requisitos que dio S.U.A el 13/8/2026.",
       "mapas": [],
-      "verdugos": ["1x1x1x1"],
+      "verdugos": [
+        "1x1x1x1"
+      ],
       "actualizado": "2026-08-31",
       "fuente": "#avisos, 13/8/2026"
     },
@@ -67,30 +75,34 @@
       "titulo": "Chase de Vanity",
       "autor": "kukinazo",
       "duracion": 0,
-      "escena": "Persecucion",
+      "escena": "Persecución",
       "estado": "borrador",
       "archivo": "",
       "youtube": "",
-      "descripcion": "Tema de persecucion de **Yi Xi**. Compuesto y pendiente de ecualizar.\n\nEl nombre viene de la cancion en la que se basa el personaje: su definitiva se llama *Appetite for Vanity* y su skin Vegan parodia *Butcher Vanity*.",
+      "descripcion": "Tema de persecución de **Yi Xi**. Compuesto y pendiente de ecualizar.\n\nEl nombre viene de la canción en la que se basa el personaje: su definitiva se llama *Appetite for Vanity* y su skin Vegan parodia *Butcher Vanity*.",
       "mapas": [],
-      "verdugos": ["yi-xi"],
+      "verdugos": [
+        "yi-xi"
+      ],
       "actualizado": "2026-08-31",
-      "fuente": "#musica-doblaje, 17/8/2026"
+      "fuente": "#música-doblaje, 17/8/2026"
     },
     {
       "id": "chase-paciente-0",
       "titulo": "Chase de Paciente 0",
       "autor": "kukinazo",
       "duracion": 0,
-      "escena": "Persecucion",
+      "escena": "Persecución",
       "estado": "borrador",
       "archivo": "",
       "youtube": "",
       "descripcion": "Pendiente de empezar a fecha de agosto de 2026, junto al resto de chase themes que quedan por repartir.",
       "mapas": [],
-      "verdugos": ["paciente-0"],
+      "verdugos": [
+        "paciente-0"
+      ],
       "actualizado": "2026-08-31",
-      "fuente": "#musica-doblaje, 17/8/2026"
+      "fuente": "#música-doblaje, 17/8/2026"
     }
   ]
 }

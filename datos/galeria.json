@@ -1,15 +1,18 @@
 {
   "seccion": "galeria",
-  "nota": "Vacia a proposito: aqui solo entra arte con permiso explicito de su autor. Toda obra se publica con credito y enlace, y se retira en cuanto el autor lo pida. Copia la estructura de abajo para anadir una.",
+  "nota": "Vacía a propósito: aquí solo entra arte con permiso explícito de su autor. Toda obra se publica con crédito y enlace, y se retira en cuanto el autor lo pida. Copia la estructura de abajo para añadir una.",
   "ejemplo": {
     "id": "identificador-en-minusculas",
-    "titulo": "Titulo de la obra",
-    "autor": "Como quiere que se le acredite",
+    "titulo": "Título de la obra",
+    "autor": "Cómo quiere que se le acredite",
     "fuente": "Enlace a su perfil",
     "fecha": "2026-08-31",
     "imagen": "assets/img/galeria/identificador-en-minusculas.png",
-    "descripcion": "Que representa la obra.",
-    "etiquetas": ["noli", "fan art"],
+    "descripcion": "Qué representa la obra.",
+    "etiquetas": [
+      "noli",
+      "fan art"
+    ],
     "permiso": "concedido por el autor el 2026-08-31"
   },
   "entradas": []

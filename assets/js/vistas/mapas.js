@@ -30,12 +30,12 @@ export async function vistaMapas(raiz, sec){
             ${m.resumen ? `<p class="ficha-resumen">${esc(m.resumen)}</p>` : ""}
           </div>
         </a>`).join("")}</div>`
-      : `<p class="vacio">Ningun mapa documentado todavia.</p>`}
+      : `<p class="vacio">Ningún mapa documentado todavía.</p>`}
       <div class="aviso" style="margin-top:3rem">
-        <b>Como se documenta un mapa</b>
+        <b>Cómo se documenta un mapa</b>
         <p>Sube una captura cenital a <code>assets/img/mapas/</code> y marca los puntos con coordenadas
         en porcentaje dentro de <a href="${esc(urlEditar("mapas"))}" target="_blank" rel="noopener">datos/mapas.json</a>.
-        Tambien puedes <a href="${esc(urlIssue("nueva-entrada.yml", "[Mapa] "))}" target="_blank" rel="noopener">pedirlo por formulario</a>.</p>
+        También puedes <a href="${esc(urlIssue("nueva-entrada.yml", "[Mapa] "))}" target="_blank" rel="noopener">pedirlo por formulario</a>.</p>
       </div>
     </div></section>`;
   revelar(raiz);
@@ -67,7 +67,11 @@ export async function vistaMapa(raiz, sec, id){
               ${imagen(m.imagen, "Plano de " + m.nombre, iniciales(m.nombre))}
               ${puntos.map((p, i) => `
                 <button class="punto" style="left:${Number(p.x) || 50}%;top:${Number(p.y) || 50}%"
-                  data-punto="${i}" aria-label="${esc(p.titulo || "Punto " + (i + 1))}">${i + 1}</button>`).join("")}
+                  data-punto="${i}" aria-label="${esc(p.titulo || "Punto " + (i + 1))}">
+                  <i class="punto-baliza" aria-hidden="true"></i>
+                  <i class="punto-baliza" aria-hidden="true"></i>
+                  ${i + 1}
+                </button>`).join("")}
             </div>
             <div class="mapa-controles">
               <button data-zoom="1" aria-label="Acercar">+</button>
@@ -80,17 +84,17 @@ export async function vistaMapa(raiz, sec, id){
 
         <div>
           <div class="mapa-detalle" id="detalle">
-            <h4>${puntos.length ? "Puntos de interes" : "Sin puntos marcados"}</h4>
+            <h4>${puntos.length ? "Puntos de interés" : "Sin puntos marcados"}</h4>
             <p style="color:var(--ceniza);font-size:.92rem;margin:0">
-              ${puntos.length ? "Selecciona un numero sobre el plano." : "Nadie ha marcado nada en este mapa aun."}
+              ${puntos.length ? "Selecciona un número sobre el plano." : "Nadie ha marcado nada en este mapa aún."}
             </p>
           </div>
-          ${puntos.length ? `<div class="panel" style="margin-top:1.2rem"><h4>Indice</h4>
+          ${puntos.length ? `<div class="panel" style="margin-top:1.2rem"><h4>Índice</h4>
             <ol style="padding-left:1.2rem;margin:0;color:var(--ceniza-clara)">
               ${puntos.map((p, i) => `<li style="margin:.3rem 0"><a href="#" data-ir="${i}">${esc(p.titulo || "Punto " + (i + 1))}</a></li>`).join("")}
             </ol></div>` : ""}
           ${panelRef("Verdugos del mapa", verdugosRel, "verdugos")}
-          ${panelRef("Musica", ostRel, "ost")}
+          ${panelRef("Música", ostRel, "ost")}
           ${(m.dificultad || m.jugadores || m.salidas || m.zona) ? `
           <div class="panel">
             <h4>Datos</h4>
@@ -183,7 +187,7 @@ function visorInteractivo(raiz, puntos){
     detalle.innerHTML = `
       <h4>${esc(p.titulo || "Punto " + (i + 1))}</h4>
       ${p.tipo ? `<p class="ficha-meta" style="margin-bottom:.6rem">${esc(p.tipo)}</p>` : ""}
-      <div class="prosa" style="font-size:.95rem">${p.texto ? md(p.texto) : "<p>Sin descripcion.</p>"}</div>`;
+      <div class="prosa" style="font-size:.95rem">${p.texto ? md(p.texto) : "<p>Sin descripción.</p>"}</div>`;
   };
   $$(".punto", raiz).forEach(b => b.addEventListener("click", () => mostrar(Number(b.dataset.punto))));
   $$("[data-ir]", raiz).forEach(a => a.addEventListener("click", e => {

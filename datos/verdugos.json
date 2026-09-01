@@ -1,6 +1,6 @@
 {
   "seccion": "verdugos",
-  "nota": "Roster confirmado por S.U.A el 11/8/2026 en #creacion-personajes, ampliado con Sally el 20/8/2026. Las fichas sin moveset estan marcadas como borrador: los datos existen en el equipo pero aun no se han escrito aqui.",
+  "nota": "Roster confirmado por S.U.A el 11/8/2026 en #creación-personajes, ampliado con Sally el 20/8/2026. Las fichas sin moveset están marcadas como borrador: los datos existen en el equipo pero aún no se han escrito aquí.",
   "entradas": [
     {
       "id": "dpx",
@@ -10,20 +10,20 @@
       "peligro": 4,
       "estado": "canon",
       "imagen": "",
-      "resumen": "Verdugo rapido de acoso constante: se teletransporta al pecador mas debil y castiga con dashes.",
-      "descripcion": "## Como juega\nDPX vive del ritmo. Se alimenta de los aparatos que hay repartidos por el mapa y encadena teletransportes y embestidas para no dejar respirar al equipo contrario.\n\nSu punto fuerte es la presion: casi todas sus habilidades tienen enfriamientos cortos y castigan al pecador que se quede solo o herido.\n\n## Punto debil\n**Here Come** deja a DPX vendido si falla: pierde el uso de sus habilidades durante unos instantes. Bailar el dash es la forma mas fiable de sobrevivirle.",
+      "resumen": "Verdugo rápido de acoso constante: se teletransporta al pecador más débil y castiga con dashes.",
+      "descripcion": "## Cómo juega\nDPX vive del ritmo. Se alimenta de los aparatos que hay repartidos por el mapa y encadena teletransportes y embestidas para no dejar respirar al equipo contrario.\n\nSu punto fuerte es la presión: casi todas sus habilidades tienen enfriamientos cortos y castigan al pecador que se quede solo o herido.\n\n## Punto débil\n**Here Come** deja a DPX vendido si falla: pierde el uso de sus habilidades durante unos instantes. Bailar el dash es la forma más fiable de sobrevivirle.",
       "habilidades": [
         {
           "nombre": "Power Ups Exes",
           "tipo": "pasiva",
           "enfriamiento": "",
-          "texto": "Por el mapa se generan cajas y televisores que DPX puede romper. Cada uno le da un buff de 1.2 segundos que lo vuelve mas rapido y aumenta el dano de sus habilidades."
+          "texto": "Por el mapa se generan cajas y televisores que DPX puede romper. Cada uno le da un buff de 1.2 segundos que lo vuelve más rápido y aumenta el daño de sus habilidades."
         },
         {
           "nombre": "M1",
-          "tipo": "ataque basico",
+          "tipo": "ataque básico",
           "enfriamiento": "1.2 s",
-          "texto": "Un zarpazo rapido. 20 de dano."
+          "texto": "Un zarpazo rápido. 20 de daño."
         },
         {
           "nombre": "I Faund You",
@@ -41,104 +41,135 @@
           "nombre": "Jump",
           "tipo": "activa",
           "enfriamiento": "2 s",
-          "texto": "Un salto que hace 2.1 de dano a los pecadores o rompe los televisores del mapa."
+          "texto": "Un salto que hace 2.1 de daño a los pecadores o rompe los televisores del mapa."
         }
       ],
       "skins": [
-        { "nombre": "Green Hill", "texto": "Basada en cierto erizo sin cara." },
-        { "nombre": "2011", "texto": "Referencia directa, no necesita explicacion." },
-        { "nombre": "Carlos", "texto": "Basada en la imagen cursed de la mochila." },
-        { "nombre": "Lord", "texto": "Otra referencia evidente." },
-        { "nombre": "Sanic", "texto": "Basada en el erizo mal dibujado." },
-        { "nombre": "Cereal Taster", "texto": "Basada en el erizo que come cereales." }
+        {
+          "nombre": "Green Hill",
+          "texto": "Basada en cierto erizo sin cara."
+        },
+        {
+          "nombre": "2011",
+          "texto": "Referencia directa, no necesita explicación."
+        },
+        {
+          "nombre": "Carlos",
+          "texto": "Basada en la imagen cursed de la mochila."
+        },
+        {
+          "nombre": "Lord",
+          "texto": "Otra referencia evidente."
+        },
+        {
+          "nombre": "Sanic",
+          "texto": "Basada en el erizo mal dibujado."
+        },
+        {
+          "nombre": "Cereal Taster",
+          "texto": "Basada en el erizo que come cereales."
+        }
       ],
       "consejos": [
         "No te quedes herido y aislado: I Faund You lo lleva directo al pecador con menos vida.",
         "Romperle los televisores antes de que llegue le quita sus buffs de 1.2 segundos.",
-        "Esquiva el dash y tendras una ventana pequena pero real para escapar."
+        "Esquiva el dash y tendras una ventana pequeña pero real para escapar."
       ],
       "curiosidades": [
         "Tiene una title card propia para las rondas de LMS.",
-        "S.U.A ha ensenado mas skins de las publicadas: dijo que no queria abrumar con tantas."
+        "S.U.A ha enseñado más skins de las publicadas: dijo que no quería abrumar con tantas."
       ],
       "mapas": [],
       "ost": [],
       "pecadores": [],
-      "etiquetas": ["acoso", "movilidad", "dash"],
+      "etiquetas": [
+        "acoso",
+        "movilidad",
+        "dash"
+      ],
       "actualizado": "2026-08-31",
       "fuente": "#verdugos, 20/8/2026"
     },
     {
       "id": "noli",
       "nombre": "Noli",
-      "alias": "El anfitrion de sus propios shows",
+      "alias": "El Anfitrión de sus propios shows",
       "origen": "Original",
       "peligro": 5,
       "estado": "canon",
       "imagen": "",
       "resumen": "Verdugo insignia del juego: se teletransporta, interrumpe con minijuegos y disfruta viendo sufrir.",
-      "descripcion": "## Quien es\nNoli es la cara visible de Doom Paradox y el verdugo con mas contenido propio: tiene mapa, ronda especial y una forma real distinta de la que ensena en partida.\n\nA diferencia del Anfitrion, que se alimenta del sufrimiento, Noli simplemente **se entretiene** con el.\n\n## Su ronda\nDurante *Noli's Shows* el infierno se convierte en un plato de television: se juegan sus pruebas y se ganan puntos.",
+      "descripcion": "## Quien es\nNoli es la cara visible de Doom Paradox y el verdugo con más contenido propio: tiene mapa, ronda especial y una forma real distinta de la que enseña en partida.\n\nA diferencia del Anfitrión, que se alimenta del sufrimiento, Noli simplemente **se entretiene** con el.\n\n## Su ronda\nDurante *Noli's Shows* el infierno se convierte en un plato de televisión: se juegan sus pruebas y se ganan puntos.",
       "habilidades": [
         {
           "nombre": "Umbra Pump",
           "tipo": "activa",
           "enfriamiento": "",
-          "texto": "Habilidad de ataque de Noli. Junto a la teletransportacion es la que dispara Shadow Ads."
+          "texto": "Habilidad de ataque de Noli. Junto a la teletransportación es la que dispara Shadow Ads."
         },
         {
-          "nombre": "Teletransportacion",
+          "nombre": "Teletransportación",
           "tipo": "activa",
           "enfriamiento": "",
-          "texto": "Le permite reposicionarse por el mapa. Tambien activa Shadow Ads."
+          "texto": "Le permite reposicionarse por el mapa. También activa Shadow Ads."
         },
         {
           "nombre": "Shadow Ads",
           "tipo": "pasiva",
           "enfriamiento": "",
-          "texto": "Cuando Noli usa su teletransportacion o Umbra Pump, la pantalla del pecador se llena de anuncios que hay que ir pulsando hasta cerrarlos todos. El pecador queda inmovil hasta completar el minijuego."
+          "texto": "Cuando Noli usa su teletransportación o Umbra Pump, la pantalla del pecador se llena de anuncios que hay que ir pulsando hasta cerrarlos todos. El pecador queda inmóvil hasta completar el minijuego."
         },
         {
           "nombre": "Muerte predeterminada",
-          "tipo": "ejecucion",
+          "tipo": "ejecución",
           "enfriamiento": "",
-          "texto": "Noli clava su estrella en el estomago del pecador, a traves de la garganta, y lo hace explotar. Es una de las razones por las que el juego apunta a la clasificacion +16 de Roblox."
+          "texto": "Noli clava su estrella en el estómago del pecador, a través de la garganta, y lo hace explotar. Es una de las razones por las que el juego apunta a la clasificación +16 de Roblox."
         }
       ],
       "skins": [
-        { "nombre": "Metamorfosis", "texto": "Propuesta de gabo0422356 basada en la novela de Franz Kafka. Sin confirmar." }
+        {
+          "nombre": "Metamorfosis",
+          "texto": "Propuesta de gabo0422356 basada en la novela de Franz Kafka. Sin confirmar."
+        }
       ],
       "consejos": [
         "Si te salta Shadow Ads, cierra los anuncios cuanto antes: mientras dure el minijuego no te puedes mover.",
-        "En su mapa, los rayos tambien matan. Vigila el cielo tanto como al verdugo."
+        "En su mapa, los rayos también matan. Vigila el cielo tanto como al verdugo."
       ],
       "curiosidades": [
         "Tiene una forma real con la cara animada, distinta de su aspecto habitual.",
-        "Sus efectos de sonido se disenaron antes que la mayoria de sus animaciones.",
-        "Es el unico verdugo con una ronda especial propia: Noli's Shows."
+        "Sus efectos de sonido se diseñaron antes que la mayoría de sus animaciones.",
+        "Es el único verdugo con una ronda especial propia: Noli's Shows."
       ],
       "mapas": [],
       "ost": [],
-      "pecadores": ["007n7"],
-      "etiquetas": ["insignia", "minijuego", "gore"],
+      "pecadores": [
+        "007n7"
+      ],
+      "etiquetas": [
+        "insignia",
+        "minijuego",
+        "gore"
+      ],
       "actualizado": "2026-08-31",
-      "fuente": "#verdugos y #creacion-personajes, 6-20/8/2026"
+      "fuente": "#verdugos y #creación-personajes, 6-20/8/2026"
     },
     {
       "id": "sally",
       "nombre": "Sally",
-      "alias": "La nina que no quiere jugar sola",
+      "alias": "La niña que no quiere jugar sola",
       "origen": "Original",
       "peligro": 3,
       "estado": "canon",
       "imagen": "",
-      "resumen": "Cambia por completo segun juegue sola o acompanada: con peluche pega mas fuerte, sin el se pone a jugar.",
-      "descripcion": "## Doble estado\nSally es una nina, y el juego lo usa como mecanica. Si es la unica verduga de la partida se pone triste y **desbloquea su oso de peluche**: se vuelve mas lenta, pero pega mas fuerte y sus ataques cargan mas rapido.\n\nSi hay otro verdugo con ella, se ilumina, el peluche desaparece y se dedica a *jugar* con los pecadores: su ataque pasa a ser la ahorcada.\n\n## Diseno\nSe construyo con un cuerpo R15 dentro de un juego configurado en R6, con heridas visibles. Concepto y modelo de cyn_rebelcream, aprobado por S.U.A.",
+      "resumen": "Cambia por completo según juegue sola o acompañada: con peluche pega más fuerte, sin el se pone a jugar.",
+      "descripcion": "## Doble estado\nSally es una niña, y el juego lo usa como mecánica. Si es la única verduga de la partida se pone triste y **desbloquea su oso de peluche**: se vuelve más lenta, pero pega más fuerte y sus ataques cargan más rápido.\n\nSi hay otro verdugo con ella, se ilumina, el peluche desaparece y se dedica a *jugar* con los pecadores: su ataque pasa a ser la ahorcada.\n\n## Diseño\nSe construyo con un cuerpo R15 dentro de un juego configurado en R6, con heridas visibles. Concepto y modelo de cyn_rebelcream, aprobado por S.U.A.",
       "habilidades": [
         {
           "nombre": "Oso de peluche",
           "tipo": "pasiva",
           "enfriamiento": "",
-          "texto": "Solo mientras sea la unica verduga de la partida. Sally se vuelve mas lenta a cambio de mas dano y de ataques que cargan mas rapido."
+          "texto": "Solo mientras sea la única verduga de la partida. Sally se vuelve más lenta a cambio de más daño y de ataques que cargan más rápido."
         },
         {
           "nombre": "La ahorcada",
@@ -150,21 +181,25 @@
           "nombre": "La pelota",
           "tipo": "secreta",
           "enfriamiento": "",
-          "texto": "Lanza una pelota a un pecador y juegan durante 20 segundos: un minijuego de ritmo o de pulsar en el momento exacto. Con menos de 5 aciertos recibes 20 de dano. Mientras dura el juego, ese pecador es inmune: ni el otro verdugo puede tocarlo, porque esta bajo la proteccion de Sally."
+          "texto": "Lanza una pelota a un pecador y juegan durante 20 segundos: un minijuego de ritmo o de pulsar en el momento exacto. Con menos de 5 aciertos recibes 20 de daño. Mientras dura el juego, ese pecador es inmune: ni el otro verdugo puede tocarlo, porque está bajo la protección de Sally."
         }
       ],
       "consejos": [
         "Si eres el pecador con la pelota, aguanta los 20 segundos: eres intocable mientras juegues bien.",
-        "Sally sola pega mas pero se mueve peor: usa las distancias largas."
+        "Sally sola pega más pero se mueve peor: usa las distancias largas."
       ],
       "curiosidades": [
-        "Fue propuesta y disenada por cyn_rebelcream; S.U.A la habia aceptado semanas antes y se le habia olvidado.",
-        "Su cuerpo mezcla piezas R15 aunque el juego este configurado en R6."
+        "Fue propuesta y diseñada por cyn_rebelcream; S.U.A la había aceptado semanas antes y se le había olvidado.",
+        "Su cuerpo mezcla piezas R15 aunque el juego esté configurado en R6."
       ],
       "mapas": [],
       "ost": [],
       "pecadores": [],
-      "etiquetas": ["dual", "minijuego", "proteccion"],
+      "etiquetas": [
+        "dual",
+        "minijuego",
+        "protección"
+      ],
       "actualizado": "2026-08-31",
       "fuente": "#verdugos, 20/8/2026"
     },
@@ -172,27 +207,37 @@
       "id": "c00ldud",
       "nombre": "c00ldud",
       "alias": "El virus con nombre cambiado",
-      "origen": "Roblox clasico",
+      "origen": "Roblox clásico",
       "peligro": 4,
       "estado": "canon",
       "imagen": "",
-      "resumen": "El hacker rojo de Roblox, renombrado para el juego. Su tema de persecucion esta en produccion.",
-      "descripcion": "## Sobre el nombre\nEs el personaje que todo el mundo reconoce como el hacker rojo de Roblox. S.U.A le cambio el nombre simplemente porque le gustaba mas como sonaba, no por evitar el original.\n\n## Estado\nSu voz se eligio por votacion del equipo entre dos opciones grabadas por S.U.A. El chase theme lo esta trabajando kukinazo y aun le faltan varias capas.",
+      "resumen": "El hacker rojo de Roblox, renombrado para el juego. Su tema de persecución está en producción.",
+      "descripcion": "## Sobre el nombre\nEs el personaje que todo el mundo reconoce como el hacker rojo de Roblox. S.U.A le cambió el nombre simplemente porque le gustaba más como sonaba, no por evitar el original.\n\n## Estado\nSu voz se eligió por votación del equipo entre dos opciones grabadas por S.U.A. El chase theme lo está trabajando kukinazo y aún le faltan varias capas.",
       "habilidades": [],
       "skins": [
-        { "nombre": "Vacio", "texto": "Propuesta de springxd12: el personaje muerto y hueco por dentro, controlado desde dentro por los c00lguis que se lo tragaron. Aprobada por S.U.A." }
+        {
+          "nombre": "Vacío",
+          "texto": "Propuesta de springxd12: el personaje muerto y hueco por dentro, controlado desde dentro por los c00lguis que se lo tragaron. Aprobada por S.U.A."
+        }
       ],
       "consejos": [],
       "curiosidades": [
-        "Su duelo de LMS es contra 007n7, que comparte con el media iconografia.",
-        "La primera version del chase theme se rehizo: la que se queda es la del canal de avisos del 13/8/2026."
+        "Su duelo de LMS es contra 007n7, que comparte con él media iconografía.",
+        "La primera versión del chase theme se rehizo: la que se queda es la del canal de avisos del 13/8/2026."
       ],
       "mapas": [],
-      "ost": ["chase-c00ldud"],
-      "pecadores": ["007n7"],
-      "etiquetas": ["clasico", "hacker"],
+      "ost": [
+        "chase-c00ldud"
+      ],
+      "pecadores": [
+        "007n7"
+      ],
+      "etiquetas": [
+        "clásico",
+        "hacker"
+      ],
       "actualizado": "2026-08-31",
-      "fuente": "#conceptos y #musica-doblaje, 12/7 - 20/8/2026"
+      "fuente": "#conceptos y #música-doblaje, 12/7 - 20/8/2026"
     },
     {
       "id": "gold",
@@ -203,21 +248,26 @@
       "estado": "canon",
       "imagen": "",
       "resumen": "Moveset ya escrito por S.U.A, pendiente de limpiar. Su arte usa un efecto de nieve muy fiel al manga que lo inspira.",
-      "descripcion": "El moveset de Gold esta escrito y guardado: falta pasarlo a limpio, hacerle el chase theme y el modelo. S.U.A queria encargarse personalmente de su voz.\n\nSu duelo de LMS es un espejo: **Goldens contra Goldens**.",
+      "descripcion": "El moveset de Gold está escrito y guardado: falta pasarlo a limpio, hacerle el chase theme y el modelo. S.U.A quería encargarse personalmente de su voz.\n\nSu duelo de LMS es un espejo: **Goldens contra Goldens**.",
       "habilidades": [],
       "skins": [
-        { "nombre": "Thornclaw", "texto": "En vez de flor, raices marchitas. Concepto de cyn_rebelcream reciclado de un personaje anterior y aceptado por S.U.A como skin de Gold." }
+        {
+          "nombre": "Thornclaw",
+          "texto": "En vez de flor, raices marchitas. Concepto de cyn_rebelcream reciclado de un personaje anterior y aceptado por S.U.A como skin de Gold."
+        }
       ],
       "consejos": [],
       "curiosidades": [
-        "El efecto de nieve de su arte se elogio en el canal de artes por lo fiel que es al manga de referencia."
+        "El efecto de nieve de su arte se elogió en el canal de artes por lo fiel que es al manga de referencia."
       ],
       "mapas": [],
       "ost": [],
       "pecadores": [],
-      "etiquetas": ["moveset-pendiente"],
+      "etiquetas": [
+        "moveset-pendiente"
+      ],
       "actualizado": "2026-08-31",
-      "fuente": "#musica-doblaje y #artes, 17-21/8/2026"
+      "fuente": "#música-doblaje y #artes, 17-21/8/2026"
     },
     {
       "id": "flowers",
@@ -228,16 +278,21 @@
       "estado": "canon",
       "imagen": "",
       "resumen": "Moveset escrito junto al de Gold. Se le asocia el concepto de naturaleza y maleza muerta.",
-      "descripcion": "Flowers es, junto a Gold, uno de los dos verdugos cuyo moveset ya esta escrito y solo falta pasar a limpio.\n\nDe la conversacion de conceptos salio la idea de un verdugo cuyas habilidades se basen en la naturaleza y en la **maleza muerta**, con ataques de raices en la linea de Castle Crashers mezclados con otras referencias del equipo.",
+      "descripcion": "Flowers es, junto a Gold, uno de los dos verdugos cuyo moveset ya está escrito y solo falta pasar a limpio.\n\nDe la conversación de conceptos salió la idea de un verdugo cuyas habilidades se basen en la naturaleza y en la **maleza muerta**, con ataques de raices en la linea de Castle Crashers mezclados con otras referencias del equipo.",
       "habilidades": [],
       "consejos": [],
       "curiosidades": [],
       "mapas": [],
       "ost": [],
-      "pecadores": ["latt"],
-      "etiquetas": ["naturaleza", "moveset-pendiente"],
+      "pecadores": [
+        "latt"
+      ],
+      "etiquetas": [
+        "naturaleza",
+        "moveset-pendiente"
+      ],
       "actualizado": "2026-08-31",
-      "fuente": "#creacion-personajes y #artes, 7-21/8/2026"
+      "fuente": "#creación-personajes y #artes, 7-21/8/2026"
     },
     {
       "id": "neor",
@@ -247,15 +302,19 @@
       "peligro": 3,
       "estado": "canon",
       "imagen": "",
-      "resumen": "Diseno definido: chaleco cafe, capucha, guantes y cuernos que parecen orejas.",
-      "descripcion": "El diseno de Neor se cerro en el canal de skins: lleva un **chaleco o chamarra de color cafe**, capucha, guantes y unos cuernos que a primera vista parecen orejas, mas un pin.\n\nVarias de esas piezas no existen en el catalogo de Roblox, asi que hay que modelarlas a mano.",
+      "resumen": "Diseño definido: chaleco café, capucha, guantes y cuernos que parecen orejas.",
+      "descripcion": "El diseño de Neor se cerró en el canal de skins: lleva un **chaleco o chamarra de color café**, capucha, guantes y unos cuernos que a primera vista parecen orejas, más un pin.\n\nVarias de esas piezas no existen en el catálogo de Roblox, así que hay que modelarlas a mano.",
       "habilidades": [],
       "consejos": [],
       "curiosidades": [],
       "mapas": [],
       "ost": [],
-      "pecadores": ["yiyi"],
-      "etiquetas": ["diseno-cerrado"],
+      "pecadores": [
+        "yiyi"
+      ],
+      "etiquetas": [
+        "diseño-cerrado"
+      ],
       "actualizado": "2026-08-31",
       "fuente": "#skins, 19/8/2026"
     },
@@ -263,21 +322,26 @@
       "id": "1x1x1x1",
       "nombre": "1x1x1x1",
       "alias": "1x",
-      "origen": "Roblox clasico",
+      "origen": "Roblox clásico",
       "peligro": 4,
       "estado": "canon",
       "imagen": "",
-      "resumen": "El clasico de los mitos de Roblox. Sera uno de los que reciba skins de la colaboracion con un juego de Vocaloids.",
-      "descripcion": "Otro de los grandes nombres del folclore de Roblox dentro del roster.\n\nS.U.A confirmo que esta hablando una colaboracion con un juego asimetrico de Vocaloids que traeria **varias skins**, y penso en 1x como primer candidato.",
+      "resumen": "El clásico de los mitos de Roblox. Será uno de los que reciba skins de la colaboración con un juego de Vocaloids.",
+      "descripcion": "Otro de los grandes nombres del folclore de Roblox dentro del roster.\n\nS.U.A confirmó que está hablando una colaboración con un juego asimétrico de Vocaloids que traería **varias skins**, y pensó en 1x como primer candidato.",
       "habilidades": [],
       "consejos": [],
       "curiosidades": [
-        "Shedletsky le regalo una caja de dulces acidos como compensacion por haberlo matado accidentalmente. 1x todavia no lo perdona, pero el regalo le gusto."
+        "Shedletsky le regaló una caja de dulces ácidos como compensación por haberlo matado accidentalmente. 1x todavía no lo perdona, pero el regalo le gustó."
       ],
       "mapas": [],
       "ost": [],
-      "pecadores": ["shedletsky"],
-      "etiquetas": ["clasico", "colaboracion"],
+      "pecadores": [
+        "shedletsky"
+      ],
+      "etiquetas": [
+        "clásico",
+        "colaboración"
+      ],
       "actualizado": "2026-08-31",
       "fuente": "#pecadores y #ideas, 18/8/2026"
     },
@@ -285,21 +349,28 @@
       "id": "john-doe",
       "nombre": "John Doe",
       "alias": "",
-      "origen": "Roblox clasico",
+      "origen": "Roblox clásico",
       "peligro": 4,
       "estado": "canon",
       "imagen": "",
-      "resumen": "La mitad de la pareja mas famosa de Roblox. Su LMS contra Jane Doe ya tiene tema compuesto.",
+      "resumen": "La mitad de la pareja más famosa de Roblox. Su LMS contra Jane Doe ya tiene tema compuesto.",
       "descripcion": "John Doe entra al roster con su contraparte al otro lado del tablero: Jane Doe es pecadora.\n\nSu enfrentamiento de LMS tiene tema propio, **Lazos rotos**, compuesto por kukinazo antes incluso que el chase theme.",
       "habilidades": [],
       "consejos": [],
       "curiosidades": [],
       "mapas": [],
-      "ost": ["lazos-rotos"],
-      "pecadores": ["jane-doe"],
-      "etiquetas": ["clasico", "lms"],
+      "ost": [
+        "lazos-rotos"
+      ],
+      "pecadores": [
+        "jane-doe"
+      ],
+      "etiquetas": [
+        "clásico",
+        "lms"
+      ],
       "actualizado": "2026-08-31",
-      "fuente": "#musica-doblaje, 20/8/2026"
+      "fuente": "#música-doblaje, 20/8/2026"
     },
     {
       "id": "herobrine",
@@ -316,10 +387,15 @@
       "curiosidades": [],
       "mapas": [],
       "ost": [],
-      "pecadores": ["steve"],
-      "etiquetas": ["creepypasta", "lms"],
+      "pecadores": [
+        "steve"
+      ],
+      "etiquetas": [
+        "creepypasta",
+        "lms"
+      ],
       "actualizado": "2026-08-31",
-      "fuente": "#conceptos y #musica-doblaje, 9-21/8/2026"
+      "fuente": "#conceptos y #música-doblaje, 9-21/8/2026"
     },
     {
       "id": "paciente-0",
@@ -329,17 +405,21 @@
       "peligro": 4,
       "estado": "canon",
       "imagen": "",
-      "resumen": "Su chase theme es uno de los que quedan en la lista de composicion.",
-      "descripcion": "Verdugo original del roster. Su tema de persecucion estaba pendiente de empezar a fecha de agosto de 2026.\n\nSu duelo de LMS es contra Andromeda.",
+      "resumen": "Su chase theme es uno de los que quedan en la lista de composición.",
+      "descripcion": "Verdugo original del roster. Su tema de persecución estaba pendiente de empezar a fecha de agosto de 2026.\n\nSu duelo de LMS es contra Andrómeda.",
       "habilidades": [],
       "consejos": [],
       "curiosidades": [],
       "mapas": [],
       "ost": [],
-      "pecadores": ["andromeda"],
-      "etiquetas": ["lms"],
+      "pecadores": [
+        "andromeda"
+      ],
+      "etiquetas": [
+        "lms"
+      ],
       "actualizado": "2026-08-31",
-      "fuente": "#musica-doblaje, 17-21/8/2026"
+      "fuente": "#música-doblaje, 17-21/8/2026"
     },
     {
       "id": "wood-stone",
@@ -350,36 +430,45 @@
       "estado": "canon",
       "imagen": "",
       "resumen": "Primer verdugo con voz grabada y entregada.",
-      "descripcion": "Wood Stone fue el primer personaje cuyo doblaje se dio por terminado: lo grabo enrique_nomas.\n\nEn el lore que S.U.A ha contado de los pecadores, Wood Stone aparece como uno de los tres humanos de la academia a la que va Gen-E-S15, junto a Jeff.",
+      "descripcion": "Wood Stone fue el primer personaje cuyo doblaje se dio por terminado: lo grabó enrique_nomas.\n\nEn el lore que S.U.A ha contado de los pecadores, Wood Stone aparece como uno de los tres humanos de la academia a la que va Gen-E-S15, junto a Jeff.",
       "habilidades": [],
       "consejos": [],
       "curiosidades": [
-        "Es uno de los tres unicos humanos de su academia, junto a Gen-E-S15 y Jeff."
+        "Es uno de los tres únicos humanos de su academia, junto a Gen-E-S15 y Jeff."
       ],
       "mapas": [],
       "ost": [],
-      "pecadores": ["gen-e-s15"],
-      "etiquetas": ["voz-lista"],
+      "pecadores": [
+        "gen-e-s15"
+      ],
+      "etiquetas": [
+        "voz-lista"
+      ],
       "actualizado": "2026-08-31",
       "fuente": "#avisos y #pecadores, 18-20/8/2026"
     },
     {
       "id": "domeli",
-      "nombre": "Domeli",
+      "nombre": "Domelí",
       "alias": "",
       "origen": "Original",
       "peligro": 3,
       "estado": "canon",
       "imagen": "",
       "resumen": "Ligado a Konut por una deuda: su duelo de LMS es personal.",
-      "descripcion": "Domeli tiene una relacion directa con el pecador Konut, el del traje elegante: **Konut le debe dinero**. Ese vinculo es el que sostiene su enfrentamiento de LMS.",
+      "descripcion": "Domelí tiene una relación directa con el pecador Konut, el del traje elegante: **Konut le debe dinero**. Ese vínculo es el que sostiene su enfrentamiento de LMS.",
       "habilidades": [],
       "consejos": [],
       "curiosidades": [],
       "mapas": [],
       "ost": [],
-      "pecadores": ["konut"],
-      "etiquetas": ["lms", "relacion"],
+      "pecadores": [
+        "konut"
+      ],
+      "etiquetas": [
+        "lms",
+        "relación"
+      ],
       "actualizado": "2026-08-31",
       "fuente": "#avisos, 20/8/2026"
     },
@@ -392,16 +481,20 @@
       "estado": "borrador",
       "imagen": "",
       "resumen": "En el roster confirmado. Ficha pendiente de escribir.",
-      "descripcion": "Verdugo confirmado en la lista oficial del 11/8/2026. Su duelo de LMS es contra Rubi.",
+      "descripcion": "Verdugo confirmado en la lista oficial del 11/8/2026. Su duelo de LMS es contra Rubí.",
       "habilidades": [],
       "consejos": [],
       "curiosidades": [],
       "mapas": [],
       "ost": [],
-      "pecadores": ["rubi"],
-      "etiquetas": ["ficha-pendiente"],
+      "pecadores": [
+        "rubi"
+      ],
+      "etiquetas": [
+        "ficha-pendiente"
+      ],
       "actualizado": "2026-08-31",
-      "fuente": "#creacion-personajes, 11/8/2026"
+      "fuente": "#creación-personajes, 11/8/2026"
     },
     {
       "id": "booner",
@@ -412,16 +505,19 @@
       "estado": "borrador",
       "imagen": "",
       "resumen": "Uno de los verdugos candidatos a llevar la voz de gabo0422356.",
-      "descripcion": "Verdugo confirmado en la lista oficial. S.U.A lo menciono, junto a c00ldud, como uno de los papeles que encajarian con la voz de gabo0422356.",
+      "descripcion": "Verdugo confirmado en la lista oficial. S.U.A lo mencionó, junto a c00ldud, como uno de los papeles que encajarían con la voz de gabo0422356.",
       "habilidades": [],
       "consejos": [],
       "curiosidades": [],
       "mapas": [],
       "ost": [],
       "pecadores": [],
-      "etiquetas": ["ficha-pendiente", "casting"],
+      "etiquetas": [
+        "ficha-pendiente",
+        "casting"
+      ],
       "actualizado": "2026-08-31",
-      "fuente": "#musica-doblaje, 18/8/2026"
+      "fuente": "#música-doblaje, 18/8/2026"
     },
     {
       "id": "ronn",
@@ -431,17 +527,21 @@
       "peligro": 3,
       "estado": "borrador",
       "imagen": "",
-      "resumen": "En el roster confirmado. Su LMS es contra Pinguinikula.",
+      "resumen": "En el roster confirmado. Su LMS es contra Pingüinikula.",
       "descripcion": "Verdugo confirmado en la lista oficial del 11/8/2026. Ficha pendiente de escribir.",
       "habilidades": [],
       "consejos": [],
       "curiosidades": [],
       "mapas": [],
       "ost": [],
-      "pecadores": ["pinguinikula"],
-      "etiquetas": ["ficha-pendiente"],
+      "pecadores": [
+        "pinguinikula"
+      ],
+      "etiquetas": [
+        "ficha-pendiente"
+      ],
       "actualizado": "2026-08-31",
-      "fuente": "#creacion-personajes, 11/8/2026"
+      "fuente": "#creación-personajes, 11/8/2026"
     },
     {
       "id": "flesharal",
@@ -459,9 +559,11 @@
       "mapas": [],
       "ost": [],
       "pecadores": [],
-      "etiquetas": ["ficha-pendiente"],
+      "etiquetas": [
+        "ficha-pendiente"
+      ],
       "actualizado": "2026-08-31",
-      "fuente": "#creacion-personajes, 11/8/2026"
+      "fuente": "#creación-personajes, 11/8/2026"
     },
     {
       "id": "pac-oni",
@@ -479,9 +581,11 @@
       "mapas": [],
       "ost": [],
       "pecadores": [],
-      "etiquetas": ["ficha-pendiente"],
+      "etiquetas": [
+        "ficha-pendiente"
+      ],
       "actualizado": "2026-08-31",
-      "fuente": "#creacion-personajes, 11/8/2026"
+      "fuente": "#creación-personajes, 11/8/2026"
     },
     {
       "id": "0-0",
@@ -498,10 +602,14 @@
       "curiosidades": [],
       "mapas": [],
       "ost": [],
-      "pecadores": ["benny"],
-      "etiquetas": ["ficha-pendiente"],
+      "pecadores": [
+        "benny"
+      ],
+      "etiquetas": [
+        "ficha-pendiente"
+      ],
       "actualizado": "2026-08-31",
-      "fuente": "#creacion-personajes, 11/8/2026"
+      "fuente": "#creación-personajes, 11/8/2026"
     },
     {
       "id": "yi-xi",
@@ -511,8 +619,8 @@
       "peligro": 5,
       "estado": "canon",
       "imagen": "",
-      "resumen": "Cocinera y carnicera: ve a todo el mapa, castiga a los heridos y su cuchillo decide que moveset esta usando.",
-      "descripcion": "## Historia\nYi Xi era una chica japonesa que vivia en Estados Unidos. Un dia conocio a un chico, S##, del que se enamoro perdidamente: lo invito a salir y se hicieron novios. Durante un tiempo fueron felices los dos solos.\n\nPero Yi Xi lo amaba con locura, y esa locura tenia consecuencias para cualquiera que se atreviera a hacerle algo a el. Un dia fue al extremo: **ato a S## a una silla y lo cocino**, para tenerlo siempre a su lado.\n\nDespues fue a esconder los huesos en un bosque cercano a su pueblo. Un pueblo de canibales.\n\nMientras ocultaba los restos, una figura oscura aparecio a su espalda y se presento como [el Anfitrion](#/mecanicas/el-anfitrion), con un trato tentador:\n\n> A cambio de poseer comida infinita, tendras que quedarte en mi mundo... Tu que dices, ¿YI XI?\n\nAcepto sin rechistar. Asi llego al Paradox.\n\n## Como juega\nYi Xi es una bola de nieve: cada mordisco que acierta la hace mas rapida, y cada golpe y cada muerte llenan su barra de Apetito hasta desbloquear la definitiva.\n\nSu rasgo unico es el **cuchillo de carnicero**: si lo lanza y falla, se queda en el suelo y ella pierde las habilidades que dependen de el hasta que vaya a recogerlo. A cambio desbloquea un segundo moveset a manos desnudas mucho mas brutal.",
+      "resumen": "Cocinera y carnicera: ve a todo el mapa, castiga a los heridos y su cuchillo decide qué moveset está usando.",
+      "descripcion": "## Historia\nYi Xi era una chica japonesa que vivía en Estados Unidos. Un día conoció a un chico, S##, del que se enamoró perdidamente: lo invitó a salir y se hicieron novios. Durante un tiempo fueron felices los dos solos.\n\nPero Yi Xi lo amaba con locura, y esa locura tenía consecuencias para cualquiera que se atreviera a hacerle algo a él. Un día fue al extremo: **ató a S## a una silla y lo cocino**, para tenerlo siempre a su lado.\n\nDespués fue a esconder los huesos en un bosque cercano a su pueblo. Un pueblo de caníbales.\n\nMientras ocultaba los restos, una figura oscura apareció a su espalda y se presentó como [el Anfitrión](#/mecanicas/el-anfitrion), con un trato tentador:\n\n> A cambio de poseer comida infinita, tendrás que quedarte en mi mundo... Tú qué dices, ¿YI XI?\n\nAceptó sin rechistar. Así llegó al Paradox.\n\n## Cómo juega\nYi Xi es una bola de nieve: cada mordisco que acierta la hace más rápida, y cada golpe y cada muerte llenan su barra de Apetito hasta desbloquear la definitiva.\n\nSu rasgo único es el **cuchillo de carnicero**: si lo lanza y falla, se queda en el suelo y ella pierde las habilidades que dependen de él hasta que vaya a recogerlo. A cambio desbloquea un segundo moveset a manos desnudas mucho más brutal.",
       "habilidades": [
         {
           "nombre": "Voracious Appetite",
@@ -528,27 +636,27 @@
         },
         {
           "nombre": "M1",
-          "tipo": "ataque basico",
+          "tipo": "ataque básico",
           "enfriamiento": "",
-          "texto": "Ataque basico con cuchillo. 24 de dano."
+          "texto": "Ataque básico con cuchillo. 24 de daño."
         },
         {
           "nombre": "Bite of Gluttony",
           "tipo": "activa",
           "enfriamiento": "",
-          "texto": "Muerde al pecador que tenga cerca. 20 de dano. Si acierta, activa Voracious Appetite (acumulable) y llena una parte de la barra de Apetito."
+          "texto": "Muerde al pecador que tenga cerca. 20 de daño. Si acierta, activa Voracious Appetite (acumulable) y llena una parte de la barra de Apetito."
         },
         {
           "nombre": "Butcher's Vision",
           "tipo": "activa",
           "enfriamiento": "",
-          "texto": "Durante 20 segundos todos los pecadores del mapa son visibles para Yi Xi. Los que estan por debajo del 50% de vida se marcan en un rojo intenso."
+          "texto": "Durante 20 segundos todos los pecadores del mapa son visibles para Yi Xi. Los que están por debajo del 50% de vida se marcan en un rojo intenso."
         },
         {
           "nombre": "Flying Knife",
           "tipo": "activa",
           "enfriamiento": "",
-          "texto": "Lanza su cuchillo de carnicero hacia donde este mirando (en movil, hacia donde toques la pantalla). 12 de dano. Si falla, puede ir a recogerlo o pasar a su moveset sin cuchillo."
+          "texto": "Lanza su cuchillo de carnicero hacia donde esté mirando (en móvil, hacia donde toques la pantalla). 12 de daño. Si falla, puede ir a recogerlo o pasar a su moveset sin cuchillo."
         },
         {
           "nombre": "A Good Dish",
@@ -560,13 +668,13 @@
           "nombre": "Appetite for Vanity",
           "tipo": "definitiva",
           "enfriamiento": "se recarga con cada muerte",
-          "texto": "Mientras un contador se agota, todos los pecadores son visibles para Yi Xi. En este modo recibe un bonus del 10% en sus habilidades y se mueve mas rapido; las misiones solo quitan tiempo cuando todo vuelve a la normalidad."
+          "texto": "Mientras un contador se agota, todos los pecadores son visibles para Yi Xi. En este modo recibe un bonus del 10% en sus habilidades y se mueve más rápido; las misiones solo quitan tiempo cuando todo vuelve a la normalidad."
         },
         {
           "nombre": "M1 sin cuchillo",
           "tipo": "sin cuchillo",
           "enfriamiento": "",
-          "texto": "Un zarpazo a mano desnuda. 19 de dano."
+          "texto": "Un zarpazo a mano desnuda. 19 de daño."
         },
         {
           "nombre": "Wild",
@@ -576,27 +684,50 @@
         }
       ],
       "skins": [
-        { "nombre": "Vegan", "texto": "Basada en una parodia de Butcher Vanity." },
-        { "nombre": "Neko", "texto": "Basada en otra cancion de Yi Xi (titulo pendiente de confirmar)." },
-        { "nombre": "Ghoul", "texto": "Basada en los enemigos del mismo nombre de Tokyo Ghoul." },
-        { "nombre": "Double", "texto": "Basicamente Chara, de Undertale." },
-        { "nombre": "Monster", "texto": "Basada en el diseno de la M4 del juego Project Deep Red." }
+        {
+          "nombre": "Vegan",
+          "texto": "Basada en una parodia de Butcher Vanity."
+        },
+        {
+          "nombre": "Neko",
+          "texto": "Basada en otra canción de Yi Xi (título pendiente de confirmar)."
+        },
+        {
+          "nombre": "Ghoul",
+          "texto": "Basada en los enemigos del mismo nombre de Tokyo Ghoul."
+        },
+        {
+          "nombre": "Double",
+          "texto": "Básicamente Chara, de Undertale."
+        },
+        {
+          "nombre": "Monster",
+          "texto": "Basada en el diseño de la M4 del juego Project Deep Red."
+        }
       ],
       "consejos": [
-        "Mantente por encima del 50% de vida: Butcher's Vision marca en rojo a quien este por debajo.",
+        "Mantente por encima del 50% de vida: Butcher's Vision marca en rojo a quien esté por debajo.",
         "No le dejes encadenar mordiscos. La velocidad de Voracious Appetite se acumula y ya no la pierde.",
         "Si falla el Flying Knife, el cuchillo se queda en el suelo: hasta que lo recoja pierde su M1 con cuchillo y A Good Dish.",
-        "Sin cuchillo es mas peligrosa de cerca, no menos: Wild acaba en muerte instantanea si fallas el Point and Click."
+        "Sin cuchillo es más peligrosa de cerca, no menos: Wild acaba en muerte instantánea si fallas el Point and Click."
       ],
       "curiosidades": [
-        "Su historia es el unico caso documentado de como el Anfitrion recluta a sus verdugos: un trato, no una condena.",
-        "El pueblo donde crecio ya era de canibales antes de que ella hiciera nada.",
+        "Su historia es el único caso documentado de cómo el Anfitrión recluta a sus verdugos: un trato, no una condena.",
+        "El pueblo donde creció ya era de caníbales antes de que ella hiciera nada.",
         "Dos de sus skins, Double y Monster, entran en el LMS cruzado de skins de Undertale y Project Deep Red."
       ],
       "mapas": [],
-      "ost": ["chase-vanity"],
+      "ost": [
+        "chase-vanity"
+      ],
       "pecadores": [],
-      "etiquetas": ["gula", "vision", "cuchillo", "definitiva", "canibalismo"],
+      "etiquetas": [
+        "gula",
+        "visión",
+        "cuchillo",
+        "definitiva",
+        "canibalismo"
+      ],
       "actualizado": "2026-08-31",
       "fuente": "S.U.A, canal de verdugos (transcrito el 31/8/2026)"
     },
@@ -616,9 +747,11 @@
       "mapas": [],
       "ost": [],
       "pecadores": [],
-      "etiquetas": ["ficha-pendiente"],
+      "etiquetas": [
+        "ficha-pendiente"
+      ],
       "actualizado": "2026-08-31",
-      "fuente": "#creacion-personajes, 11/8/2026"
+      "fuente": "#creación-personajes, 11/8/2026"
     },
     {
       "id": "jason-voorhees",
@@ -628,7 +761,7 @@
       "peligro": 4,
       "estado": "borrador",
       "imagen": "",
-      "resumen": "Invitado del terror clasico dentro del roster confirmado.",
+      "resumen": "Invitado del terror clásico dentro del roster confirmado.",
       "descripcion": "Aparece en la lista oficial de verdugos del 11/8/2026. Ficha pendiente de escribir.",
       "habilidades": [],
       "consejos": [],
@@ -636,9 +769,12 @@
       "mapas": [],
       "ost": [],
       "pecadores": [],
-      "etiquetas": ["invitado", "ficha-pendiente"],
+      "etiquetas": [
+        "invitado",
+        "ficha-pendiente"
+      ],
       "actualizado": "2026-08-31",
-      "fuente": "#creacion-personajes, 11/8/2026"
+      "fuente": "#creación-personajes, 11/8/2026"
     },
     {
       "id": "slenderman",
@@ -649,16 +785,19 @@
       "estado": "borrador",
       "imagen": "",
       "resumen": "En el roster confirmado. Su jumpscare es la referencia que usa DPX.",
-      "descripcion": "Aparece en la lista oficial de verdugos del 11/8/2026.\n\nEl jumpscare de **I Faund You** de DPX se describio como *similar a Slenderman*, asi que su lenguaje visual sirve de vara de medir para los sustos del juego.",
+      "descripcion": "Aparece en la lista oficial de verdugos del 11/8/2026.\n\nEl jumpscare de **I Faund You** de DPX se describió como *similar a Slenderman*, así que su lenguaje visual sirve de vara de medir para los sustos del juego.",
       "habilidades": [],
       "consejos": [],
       "curiosidades": [],
       "mapas": [],
       "ost": [],
       "pecadores": [],
-      "etiquetas": ["creepypasta", "ficha-pendiente"],
+      "etiquetas": [
+        "creepypasta",
+        "ficha-pendiente"
+      ],
       "actualizado": "2026-08-31",
-      "fuente": "#creacion-personajes y #verdugos, 11-20/8/2026"
+      "fuente": "#creación-personajes y #verdugos, 11-20/8/2026"
     },
     {
       "id": "jeff-the-killer",
@@ -668,8 +807,8 @@
       "peligro": 4,
       "estado": "borrador",
       "imagen": "",
-      "resumen": "En el roster confirmado. Aparece tambien en el lore de la academia de Gen-E-S15.",
-      "descripcion": "Aparece en la lista oficial de verdugos del 11/8/2026.\n\nEn el lore de los pecadores se le nombra como uno de los tres unicos humanos de la academia de Gen-E-S15, junto a Wood Stone.",
+      "resumen": "En el roster confirmado. Aparece también en el lore de la academia de Gen-E-S15.",
+      "descripcion": "Aparece en la lista oficial de verdugos del 11/8/2026.\n\nEn el lore de los pecadores se le nombra como uno de los tres únicos humanos de la academia de Gen-E-S15, junto a Wood Stone.",
       "habilidades": [],
       "consejos": [],
       "curiosidades": [
@@ -677,10 +816,15 @@
       ],
       "mapas": [],
       "ost": [],
-      "pecadores": ["gen-e-s15"],
-      "etiquetas": ["creepypasta", "ficha-pendiente"],
+      "pecadores": [
+        "gen-e-s15"
+      ],
+      "etiquetas": [
+        "creepypasta",
+        "ficha-pendiente"
+      ],
       "actualizado": "2026-08-31",
-      "fuente": "#creacion-personajes y #pecadores, 11-18/8/2026"
+      "fuente": "#creación-personajes y #pecadores, 11-18/8/2026"
     }
   ]
 }

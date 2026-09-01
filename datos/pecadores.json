@@ -1,17 +1,17 @@
 {
   "seccion": "pecadores",
-  "nota": "Roster confirmado por S.U.A el 11/8/2026 en #pecadores y #creacion-personajes. Cada pecador tiene relacion con algun verdugo: ese vinculo es la base del lore y de los duelos de LMS.",
+  "nota": "Roster confirmado por S.U.A el 11/8/2026 en #pecadores y #creación-personajes. Cada pecador tiene relación con algún verdugo: ese vínculo es la base del lore y de los duelos de LMS.",
   "entradas": [
     {
       "id": "007n7",
       "nombre": "007n7",
       "alias": "El doctor de dos modos",
-      "origen": "Roblox clasico",
+      "origen": "Roblox clásico",
       "clase": "Soporte",
       "estado": "canon",
       "imagen": "",
       "resumen": "Cambia de moveset completo a voluntad: modo Doctor para curar y frenar, modo c00l para moverse y resucitar.",
-      "descripcion": "## Como juega\n007n7 es el pecador mas tecnico del roster: su habilidad principal no ataca ni cura, **cambia sus otras habilidades**. Con Swich alterna entre dos identidades con papeles opuestos.\n\nEl modo Doctor sostiene al equipo: cura en area y stunea al verdugo. El modo c00l lo convierte en un fantasma capaz de aparecer en cualquier punto del mapa y de dejarse a si mismo una segunda vida.\n\n## Estado\nSu render se va a actualizar y sus skins estan delegadas: S.U.A dijo que ese apartado no se le ocurria y lo dejo en manos del equipo de arte.",
+      "descripcion": "## Cómo juega\n007n7 es el pecador más técnico del roster: su habilidad principal no ataca ni cura, **cambia sus otras habilidades**. Con Swich alterna entre dos identidades con papeles opuestos.\n\nEl modo Doctor sostiene al equipo: cura en área y aturde al verdugo. El modo c00l lo convierte en un fantasma capaz de aparecer en cualquier punto del mapa y de dejarse a sí mismo una segunda vida.\n\n## Estado\nSu render se va a actualizar y sus skins están delegadas: S.U.A dijo que ese apartado no se le ocurría y lo dejó en manos del equipo de arte.",
       "habilidades": [
         {
           "nombre": "Swich",
@@ -23,13 +23,13 @@
           "nombre": "Sh00ck",
           "tipo": "modo Doctor",
           "enfriamiento": "",
-          "texto": "Una descarga electrica que cura a todos los pecadores a su alrededor a costa de 10 puntos de su propia stamina."
+          "texto": "Una descarga eléctrica que cura a todos los pecadores a su alrededor a costa de 10 puntos de su propia stamina."
         },
         {
           "nombre": "C00lgui field",
           "tipo": "modo Doctor",
           "enfriamiento": "",
-          "texto": "Crea una onda expansiva que empuja unos centimetros hacia atras y deja al verdugo aturdido."
+          "texto": "Crea una onda expansiva que empuja unos centímetros hacia atrás y deja al verdugo aturdido."
         },
         {
           "nombre": "Teleportation",
@@ -45,18 +45,25 @@
         }
       ],
       "consejos": [
-        "Cambia a Doctor cuando el equipo este agrupado: Sh00ck cura a todos los que tengas cerca.",
-        "El aturdimiento de C00lgui field vale mas para salvar a un companero enganchado que para escapar tu.",
-        "Deja el punto de respawn antes de arriesgarte, no despues."
+        "Cambia a Doctor cuando el equipo esté agrupado: Sh00ck cura a todos los que tengas cerca.",
+        "El aturdimiento de C00lgui field vale más para salvar a un compañero enganchado que para escapar tú.",
+        "Deja el punto de respawn antes de arriesgarte, no después."
       ],
       "curiosidades": [
         "Tiene pantalla de carga propia.",
         "Se enfrenta en LMS a dos verdugos distintos: c00ldud y Noli."
       ],
-      "verdugos": ["c00ldud", "noli"],
+      "verdugos": [
+        "c00ldud",
+        "noli"
+      ],
       "mapas": [],
       "ost": [],
-      "etiquetas": ["soporte", "curacion", "movilidad"],
+      "etiquetas": [
+        "soporte",
+        "curación",
+        "movilidad"
+      ],
       "actualizado": "2026-08-31",
       "fuente": "#pecadores, 21/8/2026"
     },
@@ -68,17 +75,22 @@
       "clase": "",
       "estado": "canon",
       "imagen": "",
-      "resumen": "Uno de los tres unicos humanos de su academia, junto a Jeff y Wood Stone.",
-      "descripcion": "El lore de Gen-E-S15 conecta directamente con dos verdugos: en su universo, es junto a **Jeff** y **Wood Stone** uno de los tres unicos humanos de su academia.",
+      "resumen": "Uno de los tres únicos humanos de su academia, junto a Jeff y Wood Stone.",
+      "descripcion": "El lore de Gen-E-S15 conecta directamente con dos verdugos: en su universo, es junto a **Jeff** y **Wood Stone** uno de los tres únicos humanos de su academia.",
       "habilidades": [],
       "consejos": [],
       "curiosidades": [
         "Su academia solo tiene tres humanos matriculados, y dos de ellos acabaron del lado de los verdugos."
       ],
-      "verdugos": ["jeff-the-killer", "wood-stone"],
+      "verdugos": [
+        "jeff-the-killer",
+        "wood-stone"
+      ],
       "mapas": [],
       "ost": [],
-      "etiquetas": ["lore"],
+      "etiquetas": [
+        "lore"
+      ],
       "actualizado": "2026-08-31",
       "fuente": "#pecadores, 18/8/2026"
     },
@@ -90,17 +102,22 @@
       "clase": "",
       "estado": "canon",
       "imagen": "",
-      "resumen": "Personaje trans: el unico miembro del reparto que pertenece a la comunidad LGBT.",
-      "descripcion": "S.U.A lo publico como el primero de los *inutidatos* de los pecadores: Latt es **trans genero** y, de momento, el unico personaje del reparto que pertenece a la comunidad LGBT.\n\nSu duelo de LMS es contra Flowers.",
+      "resumen": "Personaje trans: el único miembro del reparto que pertenece a la comunidad LGBT.",
+      "descripcion": "S.U.A lo publicó como el primero de los *inutidatos* de los pecadores: Latt es **trans género** y, de momento, el único personaje del reparto que pertenece a la comunidad LGBT.\n\nSu duelo de LMS es contra Flowers.",
       "habilidades": [],
       "consejos": [],
       "curiosidades": [
-        "Es el unico personaje del reparto que pertenece a la comunidad LGBT."
+        "Es el único personaje del reparto que pertenece a la comunidad LGBT."
       ],
-      "verdugos": ["flowers"],
+      "verdugos": [
+        "flowers"
+      ],
       "mapas": [],
       "ost": [],
-      "etiquetas": ["lore", "lms"],
+      "etiquetas": [
+        "lore",
+        "lms"
+      ],
       "actualizado": "2026-08-31",
       "fuente": "#pecadores, 18/8/2026"
     },
@@ -108,21 +125,27 @@
       "id": "shedletsky",
       "nombre": "Shedletsky",
       "alias": "",
-      "origen": "Roblox clasico",
+      "origen": "Roblox clásico",
       "clase": "",
       "estado": "canon",
       "imagen": "",
-      "resumen": "Le debe una disculpa a 1x1x1x1 desde hace anos. Le regalo dulces acidos y no le sirvio de nada.",
-      "descripcion": "El clasico de Roblox por excelencia, aqui del lado de los que huyen.\n\nSu relacion con **1x1x1x1** es una de las mejor definidas del juego: Shedletsky lo mato accidentalmente y, en compensacion, le regalo una caja de dulces acidos. 1x todavia no lo ha perdonado, aunque el regalo le gusto.",
+      "resumen": "Le debe una disculpa a 1x1x1x1 desde hace años. Le regaló dulces ácidos y no le sirvió de nada.",
+      "descripcion": "El clásico de Roblox por excelencia, aquí del lado de los que huyen.\n\nSu relación con **1x1x1x1** es una de las mejor definidas del juego: Shedletsky lo mató accidentalmente y, en compensación, le regaló una caja de dulces ácidos. 1x todavía no lo ha perdonado, aunque el regalo le gustó.",
       "habilidades": [],
       "consejos": [],
       "curiosidades": [
-        "El regalo de disculpa fue una caja de dulces acidos. Funciono a medias."
+        "El regalo de disculpa fue una caja de dulces ácidos. Funcionó a medias."
       ],
-      "verdugos": ["1x1x1x1"],
+      "verdugos": [
+        "1x1x1x1"
+      ],
       "mapas": [],
       "ost": [],
-      "etiquetas": ["clasico", "lore", "lms"],
+      "etiquetas": [
+        "clásico",
+        "lore",
+        "lms"
+      ],
       "actualizado": "2026-08-31",
       "fuente": "#pecadores, 18/8/2026"
     },
@@ -134,20 +157,25 @@
       "clase": "",
       "estado": "canon",
       "imagen": "",
-      "resumen": "Casi acabo comida por un bebe. Tiene una skin de amabilidad aprobada con estetica de panaderia.",
-      "descripcion": "Kittycake es uno de los pecadores con skin ya aprobada: la **skin de amabilidad**, un vestido con mandil de panadera de aire clasico, propuesta por gabo0422356 y aceptada por S.U.A.\n\nLa idea viene del color de la amabilidad en Undertale y Deltarune, trasladado a un diseno de reposteria.",
+      "resumen": "Casi acabó comida por un bebé. Tiene una skin de amabilidad aprobada con estética de panadería.",
+      "descripcion": "Kittycake es uno de los pecadores con skin ya aprobada: la **skin de amabilidad**, un vestido con mandil de panadera de aire clásico, propuesta por gabo0422356 y aceptada por S.U.A.\n\nLa idea viene del color de la amabilidad en Undertale y Deltarune, trasladado a un diseño de repostería.",
       "habilidades": [],
       "skins": [
-        { "nombre": "Amabilidad", "texto": "Vestido y mandil de panadera con estetica de cuento clasico. Concepto de gabo0422356, aprobado el 14/8/2026." }
+        {
+          "nombre": "Amabilidad",
+          "texto": "Vestido y mandil de panadera con estética de cuento clásico. Concepto de gabo0422356, aprobado el 14/8/2026."
+        }
       ],
       "consejos": [],
       "curiosidades": [
-        "Casi es comida por un bebe, accidentalmente."
+        "Casi es comida por un bebé, accidentalmente."
       ],
       "verdugos": [],
       "mapas": [],
       "ost": [],
-      "etiquetas": ["skin-aprobada"],
+      "etiquetas": [
+        "skin-aprobada"
+      ],
       "actualizado": "2026-08-31",
       "fuente": "#pecadores y #conceptos, 14-18/8/2026"
     },
@@ -159,39 +187,52 @@
       "clase": "",
       "estado": "canon",
       "imagen": "",
-      "resumen": "Empresario de traje y rosa. Esta en Doom Paradox porque le debe dinero a Domeli.",
-      "descripcion": "Konut es el pecador de traje elegante: se modelo con traje negro y una rosa colocada a mano.\n\nSu relacion con el verdugo **Domeli** no es romantica por mucho que el equipo bromeara con ello: simplemente **le debe dinero**. De ahi sale su duelo de LMS.\n\nSu doblaje esta asignado a magma_mp4.",
+      "resumen": "Empresario de traje y rosa. Está en Doom Paradox porque le debe dinero a Domelí.",
+      "descripcion": "Konut es el pecador de traje elegante: se modelo con traje negro y una rosa colocada a mano.\n\nSu relación con el verdugo **Domelí** no es romántica por mucho que el equipo bromeara con ello: simplemente **le debe dinero**. De ahí sale su duelo de LMS.\n\nSu doblaje está asignado a magma_mp4.",
       "habilidades": [],
       "consejos": [],
       "curiosidades": [
-        "El traje negro se eligio por votacion informal del equipo el 11/7/2026."
+        "El traje negro se eligió por votación informal del equipo el 11/7/2026."
       ],
-      "verdugos": ["domeli"],
+      "verdugos": [
+        "domeli"
+      ],
       "mapas": [],
       "ost": [],
-      "etiquetas": ["lore", "lms", "casting"],
+      "etiquetas": [
+        "lore",
+        "lms",
+        "casting"
+      ],
       "actualizado": "2026-08-31",
-      "fuente": "#modelo-animacion y #avisos, 11/7 - 20/8/2026"
+      "fuente": "#modelo-animación y #avisos, 11/7 - 20/8/2026"
     },
     {
       "id": "jane-doe",
       "nombre": "Jane Doe",
       "alias": "",
-      "origen": "Roblox clasico",
+      "origen": "Roblox clásico",
       "clase": "",
       "estado": "canon",
       "imagen": "",
       "resumen": "La otra mitad del mito. Su LMS contra John Doe tiene tema propio: Lazos rotos.",
-      "descripcion": "Jane Doe entra como pecadora mientras su contraparte, John Doe, es verdugo. El enfrentamiento entre ambos es uno de los LMS con musica ya compuesta: **Lazos rotos**.",
+      "descripcion": "Jane Doe entra como pecadora mientras su contraparte, John Doe, es verdugo. El enfrentamiento entre ambos es uno de los LMS con música ya compuesta: **Lazos rotos**.",
       "habilidades": [],
       "consejos": [],
       "curiosidades": [],
-      "verdugos": ["john-doe"],
+      "verdugos": [
+        "john-doe"
+      ],
       "mapas": [],
-      "ost": ["lazos-rotos"],
-      "etiquetas": ["clasico", "lms"],
+      "ost": [
+        "lazos-rotos"
+      ],
+      "etiquetas": [
+        "clásico",
+        "lms"
+      ],
       "actualizado": "2026-08-31",
-      "fuente": "#musica-doblaje, 20-21/8/2026"
+      "fuente": "#música-doblaje, 20-21/8/2026"
     },
     {
       "id": "steve",
@@ -201,21 +242,26 @@
       "clase": "",
       "estado": "canon",
       "imagen": "",
-      "resumen": "Su duelo de LMS es el mas evidente del juego: contra Herobrine.",
+      "resumen": "Su duelo de LMS es el más evidente del juego: contra Herobrine.",
       "descripcion": "Pecador confirmado en la lista oficial. Su enfrentamiento de LMS es contra Herobrine.",
       "habilidades": [],
       "consejos": [],
       "curiosidades": [],
-      "verdugos": ["herobrine"],
+      "verdugos": [
+        "herobrine"
+      ],
       "mapas": [],
       "ost": [],
-      "etiquetas": ["invitado", "lms"],
+      "etiquetas": [
+        "invitado",
+        "lms"
+      ],
       "actualizado": "2026-08-31",
-      "fuente": "#musica-doblaje, 21/8/2026"
+      "fuente": "#música-doblaje, 21/8/2026"
     },
     {
       "id": "andromeda",
-      "nombre": "Andromeda",
+      "nombre": "Andrómeda",
       "alias": "",
       "origen": "Original",
       "clase": "",
@@ -226,12 +272,17 @@
       "habilidades": [],
       "consejos": [],
       "curiosidades": [],
-      "verdugos": ["paciente-0"],
+      "verdugos": [
+        "paciente-0"
+      ],
       "mapas": [],
       "ost": [],
-      "etiquetas": ["ficha-pendiente", "lms"],
+      "etiquetas": [
+        "ficha-pendiente",
+        "lms"
+      ],
       "actualizado": "2026-08-31",
-      "fuente": "#creacion-personajes, 11/8/2026"
+      "fuente": "#creación-personajes, 11/8/2026"
     },
     {
       "id": "benny",
@@ -246,12 +297,17 @@
       "habilidades": [],
       "consejos": [],
       "curiosidades": [],
-      "verdugos": ["0-0"],
+      "verdugos": [
+        "0-0"
+      ],
       "mapas": [],
       "ost": [],
-      "etiquetas": ["ficha-pendiente", "lms"],
+      "etiquetas": [
+        "ficha-pendiente",
+        "lms"
+      ],
       "actualizado": "2026-08-31",
-      "fuente": "#creacion-personajes, 11/8/2026"
+      "fuente": "#creación-personajes, 11/8/2026"
     },
     {
       "id": "yiyi",
@@ -266,16 +322,21 @@
       "habilidades": [],
       "consejos": [],
       "curiosidades": [],
-      "verdugos": ["neor"],
+      "verdugos": [
+        "neor"
+      ],
       "mapas": [],
       "ost": [],
-      "etiquetas": ["ficha-pendiente", "lms"],
+      "etiquetas": [
+        "ficha-pendiente",
+        "lms"
+      ],
       "actualizado": "2026-08-31",
-      "fuente": "#creacion-personajes, 11/8/2026"
+      "fuente": "#creación-personajes, 11/8/2026"
     },
     {
       "id": "rubi",
-      "nombre": "Rubi",
+      "nombre": "Rubí",
       "alias": "",
       "origen": "Original",
       "clase": "",
@@ -286,16 +347,21 @@
       "habilidades": [],
       "consejos": [],
       "curiosidades": [],
-      "verdugos": ["mr-scoler"],
+      "verdugos": [
+        "mr-scoler"
+      ],
       "mapas": [],
       "ost": [],
-      "etiquetas": ["ficha-pendiente", "lms"],
+      "etiquetas": [
+        "ficha-pendiente",
+        "lms"
+      ],
       "actualizado": "2026-08-31",
-      "fuente": "#creacion-personajes, 11/8/2026"
+      "fuente": "#creación-personajes, 11/8/2026"
     },
     {
       "id": "pinguinikula",
-      "nombre": "Pinguinikula",
+      "nombre": "Pingüinikula",
       "alias": "",
       "origen": "Original",
       "clase": "",
@@ -306,12 +372,17 @@
       "habilidades": [],
       "consejos": [],
       "curiosidades": [],
-      "verdugos": ["ronn"],
+      "verdugos": [
+        "ronn"
+      ],
       "mapas": [],
       "ost": [],
-      "etiquetas": ["ficha-pendiente", "lms"],
+      "etiquetas": [
+        "ficha-pendiente",
+        "lms"
+      ],
       "actualizado": "2026-08-31",
-      "fuente": "#creacion-personajes, 11/8/2026"
+      "fuente": "#creación-personajes, 11/8/2026"
     },
     {
       "id": "mazer",
@@ -329,9 +400,11 @@
       "verdugos": [],
       "mapas": [],
       "ost": [],
-      "etiquetas": ["ficha-pendiente"],
+      "etiquetas": [
+        "ficha-pendiente"
+      ],
       "actualizado": "2026-08-31",
-      "fuente": "#creacion-personajes, 11/8/2026"
+      "fuente": "#creación-personajes, 11/8/2026"
     },
     {
       "id": "roen",
@@ -349,9 +422,11 @@
       "verdugos": [],
       "mapas": [],
       "ost": [],
-      "etiquetas": ["ficha-pendiente"],
+      "etiquetas": [
+        "ficha-pendiente"
+      ],
       "actualizado": "2026-08-31",
-      "fuente": "#creacion-personajes, 11/8/2026"
+      "fuente": "#creación-personajes, 11/8/2026"
     },
     {
       "id": "monschesse",
@@ -369,9 +444,11 @@
       "verdugos": [],
       "mapas": [],
       "ost": [],
-      "etiquetas": ["ficha-pendiente"],
+      "etiquetas": [
+        "ficha-pendiente"
+      ],
       "actualizado": "2026-08-31",
-      "fuente": "#creacion-personajes, 11/8/2026"
+      "fuente": "#creación-personajes, 11/8/2026"
     },
     {
       "id": "pot",
@@ -389,9 +466,11 @@
       "verdugos": [],
       "mapas": [],
       "ost": [],
-      "etiquetas": ["ficha-pendiente"],
+      "etiquetas": [
+        "ficha-pendiente"
+      ],
       "actualizado": "2026-08-31",
-      "fuente": "#creacion-personajes, 11/8/2026"
+      "fuente": "#creación-personajes, 11/8/2026"
     },
     {
       "id": "evelyn",
@@ -409,9 +488,11 @@
       "verdugos": [],
       "mapas": [],
       "ost": [],
-      "etiquetas": ["ficha-pendiente"],
+      "etiquetas": [
+        "ficha-pendiente"
+      ],
       "actualizado": "2026-08-31",
-      "fuente": "#creacion-personajes, 11/8/2026"
+      "fuente": "#creación-personajes, 11/8/2026"
     },
     {
       "id": "vicon-e",
@@ -429,9 +510,11 @@
       "verdugos": [],
       "mapas": [],
       "ost": [],
-      "etiquetas": ["ficha-pendiente"],
+      "etiquetas": [
+        "ficha-pendiente"
+      ],
       "actualizado": "2026-08-31",
-      "fuente": "#creacion-personajes, 11/8/2026"
+      "fuente": "#creación-personajes, 11/8/2026"
     },
     {
       "id": "camper",
@@ -441,17 +524,19 @@
       "clase": "",
       "estado": "borrador",
       "imagen": "",
-      "resumen": "Aparecio en la primera lista de pecadores y no en la segunda: falta confirmar si sigue dentro.",
-      "descripcion": "Camper figuraba en la lista de pecadores publicada el 11/8/2026 a las 18:21, pero no en la version reenviada minutos despues en #creacion-personajes.\n\n**Pendiente de confirmar** con S.U.A si sigue en el roster.",
+      "resumen": "Apareció en la primera lista de pecadores y no en la segunda: falta confirmar si sigue dentro.",
+      "descripcion": "Camper figuraba en la lista de pecadores publicada el 11/8/2026 a las 18:21, pero no en la versión reenviada minutos después en #creación-personajes.\n\n**Pendiente de confirmar** con S.U.A si sigue en el roster.",
       "habilidades": [],
       "consejos": [],
       "curiosidades": [],
       "verdugos": [],
       "mapas": [],
       "ost": [],
-      "etiquetas": ["por-confirmar"],
+      "etiquetas": [
+        "por-confirmar"
+      ],
       "actualizado": "2026-08-31",
-      "fuente": "#pecadores y #creacion-personajes, 11/8/2026"
+      "fuente": "#pecadores y #creación-personajes, 11/8/2026"
     }
   ]
 }

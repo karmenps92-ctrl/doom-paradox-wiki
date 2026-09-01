@@ -14,7 +14,7 @@ export async function vistaFicha(raiz, sec, id){
     raiz.innerHTML = `<section class="seccion"><div class="contenedor">
       <p class="migas"><a href="#/">Inicio</a><span>/</span><a href="#/${esc(sec.ruta)}">${esc(sec.nombre)}</a></p>
       <h2>No existe esa ficha</h2>
-      <p class="vacio">Nadie ha documentado <code>${esc(id)}</code> todavia.</p>
+      <p class="vacio">Nadie ha documentado <code>${esc(id)}</code> todavía.</p>
       <p style="text-align:center"><a class="boton" href="#/${esc(sec.ruta)}">Volver a ${esc(sec.nombre)}</a></p>
     </div></section>`;
     return;
@@ -60,8 +60,8 @@ export async function vistaFicha(raiz, sec, id){
                 ${dato("Origen", e.origen)}
                 ${e.peligro ? `<li><b>Amenaza</b><span>${peligro(e.peligro)}</span></li>` : ""}
                 ${dato("Voz", e.voz)}
-                ${dato("Aparicion", e.aparicion)}
-                ${dato("Estado", e.estado)}
+                ${dato("Aparición", e.aparicion)}
+                ${dato("Estado", capitalizar(e.estado))}
               </ul>
             </div>
           </div>
@@ -71,7 +71,7 @@ export async function vistaFicha(raiz, sec, id){
       <div class="contenedor cuerpo-entrada">
         <div class="prosa">
           ${e.cita ? `<blockquote>${esc(e.cita)}</blockquote>` : ""}
-          ${e.descripcion ? md(e.descripcion) : `<p class="vacio">Ficha sin desarrollar. <a href="${esc(urlEditar(sec.id))}" target="_blank" rel="noopener">Escribela tu</a>.</p>`}
+          ${e.descripcion ? md(e.descripcion) : `<p class="vacio">Ficha sin desarrollar. <a href="${esc(urlEditar(sec.id))}" target="_blank" rel="noopener">Escríbela tú</a>.</p>`}
 
           ${listaBloque("Habilidades", (e.habilidades || []).map(h => `
             <div class="habilidad">
@@ -80,11 +80,11 @@ export async function vistaFicha(raiz, sec, id){
               <p>${esc(h.texto || "")}</p>
             </div>`).join(""))}
 
-          ${listaBloque("Como sobrevivir", (e.consejos || []).length
+          ${listaBloque("Cómo sobrevivir", (e.consejos || []).length
             ? `<ul>${(e.consejos || []).map(c => `<li>${esc(c)}</li>`).join("")}</ul>` : "")}
 
           ${listaBloque("Skins", (e.skins || []).map(s => `
-            <div class="habilidad">
+            <div class="habilidad es-skin">
               <b>${esc(s.nombre || "")}</b>
               <p>${esc(s.texto || "")}</p>
             </div>`).join(""))}
@@ -107,7 +107,7 @@ export async function vistaFicha(raiz, sec, id){
           <div class="panel">
             <h4>Ficha</h4>
             <p style="font-size:.86rem;color:var(--ceniza);margin:0 0 .8rem">
-              Ultima revision: ${esc(e.actualizado || "sin fecha")}.
+              Última revisión: ${esc(e.actualizado || "sin fecha")}.
               ${e.fuente ? `Fuente: ${esc(e.fuente)}.` : ""}
             </p>
             <a class="boton" style="width:100%;justify-content:center" href="${esc(urlEditar(sec.id))}" target="_blank" rel="noopener">Editar en GitHub</a>
@@ -129,6 +129,8 @@ export async function vistaFicha(raiz, sec, id){
   revelar(raiz);
   montarComentarios(raiz);
 }
+
+function capitalizar(t){ return t ? String(t)[0].toUpperCase() + String(t).slice(1) : t; }
 
 function dato(titulo, valor){
   return valor ? `<li><b>${esc(titulo)}</b><span>${esc(valor)}</span></li>` : "";
@@ -157,7 +159,7 @@ function relacionPanel(titulo, refs, ruta){
     <div class="chips">
       ${refs.map(r => r.existe
         ? `<a class="chip" href="#/${esc(ruta)}/${esc(r.id)}">${esc(r.nombre)}</a>`
-        : `<span class="chip" title="Todavia sin ficha" style="opacity:.55">${esc(r.nombre)}</span>`).join("")}
+        : `<span class="chip" title="Todavía sin ficha" style="opacity:.55">${esc(r.nombre)}</span>`).join("")}
     </div>
   </div>`;
 }

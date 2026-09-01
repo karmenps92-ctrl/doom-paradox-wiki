@@ -6,6 +6,7 @@
 import { urlEditar, urlIssue } from "../config.js";
 import { cargarSeccion } from "../datos.js";
 import { $, $$, esc, norm, imagen, insignia, peligro, revelar, debounce } from "../util.js";
+import { tarjetas3D } from "../efectos.js";
 import { iniciales } from "./inicio.js";
 
 export async function vistaCatalogo(raiz, sec){
@@ -39,7 +40,7 @@ export async function vistaCatalogo(raiz, sec){
 
         <div class="aviso" style="margin-top:3rem">
           <b>Falta alguien</b>
-          <p>Propon una ficha nueva con
+          <p>Propón una ficha nueva con
           <a href="${esc(urlIssue("nueva-entrada.yml", "[" + sec.singular + "] "))}" target="_blank" rel="noopener">este formulario</a>
           o edita directamente
           <a href="${esc(urlEditar(sec.id))}" target="_blank" rel="noopener">datos/${esc(sec.id)}.json</a> en GitHub.</p>
@@ -62,8 +63,9 @@ export async function vistaCatalogo(raiz, sec){
     contador.textContent = `${lista.length} ${lista.length === 1 ? sec.singular : sec.nombre}`;
     rejilla.innerHTML = lista.length
       ? lista.map(e => tarjeta(sec, e, campo)).join("")
-      : `<p class="vacio" style="grid-column:1/-1">Nada coincide con esa busqueda.</p>`;
+      : `<p class="vacio" style="grid-column:1/-1">Nada coincide con esa búsqueda.</p>`;
     revelar(rejilla);
+    tarjetas3D(rejilla);
   }
 
   $$(".filtro", raiz).forEach(b => b.addEventListener("click", () => {

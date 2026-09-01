@@ -6,7 +6,7 @@
 import { SITIO, seccionPorRuta } from "./config.js";
 import { registrar, iniciar } from "./ruteo.js";
 import { buscador } from "./buscador.js";
-import { cenizas, progresoLectura, reservaImagenes, ambiente, menuMovil, pulsoMarca } from "./efectos.js";
+import { cenizas, luzVacio, tarjetas3D, ondasClic, progresoLectura, reservaImagenes, ambiente, menuMovil, pulsoMarca } from "./efectos.js";
 
 import { vistaInicio } from "./vistas/inicio.js";
 import { vistaCatalogo } from "./vistas/catalogo.js";
@@ -47,6 +47,9 @@ for (const sec of SITIO.secciones){
 /* --- efectos y utilidades globales --- */
 reservaImagenes();
 cenizas();
+luzVacio();
+ondasClic();
+tarjetas3D();
 progresoLectura();
 ambiente();
 menuMovil();

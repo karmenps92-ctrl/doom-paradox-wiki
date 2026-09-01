@@ -29,12 +29,12 @@ export async function vistaGaleria(raiz, sec){
       <div class="mosaico" id="mosaico"></div>
 
       <div class="aviso" style="margin-top:3rem">
-        <b>Envia tu fan art</b>
+        <b>Envía tu fan art</b>
         <p>Abre una propuesta con tu imagen adjunta: se revisa y se publica con tu nombre y tu enlace.
         Nadie sube nada a tu nombre sin permiso, y puedes pedir que se retire cuando quieras.</p>
         <p style="margin-top:.9rem">
           <a class="boton" data-variante="lleno" href="${esc(urlIssue("fan-art.yml", "[Fan art] "))}" target="_blank" rel="noopener">Enviar fan art</a>
-          <a class="boton" href="${esc(urlEditar("galeria"))}" target="_blank" rel="noopener">Editar la galeria</a>
+          <a class="boton" href="${esc(urlEditar("galeria"))}" target="_blank" rel="noopener">Editar la galería</a>
         </p>
       </div>
 
@@ -62,11 +62,11 @@ export async function vistaGaleria(raiz, sec){
       <figure data-obra="${i}" data-revelar>
         ${imagen(o.imagen, o.titulo || "Fan art", (o.titulo || "??").slice(0, 2), true)}
         <figcaption>
-          <b>${esc(o.titulo || "Sin titulo")}</b>
-          ${esc(o.autor || "anonimo")}${o.fecha ? " · " + esc(o.fecha) : ""}
+          <b>${esc(o.titulo || "Sin título")}</b>
+          ${esc(o.autor || "anónimo")}${o.fecha ? " · " + esc(o.fecha) : ""}
         </figcaption>
       </figure>`).join("")
-      : `<p class="vacio">Nada por aqui todavia.</p>`;
+      : `<p class="vacio">Nada por aquí todavía.</p>`;
     revelar(mosaico);
 
     $$("figure[data-obra]", mosaico).forEach(f => f.addEventListener("click", () => abrirLupa(lista[Number(f.dataset.obra)])));
@@ -78,7 +78,7 @@ export async function vistaGaleria(raiz, sec){
     $("#lupa-img", raiz).src = o.imagen || "";
     $("#lupa-img", raiz).alt = o.titulo || "Fan art";
     $("#lupa-pie", raiz).innerHTML =
-      `${esc(o.titulo || "Sin titulo")} — ${esc(o.autor || "anonimo")}` +
+      `${esc(o.titulo || "Sin título")} — ${esc(o.autor || "anónimo")}` +
       (o.fuente ? ` · <a href="${esc(o.fuente)}" target="_blank" rel="noopener">fuente</a>` : "");
     lupa.hidden = false;
   }

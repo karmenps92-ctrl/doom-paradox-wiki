@@ -12,7 +12,7 @@ export function comentarios(termino, titulo = ""){
   const cabecera = `
     <h3 style="font-family:var(--display);font-size:1.8rem;margin-bottom:.4rem">Comentarios</h3>
     <p style="color:var(--ceniza);margin-bottom:1.4rem">
-      Teorias, correcciones y hallazgos sobre ${esc(titulo || "esta pagina")}. Se necesita cuenta de GitHub.
+      Teorías, correcciones y hallazgos sobre ${esc(titulo || "esta página")}. Se necesita cuenta de GitHub.
     </p>`;
 
   if (!g.activo || !g.repoId || !g.categoriaId){

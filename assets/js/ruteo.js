@@ -5,6 +5,7 @@
    ============================================================ */
 
 import { $, $$, alPrincipio } from "./util.js";
+import { tarjetas3D } from "./efectos.js";
 
 const rutas = [];
 let contenedor, transicion, actual = "";
@@ -64,10 +65,11 @@ async function resolver(){
 
   try{
     await encontrada.manejador(contenedor, encontrada.params);
+    tarjetas3D(contenedor);
   }catch(err){
     console.error(err);
     contenedor.innerHTML =
-      `<div class="contenedor seccion"><h2>Se rompio algo</h2>
+      `<div class="contenedor seccion"><h2>Se rompió algo</h2>
        <div class="aviso"><b>Error</b><p>${err.message}</p></div></div>`;
   }
 

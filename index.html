@@ -4,19 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>DOOM PARADOX · WIKI</title>
-<meta name="description" content="Wiki oficial de Doom Paradox: verdugos, pecadores, mapas, OST y galería de la comunidad.">
+<meta name="description" content="El archivo abierto de Doom Paradox: verdugos, pecadores, mapas, mecánicas, OST y galería de la comunidad.">
 <meta name="theme-color" content="#060506">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="DOOM PARADOX · WIKI">
-<meta property="og:description" content="Verdugos, Pecadores, Mapas y OST. El archivo del paradoja.">
+<meta property="og:description" content="Verdugos, pecadores, mapas, mecánicas y OST: el archivo abierto del Paradox.">
 <meta property="og:image" content="assets/img/og.png">
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="icon" href="assets/img/emblema.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Barlow+Condensed:wght@300;400;500;600&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Barlow+Condensed:wght@400;500;600&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/estilo.css">
 <link rel="stylesheet" href="assets/css/efectos.css">
 </head>
@@ -41,7 +41,8 @@
 </svg>
 
 <!-- Capas atmosféricas -->
-<div class="capa-niebla" aria-hidden="true"><i></i><i></i><i></i></div>
+<div class="capa-luz-vacio" id="luz-vacio" aria-hidden="true"></div>
+<div class="capa-niebla" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 <canvas id="cenizas" class="capa-cenizas" aria-hidden="true"></canvas>
 <div class="capa-grano" aria-hidden="true"></div>
 <div class="capa-vineta" aria-hidden="true"></div>
@@ -62,7 +63,7 @@
     <a href="#/verdugos"  data-seccion="verdugos">Verdugos</a>
     <a href="#/pecadores" data-seccion="pecadores">Pecadores</a>
     <a href="#/mapas"     data-seccion="mapas">Mapas</a>
-    <a href="#/mecanicas" data-seccion="mecanicas">Mecanicas</a>
+    <a href="#/mecanicas" data-seccion="mecanicas">Mecánicas</a>
     <a href="#/ost"       data-seccion="ost">OST</a>
     <a href="#/galeria"   data-seccion="galeria">Galería</a>
     <a href="#/guia"      data-seccion="guia">Contribuir</a>
@@ -90,7 +91,7 @@
   <div class="pie-cuerpo">
     <p class="pie-lema">«Todo pecado encuentra su verdugo.»</p>
     <nav class="pie-nav" aria-label="Pie">
-      <a href="#/verdugos">Verdugos</a><a href="#/pecadores">Pecadores</a><a href="#/mapas">Mapas</a><a href="#/mecanicas">Mecanicas</a>
+      <a href="#/verdugos">Verdugos</a><a href="#/pecadores">Pecadores</a><a href="#/mapas">Mapas</a><a href="#/mecanicas">Mecánicas</a>
       <a href="#/ost">OST</a><a href="#/galeria">Galería</a><a href="#/guia">Contribuir</a><a href="#/creditos">Créditos</a>
     </nav>
     <p class="pie-nota">Wiki hecha por y para la comunidad. Contenido no oficial salvo indicación contraria.</p>

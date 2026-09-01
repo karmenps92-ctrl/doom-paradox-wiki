@@ -9,14 +9,14 @@ export const SITIO = {
   subtitulo: "WIKI",
   lema: "Todo pecado encuentra su verdugo",
   descripcion:
-    "Doom Paradox es un juego asimetrico de terror para Roblox: un infierno gobernado por una entidad " +
+    "Doom Paradox es un juego asimétrico de terror para Roblox: un infierno gobernado por una entidad " +
     "lovecraftiana que se alimenta del sufrimiento humano. Los pecadores intentan escapar; los verdugos " +
-    "cobran la deuda. Este es el archivo abierto de sus personajes, mapas, mecanicas y musica.",
+    "cobran la deuda. Este es el archivo abierto de sus personajes, mapas, mecánicas y música.",
 
   /* --- Enlaces externos (deja "" para ocultar el boton) --- */
   enlaces: {
     juego: "",                                  // pon aqui el enlace de la experiencia cuando salga
-    discord: "https://discord.gg/yZCafC3E7",    // servidor de fans anunciado el 18/8/2026 (borralo si no quieres publicarlo)
+    discord: "https://discord.gg/yZCafC3E7",    // servidor de fans anunciado el 18/8/2026 (bórralo si no quieres publicarlo)
     grupoRoblox: "",
     youtube: ""
   },
@@ -57,7 +57,7 @@ export const SITIO = {
       lema: "Los que cobran la deuda.",
       descripcion:
         "Los asesinos de Doom Paradox. Veinticuatro entidades confirmadas, entre creaciones originales, " +
-        "clasicos de Roblox y viejos conocidos de las creepypastas. Cada uno impone sus propias reglas al mapa."
+        "clásicos de Roblox y viejos conocidos de las creepypastas. Cada uno impone sus propias reglas al mapa."
     },
     {
       id: "pecadores",
@@ -67,10 +67,10 @@ export const SITIO = {
       tono: "ceniza",
       singular: "Pecador",
       campoFiltro: "origen",
-      lema: "Los que todavia pueden huir.",
+      lema: "Los que todavía pueden huir.",
       descripcion:
         "Los supervivientes. Veinte condenados que reparan, se esconden y corren. Cada pecador arrastra una " +
-        "relacion con algun verdugo: esa deuda es el nudo del lore."
+        "relación con algún verdugo: esa deuda es el nudo del lore."
     },
     {
       id: "mapas",
@@ -80,20 +80,20 @@ export const SITIO = {
       tono: "humo",
       singular: "Mapa",
       campoFiltro: "zona",
-      lema: "El escenario tambien caza.",
+      lema: "El escenario también caza.",
       descripcion:
         "Los escenarios del limbo y el lobby que los une. Planos comentados, eventos de medio tiempo, " +
         "rutas y secretos documentados por el equipo."
     },
     {
       id: "mecanicas",
-      nombre: "Mecanicas",
+      nombre: "Mecánicas",
       ruta: "mecanicas",
       vista: "catalogo",
       tono: "humo",
-      singular: "Mecanica",
+      singular: "Mecánica",
       campoFiltro: "tipo",
-      lema: "Como funciona el infierno.",
+      lema: "Cómo funciona el infierno.",
       descripcion:
         "Modos de partida, sistemas y reglas del mundo: LMS, Double Trouble, rondas especiales, " +
         "modificadores y todo lo que cambia una partida por dentro."
@@ -108,11 +108,11 @@ export const SITIO = {
       campoFiltro: "escena",
       lema: "La banda sonora del paradox.",
       descripcion:
-        "Chase themes, temas de LMS y ambientes de mapa. Cada verdugo tiene su propia persecucion sonando detras."
+        "Chase themes, temas de LMS y ambientes de mapa. Cada verdugo tiene su propia persecución sonando detrás."
     },
     {
       id: "galeria",
-      nombre: "Galeria",
+      nombre: "Galería",
       ruta: "galeria",
       vista: "galeria",
       tono: "ceniza",

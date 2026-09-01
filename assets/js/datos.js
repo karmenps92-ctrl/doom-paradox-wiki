@@ -61,15 +61,15 @@ export async function indice(){
       });
     }
     filas.push({
-      seccion: sec.id, tipo: "Seccion", nombre: sec.nombre,
+      seccion: sec.id, tipo: "Sección", nombre: sec.nombre,
       desc: sec.lema, ruta: `#/${sec.ruta}`, clave: norm(sec.nombre + " " + sec.descripcion)
     });
   }
-  filas.push({ seccion:"guia", tipo:"Ayuda", nombre:"Como contribuir",
-    desc:"Anade personajes, mapas, temas o fan art", ruta:"#/guia",
+  filas.push({ seccion:"guia", tipo:"Ayuda", nombre:"Cómo contribuir",
+    desc:"Añade personajes, mapas, temas o fan art", ruta:"#/guia",
     clave: norm("contribuir editar json github pull request fan art aportar ayuda") });
-  filas.push({ seccion:"creditos", tipo:"Ayuda", nombre:"Creditos",
-    desc:"Quien hace el juego y quien mantiene la wiki", ruta:"#/creditos",
+  filas.push({ seccion:"creditos", tipo:"Ayuda", nombre:"Créditos",
+    desc:"Quién hace el juego y quién mantiene la wiki", ruta:"#/creditos",
     clave: norm("creditos equipo autores agradecimientos") });
   return filas;
 }
