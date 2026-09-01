@@ -500,7 +500,25 @@ code{
   margin:.6rem 0 0; max-height:0; opacity:0; overflow:hidden;
   transition:max-height var(--v-media) var(--sal), opacity var(--v-rapida) linear;
 }
-.ficha:hover .ficha-resumen{max-height:6rem; opacity:1}
+.ficha:hover .ficha-resumen,
+.ficha:focus-visible .ficha-resumen{max-height:6rem; opacity:1}
+
+/* Sin hover (móvil, tabletas) el resumen no se vería nunca. La tarjeta
+   deja de superponer el texto sobre la imagen y pasa a apilarlo debajo. */
+@media (hover:none){
+  .ficha-lienzo{aspect-ratio:4/3}
+  .ficha-lienzo::after{background:linear-gradient(180deg,transparent 55%,rgba(5,4,6,.7))}
+  .ficha-cuerpo{position:static; padding:.95rem 1.05rem 1.1rem; background:var(--carbon)}
+  .ficha-nombre{text-shadow:none}
+  .ficha-resumen{max-height:none; opacity:1; margin-top:.5rem}
+  .mosaico figcaption{opacity:1; translate:0 0}
+}
+
+/* Los marcadores de "falta imagen" se repiten en toda la rejilla:
+   se les cambia el ángulo y el foco de luz para que no parezcan papel pintado. */
+.rejilla .ficha:nth-child(3n+2) .sin-imagen{transform:scaleX(-1)}
+.rejilla .ficha:nth-child(3n+2) .sin-imagen span{transform:scaleX(-1)}
+.rejilla .ficha:nth-child(3n+3) .sin-imagen{background-position:0 0,11px 0}
 
 /* ============================================================
    9. INSIGNIAS, MEDIDORES Y FICHITAS

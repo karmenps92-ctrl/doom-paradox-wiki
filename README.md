@@ -85,6 +85,16 @@ datos/*.json               EL CONTENIDO DE LA WIKI
 assets/img/<seccion>/      imagenes de cada ficha
 assets/audio/              temas de la OST
 scripts/validar.mjs        validador de datos
+scripts/generar-og.py      rehace la tarjeta social (assets/img/og.png)
+```
+
+## La tarjeta que se ve al compartir el enlace
+
+`assets/img/og.png` es lo que muestran Discord, Twitter o WhatsApp cuando alguien pega el
+enlace de la wiki. Si cambia el nombre o las secciones, se rehace con:
+
+```bash
+python scripts/generar-og.py
 ```
 
 ## De donde sale el contenido
