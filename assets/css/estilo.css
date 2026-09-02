@@ -1546,6 +1546,275 @@ a.chip:hover{
 }
 
 /* ============================================================
+   11.5 MECÁNICAS Y SISTEMAS DE JUEGO HD 3.0
+   ============================================================ */
+
+/* Rejilla de Mecánicas */
+.rejilla-mecanicas{
+  display:grid; grid-template-columns:repeat(auto-fill, minmax(350px, 1fr));
+  gap:1.8rem;
+}
+@media(max-width:768px){
+  .rejilla-mecanicas{grid-template-columns:1fr}
+}
+
+/* Tarjeta Modular de Mecánica */
+.tarjeta-mecanica{
+  display:flex; flex-direction:column;
+  background:linear-gradient(150deg, rgba(22,17,28,0.9) 0%, rgba(11,8,15,0.96) 100%);
+  border:1px solid rgba(255,32,46,0.22);
+  border-radius:var(--radio);
+  overflow:hidden; text-decoration:none;
+  position:relative;
+  box-shadow:0 12px 35px rgba(0,0,0,0.7);
+  transition:all .32s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.tarjeta-mecanica:hover{
+  transform:translateY(-5px);
+  border-color:rgba(255,32,46,0.6);
+  box-shadow:0 18px 45px rgba(0,0,0,0.85), 0 0 28px rgba(255,32,46,0.25);
+}
+
+/* Variaciones de Tono por Tipo */
+.tarjeta-mecanica.tipo-modo-de-partida{
+  border-left:3px solid var(--sangre-viva);
+}
+.tarjeta-mecanica.tipo-modo-de-partida:hover{
+  border-color:var(--sangre-viva);
+  box-shadow:0 18px 45px rgba(0,0,0,0.85), 0 0 30px rgba(255,32,46,0.35);
+}
+.tarjeta-mecanica.tipo-sistema{
+  border-left:3px solid #38bdf8;
+}
+.tarjeta-mecanica.tipo-sistema:hover{
+  border-color:#38bdf8;
+  box-shadow:0 18px 45px rgba(0,0,0,0.85), 0 0 30px rgba(56,189,248,0.3);
+}
+.tarjeta-mecanica.tipo-mundo{
+  border-left:3px solid var(--oro);
+}
+.tarjeta-mecanica.tipo-mundo:hover{
+  border-color:var(--oro);
+  box-shadow:0 18px 45px rgba(0,0,0,0.85), 0 0 30px rgba(229,180,72,0.3);
+}
+
+/* Header de la Tarjeta */
+.mecanica-card-header{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:.75rem 1.2rem;
+  background:rgba(255,255,255,0.02);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.mecanica-mod-id{
+  font-family:ui-monospace, monospace; font-size:.74rem;
+  font-weight:700; letter-spacing:.1em; color:var(--ceniza);
+}
+.mecanica-badges{
+  display:flex; align-items:center; gap:.45rem;
+}
+.mecanica-tipo-badge{
+  font-family:var(--titular); font-size:.74rem; font-weight:700;
+  text-transform:uppercase; letter-spacing:.08em;
+  padding:.2rem .55rem; border-radius:2px;
+  background:rgba(255,255,255,0.06); color:var(--hueso);
+  border:1px solid rgba(255,255,255,0.12);
+}
+.tarjeta-mecanica.tipo-modo-de-partida .mecanica-tipo-badge{
+  background:rgba(255,32,46,0.18); border-color:rgba(255,32,46,0.4); color:#fff;
+}
+.tarjeta-mecanica.tipo-sistema .mecanica-tipo-badge{
+  background:rgba(56,189,248,0.15); border-color:rgba(56,189,248,0.35); color:#7dd3fc;
+}
+.tarjeta-mecanica.tipo-mundo .mecanica-tipo-badge{
+  background:rgba(229,180,72,0.15); border-color:rgba(229,180,72,0.35); color:var(--oro);
+}
+
+/* Cuerpo de la Tarjeta */
+.mecanica-card-body{
+  display:flex; gap:1.2rem; align-items:flex-start;
+  padding:1.4rem; flex:1;
+}
+.mecanica-icono-marco{
+  width:58px; height:58px; border-radius:6px;
+  background:linear-gradient(135deg, rgba(30,22,36,0.9), rgba(14,10,18,0.95));
+  border:1px solid rgba(255,255,255,0.12);
+  display:grid; place-items:center; flex-shrink:0;
+  position:relative; overflow:hidden;
+  transition:all .3s ease;
+}
+.mecanica-icono-marco svg{
+  width:32px !important; height:32px !important;
+  max-width:32px !important; max-height:32px !important;
+  z-index:2; flex-shrink:0;
+  transition:transform .3s var(--muelle);
+}
+.tarjeta-mecanica:hover .mecanica-icono-marco{
+  border-color:rgba(255,32,46,0.5);
+  box-shadow:0 0 20px rgba(255,32,46,0.3);
+}
+.tarjeta-mecanica:hover .mecanica-icono-marco svg{
+  transform:scale(1.15);
+}
+.mecanica-icono-glow{
+  position:absolute; inset:0;
+  background:radial-gradient(circle at center, rgba(255,32,46,0.25) 0%, transparent 70%);
+  opacity:0; transition:opacity .3s;
+}
+.tarjeta-mecanica:hover .mecanica-icono-glow{
+  opacity:1;
+}
+
+.mecanica-info{
+  display:flex; flex-direction:column; flex:1;
+}
+.mecanica-titulo{
+  font-family:var(--titular); font-size:1.32rem; font-weight:700;
+  letter-spacing:.06em; text-transform:uppercase; color:#fff;
+  margin:0 0 .45rem; line-height:1.2;
+  transition:color .2s;
+}
+.tarjeta-mecanica:hover .mecanica-titulo{
+  color:var(--sangre-viva);
+}
+.mecanica-resumen{
+  font-size:.92rem; color:var(--ceniza-clara); line-height:1.55;
+  margin:0; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+
+/* Footer de la Tarjeta */
+.mecanica-card-footer{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:.9rem 1.4rem;
+  border-top:1px solid rgba(255,255,255,0.05);
+  background:rgba(0,0,0,0.15);
+}
+.mecanica-tags{
+  display:flex; flex-wrap:wrap; gap:.4rem;
+}
+.mecanica-tag{
+  font-family:ui-monospace, monospace; font-size:.72rem;
+  letter-spacing:.05em; color:var(--ceniza);
+}
+.mecanica-enlace{
+  font-family:var(--titular); font-size:.82rem; font-weight:700;
+  letter-spacing:.1em; text-transform:uppercase; color:var(--sangre-viva);
+  transition:transform .2s; white-space:nowrap;
+}
+.tarjeta-mecanica:hover .mecanica-enlace{
+  transform:translateX(3px);
+}
+
+/* ============================================================
+   DETALLE DE MECÁNICA / PROTOCOLO (vistaMecanica)
+   ============================================================ */
+.mecanica-terminal-view{
+  padding:2.5rem 0 5rem;
+}
+.mecanica-heroe-header{
+  margin-bottom:2.5rem;
+}
+.mecanica-header-layout{
+  display:flex; gap:1.8rem; align-items:flex-start;
+  margin-top:1.2rem;
+}
+@media(max-width:768px){
+  .mecanica-header-layout{flex-direction:column}
+}
+.mecanica-header-emblema{
+  width:88px; height:88px; border-radius:var(--radio);
+  background:linear-gradient(135deg, rgba(32,22,40,0.95), rgba(14,10,18,0.98));
+  border:1px solid rgba(255,32,46,0.4);
+  display:grid; place-items:center; flex-shrink:0;
+  box-shadow:0 12px 35px rgba(0,0,0,0.8), 0 0 25px rgba(255,32,46,0.25);
+}
+.mecanica-header-emblema svg{
+  width:50px; height:50px;
+}
+.mecanica-header-datos{
+  display:flex; flex-direction:column; flex:1;
+}
+.mecanica-meta-tags{
+  display:flex; align-items:center; flex-wrap:wrap; gap:.6rem;
+  margin-bottom:.7rem;
+}
+.mecanica-pill-tipo{
+  font-family:var(--titular); font-size:.82rem; font-weight:700;
+  letter-spacing:.12em; text-transform:uppercase;
+  background:rgba(255,32,46,0.18); color:#fff;
+  border:1px solid rgba(255,32,46,0.4);
+  padding:.25rem .7rem; border-radius:2px;
+}
+.mecanica-pill-id{
+  font-family:ui-monospace, monospace; font-size:.76rem;
+  letter-spacing:.1em; color:var(--ceniza);
+}
+.mecanica-titulo-principal{
+  font-family:var(--titular); font-size:clamp(2.2rem, 4.5vw, 3.4rem);
+  font-weight:700; text-transform:uppercase; letter-spacing:.06em;
+  color:#fff; line-height:1.1; margin:0 0 .7rem;
+  text-shadow:0 0 30px rgba(255,32,46,0.4);
+}
+.mecanica-resumen-principal{
+  font-size:1.15rem; color:var(--ceniza-clara); line-height:1.65;
+  max-width:85ch; margin:0;
+}
+
+/* Layout Grid 2 Columnas */
+.mecanica-layout-grid{
+  display:grid; grid-template-columns:1.6fr 1fr;
+  gap:2.2rem; align-items:start;
+}
+@media(max-width:940px){
+  .mecanica-layout-grid{grid-template-columns:1fr}
+}
+
+.mecanica-briefing-box{
+  background:rgba(18,13,22,0.92); border:1px solid rgba(255,32,46,0.25);
+  border-radius:var(--radio); overflow:hidden;
+  box-shadow:0 16px 50px rgba(0,0,0,0.8);
+}
+.mecanica-barra-top{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:.7rem 1.4rem; background:rgba(255,255,255,0.03);
+  border-bottom:1px solid rgba(255,32,46,0.2);
+  font-family:ui-monospace, monospace; font-size:.74rem;
+  letter-spacing:.1em; color:var(--ceniza);
+}
+.mecanica-prosa{
+  padding:2rem 2.2rem;
+}
+.mecanica-prosa h2{
+  font-family:var(--titular); font-size:1.45rem; font-weight:700;
+  text-transform:uppercase; letter-spacing:.08em; color:#fff;
+  border-left:4px solid var(--sangre-viva);
+  padding-left:.85rem; margin:2rem 0 1rem;
+}
+.mecanica-prosa h2:first-child{margin-top:0}
+.mecanica-prosa p{
+  color:var(--ceniza-clara); font-size:1.04rem; line-height:1.8;
+  margin:0 0 1.2rem;
+}
+.mecanica-prosa ul{
+  margin:0 0 1.5rem; padding-left:1.5rem;
+  display:flex; flex-direction:column; gap:.6rem;
+}
+.mecanica-prosa li{
+  color:var(--ceniza-clara); font-size:1rem; line-height:1.65;
+}
+.mecanica-prosa blockquote{
+  border-left:3px solid var(--oro);
+  background:rgba(229,180,72,0.08);
+  padding:1rem 1.4rem; margin:1.5rem 0;
+  font-style:italic; color:var(--hueso);
+  border-radius:0 var(--radio) var(--radio) 0;
+}
+
+.mecanica-col-sidebar{
+  display:flex; flex-direction:column; gap:1.4rem;
+}
+
+/* ============================================================
    12. OST Y REPRODUCTOR DE ESPECTRO
    ============================================================ */
 .pista{

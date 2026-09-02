@@ -70,7 +70,7 @@ export const SITIO = {
       id: "mecanicas",
       nombre: "Mecánicas",
       ruta: "mecanicas",
-      vista: "catalogo",
+      vista: "mecanicas",
       tono: "humo",
       singular: "Mecánica",
       campoFiltro: "tipo",

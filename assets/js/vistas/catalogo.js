@@ -7,6 +7,7 @@ import { cargarSeccion } from "../datos.js";
 import { $, $$, esc, norm, imagen, insignia, peligro, revelar, debounce } from "../util.js";
 import { tarjetas3D } from "../efectos.js";
 import { iniciales } from "./inicio.js";
+import { tarjetaMecanica } from "./mecanicas.js";
 
 export async function vistaCatalogo(raiz, sec){
   const { entradas, error } = await cargarSeccion(sec.id);
@@ -53,7 +54,7 @@ export async function vistaCatalogo(raiz, sec){
     });
     contador.textContent = `${lista.length} ${lista.length === 1 ? sec.singular : sec.nombre}`;
     rejilla.innerHTML = lista.length
-      ? lista.map(e => tarjeta(sec, e, campo)).join("")
+      ? lista.map((e, i) => tarjeta(sec, e, campo, i + 1)).join("")
       : `<p class="vacio" style="grid-column:1/-1">Nada coincide con esa búsqueda.</p>`;
     revelar(rejilla);
     tarjetas3D(rejilla);
@@ -69,7 +70,8 @@ export async function vistaCatalogo(raiz, sec){
   pintar();
 }
 
-function tarjeta(sec, e, campo){
+function tarjeta(sec, e, campo, idx = 1){
+  if (sec.id === "mecanicas") return tarjetaMecanica(e, idx);
   const nombre = e.nombre || e.titulo || e.id;
   return `
     <a class="ficha" href="#/${esc(sec.ruta)}/${esc(e.id)}" data-revelar>

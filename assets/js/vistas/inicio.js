@@ -9,6 +9,7 @@ import { cargarTodo } from "../datos.js";
 import { esc, imagen, insignia, peligro, revelar } from "../util.js";
 import { sonidoUI, crearChispas } from "../efectos.js";
 import { tarjetaMapa } from "./mapas.js";
+import { tarjetaMecanica } from "./mecanicas.js";
 
 export async function vistaInicio(raiz){
   const todo = await cargarTodo();
@@ -30,6 +31,7 @@ export async function vistaInicio(raiz){
   const bloques = SITIO.secciones.map(sec => {
     const entradas = (todo[sec.id]?.entradas || []).slice(0, 4);
     if (!entradas.length) return bloqueVacio(sec);
+    const claseRejilla = sec.id === "mapas" ? "rejilla-mapas" : sec.id === "mecanicas" ? "rejilla-mecanicas" : "rejilla";
     return `
       <section class="banda" data-tono="${esc(sec.tono)}">
         <h2 class="banda-titulo">${esc(sec.nombre)}</h2>
@@ -37,7 +39,7 @@ export async function vistaInicio(raiz){
       </section>
       <section class="seccion" data-revelar>
         <div class="contenedor">
-          <div class="${sec.id === "mapas" ? "rejilla-mapas" : "rejilla"}" ${sec.id === "mapas" ? "" : "data-densa"}>${entradas.map(e => tarjeta(sec, e)).join("")}</div>
+          <div class="${claseRejilla}" ${sec.id === "mapas" || sec.id === "mecanicas" ? "" : "data-densa"}>${entradas.map((e, idx) => tarjeta(sec, e, idx)).join("")}</div>
           <p style="margin-top:2.2rem;text-align:center">
             <a class="boton" href="#/${esc(sec.ruta)}">Ver ${conteo[sec.id]} ${esc(sec.nombre.toLowerCase())} &rarr;</a>
           </p>
@@ -142,8 +144,9 @@ function bloqueVacio(sec){
     </div></section>`;
 }
 
-function tarjeta(sec, e){
+function tarjeta(sec, e, idx = 0){
   if (sec.id === "mapas") return tarjetaMapa(e);
+  if (sec.id === "mecanicas") return tarjetaMecanica(e, idx + 1);
   const nombre = e.nombre || e.titulo || e.id;
   return `
     <a class="ficha" href="#/${esc(sec.ruta)}/${esc(e.id)}">

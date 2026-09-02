@@ -12,6 +12,7 @@ import { vistaInicio } from "./vistas/inicio.js";
 import { vistaCatalogo } from "./vistas/catalogo.js";
 import { vistaFicha } from "./vistas/ficha.js";
 import { vistaMapas, vistaMapa } from "./vistas/mapas.js";
+import { vistaMecanicas, vistaMecanica } from "./vistas/mecanicas.js";
 import { vistaOst, vistaTema } from "./vistas/ost.js";
 import { vistaGaleria } from "./vistas/galeria.js";
 import { vistaCreditos, vista404 } from "./vistas/estaticas.js";
@@ -27,17 +28,19 @@ registrar("/404", vista404);
 for (const sec of SITIO.secciones){
   registrar(`/${sec.ruta}`, async (raiz) => {
     document.title = `${sec.nombre} · ${tituloBase}`;
-    if (sec.vista === "mapas")   return vistaMapas(raiz, sec);
-    if (sec.vista === "ost")     return vistaOst(raiz, sec);
-    if (sec.vista === "galeria") return vistaGaleria(raiz, sec);
+    if (sec.vista === "mapas")       return vistaMapas(raiz, sec);
+    if (sec.id === "mecanicas")      return vistaMecanicas(raiz, sec);
+    if (sec.vista === "ost")         return vistaOst(raiz, sec);
+    if (sec.vista === "galeria")     return vistaGaleria(raiz, sec);
     return vistaCatalogo(raiz, sec);
   });
 
   if (sec.vista !== "galeria"){
     registrar(`/${sec.ruta}/:id`, async (raiz, { id }) => {
       const s = seccionPorRuta(sec.ruta);
-      if (s.vista === "mapas") return vistaMapa(raiz, s, id);
-      if (s.vista === "ost")   return vistaTema(raiz, s, id);
+      if (s.vista === "mapas")  return vistaMapa(raiz, s, id);
+      if (s.id === "mecanicas") return vistaMecanica(raiz, s, id);
+      if (s.vista === "ost")    return vistaTema(raiz, s, id);
       return vistaFicha(raiz, s, id);
     });
   }
