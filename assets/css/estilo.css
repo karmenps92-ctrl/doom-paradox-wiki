@@ -1375,18 +1375,36 @@ a.chip:hover{
 
 /* Dossier y Briefings bajo el Visor */
 .mapa-secciones-briefing{
-  display:flex; flex-direction:column; gap:1.8rem;
+  display:flex; flex-direction:column; gap:1.4rem;
 }
+.mapa-secciones-briefing .prosa h2,
 .mapa-secciones-briefing h2{
-  font-family:var(--titular); font-size:1.45rem; font-weight:700;
+  font-family:var(--titular); font-size:1.4rem; font-weight:700;
   text-transform:uppercase; letter-spacing:.08em; color:#fff;
-  border-bottom:1px solid rgba(255,32,46,0.25);
-  padding-bottom:.5rem; margin:1.5rem 0 .9rem;
+  border-left:4px solid var(--sangre-viva);
+  padding-left:.85rem; margin:1.8rem 0 .9rem;
+  text-shadow:0 0 16px rgba(255,32,46,0.4);
 }
+.mapa-secciones-briefing .prosa h2:first-child,
 .mapa-secciones-briefing h2:first-of-type{margin-top:0}
+.mapa-secciones-briefing .prosa p,
 .mapa-secciones-briefing p{
   color:var(--ceniza-clara); font-size:1.02rem; line-height:1.75;
-  margin:0 0 1rem;
+  background:rgba(20,15,26,0.6);
+  border:1px solid rgba(255,32,46,0.15);
+  border-radius:var(--radio);
+  padding:1.1rem 1.3rem; margin:0 0 1rem;
+}
+.mapa-secciones-briefing .prosa ul{
+  background:rgba(20,15,26,0.6);
+  border:1px solid rgba(255,32,46,0.15);
+  border-radius:var(--radio);
+  padding:1.1rem 1.3rem 1.1rem 2.4rem;
+  margin:0 0 1.2rem;
+  display:flex; flex-direction:column; gap:.5rem;
+}
+.mapa-secciones-briefing .prosa li{
+  color:var(--ceniza-clara); font-size:.96rem; line-height:1.6;
 }
 .mapa-dossier-card{
   padding:1.4rem 1.6rem; border-radius:var(--radio);
