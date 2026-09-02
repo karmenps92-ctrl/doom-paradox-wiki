@@ -8,6 +8,7 @@ import { SITIO } from "../config.js";
 import { cargarTodo } from "../datos.js";
 import { esc, imagen, insignia, peligro, revelar } from "../util.js";
 import { sonidoUI, crearChispas } from "../efectos.js";
+import { tarjetaMapa } from "./mapas.js";
 
 export async function vistaInicio(raiz){
   const todo = await cargarTodo();
@@ -36,7 +37,7 @@ export async function vistaInicio(raiz){
       </section>
       <section class="seccion" data-revelar>
         <div class="contenedor">
-          <div class="rejilla" data-densa>${entradas.map(e => tarjeta(sec, e)).join("")}</div>
+          <div class="${sec.id === "mapas" ? "rejilla-mapas" : "rejilla"}" ${sec.id === "mapas" ? "" : "data-densa"}>${entradas.map(e => tarjeta(sec, e)).join("")}</div>
           <p style="margin-top:2.2rem;text-align:center">
             <a class="boton" href="#/${esc(sec.ruta)}">Ver ${conteo[sec.id]} ${esc(sec.nombre.toLowerCase())} &rarr;</a>
           </p>
@@ -142,6 +143,7 @@ function bloqueVacio(sec){
 }
 
 function tarjeta(sec, e){
+  if (sec.id === "mapas") return tarjetaMapa(e);
   const nombre = e.nombre || e.titulo || e.id;
   return `
     <a class="ficha" href="#/${esc(sec.ruta)}/${esc(e.id)}">

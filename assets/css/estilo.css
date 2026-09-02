@@ -1037,56 +1037,494 @@ a.chip:hover{
 }
 
 /* ============================================================
-   11. MAPAS Y VISOR TÁCTICO
+   11. MAPAS Y CARTOGRAFÍA TÁCTICA HD 3.0
    ============================================================ */
-.mapa-doble{
-  display:grid; grid-template-columns:1.3fr 1fr; gap:2rem;
+
+/* Rejilla de Mapas (Widescreen landscape cards) */
+.rejilla-mapas{
+  display:grid; grid-template-columns:repeat(auto-fill, minmax(360px, 1fr));
+  gap:1.8rem;
 }
-@media(max-width:920px){
-  .mapa-doble{grid-template-columns:1fr}
+@media(max-width:768px){
+  .rejilla-mapas{grid-template-columns:1fr}
 }
 
+/* Tarjeta Táctica de Mapa (Catálogo e Inicio) */
+.tarjeta-mapa{
+  display:flex; flex-direction:column;
+  background:linear-gradient(160deg, rgba(24,18,30,0.85) 0%, rgba(10,7,14,0.95) 100%);
+  border:1px solid rgba(255,32,46,0.22);
+  border-radius:var(--radio);
+  overflow:hidden; text-decoration:none;
+  position:relative;
+  box-shadow:0 12px 40px rgba(0,0,0,0.7);
+  transition:all .32s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.tarjeta-mapa::before{
+  content:""; position:absolute; inset:0;
+  border:1px solid transparent; border-radius:var(--radio);
+  pointer-events:none; transition:border-color .3s; z-index:5;
+}
+.tarjeta-mapa:hover{
+  transform:translateY(-6px);
+  border-color:rgba(255,32,46,0.65);
+  box-shadow:0 20px 50px rgba(0,0,0,0.85), 0 0 30px rgba(255,32,46,0.3);
+}
+.tarjeta-mapa:hover::before{
+  border-color:rgba(255,100,110,0.4);
+}
+
+/* Contenedor del Preview / Lienzo */
+.tarjeta-mapa-preview{
+  position:relative; width:100%; aspect-ratio:16/10;
+  background:#060408; overflow:hidden;
+  border-bottom:1px solid rgba(255,32,46,0.2);
+}
+.mapa-lienzo-preview{
+  position:absolute; inset:0; width:100%; height:100%;
+}
+.mapa-lienzo-preview img{
+  width:100%; height:100%; object-fit:cover;
+  transition:transform .5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.tarjeta-mapa:hover .mapa-lienzo-preview img{
+  transform:scale(1.06);
+}
+
+/* Retícula y Brújula Táctica */
+.mapa-reticula{
+  position:absolute; inset:0; pointer-events:none; z-index:2;
+  background-image:
+    linear-gradient(to right, rgba(255,32,46,0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,32,46,0.06) 1px, transparent 1px);
+  background-size:24px 24px;
+}
+.mapa-brujula{
+  position:absolute; top:.7rem; right:.8rem; z-index:4;
+  font-family:var(--titular); font-size:.85rem; font-weight:700;
+  color:rgba(255,255,255,0.4);
+  width:24px; height:24px; border:1px solid rgba(255,255,255,0.2);
+  border-radius:50%; display:grid; place-items:center;
+  pointer-events:none;
+}
+.mapa-coordenadas{
+  position:absolute; bottom:.5rem; left:.7rem; z-index:4;
+  font-family:ui-monospace, monospace; font-size:.68rem;
+  letter-spacing:.08em; color:rgba(255,255,255,0.45);
+  pointer-events:none;
+}
+
+/* Barrido de Radar */
+.mapa-radar-barrido{
+  position:absolute; inset:0; z-index:3; pointer-events:none;
+  background:linear-gradient(180deg, transparent 0%, rgba(255,32,46,0.08) 50%, transparent 100%);
+  opacity:0; transform:translateY(-100%);
+  transition:opacity .3s;
+}
+.tarjeta-mapa:hover .mapa-radar-barrido{
+  opacity:1;
+  animation:radarSweep 2.8s linear infinite;
+}
+@keyframes radarSweep{
+  0%{transform:translateY(-100%)}
+  100%{transform:translateY(100%)}
+}
+
+/* Badges sobre la imagen */
+.mapa-badges-top{
+  position:absolute; top:.7rem; left:.7rem; z-index:4;
+  display:flex; flex-wrap:wrap; gap:.4rem;
+}
+.mapa-badge-zona{
+  background:rgba(10,8,14,0.85); border:1px solid rgba(255,255,255,0.22);
+  color:var(--hueso); font-family:var(--titular); font-size:.74rem;
+  font-weight:700; text-transform:uppercase; letter-spacing:.08em;
+  padding:.2rem .55rem; border-radius:2px;
+  backdrop-filter:blur(4px);
+}
+.mapa-badge-puntos{
+  display:inline-flex; align-items:center; gap:.4rem;
+  background:rgba(255,32,46,0.18); border:1px solid rgba(255,32,46,0.45);
+  color:#fff; font-family:var(--titular); font-size:.74rem;
+  font-weight:700; text-transform:uppercase; letter-spacing:.08em;
+  padding:.2rem .55rem; border-radius:2px;
+  backdrop-filter:blur(4px);
+}
+
+/* Baliza con pulso animado */
+.beacon-pulso{
+  display:inline-block; width:6px; height:6px; border-radius:50%;
+  background:#48ff88; box-shadow:0 0 8px #48ff88;
+  position:relative;
+}
+.beacon-pulso::after{
+  content:""; position:absolute; inset:-3px; border-radius:50%;
+  border:1px solid #48ff88; opacity:0;
+  animation:pulsoAnillo 1.6s ease-out infinite;
+}
+.beacon-pulso.red{
+  background:var(--sangre-viva); box-shadow:0 0 8px var(--sangre-viva);
+}
+.beacon-pulso.red::after{
+  border-color:var(--sangre-viva);
+}
+@keyframes pulsoAnillo{
+  0%{transform:scale(0.8); opacity:1}
+  100%{transform:scale(2.4); opacity:0}
+}
+
+/* Cuerpo de la Tarjeta */
+.tarjeta-mapa-cuerpo{
+  padding:1.4rem; display:flex; flex-direction:column; flex:1;
+}
+.tarjeta-mapa-cabecera{
+  display:flex; align-items:baseline; justify-content:space-between;
+  margin-bottom:.5rem;
+}
+.tarjeta-mapa-titulo{
+  font-family:var(--titular); font-size:1.45rem; font-weight:700;
+  letter-spacing:.06em; text-transform:uppercase; color:#fff;
+  margin:0; transition:color .2s;
+}
+.tarjeta-mapa:hover .tarjeta-mapa-titulo{
+  color:var(--sangre-viva);
+  text-shadow:0 0 16px rgba(255,32,46,0.6);
+}
+.tarjeta-mapa-sector{
+  font-family:var(--titular); font-size:.76rem; letter-spacing:.12em;
+  color:var(--ceniza); text-transform:uppercase;
+}
+.tarjeta-mapa-resumen{
+  font-size:.92rem; color:var(--ceniza-clara); line-height:1.55;
+  margin:0 0 1.2rem; flex:1;
+  display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+.tarjeta-mapa-footer{
+  display:flex; align-items:center; justify-content:space-between;
+  padding-top:1rem; border-top:1px solid rgba(255,255,255,0.06);
+}
+.mapa-specs-lista{
+  display:flex; align-items:center; gap:.6rem;
+}
+.mapa-spec-chip{
+  font-family:var(--titular); font-size:.76rem; letter-spacing:.08em;
+  color:var(--ceniza); text-transform:uppercase;
+  background:rgba(255,255,255,0.04); padding:.2rem .5rem; border-radius:2px;
+}
+.mapa-spec-chip b{color:#fff; font-weight:700}
+.mapa-accion-explorar{
+  font-family:var(--titular); font-size:.84rem; font-weight:700;
+  letter-spacing:.1em; text-transform:uppercase; color:var(--sangre-viva);
+  transition:transform .2s;
+}
+.tarjeta-mapa:hover .mapa-accion-explorar{
+  transform:translateX(4px);
+}
+
+/* ============================================================
+   TERMINAL TÁCTICO DETALLADO (vistaMapa)
+   ============================================================ */
+.mapa-terminal-view{
+  padding:2.5rem 0 5rem;
+}
+.mapa-heroe-header{
+  margin-bottom:2.2rem;
+}
+.mapa-meta-tags{
+  display:flex; align-items:center; flex-wrap:wrap; gap:.6rem;
+  margin-bottom:.8rem;
+}
+.mapa-tag-sector{
+  font-family:var(--titular); font-size:.82rem; font-weight:700;
+  letter-spacing:.14em; text-transform:uppercase;
+  background:rgba(255,255,255,0.07); color:var(--ceniza-clara);
+  padding:.3rem .75rem; border-radius:2px; border:1px solid rgba(255,255,255,0.15);
+}
+.mapa-tag-balizas{
+  display:inline-flex; align-items:center; gap:.45rem;
+  font-family:var(--titular); font-size:.82rem; font-weight:700;
+  letter-spacing:.12em; text-transform:uppercase;
+  background:rgba(255,32,46,0.18); color:#fff;
+  padding:.3rem .75rem; border-radius:2px; border:1px solid rgba(255,32,46,0.4);
+}
+.mapa-titulo-principal{
+  font-family:var(--titular); font-size:clamp(2.4rem, 5vw, 3.8rem);
+  font-weight:700; text-transform:uppercase; letter-spacing:.06em;
+  line-height:1.05; color:#fff;
+  text-shadow:0 0 35px rgba(255,32,46,0.45);
+  margin:0 0 .8rem;
+}
+.mapa-resumen-destacado{
+  font-size:1.12rem; color:var(--ceniza-clara); max-width:85ch;
+  line-height:1.6; margin:0;
+}
+
+/* Grid del Terminal (2 Columnas armoniosas) */
+.mapa-terminal-grid{
+  display:grid; grid-template-columns:1.55fr 1fr;
+  gap:2.2rem; align-items:start;
+}
+@media(max-width:980px){
+  .mapa-terminal-grid{grid-template-columns:1fr}
+}
+
+/* Marco del Visor */
+.mapa-visor-marco{
+  border:1px solid rgba(255,32,46,0.35); border-radius:var(--radio);
+  background:rgba(14,10,18,0.92); overflow:hidden;
+  box-shadow:0 20px 60px rgba(0,0,0,0.85);
+  margin-bottom:2rem;
+}
+.mapa-terminal-barra-top{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:.65rem 1.2rem; background:rgba(20,14,24,0.95);
+  border-bottom:1px solid rgba(255,32,46,0.25);
+  font-family:ui-monospace, monospace; font-size:.72rem;
+  letter-spacing:.1em; color:var(--ceniza);
+}
+.terminal-live{
+  display:inline-flex; align-items:center; gap:.45rem;
+  color:#fff; font-weight:700;
+}
+.mapa-terminal-barra-bottom{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:.6rem 1.2rem; background:rgba(20,14,24,0.95);
+  border-top:1px solid rgba(255,32,46,0.25);
+  font-family:var(--titular); font-size:.82rem; letter-spacing:.08em;
+  color:var(--ceniza);
+}
+
+/* Visor y Canvas Interactivo */
 .mapa-visor{
   width:100%; aspect-ratio:16/10; position:relative;
-  background:#09070c; border:1px solid rgba(255,32,46,0.35);
-  border-radius:var(--radio); overflow:hidden;
-  cursor:grab; box-shadow:0 16px 50px rgba(0,0,0,0.85);
+  background:#09070c; overflow:hidden;
+  cursor:grab; user-select:none;
 }
 .mapa-visor.arrastrando{cursor:grabbing}
+.mapa-reticula-fondo{
+  position:absolute; inset:0; pointer-events:none; z-index:1;
+  background-image:
+    linear-gradient(to right, rgba(255,32,46,0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,32,46,0.05) 1px, transparent 1px);
+  background-size:32px 32px;
+}
+.mapa-brujula-indicador{
+  position:absolute; top:.9rem; left:.9rem; z-index:5;
+  width:32px; height:32px; border:1px solid rgba(255,32,46,0.4);
+  border-radius:50%; display:grid; place-items:center;
+  font-family:var(--titular); font-weight:700; font-size:.9rem;
+  color:var(--sangre-viva); background:rgba(12,9,16,0.7);
+  pointer-events:none; box-shadow:0 0 12px rgba(255,32,46,0.3);
+}
 .mapa-lienzo{
   position:absolute; inset:0; transform-origin:0 0;
-  will-change:transform;
+  will-change:transform; z-index:2;
 }
-.mapa-lienzo img{width:100%; height:100%; object-fit:cover; pointer-events:none}
+.mapa-lienzo img{
+  width:100%; height:100%; object-fit:cover; pointer-events:none;
+}
 
+/* Botones de Control de Zoom */
 .mapa-controles{
-  position:absolute; right:.8rem; bottom:.8rem; z-index:10;
-  display:flex; flex-direction:column; gap:.35rem;
+  position:absolute; right:1rem; bottom:1rem; z-index:10;
+  display:flex; flex-direction:column; gap:.4rem;
 }
 .mapa-controles button{
-  width:36px; height:36px; border-radius:var(--radio);
-  background:rgba(12,9,16,0.85); border:1px solid var(--linea-viva);
-  color:#fff; font-size:1.2rem; display:grid; place-items:center;
-  cursor:pointer; transition:all .2s;
+  width:38px; height:38px; border-radius:var(--radio);
+  background:rgba(16,11,20,0.9); border:1px solid rgba(255,32,46,0.35);
+  color:#fff; font-size:1.25rem; font-weight:700;
+  display:grid; place-items:center;
+  cursor:pointer; transition:all .2s var(--sal);
+  box-shadow:0 4px 16px rgba(0,0,0,0.6);
 }
 .mapa-controles button:hover{
   border-color:var(--sangre-viva); background:var(--sangre-viva);
-  box-shadow:0 0 14px rgba(255,32,46,0.6);
+  box-shadow:0 0 18px rgba(255,32,46,0.8);
+  transform:scale(1.08);
 }
 
+/* Balizas / Puntos en el Visor */
 .punto{
   position:absolute; transform:translate(-50%, -50%);
-  width:28px; height:28px; border-radius:50%;
-  background:var(--sangre-viva); border:2px solid #fff;
-  color:#fff; font-family:var(--titular); font-size:.85rem; font-weight:700;
+  width:32px; height:32px; border-radius:50%;
+  background:linear-gradient(135deg, #d31826 0%, #80070e 100%);
+  border:2px solid #fff; color:#fff;
+  font-family:var(--titular); font-size:.92rem; font-weight:700;
   display:grid; place-items:center; cursor:pointer; z-index:8;
   box-shadow:0 0 16px rgba(255,32,46,0.9);
-  transition:transform .2s var(--muelle);
+  transition:all .22s var(--muelle);
 }
 .punto:hover, .punto[aria-current="true"]{
-  transform:translate(-50%, -50%) scale(1.35);
+  transform:translate(-50%, -50%) scale(1.4);
   background:#fff; color:var(--sangre-viva);
-  box-shadow:0 0 24px #fff, 0 0 40px rgba(255,32,46,1);
+  border-color:var(--sangre-viva);
+  box-shadow:0 0 25px #fff, 0 0 45px rgba(255,32,46,1);
+  z-index:12;
+}
+.punto-baliza{
+  position:absolute; inset:-8px; border-radius:50%;
+  border:1px solid rgba(255,32,46,0.7);
+  animation:pulsoBaliza 2s ease-out infinite; pointer-events:none;
+}
+.punto-baliza:nth-child(2){animation-delay:1s}
+@keyframes pulsoBaliza{
+  0%{transform:scale(0.8); opacity:1}
+  100%{transform:scale(2.5); opacity:0}
+}
+
+/* Dossier y Briefings bajo el Visor */
+.mapa-secciones-briefing{
+  display:flex; flex-direction:column; gap:1.8rem;
+}
+.mapa-secciones-briefing h2{
+  font-family:var(--titular); font-size:1.45rem; font-weight:700;
+  text-transform:uppercase; letter-spacing:.08em; color:#fff;
+  border-bottom:1px solid rgba(255,32,46,0.25);
+  padding-bottom:.5rem; margin:1.5rem 0 .9rem;
+}
+.mapa-secciones-briefing h2:first-of-type{margin-top:0}
+.mapa-secciones-briefing p{
+  color:var(--ceniza-clara); font-size:1.02rem; line-height:1.75;
+  margin:0 0 1rem;
+}
+.mapa-dossier-card{
+  padding:1.4rem 1.6rem; border-radius:var(--radio);
+  background:rgba(20,15,26,0.85); border:1px solid rgba(255,32,46,0.2);
+  border-left:4px solid var(--sangre-viva);
+}
+.mapa-dossier-card.alerta{
+  border-left-color:var(--oro);
+  background:linear-gradient(145deg, rgba(28,20,14,0.85), rgba(16,12,8,0.92));
+  border-color:rgba(229,180,72,0.3);
+}
+.dossier-subtitulo{
+  font-family:var(--titular); font-size:1.18rem; font-weight:700;
+  text-transform:uppercase; letter-spacing:.08em; color:#fff;
+  margin:0 0 .8rem;
+}
+.mapa-dossier-card.alerta .dossier-subtitulo{
+  color:var(--oro-vivo);
+}
+.lista-tactica{
+  list-style:none; padding:0; margin:0;
+  display:flex; flex-direction:column; gap:.6rem;
+}
+.lista-tactica li{
+  position:relative; padding-left:1.4rem; color:var(--ceniza-clara);
+  font-size:.95rem; line-height:1.6;
+}
+.lista-tactica li::before{
+  content:"▸"; position:absolute; left:0; color:var(--sangre-viva);
+  font-weight:700;
+}
+.mapa-dossier-card.alerta .lista-tactica li::before{
+  color:var(--oro);
+}
+
+/* Columna Lateral: HUD Inspector */
+.mapa-col-sidebar{
+  display:flex; flex-direction:column; gap:1.4rem;
+}
+.hud-inspector{
+  border-radius:var(--radio); overflow:hidden;
+  background:linear-gradient(160deg, rgba(28,18,32,0.95) 0%, rgba(12,8,16,0.98) 100%);
+  border:1px solid rgba(255,32,46,0.45);
+  box-shadow:0 16px 45px rgba(0,0,0,0.8), 0 0 25px rgba(255,32,46,0.22);
+}
+.hud-header{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:.7rem 1.2rem; background:rgba(255,32,46,0.15);
+  border-bottom:1px solid rgba(255,32,46,0.35);
+  font-family:var(--titular); font-size:.82rem; font-weight:700;
+  letter-spacing:.14em; text-transform:uppercase; color:#fff;
+}
+.hud-label{color:var(--hueso)}
+.hud-estado{
+  color:var(--ceniza); font-size:.74rem;
+}
+.hud-badge{
+  background:var(--sangre-viva); color:#fff; padding:.15rem .5rem;
+  border-radius:2px; font-size:.72rem; letter-spacing:.1em;
+}
+.hud-cuerpo{
+  padding:1.4rem;
+}
+.hud-titulo{
+  font-family:var(--titular); font-size:1.55rem; font-weight:700;
+  letter-spacing:.06em; text-transform:uppercase; color:#fff;
+  margin:0 0 .6rem; text-shadow:0 0 14px rgba(255,32,46,0.6);
+}
+.hud-texto{
+  font-size:.96rem; color:var(--ceniza-clara); line-height:1.65;
+  margin:0 0 .8rem;
+}
+.hud-coordenadas-p{
+  font-family:ui-monospace, monospace; font-size:.74rem;
+  color:var(--sangre-viva); letter-spacing:.08em;
+  padding-top:.6rem; border-top:1px dashed rgba(255,32,46,0.3);
+}
+
+/* Lista de Balizas Interactivas */
+.mapa-panel-indice{
+  padding:1.2rem;
+}
+.lista-balizas-interactivas{
+  display:flex; flex-direction:column; gap:.45rem; margin-top:.8rem;
+}
+.btn-baliza-item{
+  display:flex; align-items:center; gap:.85rem;
+  width:100%; padding:.65rem .95rem; border-radius:2px;
+  background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08);
+  color:inherit; cursor:pointer; text-align:left;
+  transition:all .2s var(--sal);
+}
+.btn-baliza-item:hover{
+  background:rgba(255,32,46,0.12); border-color:rgba(255,32,46,0.4);
+  transform:translateX(3px);
+}
+.btn-baliza-item.activo{
+  background:rgba(255,32,46,0.22); border-color:var(--sangre-viva);
+  box-shadow:0 0 18px rgba(255,32,46,0.4);
+}
+.baliza-num{
+  font-family:var(--titular); font-size:.95rem; font-weight:700;
+  color:var(--sangre-viva); width:28px; height:28px; border-radius:50%;
+  background:rgba(255,32,46,0.18); display:grid; place-items:center;
+  flex-shrink:0;
+}
+.btn-baliza-item.activo .baliza-num{
+  background:var(--sangre-viva); color:#fff;
+}
+.baliza-info{
+  display:flex; flex-direction:column;
+}
+.baliza-nombre{
+  font-family:var(--titular); font-size:1.05rem; font-weight:600;
+  letter-spacing:.06em; text-transform:uppercase; color:#fff;
+}
+.baliza-tipo{
+  font-size:.76rem; color:var(--ceniza); text-transform:uppercase;
+  letter-spacing:.08em;
+}
+
+/* Telemetría del Terreno (Grid de 4 pods) */
+.mapa-telemetria-grid{
+  display:grid; grid-template-columns:1fr 1fr; gap:.8rem;
+  margin-top:.8rem;
+}
+.mapa-telemetria-item{
+  padding:.8rem 1rem; border-radius:2px;
+  background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07);
+  display:flex; flex-direction:column; gap:.25rem;
+}
+.mapa-tele-label{
+  font-family:var(--titular); font-size:.76rem; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--ceniza);
+}
+.mapa-tele-val{
+  font-family:var(--titular); font-size:1.12rem; font-weight:700;
+  letter-spacing:.06em; text-transform:uppercase; color:#fff;
 }
 
 /* ============================================================
