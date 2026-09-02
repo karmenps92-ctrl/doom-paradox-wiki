@@ -2006,3 +2006,100 @@ a.chip:hover{
 .pie-nota{
   font-size:.88rem; color:var(--ceniza); margin:0;
 }
+
+/* ============================================================
+   CAPA HUD — interfaz de juego
+   ------------------------------------------------------------
+   El lenguaje visual del juego es de interfaz: esquinas en
+   corchete, líneas de barrido y lecturas tipo telemetría. Aquí
+   se aplica a los componentes que YA existen, sin tocar el HTML
+   de las vistas, para que todas las secciones hablen igual.
+
+   Todo va con pseudo-elementos libres y `pointer-events:none`,
+   así que no interfiere con el tilt 3D ni con los enlaces.
+   ============================================================ */
+
+:root{
+  --hud-esquina:14px;                       /* largo del corchete */
+  --hud-grosor:1px;
+  --hud-color:rgba(255,32,46,.55);
+  --hud-color-suave:rgba(255,32,46,.28);
+  }
+
+/* --- Esquinas en corchete: las cuatro con un solo elemento --- */
+.panel::before,
+.aviso::before,
+.tarjeta-mecanica::before,
+.mapa-visor::before,
+.mapa-detalle::before,
+.galeria-vacia::before{
+  content:""; position:absolute; inset:-1px; z-index:4;
+  pointer-events:none;
+  background:
+    /* superior izquierda */
+    linear-gradient(var(--hud-color),var(--hud-color)) 0 0            / var(--hud-esquina) var(--hud-grosor) no-repeat,
+    linear-gradient(var(--hud-color),var(--hud-color)) 0 0            / var(--hud-grosor) var(--hud-esquina) no-repeat,
+    /* superior derecha */
+    linear-gradient(var(--hud-color),var(--hud-color)) 100% 0         / var(--hud-esquina) var(--hud-grosor) no-repeat,
+    linear-gradient(var(--hud-color),var(--hud-color)) 100% 0         / var(--hud-grosor) var(--hud-esquina) no-repeat,
+    /* inferior izquierda */
+    linear-gradient(var(--hud-color),var(--hud-color)) 0 100%         / var(--hud-esquina) var(--hud-grosor) no-repeat,
+    linear-gradient(var(--hud-color),var(--hud-color)) 0 100%         / var(--hud-grosor) var(--hud-esquina) no-repeat,
+    /* inferior derecha */
+    linear-gradient(var(--hud-color),var(--hud-color)) 100% 100%      / var(--hud-esquina) var(--hud-grosor) no-repeat,
+    linear-gradient(var(--hud-color),var(--hud-color)) 100% 100%      / var(--hud-grosor) var(--hud-esquina) no-repeat;
+  opacity:.75;
+  transition:opacity .25s var(--sal);
+}
+.panel:hover::before,
+.aviso:hover::before,
+.tarjeta-mecanica:hover::before,
+.mapa-visor:hover::before{opacity:1}
+
+/* Los paneles necesitan contexto de posición para el corchete. */
+.panel,.aviso,.mapa-detalle,.galeria-vacia{position:relative}
+
+/* Un dossier dentro de un panel ya está enmarcado: sin corchetes. */
+.panel .dossier-grid::before{display:none}
+
+/* --- Filtros como pestañas de HUD --- */
+.filtro{position:relative; overflow:hidden}
+.filtro::after{
+  content:""; position:absolute; right:0; top:0;
+  border-width:0 7px 7px 0; border-style:solid;
+  border-color:transparent var(--linea) transparent transparent;
+  transition:border-right-color .2s;
+}
+.filtro[aria-pressed="true"]::after{border-right-color:rgba(255,255,255,.4)}
+
+/* --- Contador de resultados como lectura de telemetría --- */
+.contador{display:inline-flex; align-items:center; gap:.55rem}
+.contador::before{
+  content:""; width:6px; height:6px; flex:none;
+  background:var(--sangre-viva); border-radius:50%;
+  box-shadow:0 0 8px var(--sangre-viva);
+  animation:hud-latido 2s var(--ent) infinite;
+}
+@keyframes hud-latido{0%,100%{opacity:.35}50%{opacity:1}}
+
+/* --- Retrato y visor con marca de encuadre --- */
+.retrato::before{
+  content:""; position:absolute; inset:8px; z-index:3; pointer-events:none;
+  border:var(--hud-grosor) solid var(--hud-color-suave);
+  clip-path:polygon(
+    0 0, 22px 0, 22px 1px, 1px 1px, 1px 22px, 0 22px,
+    0 100%, 22px 100%, 22px calc(100% - 1px), 1px calc(100% - 1px), 1px calc(100% - 22px), 0 calc(100% - 22px),
+    100% 100%, calc(100% - 22px) 100%, calc(100% - 22px) calc(100% - 1px), calc(100% - 1px) calc(100% - 1px), calc(100% - 1px) calc(100% - 22px), 100% calc(100% - 22px),
+    100% 0, calc(100% - 22px) 0, calc(100% - 22px) 1px, calc(100% - 1px) 1px, calc(100% - 1px) 22px, 100% 22px
+  );
+}
+
+@media (prefers-reduced-motion:reduce){
+  .contador::before{animation:none; opacity:.8}
+}
+
+/* En impresión, el HUD sobra. */
+@media print{
+  .panel::before,.aviso::before,.tarjeta-mecanica::before,
+  .mapa-visor::before,.mapa-detalle::before,.retrato::before,.contador::before{display:none !important}
+}

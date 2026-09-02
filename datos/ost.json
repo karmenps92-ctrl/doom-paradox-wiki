@@ -1,6 +1,6 @@
 {
   "seccion": "ost",
-  "nota": "Composición a cargo de kukinazo e irvinincio. Cuando subais los archivos a assets/audio, poned la ruta en 'archivo' y el reproductor de la wiki los toca directamente.",
+  "nota": "Composición a cargo de kukinazo e irvinincio. Los temas con archivo suenan directamente en la wiki; los que siguen en blanco están pendientes de entrega. Falta acreditar quién compuso cada uno de los chase themes entregados el 2/9/2026.",
   "entradas": [
     {
       "id": "lazos-rotos",
@@ -57,12 +57,12 @@
       "id": "chase-1x1x1x1",
       "titulo": "Chase de 1x1x1x1",
       "autor": "irvinincio",
-      "duracion": 0,
+      "duracion": 233,
       "escena": "Persecución",
-      "estado": "borrador",
-      "archivo": "",
+      "estado": "canon",
+      "archivo": "assets/audio/chase-1x1x1x1.mp3",
       "youtube": "",
-      "descripcion": "Versión antigua descartada. Se rehace desde cero siguiendo los requisitos que dio S.U.A el 13/8/2026.",
+      "descripcion": "Tema de persecución de **1x1x1x1**, ya entregado.\n\nSustituye a la versión anterior, que S.U.A pidió rehacer el 13/8/2026.",
       "mapas": [],
       "verdugos": [
         "1x1x1x1"
@@ -91,18 +91,135 @@
       "id": "chase-paciente-0",
       "titulo": "Chase de Paciente 0",
       "autor": "kukinazo",
-      "duracion": 0,
+      "duracion": 168,
       "escena": "Persecución",
-      "estado": "borrador",
-      "archivo": "",
+      "estado": "canon",
+      "archivo": "assets/audio/chase-paciente-0.mp3",
       "youtube": "",
-      "descripcion": "Pendiente de empezar a fecha de agosto de 2026, junto al resto de chase themes que quedan por repartir.",
+      "descripcion": "Tema de persecución de **Paciente 0**, ya entregado.\n\nEn agosto de 2026 todavía estaba sin empezar; es de los últimos chase themes en llegar.",
       "mapas": [],
       "verdugos": [
         "paciente-0"
       ],
       "actualizado": "2026-08-31",
       "fuente": "#música-doblaje, 17/8/2026"
+    },
+    {
+      "id": "chase-noli",
+      "titulo": "Chase de Noli",
+      "autor": "",
+      "duracion": 203,
+      "escena": "Persecución",
+      "estado": "canon",
+      "archivo": "assets/audio/chase-noli.mp3",
+      "youtube": "",
+      "descripcion": "Tema de persecución del verdugo insignia del juego. Suena cuando Noli te tiene delante.",
+      "mapas": [],
+      "verdugos": [
+        "noli"
+      ],
+      "actualizado": "2026-09-02",
+      "fuente": "Archivo entregado por el equipo, 2/9/2026"
+    },
+    {
+      "id": "chase-john-doe",
+      "titulo": "Chase de John Doe",
+      "autor": "",
+      "duracion": 207,
+      "escena": "Persecución",
+      "estado": "canon",
+      "archivo": "assets/audio/chase-john-doe.mp3",
+      "youtube": "",
+      "descripcion": "Tema de persecución de John Doe. Comparte personaje con **Lazos rotos**, el tema del LMS contra Jane Doe.",
+      "mapas": [],
+      "verdugos": [
+        "john-doe"
+      ],
+      "actualizado": "2026-09-02",
+      "fuente": "Archivo entregado por el equipo, 2/9/2026"
+    },
+    {
+      "id": "chase-booner",
+      "titulo": "Chase de Booner",
+      "autor": "",
+      "duracion": 202,
+      "escena": "Persecución",
+      "estado": "canon",
+      "archivo": "assets/audio/chase-booner.mp3",
+      "youtube": "",
+      "descripcion": "Tema de persecución de Booner.",
+      "mapas": [],
+      "verdugos": [
+        "booner"
+      ],
+      "actualizado": "2026-09-02",
+      "fuente": "Archivo entregado por el equipo, 2/9/2026"
+    },
+    {
+      "id": "chase-pac-oni",
+      "titulo": "Chase de Pac-Oni",
+      "autor": "",
+      "duracion": 182,
+      "escena": "Persecución",
+      "estado": "canon",
+      "archivo": "assets/audio/chase-pac-oni.mp3",
+      "youtube": "",
+      "descripcion": "Tema de persecución de Pac-Oni.",
+      "mapas": [],
+      "verdugos": [
+        "pac-oni"
+      ],
+      "actualizado": "2026-09-02",
+      "fuente": "Archivo entregado por el equipo, 2/9/2026"
+    },
+    {
+      "id": "chase-wood-stone",
+      "titulo": "Chase de Wood Stone",
+      "autor": "",
+      "duracion": 185,
+      "escena": "Persecución",
+      "estado": "canon",
+      "archivo": "assets/audio/chase-wood-stone.mp3",
+      "youtube": "",
+      "descripcion": "Tema de persecución de Wood Stone, el primer verdugo que tuvo la voz grabada.",
+      "mapas": [],
+      "verdugos": [
+        "wood-stone"
+      ],
+      "actualizado": "2026-09-02",
+      "fuente": "Archivo entregado por el equipo, 2/9/2026"
+    },
+    {
+      "id": "chase-neor",
+      "titulo": "Chase de Neor",
+      "autor": "",
+      "duracion": 143,
+      "escena": "Persecución",
+      "estado": "canon",
+      "archivo": "assets/audio/chase-neor.mp3",
+      "youtube": "",
+      "descripcion": "Tema de persecución de Neor. El archivo llegó marcado como *medieval*, así que la pieza tira por ahí.\n\nEs el chase más corto de los entregados.",
+      "mapas": [],
+      "verdugos": [
+        "neor"
+      ],
+      "actualizado": "2026-09-02",
+      "fuente": "Archivo entregado por el equipo, 2/9/2026"
+    },
+    {
+      "id": "chase-gabriel",
+      "titulo": "Chase de Gabriel",
+      "autor": "",
+      "duracion": 206,
+      "escena": "Persecución",
+      "estado": "borrador",
+      "archivo": "assets/audio/chase-gabriel.mp3",
+      "youtube": "",
+      "descripcion": "Tema de persecución de Gabriel.\n\n**Por confirmar:** Gabriel no aparece en la lista pública de verdugos del 11/8/2026, aunque sí se mencionó un render suyo durante el desarrollo. Falta aclarar si es un verdugo sin anunciar o un nombre antiguo.",
+      "mapas": [],
+      "verdugos": [],
+      "actualizado": "2026-09-02",
+      "fuente": "Archivo entregado por el equipo, 2/9/2026"
     }
   ]
 }

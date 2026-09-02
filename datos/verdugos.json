@@ -142,7 +142,9 @@
         "Es el único verdugo con una ronda especial propia: Noli's Shows."
       ],
       "mapas": [],
-      "ost": [],
+      "ost": [
+        "chase-noli"
+      ],
       "pecadores": [
         "007n7"
       ],
@@ -308,7 +310,9 @@
       "consejos": [],
       "curiosidades": [],
       "mapas": [],
-      "ost": [],
+      "ost": [
+        "chase-neor"
+      ],
       "pecadores": [
         "yiyi"
       ],
@@ -334,7 +338,9 @@
         "Shedletsky le regaló una caja de dulces ácidos como compensación por haberlo matado accidentalmente. 1x todavía no lo perdona, pero el regalo le gustó."
       ],
       "mapas": [],
-      "ost": [],
+      "ost": [
+        "chase-1x1x1x1"
+      ],
       "pecadores": [
         "shedletsky"
       ],
@@ -360,7 +366,8 @@
       "curiosidades": [],
       "mapas": [],
       "ost": [
-        "lazos-rotos"
+        "lazos-rotos",
+        "chase-john-doe"
       ],
       "pecadores": [
         "jane-doe"
@@ -411,7 +418,9 @@
       "consejos": [],
       "curiosidades": [],
       "mapas": [],
-      "ost": [],
+      "ost": [
+        "chase-paciente-0"
+      ],
       "pecadores": [
         "andromeda"
       ],
@@ -437,7 +446,9 @@
         "Es uno de los tres únicos humanos de su academia, junto a Gen-E-S15 y Jeff."
       ],
       "mapas": [],
-      "ost": [],
+      "ost": [
+        "chase-wood-stone"
+      ],
       "pecadores": [
         "gen-e-s15"
       ],
@@ -510,7 +521,9 @@
       "consejos": [],
       "curiosidades": [],
       "mapas": [],
-      "ost": [],
+      "ost": [
+        "chase-booner"
+      ],
       "pecadores": [],
       "etiquetas": [
         "ficha-pendiente",
@@ -579,7 +592,9 @@
       "consejos": [],
       "curiosidades": [],
       "mapas": [],
-      "ost": [],
+      "ost": [
+        "chase-pac-oni"
+      ],
       "pecadores": [],
       "etiquetas": [
         "ficha-pendiente"
