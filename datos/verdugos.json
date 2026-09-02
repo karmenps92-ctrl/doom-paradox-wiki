@@ -98,48 +98,67 @@
       "peligro": 5,
       "estado": "canon",
       "imagen": "",
-      "resumen": "Verdugo insignia del juego: se teletransporta, interrumpe con minijuegos y disfruta viendo sufrir.",
-      "descripcion": "## Quien es\nNoli es la cara visible de Doom Paradox y el verdugo con más contenido propio: tiene mapa, ronda especial y una forma real distinta de la que enseña en partida.\n\nA diferencia del Anfitrión, que se alimenta del sufrimiento, Noli simplemente **se entretiene** con el.\n\n## Su ronda\nDurante *Noli's Shows* el infierno se convierte en un plato de televisión: se juegan sus pruebas y se ganan puntos.",
+      "resumen": "Verdugo insignia de Doom Paradox. Se teletransporta entre clones e ilusiones, coloca trampas estelares y desata el colosal Umbra Mode.",
+      "descripcion": "## Quién es\nNoli es la cara visible de Doom Paradox y el verdugo con más mecánicas y variantes: tiene mapa propio, ronda especial (*Noli's Shows*) y una transformación colosal.\n\nA diferencia del Anfitrión, que se alimenta del sufrimiento humano por necesidad cósmica, Noli simplemente **se divierte** con el dolor ajeno.\n\n## Estilo de juego\nEn partida llena el mapa de ilusiones, clones falsos e imitaciones de compañeros o pecadores. Al cargar su medidor sombrío desata el **Umbra Mode**, convirtiendo la partida en una pesadilla a oscuras donde el reloj se congela.",
       "habilidades": [
         {
-          "nombre": "Umbra Pump",
-          "tipo": "activa",
-          "enfriamiento": "",
-          "texto": "Habilidad de ataque de Noli. Junto a la teletransportación es la que dispara Shadow Ads."
-        },
-        {
-          "nombre": "Teletransportación",
-          "tipo": "activa",
-          "enfriamiento": "",
-          "texto": "Le permite reposicionarse por el mapa. También activa Shadow Ads."
-        },
-        {
-          "nombre": "Shadow Ads",
+          "nombre": "Umbra Illusions",
           "tipo": "pasiva",
           "enfriamiento": "",
-          "texto": "Cuando Noli usa su teletransportación o Umbra Pump, la pantalla del pecador se llena de anuncios que hay que ir pulsando hasta cerrarlos todos. El pecador queda inmóvil hasta completar el minijuego."
+          "texto": "Genera continuamente misiones falsas, clones de sí mismo, de su compañero en Double Trouble e incluso ¡¿Pecadores?! falsos por todo el mapa. Si los supervivientes intentan completar una misión engañosa, golpean a un clon o recogen un objeto de un pecador falso, saldrá un jumpscare de Noli riéndose y recargará su medidor de Umbra Mode."
         },
         {
-          "nombre": "Muerte predeterminada",
+          "nombre": "Golpe Umbral",
+          "tipo": "activa",
+          "enfriamiento": "M1",
+          "texto": "Ataque básico cuerpo a cuerpo que inflige 22 de daño."
+        },
+        {
+          "nombre": "Umbra Race",
+          "tipo": "activa",
+          "enfriamiento": "",
+          "texto": "Carga un dash direccionable a alta velocidad. Si impacta contra una pared sufre ceguera y bloqueo de habilidades durante 2.1 segundos. Pero si impacta a un pecador, lo estampa violentamente contra el suelo, dejándolo casi ciego y recargando un 10% de su barra de Umbra."
+        },
+        {
+          "nombre": "Umbra Pump",
+          "tipo": "activa (dual)",
+          "enfriamiento": "",
+          "texto": "Habilidad versátil con dos modalidades de uso:\n- **Modo 1 (Proyectil):** Lanza su estrella oscura provocando 20 de daño, dejando vulnerables a los pecadores e infligiéndoles mareo por 1.2 segundos.\n- **Modo 2 (Trampa terrestre):** Coloca su estrella en el suelo (similar a Taph en Forsaken). Si un pecador la pisa, es lanzado por los aires, recibe 19 de daño y revela su silueta a Noli durante 4 segundos."
+        },
+        {
+          "nombre": "Teleportation of the void",
+          "tipo": "activa",
+          "enfriamiento": "",
+          "texto": "Noli se teletransporta instantáneamente a cualquiera de sus clones en el mapa. Al hacerlo se revela la posición de absolutamente todos los jugadores en el mapa, y Noli aparece en el lugar exacto sustituyendo al clon."
+        },
+        {
+          "nombre": "Umbra Mode",
+          "tipo": "definitiva / transformación",
+          "enfriamiento": "",
+          "texto": "Al llenar su barra de Umbra, el mapa entra en penumbra total con neblina negra y efectos de tormenta. El contador de la ronda se congela y a todos los pecadores se les otorga una linterna. Noli se transforma en una cabeza gigante con velocidad absurda y un moveset exclusivo:\n- **M1 Potenciado:** 23 de daño.\n- **Void Jumpscare:** Ciega al pecador por varios segundos y le inflige 20 de daño.\n- **Race to the void:** Arremetida en línea recta a velocidad extrema hacia el pecador que tenga enfrente."
+        },
+        {
+          "nombre": "Ejecución predeterminada",
           "tipo": "ejecución",
           "enfriamiento": "",
-          "texto": "Noli clava su estrella en el estómago del pecador, a través de la garganta, y lo hace explotar. Es una de las razones por las que el juego apunta a la clasificación +16 de Roblox."
+          "texto": "Noli clava su estrella en el estómago del pecador, la hace subir a través de la garganta y lo hace estallar en pedazos (clasificación +16)."
         }
       ],
       "skins": [
         {
           "nombre": "Metamorfosis",
-          "texto": "Propuesta de gabo0422356 basada en la novela de Franz Kafka. Sin confirmar."
+          "texto": "Propuesta de gabo0422356 basada en la novela de Franz Kafka."
         }
       ],
       "consejos": [
-        "Si te salta Shadow Ads, cierra los anuncios cuanto antes: mientras dure el minijuego no te puedes mover.",
-        "En su mapa, los rayos también matan. Vigila el cielo tanto como al verdugo."
+        "Nunca interactúes con misiones o pecadores que parezcan sospechosos: las Umbra Illusions le regalarán carga de Umbra Mode a Noli.",
+        "Si Noli falla el Umbra Race contra una pared, quedará ciego e indefenso por 2.1 segundos: es tu mejor ventana de escape.",
+        "Durante el Umbra Mode enciende tu linterna, pégate a tus compañeros y prepárate para esquivar su Race to the void."
       ],
       "curiosidades": [
-        "Tiene una forma real con la cara animada, distinta de su aspecto habitual.",
-        "Sus efectos de sonido se diseñaron antes que la mayoría de sus animaciones.",
-        "Es el único verdugo con una ronda especial propia: Noli's Shows."
+        "Presentado oficialmente por S.U.A el 19/8/2026 en Discord con su diseño y moveset de Umbra Mode.",
+        "Es el único verdugo con una ronda especial propia: Noli's Shows.",
+        "Su persecución oficial 'Chase de Noli' dura 3:23 y suena en el reproductor de la wiki."
       ],
       "mapas": [],
       "ost": [
@@ -150,11 +169,13 @@
       ],
       "etiquetas": [
         "insignia",
-        "minijuego",
-        "gore"
+        "transformación",
+        "clones",
+        "gore",
+        "lms"
       ],
-      "actualizado": "2026-08-31",
-      "fuente": "#verdugos y #creación-personajes, 6-20/8/2026"
+      "actualizado": "2026-09-02",
+      "fuente": "S.U.A [SC], Discord #verdugos, 11-19/8/2026"
     },
     {
       "id": "sally",
@@ -327,15 +348,86 @@
       "nombre": "1x1x1x1",
       "alias": "1x",
       "origen": "Roblox clásico",
-      "peligro": 4,
+      "peligro": 5,
       "estado": "canon",
       "imagen": "",
-      "resumen": "El clásico de los mitos de Roblox. Será uno de los que reciba skins de la colaboración con un juego de Vocaloids.",
-      "descripcion": "Otro de los grandes nombres del folclore de Roblox dentro del roster.\n\nS.U.A confirmó que está hablando una colaboración con un juego asimétrico de Vocaloids que traería **varias skins**, y pensó en 1x como primer candidato.",
-      "habilidades": [],
-      "consejos": [],
+      "resumen": "Mito legendario de Roblox. Empuña espadas marchitas venenosas, ganchos cadenas y se transforma en una bestia colosal.",
+      "descripcion": "El mito destructivo por excelencia de Roblox, confirmado en el roster por S.U.A el 11/8/2026 y detallado con su moveset y skins oficiales el 13/8/2026.\n\nEn combate envenena a sus presas, las arrastra hacia él a toda velocidad con cadenas dobles y al derramar suficiente sangre activa su temida metamorfosis monstruosa.\n\nSu enfrentamiento de LMS es contra **Shedletsky**, con Title Card e identidad visual propia.",
+      "habilidades": [
+        {
+          "nombre": "Withered swords",
+          "tipo": "activa",
+          "enfriamiento": "M1",
+          "texto": "Ataque básico con sus espadas marchitas que inflige 19 de daño y aplica el efecto de estado \"Envenenado\" al pecador."
+        },
+        {
+          "nombre": "Cataclysm",
+          "tipo": "activa",
+          "enfriamiento": "",
+          "texto": "Un devastador ataque en área frontal que desata una oleada destructiva hacia adelante, causando 20 de daño a los pecadores afectados y aplicando veneno."
+        },
+        {
+          "nombre": "Chains of Evil",
+          "tipo": "activa",
+          "enfriamiento": "",
+          "texto": "Lanza dos cadenas con ganchos (similares a los de Scorpion de Mortal Kombat) que atrapan a un pecador y lo atraen a gran velocidad hacia 1x1x1x1."
+        },
+        {
+          "nombre": "Metamorphosis",
+          "tipo": "pasiva / transformación",
+          "enfriamiento": "",
+          "texto": "Al asesinar a dos pecadores o haber dañado a la mitad del equipo enemigo, 1x suelta un rugido monstruoso y adopta una forma colosal y deforme. En este estado sus tiempos de recarga se reducen drásticamente y sus ataques infligen 2.1 puntos más de daño."
+        },
+        {
+          "nombre": "Eye of Doom",
+          "tipo": "activa",
+          "enfriamiento": "",
+          "texto": "Abre su ojo maldito omnisciente, revelando la posición exacta de absolutamente todos los pecadores en el mapa."
+        }
+      ],
+      "skins": [
+        {
+          "nombre": "憎悪の亡霊",
+          "texto": "Un 1x1x1x1 rediseñado con estética japonesa feudal oscura y armadura samurái espectral."
+        },
+        {
+          "nombre": "Clerk",
+          "texto": "Viste a 1x con traje formal de oficina, llevando café humeante en el interior de su corona."
+        },
+        {
+          "nombre": "Atomic",
+          "texto": "Skin secreta obtenible mediante un logro oculto; basada en energía nuclear, radiación y Godzilla."
+        },
+        {
+          "nombre": "My beautiful star",
+          "texto": "Basada en el anime Chainsaw Man, más específicamente en Denji."
+        },
+        {
+          "nombre": "The imitator",
+          "texto": "Una parodia a la creencia popular de que 1x proviene de Forsaken."
+        },
+        {
+          "nombre": "Gold balls",
+          "texto": "Basada en el protagonista Okarun del anime Dandadan, en su forma transformada."
+        },
+        {
+          "nombre": "Crunchy",
+          "texto": "Basada en el caballero crujiente de Deltarune."
+        },
+        {
+          "nombre": "The origin",
+          "texto": "Basada en la apariencia clásica original de 1x1x1x1 en el Roblox de 2007-2010."
+        }
+      ],
+      "consejos": [
+        "Cuidado con la media distancia: las Chains of Evil te atraen en un parpadeo hacia sus espadas envenenadas.",
+        "Cuando 1x activa Metamorphosis, prioriza escapar y esconderte: sus cooldowns bajan y su daño es letal.",
+        "El veneno de Withered swords y Cataclysm desgasta tu salud continuamente; busca curación de inmediato si eres impactado."
+      ],
       "curiosidades": [
-        "Shedletsky le regaló una caja de dulces ácidos como compensación por haberlo matado accidentalmente. 1x todavía no lo perdona, pero el regalo le gustó."
+        "Shedletsky le regaló una caja de dulces ácidos como compensación por haberlo matado accidentalmente en el lore. 1x todavía no lo perdona, pero el regalo le gustó.",
+        "Posee una Title Card oficial para su enfrentamiento de LMS contra Shedletsky.",
+        "Presentado por S.U.A en Discord el 13/8/2026."
       ],
       "mapas": [],
       "ost": [
@@ -346,10 +438,13 @@
       ],
       "etiquetas": [
         "clásico",
-        "colaboración"
+        "lms",
+        "veneno",
+        "gancho",
+        "transformación"
       ],
-      "actualizado": "2026-08-31",
-      "fuente": "#pecadores y #ideas, 18/8/2026"
+      "actualizado": "2026-09-02",
+      "fuente": "S.U.A [SC], Discord #verdugos, 11-13/8/2026"
     },
     {
       "id": "john-doe",
@@ -382,16 +477,84 @@
     {
       "id": "herobrine",
       "nombre": "Herobrine",
-      "alias": "",
+      "alias": "El mito de Minecraft",
       "origen": "Creepypasta",
       "peligro": 4,
       "estado": "canon",
       "imagen": "",
-      "resumen": "El mito de Minecraft, con su duelo natural contra Steve en LMS.",
-      "descripcion": "Herobrine ya estaba en el roster desde antes de que la comunidad empezara a pedirlo.\n\nSu duelo de LMS es el evidente: **Herobrine contra Steve**.",
-      "habilidades": [],
-      "consejos": [],
-      "curiosidades": [],
+      "resumen": "El mito primordial de Minecraft. Porta un bloque de comandos, invoca spawners corruptos y se teletransporta entre clones.",
+      "descripcion": "Herobrine ya estaba en el roster oficial confirmado por S.U.A desde el 11/8/2026. Su diseño definitivo y moveset completo fueron presentados el 12/8/2026.\n\nEn partida manipula el escenario mediante su bloque de comandos, genera generadores de esbirros que acosan a los pecadores y se sustituye a través de una densa niebla con clones vigilantes.\n\nSu duelo de LMS es el canónico: **Herobrine contra Steve**.",
+      "habilidades": [
+        {
+          "nombre": "Command strike",
+          "tipo": "activa",
+          "enfriamiento": "M1",
+          "texto": "Un golpe rápido con su bloque de comandos que inflige 20 de daño directo."
+        },
+        {
+          "nombre": "Crafter corruption",
+          "tipo": "activa",
+          "enfriamiento": "",
+          "texto": "Genera un spawner que engendra diferentes minions los cuales perseguirán a todos los pecadores cercanos. El spawner puede ser destruido por los pecadores usando el pico que se les otorga al inicio de la ronda."
+        },
+        {
+          "nombre": "THINK FAST!",
+          "tipo": "activa",
+          "enfriamiento": "",
+          "texto": "Lanza su tridente: al impactar a un pecador, lo arrastra hacia Herobrine. Si falla el disparo, puede reactivar la habilidad para atraer el tridente de vuelta hacia él."
+        },
+        {
+          "nombre": "Ender teleportation",
+          "tipo": "activa",
+          "enfriamiento": "",
+          "texto": "Herobrine se teletransporta instantáneamente hacia donde él desee. Antes de manifestarse, se produce un efecto visual de corrupción en el punto de llegada."
+        },
+        {
+          "nombre": "HERE IS HEROBRINE",
+          "tipo": "definitiva",
+          "enfriamiento": "",
+          "texto": "Genera múltiples clones a lo largo del mapa que vigilan fijamente a los pecadores mientras se desata una densa niebla minecraftera. Mediante su bloque de comandos, Herobrine puede elegir a cuál de sus clones sustituir en cualquier momento."
+        }
+      ],
+      "skins": [
+        {
+          "nombre": "The Alter",
+          "texto": "Basada en un diseño viral de una artista de TikTok."
+        },
+        {
+          "nombre": "Teacher",
+          "texto": "Inspirada en la clásica serie animada de Minecraft: Monster School."
+        },
+        {
+          "nombre": "Dum",
+          "texto": "Basada en las skins humorísticas de Steve tonto."
+        },
+        {
+          "nombre": "\"404\"",
+          "texto": "Basada en el mito de que en cada actualización de Minecraft dicen que fue eliminado. En apariencia es similar a la skin de Apollyon de Guest 666 en Forsaken."
+        },
+        {
+          "nombre": "Gigachat",
+          "texto": "Basada en el shitpost de Steve mamado."
+        },
+        {
+          "nombre": "Void",
+          "texto": "Basada en Null. Propuesta originalmente por @Cyn."
+        },
+        {
+          "nombre": "The wolf",
+          "texto": "Basada en Bobicraft y su documental desmintiendo a Herobrine."
+        }
+      ],
+      "consejos": [
+        "Usa de inmediato el pico otorgado al inicio de ronda para demoler los spawners de Crafter corruption antes de que se acumulen minions.",
+        "Si esquivas el tridente de THINK FAST!, no te quedes en su trayectoria de retorno: puede activarlo de vuelta.",
+        "En cuanto baje la niebla densa de HERE IS HEROBRINE, mantén la distancia de todos los clones; nunca sabes en cuál va a materializarse."
+      ],
+      "curiosidades": [
+        "Diseño final y moveset presentados por S.U.A el 12/8/2026.",
+        "Su duelo de LMS contra Steve cuenta con title card propia y tema musical exclusivo."
+      ],
       "mapas": [],
       "ost": [],
       "pecadores": [
@@ -399,10 +562,12 @@
       ],
       "etiquetas": [
         "creepypasta",
-        "lms"
+        "lms",
+        "minecraft",
+        "clones"
       ],
-      "actualizado": "2026-08-31",
-      "fuente": "#conceptos y #música-doblaje, 9-21/8/2026"
+      "actualizado": "2026-09-02",
+      "fuente": "S.U.A [SC], Discord #verdugos, 11-12/8/2026"
     },
     {
       "id": "paciente-0",
@@ -796,25 +961,83 @@
     {
       "id": "slenderman",
       "nombre": "Slenderman",
-      "alias": "",
+      "alias": "La Entidad sin Rostro",
       "origen": "Creepypasta",
-      "peligro": 4,
-      "estado": "borrador",
+      "peligro": 5,
+      "estado": "canon",
       "imagen": "",
-      "resumen": "En el roster confirmado. Su jumpscare es la referencia que usa DPX.",
-      "descripcion": "Aparece en la lista oficial de verdugos del 11/8/2026.\n\nEl jumpscare de **I Faund You** de DPX se describió como *similar a Slenderman*, así que su lenguaje visual sirve de vara de medir para los sustos del juego.",
-      "habilidades": [],
-      "consejos": [],
-      "curiosidades": [],
+      "resumen": "La leyenda creepypasta por excelencia. Distorsiona la pantalla con estática, acecha en la niebla y atrapa presas con zarcillos dorsales.",
+      "descripcion": "Confirmado por S.U.A en la lista oficial de verdugos del 11/8/2026.\n\nEs la vara de medir del terror en Doom Paradox: el equipo de desarrollo tomó su estática e interferencia visual como punto de referencia directo para concebir el jumpscare de *I Faund You* de DPX.\n\nEn partida acecha de forma silenciosa e implacable: cuanto más cerca se encuentra de un pecador o más tiempo se le mire directamente, mayor es la distorsión de la cámara y el ruido blanco ensordecedor. Sus zarcillos dorsales inmovilizan a las víctimas a distancia para ejecutar ataques devastadores.",
+      "habilidades": [
+        {
+          "nombre": "Golpe de Zarcillo",
+          "tipo": "activa",
+          "enfriamiento": "M1",
+          "texto": "Un azote directo con sus tentáculos dorsales que causa 20 de daño."
+        },
+        {
+          "nombre": "Interferencia Estática",
+          "tipo": "pasiva",
+          "enfriamiento": "",
+          "texto": "Su presencia emite frecuencias residuales: a medida que Slenderman se acerca o entra en el foco de la cámara de un pecador, la pantalla del jugador se satura de estática, ruido blanco y distorsión de audio, reduciendo drásticamente la visibilidad."
+        },
+        {
+          "nombre": "Acecho en la Niebla",
+          "tipo": "activa",
+          "enfriamiento": "",
+          "texto": "Se camufla en el entorno y obtiene una gran bonificación de velocidad de movimiento mientras ningún pecador lo esté enfocando directamente con su cámara."
+        },
+        {
+          "nombre": "Zarcillos del Vacío",
+          "tipo": "activa",
+          "enfriamiento": "",
+          "texto": "Dispara sus tentáculos negros a media distancia para atrapar e inmovilizar a un pecador en fuga, arrastrándolo a gran velocidad hacia Slenderman."
+        },
+        {
+          "nombre": "Slender Jumpscare",
+          "tipo": "definitiva",
+          "enfriamiento": "",
+          "texto": "Se manifiesta súbitamente en la cara del pecador con un estallido atronador de estática que nubla la visión por 2.5 segundos, desorienta el control e inflige 22 de daño."
+        }
+      ],
+      "skins": [
+        {
+          "nombre": "The Operator",
+          "texto": "Inspirada en la icónica serie Marble Hornets, con esmoquin oscuro formal y el símbolo del círculo tachado."
+        },
+        {
+          "nombre": "Classic 2009",
+          "texto": "Basada en los fotomontajes originales de Something Awful creados por Victor Surge en 2009."
+        },
+        {
+          "nombre": "Proxies Master",
+          "texto": "Atuendo ritual desgastado con vendas y marcas ceremoniales de sus devotos acólitos."
+        },
+        {
+          "nombre": "Pale Gentleman",
+          "texto": "Traje victoriano andrajoso con corbata roja carmesí y zarcillos hiperalargados."
+        }
+      ],
+      "consejos": [
+        "Nunca mantengas la cámara fija en Slenderman: la estática se multiplicará hasta dejarte completamente a ciegas.",
+        "Guíate por el oído: el ruido blanco en tus auriculares te alertará de su proximidad mucho antes de tenerlo a la vista.",
+        "Muévete con giros rápidos y esquiva en zigzag para evitar que te alcancen sus Zarcillos del Vacío."
+      ],
+      "curiosidades": [
+        "Su estilo visual de susto sirvió de referencia directa para la habilidad I Faund You de DPX.",
+        "Es el líder indiscutible del grupo de Creepypastas clásicos del roster de Doom Paradox."
+      ],
       "mapas": [],
       "ost": [],
       "pecadores": [],
       "etiquetas": [
         "creepypasta",
-        "ficha-pendiente"
+        "estática",
+        "jumpscare",
+        "zarcillos"
       ],
-      "actualizado": "2026-08-31",
-      "fuente": "#creación-personajes y #verdugos, 11-20/8/2026"
+      "actualizado": "2026-09-02",
+      "fuente": "S.U.A [SC], Discord #verdugos, 11/8/2026"
     },
     {
       "id": "jeff-the-killer",

@@ -99,7 +99,7 @@ export async function vistaMapa(raiz, sec, id){
           <div class="mapa-titulo-fila">
             <div class="mapa-meta-tags">
               <span class="mapa-tag-sector">SECTOR // ${esc((m.zona || "EXTERIOR").toUpperCase())}</span>
-              <span class="mapa-tag-balizas"><i class="beacon-pulso"></i> ${puntos.length} BALIZAS ACTIVAS</span>
+              <span class="mapa-tag-balizas"><i class="beacon-pulso"></i> ${puntos.length} PUNTOS MARCADOS</span>
               ${m.estado === "canon" ? insignia("Canon", "canon") : insignia("Borrador", "borrador")}
             </div>
             <h1 class="mapa-titulo-principal">${esc(m.nombre)}</h1>
@@ -115,8 +115,8 @@ export async function vistaMapa(raiz, sec, id){
             <!-- MARCO DEL VISOR HOLOGRÁFICO -->
             <div class="mapa-visor-marco">
               <div class="mapa-terminal-barra-top">
-                <span class="terminal-id">TERRAIN RECON // SAT-ID: ${esc(m.id.toUpperCase())} // MODO TÁCTICO</span>
-                <span class="terminal-live"><i class="beacon-pulso red"></i> VISTA EN TIEMPO REAL</span>
+                <span class="terminal-id">PLANO DE CAMPO // ${esc(m.id.toUpperCase())}</span>
+                <span class="terminal-live"><i class="beacon-pulso red"></i> DOCUMENTADO</span>
               </div>
 
               <div class="mapa-visor" id="visor">
@@ -142,7 +142,7 @@ export async function vistaMapa(raiz, sec, id){
               </div>
 
               <div class="mapa-terminal-barra-bottom">
-                <span>Arrastra para mover el plano · Rueda para zoom · Clic en balizas</span>
+                <span>Arrastra para mover el plano · Rueda para zoom · Clic en un punto</span>
                 <span id="zoom-nivel" style="color:var(--brasa);font-weight:700">ZOOM: 1.0x</span>
               </div>
             </div>
@@ -174,13 +174,13 @@ export async function vistaMapa(raiz, sec, id){
             <!-- INSPECTOR DE BALIZA ACTIVA (HUD) -->
             <div class="hud-inspector" id="detalle">
               <div class="hud-header">
-                <span class="hud-label">INSPECTOR DE BALIZA</span>
+                <span class="hud-label">PUNTO SELECCIONADO</span>
                 <span class="hud-estado">ESPERANDO SELECCIÓN</span>
               </div>
               <div class="hud-cuerpo">
-                <h4 class="hud-titulo">${puntos.length ? "Selecciona un punto" : "Sin balizas"}</h4>
+                <h4 class="hud-titulo">${puntos.length ? "Selecciona un punto" : "Sin puntos"}</h4>
                 <p class="hud-texto">
-                  ${puntos.length ? "Haz clic sobre un número en el plano o en la lista inferior para examinar la información de esa posición." : "No hay balizas registradas aún."}
+                  ${puntos.length ? "Haz clic sobre un número en el plano o en la lista inferior para examinar la información de esa posición." : "No hay puntos documentados aún."}
                 </p>
               </div>
             </div>
@@ -188,7 +188,7 @@ export async function vistaMapa(raiz, sec, id){
             <!-- ÍNDICE DE BALIZAS TÁCTICAS -->
             ${puntos.length ? `
               <div class="panel mapa-panel-indice">
-                <h4>Índice de Balizas (${puntos.length})</h4>
+                <h4>Índice de puntos (${puntos.length})</h4>
                 <div class="lista-balizas-interactivas">
                   ${puntos.map((p, i) => `
                     <button type="button" class="btn-baliza-item" data-ir="${i}">
@@ -203,7 +203,7 @@ export async function vistaMapa(raiz, sec, id){
 
             <!-- FICHA TÉCNICA DEL TERRENO -->
             <div class="panel">
-              <h4>Telemetría del Terreno</h4>
+              <h4>Datos del mapa</h4>
               <div class="mapa-telemetria-grid">
                 <div class="mapa-telemetria-item">
                   <span class="mapa-tele-label">Zona</span>
@@ -335,13 +335,13 @@ function visorInteractivo(raiz, puntos){
 
     detalle.innerHTML = `
       <div class="hud-header">
-        <span class="hud-label">BALIZA DETECTADA // 0${i + 1}</span>
+        <span class="hud-label">PUNTO // 0${i + 1}</span>
         ${p.tipo ? `<span class="hud-badge">${esc(p.tipo)}</span>` : ""}
       </div>
       <div class="hud-cuerpo">
         <h4 class="hud-titulo">${esc(p.titulo || "Punto " + (i + 1))}</h4>
-        <p class="hud-texto">${esc(p.texto || "Zona táctica del mapa.")}</p>
-        <div class="hud-coordenadas-p">COORD: X=${Number(p.x) || 50}% · Y=${Number(p.y) || 50}%</div>
+        <p class="hud-texto">${esc(p.texto || "Sin descripción todavía.")}</p>
+        <div class="hud-coordenadas-p">POSICIÓN // X ${Number(p.x) || 50}% · Y ${Number(p.y) || 50}%</div>
       </div>`;
 
     // Centrar mapa suavemente en el punto

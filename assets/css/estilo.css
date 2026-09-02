@@ -1049,7 +1049,11 @@ a.chip:hover{
   .rejilla-mapas{grid-template-columns:1fr}
 }
 
-/* Tarjeta Táctica de Mapa (Catálogo e Inicio) */
+/* Tarjeta de mapa — plano + sello de humo con el nombre
+   La ficha lleva foto arriba (o el placeholder rayado que ya
+   usa el resto del archivo) y, pegado a ella, el mismo sello
+   rasgado de las referencias del juego: aquí en ceniza, para
+   que se lea aparte de las tarjetas rojas/doradas de Mecánicas. */
 .tarjeta-mapa{
   display:flex; flex-direction:column;
   background:linear-gradient(160deg, rgba(24,18,30,0.85) 0%, rgba(10,7,14,0.95) 100%);
@@ -1058,142 +1062,98 @@ a.chip:hover{
   overflow:hidden; text-decoration:none;
   position:relative;
   box-shadow:0 12px 40px rgba(0,0,0,0.7);
-  transition:all .32s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.tarjeta-mapa::before{
-  content:""; position:absolute; inset:0;
-  border:1px solid transparent; border-radius:var(--radio);
-  pointer-events:none; transition:border-color .3s; z-index:5;
+  transition:transform .32s var(--sal), border-color .28s ease, box-shadow .32s ease;
 }
 .tarjeta-mapa:hover{
   transform:translateY(-6px);
-  border-color:rgba(255,32,46,0.65);
-  box-shadow:0 20px 50px rgba(0,0,0,0.85), 0 0 30px rgba(255,32,46,0.3);
-}
-.tarjeta-mapa:hover::before{
-  border-color:rgba(255,100,110,0.4);
+  border-color:rgba(255,255,255,0.28);
+  box-shadow:0 20px 50px rgba(0,0,0,0.85), 0 0 26px -6px rgba(191,184,196,.35);
 }
 
-/* Contenedor del Preview / Lienzo */
+/* --- Foto o placeholder --- */
 .tarjeta-mapa-preview{
   position:relative; width:100%; aspect-ratio:16/10;
   background:#060408; overflow:hidden;
-  border-bottom:1px solid rgba(255,32,46,0.2);
 }
-.mapa-lienzo-preview{
-  position:absolute; inset:0; width:100%; height:100%;
-}
+.mapa-lienzo-preview{position:absolute; inset:0; width:100%; height:100%}
 .mapa-lienzo-preview img{
   width:100%; height:100%; object-fit:cover;
-  transition:transform .5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition:transform .5s var(--sal);
 }
-.tarjeta-mapa:hover .mapa-lienzo-preview img{
-  transform:scale(1.06);
-}
-
-/* Retícula y Brújula Táctica */
-.mapa-reticula{
-  position:absolute; inset:0; pointer-events:none; z-index:2;
-  background-image:
-    linear-gradient(to right, rgba(255,32,46,0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255,32,46,0.06) 1px, transparent 1px);
-  background-size:24px 24px;
-}
-.mapa-brujula{
-  position:absolute; top:.7rem; right:.8rem; z-index:4;
-  font-family:var(--titular); font-size:.85rem; font-weight:700;
-  color:rgba(255,255,255,0.4);
-  width:24px; height:24px; border:1px solid rgba(255,255,255,0.2);
-  border-radius:50%; display:grid; place-items:center;
-  pointer-events:none;
-}
-.mapa-coordenadas{
-  position:absolute; bottom:.5rem; left:.7rem; z-index:4;
-  font-family:ui-monospace, monospace; font-size:.68rem;
-  letter-spacing:.08em; color:rgba(255,255,255,0.45);
-  pointer-events:none;
+.tarjeta-mapa:hover .mapa-lienzo-preview img{transform:scale(1.06)}
+/* la foto se apaga hacia abajo para que el sello de humo, que
+   viene justo debajo, no choque contra un corte limpio */
+.tarjeta-mapa-preview::after{
+  content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
+  background:linear-gradient(180deg, transparent 55%, rgba(6,4,8,.85) 100%);
 }
 
-/* Barrido de Radar */
-.mapa-radar-barrido{
-  position:absolute; inset:0; z-index:3; pointer-events:none;
-  background:linear-gradient(180deg, transparent 0%, rgba(255,32,46,0.08) 50%, transparent 100%);
-  opacity:0; transform:translateY(-100%);
-  transition:opacity .3s;
-}
-.tarjeta-mapa:hover .mapa-radar-barrido{
-  opacity:1;
-  animation:radarSweep 2.8s linear infinite;
-}
-@keyframes radarSweep{
-  0%{transform:translateY(-100%)}
-  100%{transform:translateY(100%)}
-}
+/* Retícula, brújula, coordenadas y barrido de radar: fuera.
+   Eran decoración de HUD militar y no pertenecen al estilo del
+   juego (referencia: bandas de humo rasgado, no telemetría). */
+.mapa-reticula,.mapa-brujula,.mapa-coordenadas,.mapa-radar-barrido{display:none}
 
-/* Badges sobre la imagen */
+/* Badges sobre la imagen: solo el estado, arriba a la derecha,
+   igual que en las fichas de verdugos y pecadores. */
 .mapa-badges-top{
-  position:absolute; top:.7rem; left:.7rem; z-index:4;
-  display:flex; flex-wrap:wrap; gap:.4rem;
+  position:absolute; top:.7rem; right:.7rem; left:.7rem; z-index:4;
+  display:flex; flex-wrap:wrap; justify-content:flex-end; gap:.4rem;
 }
-.mapa-badge-zona{
-  background:rgba(10,8,14,0.85); border:1px solid rgba(255,255,255,0.22);
-  color:var(--hueso); font-family:var(--titular); font-size:.74rem;
-  font-weight:700; text-transform:uppercase; letter-spacing:.08em;
-  padding:.2rem .55rem; border-radius:2px;
-  backdrop-filter:blur(4px);
-}
+.mapa-badge-zona{display:none}
 .mapa-badge-puntos{
   display:inline-flex; align-items:center; gap:.4rem;
-  background:rgba(255,32,46,0.18); border:1px solid rgba(255,32,46,0.45);
-  color:#fff; font-family:var(--titular); font-size:.74rem;
+  background:rgba(10,8,14,0.85); border:1px solid rgba(255,255,255,0.18);
+  color:var(--ceniza-clara); font-family:var(--titular); font-size:.7rem;
   font-weight:700; text-transform:uppercase; letter-spacing:.08em;
   padding:.2rem .55rem; border-radius:2px;
   backdrop-filter:blur(4px);
 }
-
-/* Baliza con pulso animado */
-.beacon-pulso{
-  display:inline-block; width:6px; height:6px; border-radius:50%;
-  background:#48ff88; box-shadow:0 0 8px #48ff88;
-  position:relative;
-}
-.beacon-pulso::after{
-  content:""; position:absolute; inset:-3px; border-radius:50%;
-  border:1px solid #48ff88; opacity:0;
-  animation:pulsoAnillo 1.6s ease-out infinite;
-}
-.beacon-pulso.red{
+.beacon-pulso,.beacon-pulso.red{
   background:var(--sangre-viva); box-shadow:0 0 8px var(--sangre-viva);
 }
-.beacon-pulso.red::after{
-  border-color:var(--sangre-viva);
-}
-@keyframes pulsoAnillo{
-  0%{transform:scale(0.8); opacity:1}
-  100%{transform:scale(2.4); opacity:0}
-}
+.beacon-pulso::after,.beacon-pulso.red::after{border-color:var(--sangre-viva)}
 
-/* Cuerpo de la Tarjeta */
+/* --- El sello: banda de humo con el nombre del mapa --- */
 .tarjeta-mapa-cuerpo{
-  padding:1.4rem; display:flex; flex-direction:column; flex:1;
+  padding:1.4rem; padding-top:0; display:flex; flex-direction:column; flex:1;
 }
 .tarjeta-mapa-cabecera{
-  display:flex; align-items:baseline; justify-content:space-between;
-  margin-bottom:.5rem;
+  position:relative; isolation:isolate; overflow:visible;
+  display:block;
+  margin:0 -1.4rem .9rem;
+  min-height:64px;
+  background:
+    repeating-linear-gradient(115deg, rgba(0,0,0,.18) 0 10px, transparent 10px 20px),
+    linear-gradient(15deg, #4a4450 0%, #241f2a 78%);
 }
+.tarjeta-mapa-cabecera::before,
+.tarjeta-mapa-cabecera::after{
+  content:""; position:absolute; left:-8%; right:-8%; height:60%; z-index:1;
+  pointer-events:none; filter:url(#f-borde);
+  background:radial-gradient(120% 100% at 50% 0%, var(--carbon) 34%, transparent 78%);
+}
+.tarjeta-mapa-cabecera::before{top:-30%; transform:scaleY(-1)}
+.tarjeta-mapa-cabecera::after{bottom:-30%}
+
 .tarjeta-mapa-titulo{
-  font-family:var(--titular); font-size:1.45rem; font-weight:700;
-  letter-spacing:.06em; text-transform:uppercase; color:#fff;
-  margin:0; transition:color .2s;
+  position:relative; z-index:2;
+  display:block; padding:.85rem 1.4rem .7rem;
+  font-family:var(--titular); font-size:1.4rem; font-weight:800;
+  letter-spacing:.03em; text-transform:uppercase; color:#fff;
+  line-height:1.05;
+  text-shadow:0 2px 1px rgba(0,0,0,.6), 0 0 22px rgba(0,0,0,.55);
+  transition:color .2s;
 }
-.tarjeta-mapa:hover .tarjeta-mapa-titulo{
-  color:var(--sangre-viva);
-  text-shadow:0 0 16px rgba(255,32,46,0.6);
-}
+.tarjeta-mapa-titulo::before{content:"—"; margin-right:.4rem; opacity:.55; font-weight:400}
+.tarjeta-mapa:hover .tarjeta-mapa-titulo{color:var(--hueso)}
+
 .tarjeta-mapa-sector{
-  font-family:var(--titular); font-size:.76rem; letter-spacing:.12em;
-  color:var(--ceniza); text-transform:uppercase;
+  position:relative; z-index:2;
+  display:block; margin-top:-.6rem; padding:0 1.4rem .7rem;
+  font-family:var(--titular); font-size:.72rem; letter-spacing:.12em;
+  color:rgba(236,229,220,.55); text-transform:uppercase;
 }
+
 .tarjeta-mapa-resumen{
   font-size:.92rem; color:var(--ceniza-clara); line-height:1.55;
   margin:0 0 1.2rem; flex:1;
@@ -1204,9 +1164,7 @@ a.chip:hover{
   display:flex; align-items:center; justify-content:space-between;
   padding-top:1rem; border-top:1px solid rgba(255,255,255,0.06);
 }
-.mapa-specs-lista{
-  display:flex; align-items:center; gap:.6rem;
-}
+.mapa-specs-lista{display:flex; align-items:center; gap:.6rem}
 .mapa-spec-chip{
   font-family:var(--titular); font-size:.76rem; letter-spacing:.08em;
   color:var(--ceniza); text-transform:uppercase;
@@ -1218,9 +1176,7 @@ a.chip:hover{
   letter-spacing:.1em; text-transform:uppercase; color:var(--sangre-viva);
   transition:transform .2s;
 }
-.tarjeta-mapa:hover .mapa-accion-explorar{
-  transform:translateX(4px);
-}
+.tarjeta-mapa:hover .mapa-accion-explorar{transform:translateX(4px)}
 
 /* ============================================================
    TERMINAL TÁCTICO DETALLADO (vistaMapa)
@@ -1558,7 +1514,13 @@ a.chip:hover{
   .rejilla-mecanicas{grid-template-columns:1fr}
 }
 
-/* Tarjeta Modular de Mecánica */
+/* ============================================================
+   Tarjeta de mecánica — sello de humo rasgado
+   El rótulo del tipo (Mundo / Modo de partida / Sistema) va en
+   una banda de humo con el borde desgarrado, igual que las
+   referencias de S.U.A ("-VERDUGOS", "Pecadores-"): un color
+   por categoría, texto condensado en mayúsculas sobre la tinta.
+   ============================================================ */
 .tarjeta-mecanica{
   display:flex; flex-direction:column;
   background:linear-gradient(150deg, rgba(22,17,28,0.9) 0%, rgba(11,8,15,0.96) 100%);
@@ -1567,144 +1529,136 @@ a.chip:hover{
   overflow:hidden; text-decoration:none;
   position:relative;
   box-shadow:0 12px 35px rgba(0,0,0,0.7);
-  transition:all .32s cubic-bezier(0.16, 1, 0.3, 1);
+  transition:transform .32s var(--sal), border-color .28s ease, box-shadow .32s ease;
 }
 .tarjeta-mecanica:hover{
   transform:translateY(-5px);
-  border-color:rgba(255,32,46,0.6);
-  box-shadow:0 18px 45px rgba(0,0,0,0.85), 0 0 28px rgba(255,32,46,0.25);
+  border-color:color-mix(in srgb, var(--mec-tono, var(--sangre-viva)) 55%, rgba(255,32,46,.3));
+  box-shadow:0 18px 45px rgba(0,0,0,.85), 0 0 30px -6px color-mix(in srgb, var(--mec-tono, var(--sangre-viva)) 65%, transparent);
 }
 
-/* Variaciones de Tono por Tipo */
-.tarjeta-mecanica.tipo-modo-de-partida{
-  border-left:3px solid var(--sangre-viva);
-}
-.tarjeta-mecanica.tipo-modo-de-partida:hover{
-  border-color:var(--sangre-viva);
-  box-shadow:0 18px 45px rgba(0,0,0,0.85), 0 0 30px rgba(255,32,46,0.35);
-}
-.tarjeta-mecanica.tipo-sistema{
-  border-left:3px solid #38bdf8;
-}
-.tarjeta-mecanica.tipo-sistema:hover{
-  border-color:#38bdf8;
-  box-shadow:0 18px 45px rgba(0,0,0,0.85), 0 0 30px rgba(56,189,248,0.3);
-}
-.tarjeta-mecanica.tipo-mundo{
-  border-left:3px solid var(--oro);
-}
-.tarjeta-mecanica.tipo-mundo:hover{
-  border-color:var(--oro);
-  box-shadow:0 18px 45px rgba(0,0,0,0.85), 0 0 30px rgba(229,180,72,0.3);
-}
+/* Un color de casa por tipo de regla: dorado para el lore del
+   mundo, sangre para lo que pasa en partida, ceniza para lo
+   técnico. Todo el resto de la tarjeta lee de esta variable. */
+.tarjeta-mecanica.tipo-mundo          {--mec-tono:var(--oro)}
+.tarjeta-mecanica.tipo-modo-de-partida{--mec-tono:var(--sangre-viva)}
+.tarjeta-mecanica.tipo-sistema        {--mec-tono:var(--ceniza-clara)}
 
-/* Header de la Tarjeta */
+/* --- El sello: banda de humo rasgado con el tipo de regla --- */
 .mecanica-card-header{
-  display:flex; justify-content:space-between; align-items:center;
-  padding:.75rem 1.2rem;
-  background:rgba(255,255,255,0.02);
-  border-bottom:1px solid rgba(255,255,255,0.06);
+  position:relative; isolation:isolate; overflow:visible;
+  margin:.9rem .9rem 0;
+  min-height:76px;
+  background:
+    repeating-linear-gradient(115deg, rgba(0,0,0,.16) 0 10px, transparent 10px 20px),
+    color-mix(in srgb, var(--mec-tono, var(--sangre-viva)) 40%, #100c16 88%);
+  box-shadow:inset 0 0 26px rgba(0,0,0,.45);
 }
-.mecanica-mod-id{
-  font-family:ui-monospace, monospace; font-size:.74rem;
-  font-weight:700; letter-spacing:.1em; color:var(--ceniza);
+/* El humo se come el borde superior e inferior de la banda: se
+   desvanece hacia el color de fondo de la propia tarjeta. */
+.mecanica-card-header::before,
+.mecanica-card-header::after{
+  content:""; position:absolute; left:-8%; right:-8%; height:58%; z-index:1;
+  pointer-events:none; filter:url(#f-borde);
+  background:radial-gradient(120% 100% at 50% 0%, var(--humo-alto) 34%, transparent 78%);
 }
+.mecanica-card-header::before{top:-26%; transform:scaleY(-1)}
+.mecanica-card-header::after{bottom:-26%}
+
+.mecanica-mod-id{display:none}
+
+/* Sin position aquí a propósito: si este div quedara
+   posicionado, se convertiría en el contenedor de referencia
+   de .mecanica-tipo-badge (su hermano) y le encogería el rótulo
+   grande a su propia caja. Al dejarlo estático, el hijo absoluto
+   salta directo a .mecanica-card-header, que es lo que queremos. */
 .mecanica-badges{
-  display:flex; align-items:center; gap:.45rem;
+  padding:.55rem .65rem 0;
+  display:flex; justify-content:flex-end; gap:.4rem;
 }
+/* La insignia sí necesita quedar por delante del humo. */
+.mecanica-badges .insignia{position:relative; z-index:4}
+/* El pill de tipo deja de ser una pastilla pequeña: es el
+   rótulo grande que se lee sobre el humo, como en las
+   referencias del juego. */
 .mecanica-tipo-badge{
-  font-family:var(--titular); font-size:.74rem; font-weight:700;
-  text-transform:uppercase; letter-spacing:.08em;
-  padding:.2rem .55rem; border-radius:2px;
-  background:rgba(255,255,255,0.06); color:var(--hueso);
-  border:1px solid rgba(255,255,255,0.12);
+  position:absolute; z-index:2; inset:0;
+  display:flex; align-items:flex-end;
+  padding:0 1rem .7rem;
+  background:none; border:0; border-radius:0;
+  font-family:var(--titular); font-weight:800;
+  font-size:clamp(1.05rem, 1.1rem + .6vw, 1.5rem);
+  letter-spacing:.03em; text-transform:uppercase; line-height:1;
+  color:#fff;
+  text-shadow:0 2px 1px rgba(0,0,0,.6), 0 0 22px rgba(0,0,0,.55);
 }
-.tarjeta-mecanica.tipo-modo-de-partida .mecanica-tipo-badge{
-  background:rgba(255,32,46,0.18); border-color:rgba(255,32,46,0.4); color:#fff;
-}
-.tarjeta-mecanica.tipo-sistema .mecanica-tipo-badge{
-  background:rgba(56,189,248,0.15); border-color:rgba(56,189,248,0.35); color:#7dd3fc;
-}
-.tarjeta-mecanica.tipo-mundo .mecanica-tipo-badge{
-  background:rgba(229,180,72,0.15); border-color:rgba(229,180,72,0.35); color:var(--oro);
+.mecanica-tipo-badge::before{
+  content:"—"; margin-right:.4rem; opacity:.6; font-weight:400;
 }
 
-/* Cuerpo de la Tarjeta */
+/* --- Cuerpo: icono, título, resumen --- */
 .mecanica-card-body{
-  display:flex; gap:1.2rem; align-items:flex-start;
-  padding:1.4rem; flex:1;
+  display:flex; gap:1.1rem; align-items:flex-start;
+  padding:1.2rem 1.4rem 1.4rem; flex:1;
 }
 .mecanica-icono-marco{
-  width:58px; height:58px; border-radius:6px;
+  width:54px; height:54px; border-radius:6px;
   background:linear-gradient(135deg, rgba(30,22,36,0.9), rgba(14,10,18,0.95));
-  border:1px solid rgba(255,255,255,0.12);
+  border:1px solid color-mix(in srgb, var(--mec-tono, var(--linea-viva)) 45%, var(--linea-viva));
   display:grid; place-items:center; flex-shrink:0;
-  position:relative; overflow:hidden;
-  transition:all .3s ease;
+  position:relative; overflow:hidden; color:var(--mec-tono, var(--ceniza));
+  transition:box-shadow .3s ease, transform .3s var(--muelle);
 }
 .mecanica-icono-marco svg{
-  width:32px !important; height:32px !important;
-  max-width:32px !important; max-height:32px !important;
+  width:28px !important; height:28px !important;
+  max-width:28px !important; max-height:28px !important;
   z-index:2; flex-shrink:0;
   transition:transform .3s var(--muelle);
 }
 .tarjeta-mecanica:hover .mecanica-icono-marco{
-  border-color:rgba(255,32,46,0.5);
-  box-shadow:0 0 20px rgba(255,32,46,0.3);
+  box-shadow:0 0 18px -2px color-mix(in srgb, var(--mec-tono, var(--sangre-viva)) 55%, transparent);
 }
-.tarjeta-mecanica:hover .mecanica-icono-marco svg{
-  transform:scale(1.15);
-}
+.tarjeta-mecanica:hover .mecanica-icono-marco svg{transform:scale(1.12)}
 .mecanica-icono-glow{
   position:absolute; inset:0;
-  background:radial-gradient(circle at center, rgba(255,32,46,0.25) 0%, transparent 70%);
+  background:radial-gradient(circle at center, color-mix(in srgb, var(--mec-tono, var(--sangre-viva)) 35%, transparent), transparent 70%);
   opacity:0; transition:opacity .3s;
 }
-.tarjeta-mecanica:hover .mecanica-icono-glow{
-  opacity:1;
-}
+.tarjeta-mecanica:hover .mecanica-icono-glow{opacity:1}
 
-.mecanica-info{
-  display:flex; flex-direction:column; flex:1;
-}
+.mecanica-info{display:flex; flex-direction:column; flex:1; min-width:0}
 .mecanica-titulo{
-  font-family:var(--titular); font-size:1.32rem; font-weight:700;
-  letter-spacing:.06em; text-transform:uppercase; color:#fff;
-  margin:0 0 .45rem; line-height:1.2;
+  font-family:var(--titular); font-size:1.28rem; font-weight:700;
+  letter-spacing:.04em; text-transform:uppercase; color:#fff;
+  margin:0 0 .4rem; line-height:1.2;
   transition:color .2s;
 }
-.tarjeta-mecanica:hover .mecanica-titulo{
-  color:var(--sangre-viva);
-}
+.tarjeta-mecanica:hover .mecanica-titulo{color:var(--mec-tono, var(--sangre-viva))}
 .mecanica-resumen{
-  font-size:.92rem; color:var(--ceniza-clara); line-height:1.55;
+  font-size:.9rem; color:var(--ceniza-clara); line-height:1.55;
   margin:0; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical;
   overflow:hidden;
 }
 
-/* Footer de la Tarjeta */
+/* --- Pie: etiquetas + enlace --- */
 .mecanica-card-footer{
   display:flex; align-items:center; justify-content:space-between;
-  padding:.9rem 1.4rem;
+  padding:.85rem 1.4rem;
   border-top:1px solid rgba(255,255,255,0.05);
   background:rgba(0,0,0,0.15);
 }
-.mecanica-tags{
-  display:flex; flex-wrap:wrap; gap:.4rem;
-}
+.mecanica-tags{display:flex; flex-wrap:wrap; gap:.4rem}
 .mecanica-tag{
   font-family:ui-monospace, monospace; font-size:.72rem;
   letter-spacing:.05em; color:var(--ceniza);
 }
 .mecanica-enlace{
   font-family:var(--titular); font-size:.82rem; font-weight:700;
-  letter-spacing:.1em; text-transform:uppercase; color:var(--sangre-viva);
+  letter-spacing:.1em; text-transform:uppercase;
+  color:var(--mec-tono, var(--sangre-viva));
   transition:transform .2s; white-space:nowrap;
 }
-.tarjeta-mecanica:hover .mecanica-enlace{
-  transform:translateX(3px);
-}
-
+.tarjeta-mecanica:hover .mecanica-enlace{transform:translateX(3px)}
 /* ============================================================
    DETALLE DE MECÁNICA / PROTOCOLO (vistaMecanica)
    ============================================================ */
@@ -2029,7 +1983,6 @@ a.chip:hover{
 /* --- Esquinas en corchete: las cuatro con un solo elemento --- */
 .panel::before,
 .aviso::before,
-.tarjeta-mecanica::before,
 .mapa-visor::before,
 .mapa-detalle::before,
 .galeria-vacia::before{
@@ -2053,7 +2006,6 @@ a.chip:hover{
 }
 .panel:hover::before,
 .aviso:hover::before,
-.tarjeta-mecanica:hover::before,
 .mapa-visor:hover::before{opacity:1}
 
 /* Los paneles necesitan contexto de posición para el corchete. */
@@ -2100,6 +2052,6 @@ a.chip:hover{
 
 /* En impresión, el HUD sobra. */
 @media print{
-  .panel::before,.aviso::before,.tarjeta-mecanica::before,
+  .panel::before,.aviso::before,
   .mapa-visor::before,.mapa-detalle::before,.retrato::before,.contador::before{display:none !important}
 }
