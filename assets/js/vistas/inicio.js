@@ -38,7 +38,7 @@ export async function vistaInicio(raiz){
         <div class="contenedor">
           <div class="rejilla" data-densa>${entradas.map(e => tarjeta(sec, e)).join("")}</div>
           <p style="margin-top:2.2rem;text-align:center">
-            <a class="boton" href="#/${esc(sec.ruta)}">Ver todos los ${conteo[sec.id]} ${esc(sec.nombre.toLowerCase())} &rarr;</a>
+            <a class="boton" href="#/${esc(sec.ruta)}">Ver ${conteo[sec.id]} ${esc(sec.nombre.toLowerCase())} &rarr;</a>
           </p>
         </div>
       </section>`;

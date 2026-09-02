@@ -725,6 +725,81 @@ dl.dossier-grid{margin:0}
   .cuerpo-entrada{grid-template-columns:1fr}
 }
 
+/* ============================================================
+   PROSA — el texto largo del archivo (lore, mecánicas, mapas)
+
+   Es lo que más se lee de toda la wiki, así que manda la
+   legibilidad: medida corta, interlínea amplia y una jerarquía
+   que se distinga de un vistazo. Los subtítulos que salen del
+   markdown (`## `) hablan el mismo idioma que .seccion-subtitulo,
+   un escalón por debajo.
+   ============================================================ */
+.prosa{
+  max-width:var(--ancho-texto);
+  font-size:var(--t-0);
+  line-height:1.85;
+  color:var(--ceniza-clara);
+  text-wrap:pretty;
+}
+.prosa > p{margin:0 0 1.35em}
+.prosa > p:last-child{margin-bottom:0}
+
+/* La entradilla lleva algo más de peso: da pie al resto. */
+.prosa > p:first-child{
+  font-size:var(--t-1); line-height:1.7; color:var(--hueso);
+}
+
+.prosa h3,
+.prosa h4{
+  font-family:var(--titular); font-weight:700;
+  text-transform:uppercase; letter-spacing:.09em; color:var(--hueso-vivo);
+  margin:2.4rem 0 1rem; padding-left:.85rem;
+  border-left:2px solid var(--sangre-viva);
+  text-shadow:0 0 14px rgba(255,32,46,.35);
+  text-wrap:balance;
+}
+.prosa h3{font-size:1.35rem}
+.prosa h4{font-size:1.08rem; letter-spacing:.13em; border-left-color:var(--linea-viva)}
+.prosa > :is(h3,h4):first-child{margin-top:0}
+
+.prosa strong,.prosa b{color:var(--hueso-vivo); font-weight:600}
+.prosa em{font-style:italic; color:var(--hueso)}
+
+.prosa ul,.prosa ol{margin:0 0 1.35em; padding-left:1.4em}
+.prosa li{margin:.45em 0; padding-left:.15em}
+.prosa ul li::marker{content:"—  "; color:var(--sangre-viva)}
+.prosa ol li::marker{color:var(--sangre-viva); font-family:var(--titular); font-weight:600}
+
+/* Las citas del markdown (`> `) se ven como las del dossier. */
+.prosa blockquote{
+  font-family:var(--display); font-size:1.35rem; font-style:italic;
+  line-height:1.6; color:var(--hueso-vivo); margin:2rem 0;
+  padding:1.2rem 1.6rem; border-left:3px solid var(--sangre-viva);
+  background:linear-gradient(145deg, rgba(30,18,28,.7) 0%, rgba(14,9,16,.85) 100%);
+  border-radius:0 var(--radio) var(--radio) 0;
+  box-shadow:0 10px 30px rgba(0,0,0,.6), inset 0 0 20px rgba(255,32,46,.08);
+}
+.prosa blockquote p{margin:0}
+
+.prosa a{
+  color:var(--sangre-viva);
+  background-image:linear-gradient(var(--brasa),var(--brasa));
+  background-size:0% 1px; background-position:0 100%; background-repeat:no-repeat;
+  box-shadow:inset 0 -1px 0 rgba(255,32,46,.35);
+  transition:background-size .3s var(--sal), color .18s;
+}
+.prosa a:hover{background-size:100% 1px; color:var(--brasa)}
+
+.prosa code{
+  font-family:var(--mono); font-size:.86em; color:var(--ceniza-clara);
+  background:var(--humo-alto); border:1px solid var(--linea);
+  padding:.1em .45em; border-radius:3px;
+}
+
+/* Una columna de prosa suelta (créditos) se centra sola. */
+.contenedor > .prosa{margin-inline:auto}
+.cuerpo-entrada .prosa{margin-inline:0}
+
 .seccion-subtitulo{
   font-family:var(--titular); font-size:1.65rem; font-weight:700;
   letter-spacing:.08em; text-transform:uppercase; color:#fff;

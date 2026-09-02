@@ -183,7 +183,7 @@ export async function vistaFicha(raiz, sec, id){
             </a>` : `<span style="flex:1"></span>`}
 
           <a class="nav-ficha-todos" href="#/${esc(sec.ruta)}">
-            Ver todos los ${esc(sec.nombre.toLowerCase())}
+            Volver a ${esc(sec.nombre)}
           </a>
 
           ${siguiente ? `

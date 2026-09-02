@@ -2,6 +2,7 @@
    Galeria de fan art: mosaico + lupa + envio por GitHub
    ============================================================ */
 
+import { SITIO } from "../config.js";
 import { cargarSeccion } from "../datos.js";
 import { $, $$, esc, norm, imagen, revelar, debounce } from "../util.js";
 
@@ -69,7 +70,7 @@ export async function vistaGaleria(raiz, sec){
         <p>Aquí van los dibujos, las ediciones y los renders de la comunidad.
         Todavía no hay ninguno: la primera obra que llegue abre la galería.</p>
         <p class="galeria-vacia-nota">Se publica con tu nombre y tu enlace, y se retira en cuanto lo pidas.</p>
-        <a class="boton" data-variante="lleno" href="${esc(urlIssue("fan-art.yml", "[Fan art] "))}" target="_blank" rel="noopener">Ser el primero</a>
+        ${SITIO.enlaces.discord ? `<a class="boton" data-variante="lleno" href="${esc(SITIO.enlaces.discord)}" target="_blank" rel="noopener">Enviar por Discord</a>` : ""}
       </div>`;
   }
 
