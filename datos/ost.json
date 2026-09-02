@@ -220,6 +220,23 @@
       "verdugos": [],
       "actualizado": "2026-09-02",
       "fuente": "Archivo entregado por el equipo, 2/9/2026"
+    },
+    {
+      "id": "lms-elegante",
+      "titulo": "LMS Elegante (Konut vs Domelí)",
+      "autor": "",
+      "duracion": 101,
+      "escena": "LMS",
+      "estado": "canon",
+      "archivo": "assets/audio/lms-elegante.mp3",
+      "youtube": "",
+      "descripcion": "Tema del Last Man Standing (LMS) entre **Konut** («El del traje elegante») y **Domelí**.\n\nNace de su historia directa: Konut le debe dinero a Domelí. Es una pieza compuesta para este enfrentamiento final.",
+      "mapas": [],
+      "verdugos": [
+        "domeli"
+      ],
+      "actualizado": "2026-09-02",
+      "fuente": "Archivo entregado por el equipo, 2/9/2026"
     }
   ]
 }

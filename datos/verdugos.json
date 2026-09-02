@@ -472,7 +472,9 @@
       "consejos": [],
       "curiosidades": [],
       "mapas": [],
-      "ost": [],
+      "ost": [
+        "lms-elegante"
+      ],
       "pecadores": [
         "konut"
       ],

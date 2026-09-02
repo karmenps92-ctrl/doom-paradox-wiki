@@ -198,7 +198,9 @@
         "domeli"
       ],
       "mapas": [],
-      "ost": [],
+      "ost": [
+        "lms-elegante"
+      ],
       "etiquetas": [
         "lore",
         "lms",
