@@ -2,10 +2,8 @@
    Galeria de fan art: mosaico + lupa + envio por GitHub
    ============================================================ */
 
-import { urlIssue, urlEditar } from "../config.js";
 import { cargarSeccion } from "../datos.js";
 import { $, $$, esc, norm, imagen, revelar, debounce } from "../util.js";
-import { comentarios, montarComentarios } from "../comentarios.js";
 
 export async function vistaGaleria(raiz, sec){
   const { entradas } = await cargarSeccion(sec.id);
@@ -27,18 +25,6 @@ export async function vistaGaleria(raiz, sec){
       </div>
 
       <div class="mosaico" id="mosaico"></div>
-
-      <div class="aviso" style="margin-top:3rem">
-        <b>Envía tu fan art</b>
-        <p>Abre una propuesta con tu imagen adjunta: se revisa y se publica con tu nombre y tu enlace.
-        Nadie sube nada a tu nombre sin permiso, y puedes pedir que se retire cuando quieras.</p>
-        <p style="margin-top:.9rem">
-          <a class="boton" data-variante="lleno" href="${esc(urlIssue("fan-art.yml", "[Fan art] "))}" target="_blank" rel="noopener">Enviar fan art</a>
-          <a class="boton" href="${esc(urlEditar("galeria"))}" target="_blank" rel="noopener">Editar la galería</a>
-        </p>
-      </div>
-
-      ${comentarios("galeria", "la galería")}
     </div></section>
 
     <div class="lupa" id="lupa" hidden>
@@ -111,5 +97,4 @@ export async function vistaGaleria(raiz, sec){
   $("#buscar-obra", raiz).addEventListener("input", debounce(e => { texto = norm(e.target.value.trim()); pintar(); }, 110));
 
   pintar();
-  montarComentarios(raiz);
 }

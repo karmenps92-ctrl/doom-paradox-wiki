@@ -70,6 +70,23 @@ export function peligro(n = 0){
   return out + "</span>";
 }
 
+/* Lista de pares etiqueta/valor con el lenguaje visual del dossier.
+   `pares` es [["Zona","Exterior"], ["Duración", "<b>2:14</b>", true]];
+   el tercer elemento marca que el valor ya viene como HTML.
+   Las filas sin valor se descartan solas, así quien la llama no tiene
+   que ir encadenando condicionales. */
+export function listaDatos(pares, { columnas = 0, plano = false } = {}){
+  const filas = (pares || []).filter(([, valor]) => valor !== undefined && valor !== null && valor !== "");
+  if (!filas.length) return "";
+  return `<dl class="dossier-grid"${columnas ? ` data-columnas="${columnas}"` : ""}${plano ? " data-plano" : ""}>
+    ${filas.map(([etiqueta, valor, esHtml]) => `
+      <div class="dossier-item">
+        <dt class="dossier-label">${esc(etiqueta)}</dt>
+        <dd class="dossier-val">${esHtml ? valor : esc(valor)}</dd>
+      </div>`).join("")}
+  </dl>`;
+}
+
 export function insignia(texto, tipo = ""){
   return `<span class="insignia"${tipo ? ` data-tipo="${esc(tipo)}"` : ""}>${esc(texto)}</span>`;
 }

@@ -14,13 +14,12 @@ import { vistaFicha } from "./vistas/ficha.js";
 import { vistaMapas, vistaMapa } from "./vistas/mapas.js";
 import { vistaOst, vistaTema } from "./vistas/ost.js";
 import { vistaGaleria } from "./vistas/galeria.js";
-import { vistaGuia, vistaCreditos, vista404 } from "./vistas/estaticas.js";
+import { vistaCreditos, vista404 } from "./vistas/estaticas.js";
 
 const tituloBase = `${SITIO.titulo} · WIKI`;
 
 /* --- rutas fijas --- */
 registrar("/", async (raiz) => { document.title = tituloBase; return vistaInicio(raiz); });
-registrar("/guia", vistaGuia);
 registrar("/creditos", vistaCreditos);
 registrar("/404", vista404);
 
@@ -62,4 +61,4 @@ iniciar("#contenido");
 
 /* Consola: guino para quien abra las devtools. */
 console.log("%cDOOM PARADOX", "color:#e2231a;font:400 28px Georgia,serif;letter-spacing:.2em");
-console.log("%cTodo pecado encuentra su verdugo. Contribuye en /datos.", "color:#8e8a8b;font:14px monospace");
+console.log("%cTodo pecado encuentra su verdugo.", "color:#8e8a8b;font:14px monospace");

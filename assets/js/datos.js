@@ -65,9 +65,6 @@ export async function indice(){
       desc: sec.lema, ruta: `#/${sec.ruta}`, clave: norm(sec.nombre + " " + sec.descripcion)
     });
   }
-  filas.push({ seccion:"guia", tipo:"Ayuda", nombre:"Cómo contribuir",
-    desc:"Añade personajes, mapas, temas o fan art", ruta:"#/guia",
-    clave: norm("contribuir editar json github pull request fan art aportar ayuda") });
   filas.push({ seccion:"creditos", tipo:"Ayuda", nombre:"Créditos",
     desc:"Quién hace el juego y quién mantiene la wiki", ruta:"#/creditos",
     clave: norm("creditos equipo autores agradecimientos") });

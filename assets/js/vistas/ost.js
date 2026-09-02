@@ -3,10 +3,9 @@
    Soporta archivos locales (assets/audio) y enlaces de YouTube.
    ============================================================ */
 
-import { SITIO, urlEditar, urlIssue } from "../config.js";
+import { SITIO } from "../config.js";
 import { cargarSeccion, buscarEntrada, referencias } from "../datos.js";
-import { $, $$, esc, md, duracion, insignia, revelar } from "../util.js";
-import { comentarios, montarComentarios } from "../comentarios.js";
+import { $, $$, esc, md, duracion, insignia, revelar, listaDatos } from "../util.js";
 
 let audio, ctxAudio, analizador, fuenteConectada = false, animando = 0;
 
@@ -27,14 +26,6 @@ export async function vistaOst(raiz, sec){
         </div>
         <canvas class="visor-onda" id="onda" width="900" height="44" aria-hidden="true"></canvas>
         <button class="boton" id="repro-stop">Detener</button>
-      </div>
-
-      <div class="aviso" style="margin-top:3rem">
-        <b>Cómo añadir un tema</b>
-        <p>Sube el archivo a <code>assets/audio/</code> (mp3 u ogg ligero) y descríbelo en
-        <a href="${esc(urlEditar("ost"))}" target="_blank" rel="noopener">datos/ost.json</a>.
-        Si el tema solo está en YouTube, basta con poner su enlace.
-        También puedes <a href="${esc(urlIssue("nueva-entrada.yml", "[OST] "))}" target="_blank" rel="noopener">proponerlo</a>.</p>
       </div>
     </div></section>`;
 
@@ -74,24 +65,25 @@ export async function vistaTema(raiz, sec, id){
       <div class="cuerpo-entrada">
         <div class="prosa">${t.descripcion ? md(t.descripcion) : "<p class=\"vacio\">Sin notas todavía.</p>"}</div>
         <aside>
-          <div class="panel"><h4>Ficha</h4>
-            <ul class="datos" style="border:0;background:transparent;grid-template-columns:1fr">
-              ${t.escena ? `<li style="padding-left:0"><b>Suena en</b><span>${esc(t.escena)}</span></li>` : ""}
-              ${t.duracion ? `<li style="padding-left:0"><b>Duración</b><span>${duracion(t.duracion)}</span></li>` : ""}
-              ${t.estado ? `<li style="padding-left:0"><b>Estado</b><span>${esc(t.estado)}</span></li>` : ""}
-            </ul>
-          </div>
+          ${panelDatos("Ficha", [
+            ["Suena en", t.escena],
+            ["Duración", t.duracion ? duracion(t.duracion) : ""],
+            ["Estado", t.estado ? t.estado[0].toUpperCase() + t.estado.slice(1) : ""]
+          ])}
           ${panelRef("Mapas", mapasRel, "mapas")}
           ${panelRef("Verdugos", verdRel, "verdugos")}
         </aside>
       </div>
-
-      ${comentarios(`ost/${t.id}`, t.titulo)}
     </div></article>`;
 
   conectarPistas(raiz, [t]);
   revelar(raiz);
-  montarComentarios(raiz);
+}
+
+/* Panel de pares etiqueta/valor. Se dibuja solo si hay algo que decir. */
+function panelDatos(titulo, pares){
+  const cuerpo = listaDatos(pares, { columnas: 1, plano: true });
+  return cuerpo ? `<div class="panel"><h4>${esc(titulo)}</h4>${cuerpo}</div>` : "";
 }
 
 function panelRef(titulo, refs, ruta){

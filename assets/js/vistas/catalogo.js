@@ -3,7 +3,6 @@
    Filtros por atributo + busqueda local instantanea.
    ============================================================ */
 
-import { urlEditar, urlIssue } from "../config.js";
 import { cargarSeccion } from "../datos.js";
 import { $, $$, esc, norm, imagen, insignia, peligro, revelar, debounce } from "../util.js";
 import { tarjetas3D } from "../efectos.js";
@@ -37,14 +36,6 @@ export async function vistaCatalogo(raiz, sec){
 
         <p class="contador" id="contador"></p>
         <div class="rejilla" id="rejilla" style="margin-top:1.2rem"></div>
-
-        <div class="aviso" style="margin-top:3rem">
-          <b>Falta alguien</b>
-          <p>Propón una ficha nueva con
-          <a href="${esc(urlIssue("nueva-entrada.yml", "[" + sec.singular + "] "))}" target="_blank" rel="noopener">este formulario</a>
-          o edita directamente
-          <a href="${esc(urlEditar(sec.id))}" target="_blank" rel="noopener">datos/${esc(sec.id)}.json</a> en GitHub.</p>
-        </div>
       </div>
     </section>`;
 

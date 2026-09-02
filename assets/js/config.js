@@ -1,7 +1,7 @@
 /* ============================================================
    CONFIGURACION DE LA WIKI
-   Este es el unico archivo que necesitas tocar para adaptar la
-   wiki a tu repositorio. Todo lo demas se alimenta de /datos.
+   Este es el único archivo de configuración del sitio.
+   Todo el contenido se lee de la carpeta /datos.
    ============================================================ */
 
 export const SITIO = {
@@ -13,37 +13,18 @@ export const SITIO = {
     "lovecraftiana que se alimenta del sufrimiento humano. Los pecadores intentan escapar; los verdugos " +
     "cobran la deuda. Este es el archivo abierto de sus personajes, mapas, mecánicas y música.",
 
-  /* --- Enlaces externos (deja "" para ocultar el boton) --- */
+  /* --- Enlaces externos --- */
   enlaces: {
-    juego: "",                                  // pon aqui el enlace de la experiencia cuando salga
-    discord: "https://discord.gg/yZCafC3E7",    // servidor de fans anunciado el 18/8/2026 (bórralo si no quieres publicarlo)
+    juego: "",
+    discord: "https://discord.gg/yZCafC3E7",
     grupoRoblox: "",
     youtube: ""
   },
 
-  /* --- Repositorio de GitHub (usuario/repo) --- */
-  repo: "USUARIO/doom-paradox-wiki",
-  rama: "main",
-
-  /* --- Comentarios con giscus (GitHub Discussions) ---
-     1. Crea el repo publico y activa Discussions.
-     2. Instala la app https://github.com/apps/giscus en el repo.
-     3. Entra en https://giscus.app, pega tu repo y copia los IDs.
-     4. Rellena los cuatro valores de abajo y activo:true.        */
-  giscus: {
-    activo: false,
-    repo: "USUARIO/doom-paradox-wiki",
-    repoId: "",
-    categoria: "Wiki",
-    categoriaId: "",
-    tema: "noborder_dark",
-    idioma: "es"
-  },
-
   /* --- Secciones del archivo ---
      id          -> nombre del JSON dentro de /datos
-     ruta        -> ruta publica (#/verdugos)
-     vista       -> como se dibuja (catalogo | mapas | ost | galeria)
+     ruta        -> ruta pública (#/verdugos)
+     vista       -> cómo se dibuja (catalogo | mapas | ost | galeria)
      campoFiltro -> campo por el que se agrupan los botones de filtro */
   secciones: [
     {
@@ -125,21 +106,7 @@ export const SITIO = {
   ]
 };
 
-/* Devuelve la definicion de una seccion por su ruta o id. */
+/* Devuelve la definición de una sección por su ruta o id. */
 export function seccionPorRuta(ruta){
   return SITIO.secciones.find(s => s.ruta === ruta || s.id === ruta) || null;
-}
-
-/* URL para abrir una plantilla de issue en GitHub. */
-export function urlIssue(plantilla, titulo = ""){
-  const base = `https://github.com/${SITIO.repo}/issues/new`;
-  const p = new URLSearchParams();
-  if (plantilla) p.set("template", plantilla);
-  if (titulo) p.set("title", titulo);
-  return `${base}?${p.toString()}`;
-}
-
-/* URL para editar en GitHub el JSON de una seccion. */
-export function urlEditar(seccionId){
-  return `https://github.com/${SITIO.repo}/edit/${SITIO.rama}/datos/${seccionId}.json`;
 }

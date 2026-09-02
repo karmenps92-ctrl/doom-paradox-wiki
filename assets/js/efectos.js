@@ -1,14 +1,87 @@
 /* ============================================================
-   DOOM PARADOX · WIKI — Motor de Efectos Visuales (VFX 2.0)
-   Cenizas y brasas vivas, iluminación del vacío, tilt 3D,
-   ondas de impacto, distorsión y ambiente sonoro sintetizado.
+   DOOM PARADOX · WIKI — Motor de Efectos Visuales (VFX HD 3.0)
+   Partículas de brasas en 4 capas, física de vórtice con cursor,
+   iluminación volumétrica del vacío, tilt 3D con reflejo dinámico,
+   ondas de choque de sangre y efectos de sonido sintetizados.
    ============================================================ */
 
 import { $, $$ } from "./util.js";
 
 const reduce = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-/* ---------------- Sistema de Cenizas y Brasas 2.0 ---------------- */
+/* ---------------- Audio FX Sintetizado (Web Audio API) ---------------- */
+let sfxCtx = null;
+
+export function sonidoUI(tipo = "click"){
+  if (reduce()) return;
+  try{
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return;
+    sfxCtx ||= new AC();
+    if (sfxCtx.state === "suspended") sfxCtx.resume();
+
+    const t = sfxCtx.currentTime;
+
+    if (tipo === "click"){
+      // Golpe metálico corto con subgrave oscuro
+      const osc = sfxCtx.createOscillator();
+      const gain = sfxCtx.createGain();
+      osc.type = "triangle";
+      osc.frequency.setValueAtTime(140, t);
+      osc.frequency.exponentialRampToValueAtTime(32, t + 0.08);
+
+      gain.gain.setValueAtTime(0.22, t);
+      gain.gain.exponentialRampToValueAtTime(0.001, t + 0.09);
+
+      // Chasquido de cuchillo / agudo
+      const noiseGain = sfxCtx.createGain();
+      const buffer = sfxCtx.createBuffer(1, sfxCtx.sampleRate * 0.03, sfxCtx.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < data.length; i++) data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (sfxCtx.sampleRate * 0.006));
+      const noise = sfxCtx.createBufferSource();
+      noise.buffer = buffer;
+      noiseGain.gain.setValueAtTime(0.14, t);
+      noiseGain.gain.exponentialRampToValueAtTime(0.001, t + 0.03);
+
+      osc.connect(gain).connect(sfxCtx.destination);
+      noise.connect(noiseGain).connect(sfxCtx.destination);
+
+      osc.start(t);
+      osc.stop(t + 0.1);
+      noise.start(t);
+    } else if (tipo === "hover"){
+      // Resonancia espectral ultraligera
+      const osc = sfxCtx.createOscillator();
+      const gain = sfxCtx.createGain();
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(440, t);
+      osc.frequency.exponentialRampToValueAtTime(220, t + 0.05);
+
+      gain.gain.setValueAtTime(0.025, t);
+      gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.06);
+
+      osc.connect(gain).connect(sfxCtx.destination);
+      osc.start(t);
+      osc.stop(t + 0.06);
+    } else if (tipo === "fuego"){
+      // Ruptura ardiente
+      const osc = sfxCtx.createOscillator();
+      const gain = sfxCtx.createGain();
+      osc.type = "sawtooth";
+      osc.frequency.setValueAtTime(90, t);
+      osc.frequency.exponentialRampToValueAtTime(20, t + 0.22);
+
+      gain.gain.setValueAtTime(0.18, t);
+      gain.gain.exponentialRampToValueAtTime(0.001, t + 0.25);
+
+      osc.connect(gain).connect(sfxCtx.destination);
+      osc.start(t);
+      osc.stop(t + 0.25);
+    }
+  }catch(_){}
+}
+
+/* ---------------- Sistema de Cenizas, Brasas y Fuego HD ---------------- */
 let chispasManuales = [];
 
 export function cenizas(){
@@ -17,6 +90,7 @@ export function cenizas(){
   const ctx = lienzo.getContext("2d");
   let an = 0, al = 0, particulas = [], raf = 0, visible = true;
   let ratonX = -9999, ratonY = -9999, ratonVx = 0, ratonVy = 0, prevRatonX = 0, prevRatonY = 0;
+  let ultimoMovimiento = 0;
 
   function medir(){
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -25,44 +99,73 @@ export function cenizas(){
     lienzo.style.width  = window.innerWidth + "px";
     lienzo.style.height = window.innerHeight + "px";
 
-    const baseCount = Math.round(Math.min(130, Math.max(45, window.innerWidth / 12)));
-    particulas = Array.from({ length: baseCount }, (_, i) => nueva(i < baseCount * 0.28, true));
+    const baseCount = Math.round(Math.min(180, Math.max(70, window.innerWidth / 9)));
+    particulas = Array.from({ length: baseCount }, (_, i) => nueva(i < baseCount * 0.38, true));
   }
 
   function nueva(esBrasa = false, inicio = false){
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    const capa = esBrasa ? 2 : (Math.random() < 0.4 ? 0 : 1); // 0: fondo, 1: medio, 2: brasa activa
+    // Capas: 0=polvo abisal de fondo, 1=ceniza intermedia, 2=brasa incandescente, 3=chispa de fuego viva
+    let capa = 1;
+    if (esBrasa) {
+      capa = Math.random() < 0.35 ? 3 : 2;
+    } else {
+      capa = Math.random() < 0.45 ? 0 : 1;
+    }
 
     return {
       capa,
       x: Math.random() * an,
-      y: inicio ? Math.random() * al : al + 15 * dpr,
-      r: (capa === 2 ? Math.random() * 2.2 + 0.8 : (capa === 1 ? Math.random() * 1.5 + 0.5 : Math.random() * 0.9 + 0.3)) * dpr,
-      vy: -(Math.random() * (capa === 2 ? 0.65 : (capa === 1 ? 0.38 : 0.2)) + 0.1) * dpr,
-      vx: (Math.random() - 0.5) * 0.3 * dpr,
-      a: Math.random() * 0.6 + (capa === 2 ? 0.35 : 0.15),
+      y: inicio ? Math.random() * al : al + (15 + Math.random() * 30) * dpr,
+      r: (capa === 3 ? Math.random() * 2.8 + 1.2 : (capa === 2 ? Math.random() * 2.0 + 0.8 : (capa === 1 ? Math.random() * 1.4 + 0.4 : Math.random() * 0.8 + 0.2))) * dpr,
+      vy: -(Math.random() * (capa === 3 ? 0.95 : (capa === 2 ? 0.65 : (capa === 1 ? 0.35 : 0.18))) + 0.12) * dpr,
+      vx: (Math.random() - 0.5) * (capa >= 2 ? 0.6 : 0.3) * dpr,
+      a: Math.random() * 0.65 + (capa >= 2 ? 0.35 : 0.12),
       fase: Math.random() * Math.PI * 2,
-      faseVel: (Math.random() * 0.02 + 0.008),
-      brasa: capa === 2,
-      vidaMax: Math.random() * 400 + 200,
-      edad: inicio ? Math.random() * 300 : 0,
-      temperatura: Math.random() * 0.5 + 0.5
+      faseVel: (Math.random() * 0.025 + 0.008),
+      brasa: capa >= 2,
+      vidaMax: Math.random() * 450 + 220,
+      edad: inicio ? Math.random() * 350 : 0,
+      temperatura: Math.random() * 0.6 + 0.4,
+      chispaFuego: capa === 3
     };
   }
 
   function actualizarRaton(e){
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    ratonVx = (e.clientX * dpr - prevRatonX) * 0.3;
-    ratonVy = (e.clientY * dpr - prevRatonY) * 0.3;
-    prevRatonX = ratonX = e.clientX * dpr;
-    prevRatonY = ratonY = e.clientY * dpr;
+    const mx = e.clientX * dpr;
+    const my = e.clientY * dpr;
+    ratonVx = (mx - prevRatonX) * 0.35;
+    ratonVy = (my - prevRatonY) * 0.35;
+    prevRatonX = ratonX = mx;
+    prevRatonY = ratonY = my;
+    ultimoMovimiento = Date.now();
+
+    // Estela de microchispas al mover el ratón rápidamente
+    const velocidadCursor = Math.hypot(ratonVx, ratonVy);
+    if (velocidadCursor > 12 * dpr && Math.random() < 0.45){
+      chispasManuales.push({
+        x: mx + (Math.random() - 0.5) * 16 * dpr,
+        y: my + (Math.random() - 0.5) * 16 * dpr,
+        r: (Math.random() * 2 + 1) * dpr,
+        vx: -ratonVx * 0.15 + (Math.random() - 0.5) * 2 * dpr,
+        vy: -ratonVy * 0.15 + (Math.random() - 0.5) * 2 * dpr,
+        gravedad: 0.04 * dpr,
+        vida: 0.8,
+        decaimiento: 0.045,
+        rVal: 255,
+        gVal: Math.round(120 + Math.random() * 80),
+        bVal: 40
+      });
+    }
   }
 
   function pintar(){
     ctx.clearRect(0, 0, an, al);
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    const radioInteraccion = 120 * dpr;
+    const radioInteraccion = 140 * dpr;
     const radioSq = radioInteraccion * radioInteraccion;
+    const hayCursor = (Date.now() - ultimoMovimiento) < 2000 && ratonX > 0;
 
     // 1. Partículas ambientales principales
     for (let i = 0; i < particulas.length; i++){
@@ -70,44 +173,55 @@ export function cenizas(){
       p.edad++;
       p.fase += p.faseVel;
 
-      // Movimiento sinusoidal natural
-      const osc = Math.sin(p.fase) * (p.capa === 2 ? 0.6 : 0.35) * dpr;
+      // Movimiento sinusoidal natural y turbulento
+      const osc = Math.sin(p.fase) * (p.capa >= 2 ? 0.75 : 0.4) * dpr;
       p.x += p.vx + osc;
       p.y += p.vy;
 
-      // Interacción física con el cursor (viento / empuje)
-      if (ratonX > 0) {
+      // Vórtice y repulsión física con el ratón
+      if (hayCursor) {
         const dx = p.x - ratonX;
         const dy = p.y - ratonY;
         const distSq = dx * dx + dy * dy;
-        if (distSq < radioSq && distSq > 4) {
+        if (distSq < radioSq && distSq > 9) {
           const dist = Math.sqrt(distSq);
-          const fuerza = (1 - dist / radioInteraccion) * 2.2;
-          p.x += (dx / dist) * fuerza * dpr + ratonVx * 0.15;
-          p.y += (dy / dist) * fuerza * dpr + ratonVy * 0.15;
-          if (p.brasa) p.temperatura = Math.min(1, p.temperatura + 0.08);
+          const fuerza = (1 - dist / radioInteraccion) * 2.8;
+
+          // Componente radial (empuje) + tangencial (vórtice)
+          const ang = Math.atan2(dy, dx);
+          p.x += Math.cos(ang) * fuerza * dpr + (-Math.sin(ang)) * fuerza * 1.2 * dpr + ratonVx * 0.18;
+          p.y += Math.sin(ang) * fuerza * dpr + (Math.cos(ang)) * fuerza * 1.2 * dpr + ratonVy * 0.18;
+          if (p.brasa) p.temperatura = Math.min(1, p.temperatura + 0.12);
         }
       }
 
-      // Reaparición si sale de pantalla o expira
-      if (p.y < -15 * dpr || p.edad > p.vidaMax){
+      // Reaparición si sale de los límites
+      if (p.y < -20 * dpr || p.edad > p.vidaMax){
         Object.assign(p, nueva(p.brasa, false));
       }
-      if (p.x < -20 * dpr) p.x = an + 15 * dpr;
-      else if (p.x > an + 20 * dpr) p.x = -15 * dpr;
+      if (p.x < -30 * dpr) p.x = an + 25 * dpr;
+      else if (p.x > an + 30 * dpr) p.x = -25 * dpr;
 
-      // Renderizado según capa
-      const parpadeo = 0.7 + Math.sin(p.fase * 2.8) * 0.3;
+      // Renderizado de capas con bloom
+      const parpadeo = 0.72 + Math.sin(p.fase * 3.2) * 0.28;
       const alfa = Math.min(1, Math.max(0, p.a * parpadeo));
 
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
 
-      if (p.brasa){
-        // Núcleo blanco/naranja y halo carmesí incandescente
-        const rVal = Math.round(220 + p.temperatura * 35);
-        const gVal = Math.round(40 + p.temperatura * 75);
-        const bVal = Math.round(25 + p.temperatura * 45);
+      if (p.chispaFuego){
+        // Fuego intenso: núcleo blanco amarillento con resplandor carmesí incandescente
+        const gVal = Math.round(140 + p.temperatura * 115);
+        ctx.fillStyle = `rgba(255,${gVal},50,${alfa.toFixed(3)})`;
+        ctx.shadowColor = `rgba(255,40,30,${(alfa * 0.95).toFixed(2)})`;
+        ctx.shadowBlur = 14 * dpr;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      } else if (p.brasa){
+        // Brasa viva carmesí / naranja
+        const rVal = Math.round(230 + p.temperatura * 25);
+        const gVal = Math.round(45 + p.temperatura * 65);
+        const bVal = Math.round(25 + p.temperatura * 30);
         ctx.fillStyle = `rgba(${rVal},${gVal},${bVal},${alfa.toFixed(3)})`;
         ctx.shadowColor = `rgba(226,35,26,${(alfa * 0.85).toFixed(2)})`;
         ctx.shadowBlur = 10 * dpr;
@@ -115,16 +229,16 @@ export function cenizas(){
         ctx.shadowBlur = 0;
       } else if (p.capa === 1){
         // Ceniza intermedia crispada
-        ctx.fillStyle = `rgba(180,172,168,${(alfa * 0.45).toFixed(3)})`;
+        ctx.fillStyle = `rgba(185,178,175,${(alfa * 0.5).toFixed(3)})`;
         ctx.fill();
       } else {
-        // Ceniza de fondo suave
-        ctx.fillStyle = `rgba(120,115,120,${(alfa * 0.25).toFixed(3)})`;
+        // Ceniza abisal de fondo
+        ctx.fillStyle = `rgba(130,122,130,${(alfa * 0.28).toFixed(3)})`;
         ctx.fill();
       }
     }
 
-    // 2. Chispas generadas por clics e interacciones
+    // 2. Chispas generadas por interacciones / clics
     for (let i = chispasManuales.length - 1; i >= 0; i--){
       const c = chispasManuales[i];
       c.x += c.vx;
@@ -140,10 +254,10 @@ export function cenizas(){
       }
 
       ctx.beginPath();
-      ctx.arc(c.x, c.y, c.r * c.vida, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${c.rVal},${c.gVal},${c.bVal},${(c.vida * 0.9).toFixed(2)})`;
-      ctx.shadowColor = "rgba(226,35,26,0.9)";
-      ctx.shadowBlur = 12 * dpr;
+      ctx.arc(c.x, c.y, Math.max(0.6, c.r * c.vida), 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${c.rVal},${c.gVal},${c.bVal},${(c.vida * 0.95).toFixed(2)})`;
+      ctx.shadowColor = "rgba(255,50,40,0.95)";
+      ctx.shadowBlur = 14 * dpr;
       ctx.fill();
       ctx.shadowBlur = 0;
     }
@@ -165,7 +279,7 @@ export function cenizas(){
 }
 
 /* Lanza una ráfaga de chispas ardientes en una posición (pantalla en px) */
-export function crearChispas(clientX, clientY, cantidad = 12){
+export function crearChispas(clientX, clientY, cantidad = 16){
   if (reduce()) return;
   const dpr = Math.min(window.devicePixelRatio || 1, 2);
   const px = clientX * dpr;
@@ -173,26 +287,26 @@ export function crearChispas(clientX, clientY, cantidad = 12){
 
   for (let i = 0; i < cantidad; i++){
     const angulo = Math.random() * Math.PI * 2;
-    const velocidad = (Math.random() * 4.5 + 1.5) * dpr;
-    const esBlanco = Math.random() < 0.25;
+    const velocidad = (Math.random() * 5.5 + 2.0) * dpr;
+    const esBlanco = Math.random() < 0.3;
 
     chispasManuales.push({
       x: px,
       y: py,
-      r: (Math.random() * 2.2 + 1.2) * dpr,
+      r: (Math.random() * 2.8 + 1.2) * dpr,
       vx: Math.cos(angulo) * velocidad,
-      vy: Math.sin(angulo) * velocidad - (Math.random() * 2.5 + 1) * dpr,
-      gravedad: 0.08 * dpr,
+      vy: Math.sin(angulo) * velocidad - (Math.random() * 3 + 1.5) * dpr,
+      gravedad: 0.1 * dpr,
       vida: 1.0,
-      decaimiento: Math.random() * 0.035 + 0.02,
-      rVal: esBlanco ? 255 : 235,
-      gVal: esBlanco ? 230 : Math.round(Math.random() * 80 + 40),
-      bVal: esBlanco ? 180 : 30
+      decaimiento: Math.random() * 0.035 + 0.018,
+      rVal: esBlanco ? 255 : 245,
+      gVal: esBlanco ? 240 : Math.round(Math.random() * 110 + 50),
+      bVal: esBlanco ? 190 : 30
     });
   }
 }
 
-/* ---------------- Luz del Vacío (Linterna interactiva) ---------------- */
+/* ---------------- Luz del Vacío (Linterna interactiva HD) ---------------- */
 export function luzVacio(){
   if (reduce()) return;
   let targetX = window.innerWidth / 2;
@@ -208,8 +322,8 @@ export function luzVacio(){
 
   function animar(){
     if (!animando) return;
-    currentX += (targetX - currentX) * 0.12;
-    currentY += (targetY - currentY) * 0.12;
+    currentX += (targetX - currentX) * 0.14;
+    currentY += (targetY - currentY) * 0.14;
 
     document.documentElement.style.setProperty("--cursor-x", `${currentX.toFixed(1)}px`);
     document.documentElement.style.setProperty("--cursor-y", `${currentY.toFixed(1)}px`);
@@ -219,11 +333,11 @@ export function luzVacio(){
   animar();
 }
 
-/* ---------------- Tarjetas con Tilt 3D y Brillo Especular ---------------- */
+/* ---------------- Tarjetas con Tilt 3D y Brillo Especular HD ---------------- */
 export function tarjetas3D(raiz = document){
   if (reduce() || window.matchMedia("(pointer: coarse)").matches) return;
 
-  const elementos = $$(".ficha, .panel, .mapa-visor, .pista, .aviso", raiz);
+  const elementos = $$(".ficha, .panel, .mapa-visor, .pista, .aviso, .pod-stat, .altar-lore", raiz);
 
   elementos.forEach(el => {
     if (el.dataset.tiltActivado) return;
@@ -234,6 +348,7 @@ export function tarjetas3D(raiz = document){
 
     const alEntrar = () => {
       rect = el.getBoundingClientRect();
+      sonidoUI("hover");
     };
 
     const alMover = (e) => {
@@ -243,18 +358,18 @@ export function tarjetas3D(raiz = document){
       const normalX = (x / rect.width - 0.5) * 2;
       const normalY = (y / rect.height - 0.5) * 2;
 
-      const rotMax = el.classList.contains("ficha") ? 7.5 : 3.5;
+      const rotMax = el.classList.contains("ficha") ? 8.5 : 4.0;
       const rotY = (normalX * rotMax).toFixed(2);
       const rotX = (-normalY * rotMax).toFixed(2);
 
-      el.style.transform = `perspective(850px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale3d(1.018, 1.018, 1.018)`;
+      el.style.transform = `perspective(900px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale3d(1.022, 1.022, 1.022)`;
       el.style.setProperty("--sheen-x", `${x.toFixed(1)}px`);
       el.style.setProperty("--sheen-y", `${y.toFixed(1)}px`);
     };
 
     const alSalir = () => {
       rect = null;
-      el.style.transform = "perspective(850px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)";
+      el.style.transform = "perspective(900px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)";
     };
 
     el.addEventListener("mouseenter", alEntrar, { passive: true });
@@ -271,13 +386,14 @@ export function ondasClic(){
     const x = e.clientX;
     const y = e.clientY;
 
-    // Disparar chispas
-    crearChispas(x, y, 10);
+    // Disparar sonido y chispas
+    sonidoUI("click");
+    crearChispas(x, y, 14);
 
     // Crear onda visual de sangre / choque
     const onda = document.createElement("div");
     onda.className = "onda-impacto";
-    const diametro = Math.min(140, Math.max(60, window.innerWidth * 0.08));
+    const diametro = Math.min(160, Math.max(70, window.innerWidth * 0.09));
     onda.style.width = `${diametro}px`;
     onda.style.height = `${diametro}px`;
     onda.style.left = `${x}px`;
@@ -361,7 +477,7 @@ function encenderAmbiente(boton){
   ruido.connect(paso).connect(salida);
 
   // Drone grave lovecraftiano con 3 osciladores armónicos
-  const drone = audioCtx.createGain(); drone.gain.value = 0.06;
+  const drone = audioCtx.createGain(); drone.gain.value = 0.07;
   [43.6, 55.0, 82.4].forEach((f, i) => {
     const o = audioCtx.createOscillator();
     o.type = i === 2 ? "triangle" : "sine";
@@ -381,6 +497,7 @@ function encenderAmbiente(boton){
   nodos = { salida, ruido, lfo };
   boton.setAttribute("aria-pressed", "true");
   boton.title = "Silenciar ambiente";
+  sonidoUI("fuego");
 }
 
 function apagarAmbiente(boton){
@@ -404,6 +521,7 @@ export function menuMovil(){
     const abierto = nav.dataset.abierto === "true";
     nav.dataset.abierto = String(!abierto);
     boton.setAttribute("aria-expanded", String(!abierto));
+    sonidoUI("click");
   });
   nav.addEventListener("click", e => { if (e.target.tagName === "A") cerrar(); });
   window.addEventListener("hashchange", cerrar);

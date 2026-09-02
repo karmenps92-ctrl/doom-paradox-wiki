@@ -3,10 +3,9 @@
    (arrastrar para mover, rueda o botones para acercar)
    ============================================================ */
 
-import { SITIO, urlEditar, urlIssue } from "../config.js";
+import { SITIO } from "../config.js";
 import { cargarSeccion, buscarEntrada, referencias } from "../datos.js";
-import { $, $$, esc, md, imagen, insignia, revelar } from "../util.js";
-import { comentarios, montarComentarios } from "../comentarios.js";
+import { $, $$, esc, md, imagen, insignia, revelar, listaDatos } from "../util.js";
 import { iniciales } from "./inicio.js";
 
 export async function vistaMapas(raiz, sec){
@@ -31,12 +30,6 @@ export async function vistaMapas(raiz, sec){
           </div>
         </a>`).join("")}</div>`
       : `<p class="vacio">Ningún mapa documentado todavía.</p>`}
-      <div class="aviso" style="margin-top:3rem">
-        <b>Cómo se documenta un mapa</b>
-        <p>Sube una captura cenital a <code>assets/img/mapas/</code> y marca los puntos con coordenadas
-        en porcentaje dentro de <a href="${esc(urlEditar("mapas"))}" target="_blank" rel="noopener">datos/mapas.json</a>.
-        También puedes <a href="${esc(urlIssue("nueva-entrada.yml", "[Mapa] "))}" target="_blank" rel="noopener">pedirlo por formulario</a>.</p>
-      </div>
     </div></section>`;
   revelar(raiz);
 }
@@ -95,31 +88,29 @@ export async function vistaMapa(raiz, sec, id){
             </ol></div>` : ""}
           ${panelRef("Verdugos del mapa", verdugosRel, "verdugos")}
           ${panelRef("Música", ostRel, "ost")}
-          ${(m.dificultad || m.jugadores || m.salidas || m.zona) ? `
-          <div class="panel">
-            <h4>Datos</h4>
-            <ul class="datos" style="border:0;background:transparent;grid-template-columns:1fr">
-              ${m.zona ? `<li style="padding-left:0"><b>Zona</b><span>${esc(m.zona)}</span></li>` : ""}
-              ${m.dificultad ? `<li style="padding-left:0"><b>Dificultad</b><span>${esc(m.dificultad)}</span></li>` : ""}
-              ${m.jugadores ? `<li style="padding-left:0"><b>Jugadores</b><span>${esc(m.jugadores)}</span></li>` : ""}
-              ${m.salidas ? `<li style="padding-left:0"><b>Salidas</b><span>${esc(m.salidas)}</span></li>` : ""}
-            </ul>
-          </div>` : ""}
+          ${panelDatos("Datos", [
+            ["Zona", m.zona],
+            ["Dificultad", m.dificultad],
+            ["Jugadores", m.jugadores],
+            ["Salidas", m.salidas]
+          ])}
         </div>
       </div>
 
       <div class="prosa" style="margin-top:3rem">
         ${m.descripcion ? md(m.descripcion) : ""}
         ${(m.secretos || []).length ? `<h3>Secretos documentados</h3><ul>${(m.secretos || []).map(s => `<li>${esc(s)}</li>`).join("")}</ul>` : ""}
-        ${(m.consejos || []).length ? `<h3>Rutas y consejos</h3><ul>${(m.consejos || []).map(s => `<li>${esc(s)}</li>`).join("")}</ul>` : ""}
       </div>
-
-      ${comentarios(`mapas/${m.id}`, m.nombre)}
     </div></article>`;
 
   visorInteractivo(raiz, puntos);
   revelar(raiz);
-  montarComentarios(raiz);
+}
+
+/* Panel de pares etiqueta/valor. Se dibuja solo si hay algo que decir. */
+function panelDatos(titulo, pares){
+  const cuerpo = listaDatos(pares, { columnas: 1, plano: true });
+  return cuerpo ? `<div class="panel"><h4>${esc(titulo)}</h4>${cuerpo}</div>` : "";
 }
 
 function panelRef(titulo, refs, ruta){
