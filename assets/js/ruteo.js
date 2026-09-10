@@ -5,7 +5,7 @@
    ============================================================ */
 
 import { $, $$, alPrincipio } from "./util.js";
-import { tarjetas3D } from "./efectos.js";
+import { tarjetas3D, sonidoUI } from "./efectos.js";
 
 const rutas = [];
 let contenedor, transicion, actual = "";
@@ -60,7 +60,10 @@ async function resolver(){
   marcarNav(ruta);
   document.body.dataset.ruta = ruta;
 
-  if (!primera) await fase("entra");
+  if (!primera){
+    sonidoUI("tinta");
+    await fase("entra");
+  }
   contenedor.innerHTML = '<div class="cargando">Abriendo el archivo</div>';
 
   try{

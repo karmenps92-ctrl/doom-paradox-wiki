@@ -11,7 +11,7 @@ const cache = new Map();
 /* Descarga (una sola vez) el JSON de una seccion. */
 export async function cargarSeccion(id){
   if (cache.has(id)) return cache.get(id);
-  const promesa = fetch(`datos/${id}.json`, { cache: "no-cache" })
+  const promesa = fetch(`datos/${id}.json`)
     .then(r => {
       if (!r.ok) throw new Error(`No se pudo leer datos/${id}.json (${r.status})`);
       return r.json();

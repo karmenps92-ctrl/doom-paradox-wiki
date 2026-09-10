@@ -5,6 +5,7 @@
 
 import { $, $$, esc, norm, debounce } from "./util.js";
 import { indice } from "./datos.js";
+import { sonidoUI } from "./efectos.js";
 
 let filas = null, seleccion = 0, ultimoFoco = null;
 
@@ -22,8 +23,10 @@ export function buscador(){
     input.focus();
     filas ||= await indice();
     pintar("");
+    sonidoUI("abrir");
   };
   const cerrar = () => {
+    if (!caja.hidden) sonidoUI("cerrar");
     caja.hidden = true;
     if (ultimoFoco && ultimoFoco.focus) ultimoFoco.focus();
   };

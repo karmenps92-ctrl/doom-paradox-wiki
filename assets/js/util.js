@@ -59,7 +59,7 @@ export function imagen(src, alt, iniciales, bloque = false){
   const ini = esc((iniciales || (alt || "?").slice(0, 2)).toUpperCase());
   const clase = bloque ? "sin-imagen bloque" : "sin-imagen";
   if (!src) return `<div class="${clase}"><span>${ini}</span></div>`;
-  return `<img src="${esc(src)}" alt="${esc(alt || "")}" data-ini="${ini}"${bloque ? ' data-bloque="1"' : ""} loading="lazy" decoding="async">`;
+  return `<img src="${esc(src)}" alt="${esc(alt || "")}" data-ini="${ini}"${bloque ? ' data-bloque="1"' : ""} loading="lazy" decoding="async" fetchpriority="low">`;
 }
 
 /* Medidor de peligro 0..5 */

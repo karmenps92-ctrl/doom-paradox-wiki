@@ -17,7 +17,6 @@
   );
   mix-blend-mode:screen;
   transition:opacity .4s ease;
-  will-change:background;
 }
 
 /* ---------- Brasa del cursor: un anillo que sigue al puntero ----------
@@ -200,10 +199,11 @@ html[data-intro-vista] .intro-archivo{display:none}
   filter:blur(4px);
   transition:opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1), filter .7s ease;
   transition-delay:min(calc(var(--i, 0) * 70ms), 560ms);
-  will-change:opacity, transform, filter;
+  will-change:opacity, transform;
 }
 [data-revelar].visible{
   opacity:1; transform:none; filter:blur(0);
+  will-change:auto;
 }
 
 /* ---------- Efecto de inclinación 3D y brillo especular HD ----------
@@ -212,8 +212,8 @@ html[data-intro-vista] .intro-archivo{display:none}
 .tilt-3d{
   transform-style:preserve-3d;
   transition:transform .18s cubic-bezier(.2,.7,.2,1), box-shadow .25s ease, border-color .3s ease;
-  will-change:transform;
 }
+.tilt-3d:hover{will-change:transform}
 .tilt-3d-interior{
   transform:translateZ(20px);
 }
@@ -624,4 +624,38 @@ html[data-intro-activa] .heroe{--intro-espera:1.1s}
   .heroe-linea-doom i, .heroe-linea-paradox i, .heroe-tag-comunidad, .heroe-sello,
   .heroe-bajada-clasica, .heroe .botones, .heroe-scroll, .heroe-sigilo{animation:none; opacity:1; transform:none; filter:none}
   .heroe-venas, .heroe-resplandor{transform:none}
+}
+
+/* ---------- Perfil de calidad y táctil: misma atmósfera, menos capas ---------- */
+html[data-calidad="baja"] .capa-niebla i:nth-child(3),
+html[data-calidad="baja"] .capa-niebla i:nth-child(4),
+html[data-calidad="baja"] .capa-luz-vacio,
+html[data-calidad="baja"] .cursor-brasa,
+html[data-calidad="baja"] .heroe-chispas i:nth-child(n+7),
+html[data-calidad="baja"] .pie-brasas i:nth-child(n+5){display:none}
+html[data-calidad="baja"] .capa-niebla i{filter:blur(48px); opacity:.4}
+html[data-calidad="baja"] .capa-grano{animation:none; inset:0; opacity:.1}
+html[data-calidad="baja"] .capa-vineta,
+html[data-calidad="baja"] .capa-bruma{animation:none}
+html[data-calidad="baja"] .pie-humo{filter:none; opacity:.35}
+html[data-calidad="baja"] [data-revelar]{filter:none; transform:translateY(16px)}
+html[data-calidad="media"] .capa-niebla i:nth-child(4){display:none}
+html[data-calidad="media"] .capa-niebla i{filter:blur(64px)}
+html[data-calidad="media"] .capa-grano{animation:none; opacity:.12}
+html[data-calidad="media"] .heroe-chispas i:nth-child(n+10){display:none}
+
+@media (pointer:coarse){
+  .capa-luz-vacio, .cursor-brasa{display:none}
+  .capa-grano{animation:none; inset:0; opacity:.11}
+  .capa-vineta{animation:none}
+  .heroe-venas, .heroe-resplandor{transform:none; will-change:auto}
+}
+
+@media (max-width:700px){
+  .capa-niebla i:nth-child(3), .capa-niebla i:nth-child(4){display:none}
+  .capa-niebla i{filter:blur(46px); opacity:.38; will-change:auto}
+  .heroe-chispas i:nth-child(n+7), .pie-brasas i:nth-child(n+5){display:none}
+  .pie-humo{filter:none}
+  .heroe-sigilo{width:118px; height:118px; margin-bottom:1rem}
+  .heroe-emblema-fondo{width:84px; height:84px}
 }

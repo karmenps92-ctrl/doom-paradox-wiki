@@ -10,74 +10,262 @@ import { $, $$ } from "./util.js";
 
 const reduce = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-/* ---------------- Audio FX Sintetizado (Web Audio API) ---------------- */
-let sfxCtx = null;
+/* Perfil de calidad: misma estética, menos trabajo en teléfono/tablet
+   y en máquinas justas. CSS lee html[data-calidad]. */
+export function calidad(){
+  if (reduce()) return "baja";
+  const conexion = navigator.connection;
+  if (conexion?.saveData) return "baja";
+  const ram = navigator.deviceMemory || 8;
+  const cores = navigator.hardwareConcurrency || 8;
+  const estrecho = matchMedia("(max-width: 700px)").matches;
+  const tablet = matchMedia("(max-width: 1100px)").matches;
+  const tactil = matchMedia("(pointer: coarse)").matches;
+  if (ram <= 2 || estrecho) return "baja";
+  if (tactil || tablet || cores <= 4 || ram <= 4) return "media";
+  return "alta";
+}
+
+export function aplicarCalidad(){
+  const c = calidad();
+  document.documentElement.dataset.calidad = c;
+  return c;
+}
+
+/* ---------------- Audio FX — motor compartido (Web Audio) ----------------
+   Un solo AudioContext: bus de SFX (piedra, metal, sangre) y bus de
+   ambiente (viento, drones, crepitar). Los clics dejan de ser un
+   beep: van en capas, con sala corta y compresor. */
+let audioMotor = null;
+let ultimoHover = 0;
+let ultimoClick = 0;
+
+function motorAudio(){
+  const AC = window.AudioContext || window.webkitAudioContext;
+  if (!AC) return null;
+  if (audioMotor){
+    if (audioMotor.ctx.state === "suspended") audioMotor.ctx.resume();
+    return audioMotor;
+  }
+
+  const ctx = new AC();
+  const master = ctx.createGain();
+  master.gain.value = 0.86;
+  master.connect(ctx.destination);
+
+  const comp = ctx.createDynamicsCompressor();
+  comp.threshold.value = -16;
+  comp.knee.value = 20;
+  comp.ratio.value = 3.2;
+  comp.attack.value = 0.003;
+  comp.release.value = 0.16;
+  comp.connect(master);
+
+  const sfx = ctx.createGain();
+  sfx.gain.value = 0.78;
+  const delay = ctx.createDelay();
+  delay.delayTime.value = 0.021;
+  const fb = ctx.createGain(); fb.gain.value = 0.16;
+  const wet = ctx.createGain(); wet.gain.value = 0.2;
+  const lpSala = ctx.createBiquadFilter();
+  lpSala.type = "lowpass"; lpSala.frequency.value = 2400;
+  sfx.connect(comp);
+  sfx.connect(delay);
+  delay.connect(fb).connect(delay);
+  delay.connect(lpSala).connect(wet).connect(comp);
+
+  const amb = ctx.createGain();
+  amb.gain.value = 0;
+  amb.connect(master);
+
+  const ruidoCorto = bufferRuido(ctx, 0.35, "blanco");
+  const ruidoRosa = bufferRuido(ctx, 4, "rosa");
+  const crepitar = bufferCrepitar(ctx, 2.4);
+
+  audioMotor = { ctx, master, sfx, amb, ruidoCorto, ruidoRosa, crepitar, nodosAmb: null };
+  if (ctx.state === "suspended") ctx.resume();
+  return audioMotor;
+}
+
+function bufferRuido(ctx, segundos, color){
+  const n = Math.floor(ctx.sampleRate * segundos);
+  const buf = ctx.createBuffer(color === "rosa" ? 2 : 1, n, ctx.sampleRate);
+  for (let ch = 0; ch < buf.numberOfChannels; ch++){
+    const d = buf.getChannelData(ch);
+    let b0 = 0, b1 = 0, b2 = 0;
+    for (let i = 0; i < n; i++){
+      const blanco = Math.random() * 2 - 1;
+      if (color === "rosa"){
+        b0 = 0.99765 * b0 + blanco * 0.0990460;
+        b1 = 0.96300 * b1 + blanco * 0.2965164;
+        b2 = 0.57000 * b2 + blanco * 1.0526913;
+        d[i] = (b0 + b1 + b2 + blanco * 0.1848) * 0.13;
+      } else {
+        d[i] = blanco * Math.exp(-i / (ctx.sampleRate * 0.09));
+      }
+    }
+  }
+  return buf;
+}
+
+function bufferCrepitar(ctx, segundos){
+  const n = Math.floor(ctx.sampleRate * segundos);
+  const buf = ctx.createBuffer(1, n, ctx.sampleRate);
+  const d = buf.getChannelData(0);
+  for (let i = 0; i < n; i++) d[i] = 0;
+  let i = 0;
+  while (i < n){
+    const hueco = Math.floor((0.04 + Math.random() * 0.22) * ctx.sampleRate);
+    const largo = Math.floor((0.004 + Math.random() * 0.012) * ctx.sampleRate);
+    const amp = 0.35 + Math.random() * 0.65;
+    for (let k = 0; k < largo && i + k < n; k++){
+      d[i + k] += (Math.random() * 2 - 1) * amp * Math.exp(-k / (largo * 0.28));
+    }
+    i += hueco;
+  }
+  return buf;
+}
+
+function tono(ctx, dest, t, { tipo = "sine", f0, f1, dur, vol, attack = 0.006, filtro }){
+  const osc = ctx.createOscillator();
+  const g = ctx.createGain();
+  osc.type = tipo;
+  osc.frequency.setValueAtTime(Math.max(1, f0), t);
+  if (f1 != null) osc.frequency.exponentialRampToValueAtTime(Math.max(1, f1), t + dur);
+  g.gain.setValueAtTime(0.0001, t);
+  g.gain.exponentialRampToValueAtTime(Math.max(0.0002, vol), t + attack);
+  g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+  let nodo = osc;
+  if (filtro){
+    const f = ctx.createBiquadFilter();
+    f.type = filtro.type;
+    f.Q.value = filtro.q || 1;
+    f.frequency.setValueAtTime(filtro.f0, t);
+    if (filtro.f1) f.frequency.exponentialRampToValueAtTime(Math.max(20, filtro.f1), t + dur);
+    osc.connect(f);
+    nodo = f;
+  }
+  nodo.connect(g).connect(dest);
+  osc.start(t);
+  osc.stop(t + dur + 0.03);
+}
+
+function soplo(ctx, dest, t, buf, { dur, vol, attack = 0.004, filtro, playback = 1 }){
+  const src = ctx.createBufferSource();
+  src.buffer = buf;
+  src.loop = buf.duration > dur;
+  src.playbackRate.value = playback;
+  const g = ctx.createGain();
+  g.gain.setValueAtTime(0.0001, t);
+  g.gain.exponentialRampToValueAtTime(Math.max(0.0002, vol), t + attack);
+  g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+  let nodo = src;
+  if (filtro){
+    const f = ctx.createBiquadFilter();
+    f.type = filtro.type;
+    f.Q.value = filtro.q || 0.85;
+    f.frequency.setValueAtTime(filtro.f0, t);
+    if (filtro.f1) f.frequency.exponentialRampToValueAtTime(Math.max(40, filtro.f1), t + dur);
+    src.connect(f);
+    nodo = f;
+  }
+  nodo.connect(g).connect(dest);
+  src.start(t);
+  src.stop(t + dur + 0.03);
+}
 
 export function sonidoUI(tipo = "click"){
   if (reduce()) return;
   try{
-    const AC = window.AudioContext || window.webkitAudioContext;
-    if (!AC) return;
-    sfxCtx ||= new AC();
-    if (sfxCtx.state === "suspended") sfxCtx.resume();
+    const m = motorAudio();
+    if (!m) return;
+    const { ctx, sfx, ruidoCorto } = m;
+    const t = ctx.currentTime;
+    const tactil = matchMedia("(pointer: coarse)").matches;
+    const perfil = document.documentElement.dataset.calidad || "alta";
 
-    const t = sfxCtx.currentTime;
+    if (tipo === "hover"){
+      if (tactil || perfil === "baja") return;
+      if (t * 1000 - ultimoHover < 90) return;
+      ultimoHover = t * 1000;
+      soplo(ctx, sfx, t, ruidoCorto, {
+        dur: 0.055, vol: 0.02, attack: 0.004,
+        filtro: { type: "highpass", f0: 2800, f1: 4200, q: 0.7 }
+      });
+      tono(ctx, sfx, t, {
+        tipo: "sine", f0: 268, f1: 176, dur: 0.09, vol: 0.014, attack: 0.01,
+        filtro: { type: "lowpass", f0: 900, f1: 420, q: 0.8 }
+      });
+      return;
+    }
 
     if (tipo === "click"){
-      // Golpe metálico corto con subgrave oscuro
-      const osc = sfxCtx.createOscillator();
-      const gain = sfxCtx.createGain();
-      osc.type = "triangle";
-      osc.frequency.setValueAtTime(140, t);
-      osc.frequency.exponentialRampToValueAtTime(32, t + 0.08);
+      if (performance.now() - ultimoClick < 42) return;
+      ultimoClick = performance.now();
+      tono(ctx, sfx, t, { tipo: "sine", f0: 68, f1: 26, dur: 0.15, vol: 0.26, attack: 0.004 });
+      tono(ctx, sfx, t, {
+        tipo: "triangle", f0: 196, f1: 52, dur: 0.12, vol: 0.15, attack: 0.005,
+        filtro: { type: "lowpass", f0: 980, f1: 220, q: 0.9 }
+      });
+      soplo(ctx, sfx, t, ruidoCorto, {
+        dur: 0.038, vol: 0.1, attack: 0.001,
+        filtro: { type: "highpass", f0: 2200, f1: 3600, q: 0.8 }
+      });
+      tono(ctx, sfx, t + 0.006, {
+        tipo: "sine", f0: 1760, f1: 820, dur: 0.14, vol: 0.038, attack: 0.002,
+        filtro: { type: "bandpass", f0: 1700, f1: 900, q: 7 }
+      });
+      return;
+    }
 
-      gain.gain.setValueAtTime(0.22, t);
-      gain.gain.exponentialRampToValueAtTime(0.001, t + 0.09);
+    if (tipo === "fuego"){
+      soplo(ctx, sfx, t, ruidoCorto, {
+        dur: 0.36, vol: 0.2, attack: 0.02,
+        filtro: { type: "bandpass", f0: 520, f1: 110, q: 1.1 }, playback: 0.85
+      });
+      tono(ctx, sfx, t, {
+        tipo: "sawtooth", f0: 74, f1: 22, dur: 0.3, vol: 0.11, attack: 0.02,
+        filtro: { type: "lowpass", f0: 340, f1: 90, q: 0.7 }
+      });
+      [0.05, 0.11, 0.18].forEach((dt, i) => {
+        soplo(ctx, sfx, t + dt, ruidoCorto, {
+          dur: 0.028 + i * 0.006, vol: 0.07 - i * 0.012, attack: 0.001,
+          filtro: { type: "highpass", f0: 1400, f1: 2600, q: 0.9 },
+          playback: 1.1 + i * 0.15
+        });
+      });
+      return;
+    }
 
-      // Chasquido de cuchillo / agudo
-      const noiseGain = sfxCtx.createGain();
-      const buffer = sfxCtx.createBuffer(1, sfxCtx.sampleRate * 0.03, sfxCtx.sampleRate);
-      const data = buffer.getChannelData(0);
-      for (let i = 0; i < data.length; i++) data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (sfxCtx.sampleRate * 0.006));
-      const noise = sfxCtx.createBufferSource();
-      noise.buffer = buffer;
-      noiseGain.gain.setValueAtTime(0.14, t);
-      noiseGain.gain.exponentialRampToValueAtTime(0.001, t + 0.03);
+    if (tipo === "tinta"){
+      soplo(ctx, sfx, t, ruidoCorto, {
+        dur: 0.4, vol: 0.15, attack: 0.03,
+        filtro: { type: "lowpass", f0: 220, f1: 55, q: 0.7 }, playback: 0.7
+      });
+      tono(ctx, sfx, t, { tipo: "sine", f0: 44, f1: 17, dur: 0.44, vol: 0.2, attack: 0.03 });
+      soplo(ctx, sfx, t, ruidoCorto, {
+        dur: 0.12, vol: 0.05, attack: 0.008,
+        filtro: { type: "highpass", f0: 700, f1: 1800, q: 0.8 }
+      });
+      return;
+    }
 
-      osc.connect(gain).connect(sfxCtx.destination);
-      noise.connect(noiseGain).connect(sfxCtx.destination);
+    if (tipo === "abrir"){
+      tono(ctx, sfx, t, { tipo: "sine", f0: 52, f1: 88, dur: 0.16, vol: 0.12, attack: 0.01 });
+      soplo(ctx, sfx, t, ruidoCorto, {
+        dur: 0.14, vol: 0.07, attack: 0.012,
+        filtro: { type: "bandpass", f0: 280, f1: 640, q: 1 }
+      });
+      tono(ctx, sfx, t + 0.02, { tipo: "triangle", f0: 240, f1: 140, dur: 0.1, vol: 0.06, attack: 0.008 });
+      return;
+    }
 
-      osc.start(t);
-      osc.stop(t + 0.1);
-      noise.start(t);
-    } else if (tipo === "hover"){
-      // Resonancia espectral ultraligera
-      const osc = sfxCtx.createOscillator();
-      const gain = sfxCtx.createGain();
-      osc.type = "sine";
-      osc.frequency.setValueAtTime(440, t);
-      osc.frequency.exponentialRampToValueAtTime(220, t + 0.05);
-
-      gain.gain.setValueAtTime(0.025, t);
-      gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.06);
-
-      osc.connect(gain).connect(sfxCtx.destination);
-      osc.start(t);
-      osc.stop(t + 0.06);
-    } else if (tipo === "fuego"){
-      // Ruptura ardiente
-      const osc = sfxCtx.createOscillator();
-      const gain = sfxCtx.createGain();
-      osc.type = "sawtooth";
-      osc.frequency.setValueAtTime(90, t);
-      osc.frequency.exponentialRampToValueAtTime(20, t + 0.22);
-
-      gain.gain.setValueAtTime(0.18, t);
-      gain.gain.exponentialRampToValueAtTime(0.001, t + 0.25);
-
-      osc.connect(gain).connect(sfxCtx.destination);
-      osc.start(t);
-      osc.stop(t + 0.25);
+    if (tipo === "cerrar"){
+      tono(ctx, sfx, t, { tipo: "sine", f0: 90, f1: 36, dur: 0.13, vol: 0.12, attack: 0.008 });
+      soplo(ctx, sfx, t, ruidoCorto, {
+        dur: 0.08, vol: 0.05, attack: 0.006,
+        filtro: { type: "lowpass", f0: 500, f1: 160, q: 0.8 }
+      });
     }
   }catch(_){}
 }
@@ -118,14 +306,20 @@ export function cenizas(){
   sprite("polvo",  "rgba(160,150,160,.9)", "rgba(120,110,120,.4)", "rgba(90,82,92,.08)");
 
   function medir(){
-    dprGlobal = Math.min(window.devicePixelRatio || 1, 2);
+    const perfil = aplicarCalidad();
+    const topeDpr = perfil === "baja" ? 1 : perfil === "media" ? 1.25 : 1.5;
+    dprGlobal = Math.min(window.devicePixelRatio || 1, topeDpr);
     an = lienzo.width  = Math.floor(window.innerWidth  * dprGlobal);
     al = lienzo.height = Math.floor(window.innerHeight * dprGlobal);
     lienzo.style.width  = window.innerWidth + "px";
     lienzo.style.height = window.innerHeight + "px";
 
-    const baseCount = Math.round(Math.min(230, Math.max(90, window.innerWidth / 7.5)));
-    particulas = Array.from({ length: baseCount }, (_, i) => nueva(i < baseCount * 0.4, true));
+    const cupo = perfil === "baja"
+      ? Math.round(Math.min(52, Math.max(28, window.innerWidth / 16)))
+      : perfil === "media"
+        ? Math.round(Math.min(110, Math.max(52, window.innerWidth / 11)))
+        : Math.round(Math.min(170, Math.max(70, window.innerWidth / 9)));
+    particulas = Array.from({ length: cupo }, (_, i) => nueva(i < cupo * 0.38, true));
   }
 
   function nueva(esBrasa = false, inicio = false){
@@ -167,7 +361,7 @@ export function cenizas(){
 
     // Estela de microchispas al mover el ratón rápidamente
     const velocidadCursor = Math.hypot(ratonVx, ratonVy);
-    if (velocidadCursor > 12 * dpr && Math.random() < 0.45){
+    if (document.documentElement.dataset.calidad !== "baja" && velocidadCursor > 12 * dpr && Math.random() < 0.45){
       chispasManuales.push({
         x: mx + (Math.random() - 0.5) * 16 * dpr,
         y: my + (Math.random() - 0.5) * 16 * dpr,
@@ -214,7 +408,7 @@ export function cenizas(){
     p.x += p.vx + p.osc + viento * arrastre;
     p.y += p.vy;
 
-    // Vórtice y repulsión física con el ratón
+    // Vórtice y repulsión física con el ratón (solo en calidad alta)
     if (hayCursor) {
       const dx = p.x - ratonX;
       const dy = p.y - ratonY;
@@ -245,16 +439,23 @@ export function cenizas(){
     return Math.min(1, Math.max(0, p.a * parpadeo * vida));
   }
 
+  let saltar = false;
   function pintar(ahora){
     tiempo = ahora || performance.now();
+    const perfil = document.documentElement.dataset.calidad || "alta";
+    if (perfil === "baja"){
+      saltar = !saltar;
+      if (saltar){ raf = requestAnimationFrame(pintar); return; }
+    }
     ctx.clearRect(0, 0, an, al);
     const dpr = dprGlobal;
     const radioInteraccion = 140 * dpr;
     const radioSq = radioInteraccion * radioInteraccion;
-    const hayCursor = (Date.now() - ultimoMovimiento) < 2000 && ratonX > 0;
+    const hayCursor = perfil === "alta" && (Date.now() - ultimoMovimiento) < 2000 && ratonX > 0;
     const viento = (Math.sin(tiempo * 0.00035) * 0.22 + Math.sin(tiempo * 0.0011 + 1.7) * 0.08) * dpr;
 
-    if (tiempo - ultimaRafaga > 1800 + Math.random() * 2400){
+    const esperaRafaga = perfil === "baja" ? 5200 : perfil === "media" ? 3200 : 1800;
+    if (tiempo - ultimaRafaga > esperaRafaga + Math.random() * 2400){
       ultimaRafaga = tiempo;
       rafaga();
     }
@@ -283,7 +484,7 @@ export function cenizas(){
       if (alfa <= 0.01) continue;
       ctx.globalAlpha = alfa;
 
-      if (p.chispaFuego){
+      if (p.chispaFuego && perfil !== "baja"){
         // Estela corta detrás de la chispa: cuanto más caliente, más larga
         const largo = 4 + p.temperatura * 4;
         ctx.strokeStyle = `rgb(255,${Math.round(150 + p.temperatura * 90)},70)`;
@@ -323,8 +524,14 @@ export function cenizas(){
   }
 
   medir();
-  window.addEventListener("resize", medir, { passive: true });
-  window.addEventListener("mousemove", actualizarRaton, { passive: true });
+  let resizeT = 0;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeT);
+    resizeT = setTimeout(medir, 140);
+  }, { passive: true });
+  if ((document.documentElement.dataset.calidad || "alta") !== "baja"){
+    window.addEventListener("mousemove", actualizarRaton, { passive: true });
+  }
 
   document.addEventListener("visibilitychange", () => {
     visible = !document.hidden;
@@ -338,6 +545,9 @@ export function cenizas(){
 /* Lanza una ráfaga de chispas ardientes en una posición (pantalla en px) */
 export function crearChispas(clientX, clientY, cantidad = 16){
   if (reduce()) return;
+  const perfil = document.documentElement.dataset.calidad || calidad();
+  if (perfil === "baja") cantidad = Math.min(cantidad, 5);
+  else if (perfil === "media") cantidad = Math.min(cantidad, 9);
   const dpr = dprGlobal;
   const px = clientX * dpr;
   const py = clientY * dpr;
@@ -365,31 +575,38 @@ export function crearChispas(clientX, clientY, cantidad = 16){
    beben la linterna, la brasa del cursor y el paralaje de la portada. */
 export function luzVacio(){
   if (reduce()) return;
+  const perfil = document.documentElement.dataset.calidad || aplicarCalidad();
+  if (perfil === "baja" || matchMedia("(pointer: coarse)").matches) return;
+
   let targetX = window.innerWidth / 2;
   let targetY = window.innerHeight / 2;
   let currentX = targetX;
   let currentY = targetY;
-  let animando = true;
+  let raf = 0;
+  let ultimoMovimiento = 0;
+
+  const seguir = () => {
+    currentX += (targetX - currentX) * 0.14;
+    currentY += (targetY - currentY) * 0.14;
+    document.documentElement.style.setProperty("--cursor-x", `${currentX.toFixed(1)}px`);
+    document.documentElement.style.setProperty("--cursor-y", `${currentY.toFixed(1)}px`);
+    const cerca = Math.abs(targetX - currentX) < 0.4 && Math.abs(targetY - currentY) < 0.4;
+    if (cerca && Date.now() - ultimoMovimiento > 180){
+      raf = 0;
+      return;
+    }
+    raf = requestAnimationFrame(seguir);
+  };
 
   window.addEventListener("mousemove", (e) => {
     targetX = e.clientX;
     targetY = e.clientY;
+    ultimoMovimiento = Date.now();
     if (!document.body.dataset.cursor) document.body.dataset.cursor = "1";
+    if (!raf) raf = requestAnimationFrame(seguir);
   }, { passive: true });
   document.documentElement.addEventListener("mouseleave", () => { delete document.body.dataset.cursor; });
   document.documentElement.addEventListener("mouseenter", () => { document.body.dataset.cursor = "1"; });
-
-  function animar(){
-    if (!animando) return;
-    currentX += (targetX - currentX) * 0.14;
-    currentY += (targetY - currentY) * 0.14;
-
-    document.documentElement.style.setProperty("--cursor-x", `${currentX.toFixed(1)}px`);
-    document.documentElement.style.setProperty("--cursor-y", `${currentY.toFixed(1)}px`);
-
-    requestAnimationFrame(animar);
-  }
-  animar();
 }
 
 /* ---------------- Tarjetas con Tilt 3D y Brillo Especular HD ---------------- */
@@ -445,9 +662,10 @@ export function ondasClic(){
     const x = e.clientX;
     const y = e.clientY;
 
-    // Disparar sonido y chispas
-    sonidoUI("click");
-    crearChispas(x, y, 14);
+    const propio = e.target.closest("#abrir-buscador, #abrir-menu, .btn-esc, [data-cerrar]");
+    if (!propio) sonidoUI("click");
+    const perfil = document.documentElement.dataset.calidad || calidad();
+    if (perfil !== "baja") crearChispas(x, y, perfil === "media" ? 7 : 14);
 
     // Crear onda visual de sangre / choque
     const onda = document.createElement("div");
@@ -552,9 +770,7 @@ export function reservaImagenes(){
   }, true);
 }
 
-/* ---------------- Ambiente sonoro sintetizado de alta fidelidad ---------------- */
-let audioCtx = null, nodos = null;
-
+/* ---------------- Ambiente sonoro: viento, drones y brasas ---------------- */
 export function ambiente(){
   const boton = $("#alternar-audio");
   if (!boton) return;
@@ -565,65 +781,101 @@ export function ambiente(){
 }
 
 function encenderAmbiente(boton){
-  const AC = window.AudioContext || window.webkitAudioContext;
-  if (!AC) return;
-  audioCtx ||= new AC();
-  audioCtx.resume();
+  const m = motorAudio();
+  if (!m) return;
+  apagarNodosAmb(true);
 
-  const salida = audioCtx.createGain();
-  salida.gain.value = 0;
-  salida.connect(audioCtx.destination);
+  const { ctx, amb, ruidoRosa, crepitar } = m;
+  const t0 = ctx.currentTime;
 
-  // Ruido rosa filtrado (el viento abisal)
-  const largo = audioCtx.sampleRate * 4;
-  const buffer = audioCtx.createBuffer(1, largo, audioCtx.sampleRate);
-  const datos = buffer.getChannelData(0);
-  let b0 = 0, b1 = 0, b2 = 0;
-  for (let i = 0; i < largo; i++){
-    const blanco = Math.random() * 2 - 1;
-    b0 = 0.99765 * b0 + blanco * 0.0990460;
-    b1 = 0.96300 * b1 + blanco * 0.2965164;
-    b2 = 0.57000 * b2 + blanco * 1.0526913;
-    datos[i] = (b0 + b1 + b2 + blanco * 0.1848) * 0.14;
-  }
-  const ruido = audioCtx.createBufferSource();
-  ruido.buffer = buffer; ruido.loop = true;
-  const paso = audioCtx.createBiquadFilter();
-  paso.type = "lowpass"; paso.frequency.value = 380; paso.Q.value = 0.8;
-  ruido.connect(paso).connect(salida);
+  const viento = ctx.createBufferSource();
+  viento.buffer = ruidoRosa; viento.loop = true;
+  const paso = ctx.createBiquadFilter();
+  paso.type = "lowpass"; paso.frequency.value = 340; paso.Q.value = 0.75;
+  const gViento = ctx.createGain(); gViento.gain.value = 0.55;
+  viento.connect(paso).connect(gViento).connect(amb);
 
-  // Drone grave lovecraftiano con 3 osciladores armónicos
-  const drone = audioCtx.createGain(); drone.gain.value = 0.07;
-  [43.6, 55.0, 82.4].forEach((f, i) => {
-    const o = audioCtx.createOscillator();
-    o.type = i === 2 ? "triangle" : "sine";
-    o.frequency.value = f;
-    const g = audioCtx.createGain(); g.gain.value = i === 2 ? 0.4 : 0.85;
-    o.connect(g).connect(drone); o.start();
+  const aire = ctx.createBufferSource();
+  aire.buffer = ruidoRosa; aire.loop = true;
+  const hpAire = ctx.createBiquadFilter();
+  hpAire.type = "highpass"; hpAire.frequency.value = 2100; hpAire.Q.value = 0.6;
+  const gAire = ctx.createGain(); gAire.gain.value = 0.07;
+  aire.connect(hpAire).connect(gAire).connect(amb);
+
+  const drone = ctx.createGain(); drone.gain.value = 0.09;
+  const osciladores = [];
+  [[36.7, "sine", 0.9], [55.0, "sine", 0.75], [55.35, "sine", 0.28], [82.4, "triangle", 0.38], [110.0, "sine", 0.16]].forEach(([f, tipo, vol]) => {
+    const o = ctx.createOscillator();
+    o.type = tipo; o.frequency.value = f;
+    const g = ctx.createGain(); g.gain.value = vol;
+    o.connect(g).connect(drone);
+    o.start();
+    osciladores.push(o);
   });
-  drone.connect(salida);
+  drone.connect(amb);
 
-  // LFO de respiración espectral
-  const lfo = audioCtx.createOscillator(); lfo.frequency.value = 0.065;
-  const lfoG = audioCtx.createGain(); lfoG.gain.value = 160;
-  lfo.connect(lfoG).connect(paso.frequency); lfo.start();
+  const lfo = ctx.createOscillator(); lfo.frequency.value = 0.055;
+  const lfoG = ctx.createGain(); lfoG.gain.value = 140;
+  lfo.connect(lfoG).connect(paso.frequency);
+  lfo.start();
 
-  ruido.start();
-  salida.gain.linearRampToValueAtTime(0.55, audioCtx.currentTime + 2.5);
-  nodos = { salida, ruido, lfo };
+  const chispas = ctx.createBufferSource();
+  chispas.buffer = crepitar; chispas.loop = true;
+  const bpChispa = ctx.createBiquadFilter();
+  bpChispa.type = "bandpass"; bpChispa.frequency.value = 1600; bpChispa.Q.value = 1.6;
+  const gChispa = ctx.createGain(); gChispa.gain.value = 0.045;
+  chispas.connect(bpChispa).connect(gChispa).connect(amb);
+
+  const lfoChispa = ctx.createOscillator(); lfoChispa.frequency.value = 0.18;
+  const lfoChispaG = ctx.createGain(); lfoChispaG.gain.value = 0.028;
+  lfoChispa.connect(lfoChispaG).connect(gChispa.gain);
+  lfoChispa.start();
+
+  viento.start();
+  aire.start();
+  chispas.start();
+
+  amb.gain.cancelScheduledValues(t0);
+  amb.gain.setValueAtTime(amb.gain.value, t0);
+  amb.gain.linearRampToValueAtTime(0.42, t0 + 2.8);
+
+  const gemido = setInterval(() => {
+    if (!audioMotor?.nodosAmb) return;
+    const t = ctx.currentTime;
+    tono(ctx, amb, t, {
+      tipo: "sawtooth", f0: 48 + Math.random() * 18, f1: 22, dur: 1.6, vol: 0.035, attack: 0.2,
+      filtro: { type: "lowpass", f0: 180, f1: 70, q: 0.8 }
+    });
+  }, 14000 + Math.random() * 8000);
+
+  m.nodosAmb = { viento, aire, chispas, lfo, lfoChispa, osciladores, gemido };
   boton.setAttribute("aria-pressed", "true");
   boton.title = "Silenciar ambiente";
   sonidoUI("fuego");
 }
 
+function apagarNodosAmb(inmediato = false){
+  const m = audioMotor;
+  if (!m?.nodosAmb) return;
+  const { ctx, amb } = m;
+  const t = ctx.currentTime;
+  amb.gain.cancelScheduledValues(t);
+  amb.gain.setValueAtTime(amb.gain.value, t);
+  amb.gain.linearRampToValueAtTime(0, t + (inmediato ? 0.05 : 0.85));
+  const nodos = m.nodosAmb;
+  m.nodosAmb = null;
+  clearInterval(nodos.gemido);
+  const cortar = () => {
+    try{ nodos.viento.stop(); nodos.aire.stop(); nodos.chispas.stop(); }catch(_){}
+    try{ nodos.lfo.stop(); nodos.lfoChispa.stop(); }catch(_){}
+    (nodos.osciladores || []).forEach(o => { try{ o.stop(); }catch(_){} });
+  };
+  if (inmediato) cortar();
+  else setTimeout(cortar, 900);
+}
+
 function apagarAmbiente(boton){
-  if (nodos && audioCtx){
-    const t = audioCtx.currentTime;
-    nodos.salida.gain.cancelScheduledValues(t);
-    nodos.salida.gain.setValueAtTime(nodos.salida.gain.value, t);
-    nodos.salida.gain.linearRampToValueAtTime(0, t + 0.8);
-    setTimeout(() => { try{ nodos.ruido.stop(); nodos.lfo.stop(); }catch(_){} nodos = null; }, 900);
-  }
+  apagarNodosAmb(false);
   boton.setAttribute("aria-pressed", "false");
   boton.title = "Ambiente sonoro";
 }
@@ -632,12 +884,17 @@ function apagarAmbiente(boton){
 export function menuMovil(){
   const boton = $("#abrir-menu"), nav = $("#nav");
   if (!boton || !nav) return;
-  const cerrar = () => { nav.dataset.abierto = "false"; boton.setAttribute("aria-expanded", "false"); };
+  const cerrar = () => {
+    nav.dataset.abierto = "false";
+    boton.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+  };
   boton.addEventListener("click", () => {
     const abierto = nav.dataset.abierto === "true";
     nav.dataset.abierto = String(!abierto);
     boton.setAttribute("aria-expanded", String(!abierto));
-    sonidoUI("click");
+    document.body.style.overflow = abierto ? "" : "hidden";
+    sonidoUI(abierto ? "cerrar" : "abrir");
   });
   nav.addEventListener("click", e => { if (e.target.tagName === "A") cerrar(); });
   window.addEventListener("hashchange", cerrar);

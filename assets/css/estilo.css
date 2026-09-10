@@ -68,7 +68,8 @@
   --ancho:1240px;
   --ancho-texto:72ch;
   --radio:4px;
-  --cabecera-alto:76px;
+  --cabecera-alto:calc(76px + env(safe-area-inset-top, 0px));
+  --toque:44px;
 
   /* --- Sombras y Resplandores --- */
   --sombra-1:0 2px 8px rgba(0,0,0,.6);
@@ -106,6 +107,7 @@ html{
   scroll-behavior:smooth;
   scroll-padding-top:calc(var(--cabecera-alto) + var(--e5));
   -webkit-text-size-adjust:100%;
+  -webkit-tap-highlight-color:rgba(255,32,46,.16);
 }
 
 body{
@@ -193,7 +195,9 @@ input[type="search"]::-webkit-search-decoration{-webkit-appearance:none; appeara
   position:sticky; top:0; z-index:40;
   height:var(--cabecera-alto);
   display:flex; align-items:center; justify-content:space-between;
-  padding-inline:clamp(1.2rem, 3.5vw, 2.5rem);
+  padding-top:env(safe-area-inset-top, 0px);
+  padding-inline:max(clamp(1rem, 3.5vw, 2.5rem), env(safe-area-inset-left, 0px))
+                max(clamp(1rem, 3.5vw, 2.5rem), env(safe-area-inset-right, 0px));
   background:linear-gradient(180deg, rgba(10,7,14,0.88), rgba(8,6,11,0.78));
   backdrop-filter:blur(18px) saturate(160%);
   -webkit-backdrop-filter:blur(18px) saturate(160%);
@@ -202,7 +206,7 @@ input[type="search"]::-webkit-search-decoration{-webkit-appearance:none; appeara
   transition:height .32s var(--sal), background .3s ease, box-shadow .3s ease;
 }
 /* Al bajar, la cabecera se comprime y se oscurece (body[data-compacta] lo pone efectos.js) */
-body[data-compacta]{--cabecera-alto:60px}
+body[data-compacta]{--cabecera-alto:calc(60px + env(safe-area-inset-top, 0px))}
 body[data-compacta] .cabecera{
   background:linear-gradient(180deg, rgba(7,5,10,0.95), rgba(6,4,9,0.9));
   box-shadow:0 12px 40px rgba(0,0,0,0.8), 0 1px 0 rgba(255,32,46,0.22);
@@ -314,18 +318,32 @@ body[data-compacta] .marca-titulo{font-size:1.15rem}
 
 @media(max-width:960px){
   .btn-menu{display:inline-flex}
+  .kbd-pista{display:none}
   .nav{
     position:fixed; top:var(--cabecera-alto); right:0; left:0;
-    background:rgba(8,6,11,0.96); backdrop-filter:blur(22px);
-    flex-direction:column; padding:1.5rem; gap:.6rem;
+    z-index:39;
+    background:rgba(8,6,11,0.97); backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    flex-direction:column; padding:1.1rem 1.1rem calc(1.4rem + env(safe-area-inset-bottom, 0px));
+    gap:.45rem;
     border-bottom:1px solid var(--linea-brillo);
+    box-shadow:0 24px 50px rgba(0,0,0,.85);
+    max-height:calc(100dvh - var(--cabecera-alto));
+    overflow-y:auto;
     transform:translateY(-120%); opacity:0; pointer-events:none;
     transition:transform .3s var(--sal), opacity .3s ease;
   }
   .nav[data-abierto="true"]{
     transform:translateY(0); opacity:1; pointer-events:auto;
   }
-  .nav a{width:100%; text-align:center; padding:.8rem}
+  .nav a{
+    width:100%; text-align:center;
+    min-height:var(--toque); padding:.95rem 1rem;
+    font-size:1.12rem; letter-spacing:.14em;
+    border:1px solid rgba(255,32,46,.12);
+    background:rgba(18,12,22,.55);
+  }
+  .nav a[aria-current="page"]{border-color:rgba(255,32,46,.45)}
 }
 
 /* ============================================================
@@ -692,6 +710,7 @@ body[data-compacta] .marca-titulo{font-size:1.15rem}
   text-decoration:none; color:inherit; overflow:hidden;
   transition:border-color .28s ease, transform .28s var(--sal), box-shadow .28s ease;
   position:relative; isolation:isolate;
+  content-visibility:auto; contain-intrinsic-size:auto 460px;
 }
 .ficha:hover{
   border-color:rgba(255,32,46,0.9);
@@ -1405,6 +1424,7 @@ a.chip:active{transform:translateY(1px) scale(.97); transition-duration:.06s}
   position:relative;
   box-shadow:0 12px 40px rgba(0,0,0,0.7);
   transition:transform .32s var(--sal), border-color .28s ease, box-shadow .32s ease;
+  content-visibility:auto; contain-intrinsic-size:auto 380px;
 }
 .tarjeta-mapa:hover{
   transform:translateY(-6px);
@@ -1902,6 +1922,7 @@ a.chip:active{transform:translateY(1px) scale(.97); transition-duration:.06s}
   position:relative;
   box-shadow:0 12px 35px rgba(0,0,0,0.7);
   transition:transform .32s var(--sal), border-color .28s ease, box-shadow .32s ease;
+  content-visibility:auto; contain-intrinsic-size:auto 280px;
 }
 .tarjeta-mecanica:hover{
   transform:translateY(-5px);
@@ -2643,6 +2664,161 @@ a.chip:active{transform:translateY(1px) scale(.97); transition-duration:.06s}
   .cabecera,.marca-emblema,.marca-titulo{transition:none}
   .pod-barra i{transform:none}
   .ficha-lienzo::before{display:none}
+}
+
+/* ============================================================
+   16. TELÉFONO, TABLET Y TÁCTIL
+   Misma identidad visual, tipografía y tap targets pensados
+   para 390–430 (móvil) y 768–1024 (tablet).
+   ============================================================ */
+.contenedor{
+  padding-inline:max(clamp(1rem, 3.5vw, 2.5rem), env(safe-area-inset-left, 0px))
+                max(clamp(1rem, 3.5vw, 2.5rem), env(safe-area-inset-right, 0px));
+}
+.boton, .filtro, .btn-icono, .pista-play, .nav-ficha-btn, .btn-baliza-item, .nav a{
+  min-height:var(--toque);
+  touch-action:manipulation;
+}
+.btn-icono{min-width:var(--toque)}
+
+@media (hover:none){
+  .ficha:hover, .tarjeta-mapa:hover, .tarjeta-mecanica:hover,
+  .pod-stat:hover, .mosaico figure:hover, .pista:hover, .boton:hover,
+  .boton[data-variante="lleno"]:hover{
+    transform:none;
+  }
+  .ficha:active, .tarjeta-mapa:active, .tarjeta-mecanica:active, .pod-stat:active{
+    transform:scale(.985); border-color:rgba(255,32,46,.8);
+  }
+  .ficha:hover .ficha-lienzo img{transform:none}
+}
+
+/* Tablet (retrato y paisaje corto) */
+@media (max-width:1100px){
+  .rejilla, .rejilla[data-densa]{grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap:1.2rem}
+  .rejilla-mapas, .rejilla-mecanicas{grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:1.2rem}
+  .rejilla-pods{grid-template-columns:repeat(3, 1fr)}
+  .heroe{min-height:min(88vh, 100svh); padding:2rem 1.2rem 4.5rem}
+  .cabecera{backdrop-filter:blur(12px) saturate(140%); -webkit-backdrop-filter:blur(12px) saturate(140%)}
+}
+
+/* Tablet estrecha / móvil grande */
+@media (max-width:860px){
+  .rejilla-pods{grid-template-columns:repeat(2, 1fr); gap:0.9rem}
+  .pod-valor{font-size:2.3rem}
+  .mosaico{column-count:2}
+  .entrada-titulo{font-size:clamp(2.2rem, 11vw, 4rem)}
+  .barra-filtros{
+    display:flex; flex-wrap:wrap; gap:.5rem;
+  }
+  .buscador-local{
+    flex:1 1 100%; margin-left:0; order:-1;
+    padding:.55rem .85rem;
+  }
+  .buscador-local input{width:100%; min-width:0; font-size:1rem}
+  .filtro{min-height:var(--toque); padding:.55rem 1rem}
+  .reproductor{
+    bottom:calc(.7rem + env(safe-area-inset-bottom, 0px));
+    padding:1rem 1.1rem; gap:1rem;
+  }
+  .pista{padding:.9rem 1rem; gap:.85rem}
+  .pista-dur{display:none}
+  .paleta{padding:calc(var(--cabecera-alto) + .6rem) .7rem .7rem; place-items:stretch}
+  .paleta-caja{max-width:none; max-height:calc(100dvh - var(--cabecera-alto) - 1.2rem); display:flex; flex-direction:column}
+  .paleta-lista{max-height:none; flex:1}
+  .paleta-pie{display:none}
+  .paleta-fondo{backdrop-filter:blur(10px)}
+  .lupa{padding:1rem; padding-top:calc(1rem + env(safe-area-inset-top, 0px))}
+  .lupa img{max-width:100%; max-height:72dvh}
+  .lupa-cerrar{top:calc(.8rem + env(safe-area-inset-top, 0px)); right:.8rem}
+}
+
+/* Teléfono */
+@media (max-width:700px){
+  :root{--cabecera-alto:calc(62px + env(safe-area-inset-top, 0px))}
+  body[data-compacta]{--cabecera-alto:calc(56px + env(safe-area-inset-top, 0px))}
+  .marca-titulo{font-size:1.05rem; letter-spacing:.08em}
+  .marca-sub{letter-spacing:.2em; font-size:.68rem}
+  .marca-emblema{width:34px; height:34px}
+  .marca{gap:.55rem}
+
+  .heroe{
+    min-height:auto;
+    padding:1.2rem .9rem 3.6rem;
+  }
+  .heroe-linea-doom,
+  .heroe-linea-paradox{
+    font-size:clamp(2.45rem, 17.5vw, 4.4rem);
+    letter-spacing:.06em;
+    margin-left:0;
+    white-space:nowrap;
+  }
+  .heroe-sello{
+    display:block; margin-inline:.2rem;
+    padding:.75rem .9rem .7rem;
+  }
+  .heroe-lema-clasico{
+    letter-spacing:.08em; font-size:.78rem; line-height:1.35;
+  }
+  .heroe-bajada-clasica{font-size:1rem; margin-bottom:1.6rem; padding-inline:.2rem}
+  .heroe-tag-comunidad{letter-spacing:.18em; font-size:.72rem; margin-bottom:1rem}
+  .heroe-scroll{bottom:.8rem; letter-spacing:.2em; font-size:.68rem}
+  .botones{flex-direction:column; align-items:stretch; gap:.7rem}
+  .heroe .botones .boton, .altar-lore .botones .boton{width:100%}
+  .boton{padding:.95rem 1.2rem; font-size:1.02rem}
+
+  .rejilla, .rejilla[data-densa],
+  .rejilla-mapas, .rejilla-mecanicas{grid-template-columns:1fr; gap:1rem}
+  .rejilla-pods{grid-template-columns:repeat(2, 1fr); gap:.7rem}
+  .pod-stat{padding:1rem .9rem}
+  .pod-nombre{font-size:.86rem; letter-spacing:.08em}
+  .seccion{padding-block:2.2rem}
+  .banda{padding:2.2rem 1rem 1.8rem}
+  .banda-titulo{font-size:clamp(1.7rem, 9vw, 2.6rem); padding:.5rem 1rem}
+  .altar-lore{padding:1.6rem 1.1rem; margin-block:1rem}
+  .cita-bloque{font-size:1.35rem}
+  .altar-marca{width:180px; height:180px; right:-30px; bottom:-40px}
+
+  .ficha-nombre{font-size:1.25rem}
+  .entrada-heroe{padding:1.6rem 0 1.4rem}
+  .entrada-alias{font-size:1.2rem}
+  .dossier-grid{grid-template-columns:1fr 1fr; padding:1rem}
+  .cuerpo-entrada{margin-top:1.6rem; gap:1.6rem}
+  .habilidad-card, .consejo-card, .skin-card{padding:1.1rem 1rem}
+  .habilidad-header{gap:.5rem}
+  .habilidad-badges{margin-left:0; width:100%}
+  .barra-navegacion-fichas{flex-direction:column; align-items:stretch; gap:.7rem}
+  .nav-ficha-btn.next{text-align:left}
+
+  .mapa-terminal-grid, .mecanica-layout-grid, .mecanica-header-layout{grid-template-columns:1fr; gap:1.2rem}
+  .mapa-titulo-principal, .mecanica-titulo-principal{font-size:clamp(1.8rem, 9vw, 2.6rem)}
+  .mapa-visor{aspect-ratio:4/3}
+  .mecanica-prosa{padding:1.2rem 1.1rem}
+
+  .mosaico{column-count:1}
+  .pie{
+    margin-top:3.2rem;
+    padding:3.2rem 1.1rem calc(2.2rem + env(safe-area-inset-bottom, 0px));
+  }
+  .pie-nav{gap:.85rem 1.1rem}
+  .pie-lema{font-size:1.35rem}
+
+  .paleta-campo{padding:1rem 1rem}
+  .paleta-campo input{font-size:1.05rem}
+}
+
+@media (max-width:400px){
+  .rejilla-pods{grid-template-columns:1fr 1fr}
+  .heroe-lema-clasico{letter-spacing:.04em; font-size:.7rem}
+  .dossier-grid{grid-template-columns:1fr}
+}
+
+@media (max-height:540px) and (orientation:landscape){
+  .heroe{min-height:auto; padding:1rem 1.2rem 2.4rem}
+  .heroe-sigilo{width:72px; height:72px; margin-bottom:.6rem}
+  .heroe-emblema-fondo{width:52px; height:52px}
+  .heroe-linea-doom, .heroe-linea-paradox{font-size:clamp(2rem, 10vw, 3.2rem)}
+  .heroe-scroll{display:none}
 }
 
 /* En impresión, el HUD sobra. */
