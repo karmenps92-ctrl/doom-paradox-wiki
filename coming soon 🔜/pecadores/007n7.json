@@ -1,0 +1,65 @@
+{
+  "id": "007n7",
+  "nombre": "007n7",
+  "alias": "El doctor de dos modos",
+  "origen": "Roblox clásico",
+  "clase": "Soporte",
+  "estado": "canon",
+  "imagen": "",
+  "resumen": "Cambia de moveset completo a voluntad: modo Doctor para curar y frenar, modo c00l para moverse y resucitar.",
+  "descripcion": "## Cómo juega\n007n7 es el pecador más técnico del roster: su habilidad principal no ataca ni cura, **cambia sus otras habilidades**. Con Swich alterna entre dos identidades con papeles opuestos.\n\nEl modo Doctor sostiene al equipo: cura en área y aturde al verdugo. El modo c00l lo convierte en un fantasma capaz de aparecer en cualquier punto del mapa y de dejarse a sí mismo una segunda vida.\n\n## Estado\nSu render se va a actualizar y sus skins están delegadas: S.U.A dijo que ese apartado no se le ocurría y lo dejó en manos del equipo de arte.",
+  "habilidades": [
+    {
+      "nombre": "Swich",
+      "tipo": "activa",
+      "enfriamiento": "",
+      "texto": "Cambia por completo el moveset entre los dos modos: Doctor y c00l."
+    },
+    {
+      "nombre": "Sh00ck",
+      "tipo": "modo Doctor",
+      "enfriamiento": "",
+      "texto": "Una descarga eléctrica que cura a todos los pecadores a su alrededor a costa de 10 puntos de su propia stamina."
+    },
+    {
+      "nombre": "C00lgui field",
+      "tipo": "modo Doctor",
+      "enfriamiento": "",
+      "texto": "Crea una onda expansiva que empuja unos centímetros hacia atrás y deja al verdugo aturdido."
+    },
+    {
+      "nombre": "Teleportation",
+      "tipo": "modo c00l",
+      "enfriamiento": "",
+      "texto": "Se teletransporta a cualquier zona del mapa que marque con un clic."
+    },
+    {
+      "nombre": "Emergency respawn point",
+      "tipo": "modo c00l",
+      "enfriamiento": "",
+      "texto": "Cada habilidad que usa llena una barra. Al completarse, 007n7 deja en el suelo una hamburguesa igual que la de su cabeza: recogerla concede una segunda vida."
+    }
+  ],
+  "consejos": [
+    "Cambia a Doctor cuando el equipo esté agrupado: Sh00ck cura a todos los que tengas cerca.",
+    "El aturdimiento de C00lgui field vale más para salvar a un compañero enganchado que para escapar tú.",
+    "Deja el punto de respawn antes de arriesgarte, no después."
+  ],
+  "curiosidades": [
+    "Tiene pantalla de carga propia.",
+    "Se enfrenta en LMS a dos verdugos distintos: c00ldud y Noli."
+  ],
+  "verdugos": [
+    "c00ldud",
+    "noli"
+  ],
+  "mapas": [],
+  "ost": [],
+  "etiquetas": [
+    "soporte",
+    "curación",
+    "movilidad"
+  ],
+  "actualizado": "2026-08-31",
+  "fuente": "#pecadores, 21/8/2026"
+}

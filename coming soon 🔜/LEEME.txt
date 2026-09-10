@@ -1,0 +1,70 @@
+COMING SOON
+===========
+
+Estas fichas se sacaron de la wiki en vivo porque no tienen retrato
+(el archivo principal que usan las tarjetas y la ficha: por lo general
+assets/img/<seccion>/<id>.jpg). LEEME.txt de las carpetas de imagen no cuenta.
+
+Nada de su informacion se ha perdido: cada objeto JSON esta intacto
+en los catalogos de esta carpeta y tambien en un archivo por personaje.
+
+Para restaurar una ficha:
+  1. Copia el objeto de vuelta a datos/verdugos.json o datos/pecadores.json
+     (dentro de "entradas"). Tambien puedes copiar el archivo individual
+     coming soon /<seccion>/<id>.json.
+  2. Anade el retrato en assets/img/<seccion>/<id>.jpg
+     (o actualiza el campo "imagen" si usas otra ruta/extension).
+  3. Ejecuta: node scripts/validar.mjs
+
+VERDUGOS archivados (12):
+  - sally  ·  Sally
+  - gold  ·  Gold
+  - paciente-0  ·  Paciente 0
+  - domeli  ·  Domelí
+  - flesharal  ·  Flesharal
+  - pac-oni  ·  Pac-Oni
+  - 0-0  ·  0_0
+  - yi-xi  ·  Yi Xi
+  - winky  ·  Winky
+  - jason-voorhees  ·  Jason Voorhees
+  - slenderman  ·  Slenderman
+  - jeff-the-killer  ·  Jeff The Killer
+
+VERDUGOS que siguen en la wiki (12):
+  - dpx  ·  DPX
+  - noli  ·  Noli
+  - c00ldud  ·  c00ldud
+  - flowers  ·  Flowers
+  - neor  ·  Neor
+  - 1x1x1x1  ·  1x1x1x1
+  - john-doe  ·  John Doe
+  - herobrine  ·  Herobrine
+  - wood-stone  ·  Wood Stone
+  - mr-scoler  ·  MR-Scoler
+  - booner  ·  Booner
+  - ronn  ·  Ronn
+
+PECADORES archivados (20):
+  - 007n7  ·  007n7
+  - gen-e-s15  ·  Gen-E-S15
+  - latt  ·  Latt
+  - shedletsky  ·  Shedletsky
+  - kittycake  ·  Kittycake
+  - konut  ·  Konut
+  - jane-doe  ·  Jane Doe
+  - steve  ·  Steve
+  - andromeda  ·  Andrómeda
+  - benny  ·  Benny
+  - yiyi  ·  Yiyi
+  - rubi  ·  Rubí
+  - pinguinikula  ·  Pingüinikula
+  - mazer  ·  Mazer
+  - roen  ·  Roen
+  - monschesse  ·  Monschesse
+  - pot  ·  Pot
+  - evelyn  ·  Evelyn
+  - vicon-e  ·  Vicon E
+  - camper  ·  Camper
+
+PECADORES que siguen en la wiki (0):
+  (ninguno: no habia retratos en assets/img/pecadores/)

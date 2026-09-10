@@ -1,0 +1,30 @@
+{
+  "id": "gold",
+  "nombre": "Gold",
+  "alias": "",
+  "origen": "Hypnos Lullaby",
+  "peligro": 4,
+  "estado": "canon",
+  "imagen": "",
+  "resumen": "Moveset ya escrito por S.U.A, pendiente de limpiar. Su arte usa un efecto de nieve muy fiel al manga que lo inspira.",
+  "descripcion": "El moveset de Gold está escrito y guardado: falta pasarlo a limpio, hacerle el chase theme y el modelo. S.U.A quería encargarse personalmente de su voz.\n\nSu duelo de LMS es un espejo: **Goldens contra Goldens**.",
+  "habilidades": [],
+  "skins": [
+    {
+      "nombre": "Thornclaw",
+      "texto": "En vez de flor, raices marchitas. Concepto de cyn_rebelcream reciclado de un personaje anterior y aceptado por S.U.A como skin de Gold."
+    }
+  ],
+  "consejos": [],
+  "curiosidades": [
+    "El efecto de nieve de su arte se elogió en el canal de artes por lo fiel que es al manga de referencia."
+  ],
+  "mapas": [],
+  "ost": [],
+  "pecadores": [],
+  "etiquetas": [
+    "moveset-pendiente"
+  ],
+  "actualizado": "2026-08-31",
+  "fuente": "#música-doblaje y #artes, 17-21/8/2026"
+}

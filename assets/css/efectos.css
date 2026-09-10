@@ -1,7 +1,8 @@
 /* ============================================================
-   DOOM PARADOX · WIKI — Motor de Efectos Visuales (VFX HD 3.0)
+   DOOM PARADOX · WIKI — Motor de Efectos Visuales (VFX HD 3.4)
    Atmósfera inmersiva, cenizas vivas, iluminación espectral,
-   glitch cuántico y deformaciones lovecraftianas a 60-120fps.
+   apertura cinematográfica, sellos de humo animados y glitch
+   lovecraftiano a 60-120fps. Todo sobre transform / opacity.
    ============================================================ */
 
 /* ---------- Luz del Vacío (Linterna interactiva HD) ---------- */
@@ -18,6 +19,26 @@
   transition:opacity .4s ease;
   will-change:background;
 }
+
+/* ---------- Brasa del cursor: un anillo que sigue al puntero ----------
+   No sustituye al cursor nativo; solo lo acompaña con un rastro
+   de sangre que se retrasa un poco (lerp en efectos.js). */
+.cursor-brasa{
+  position:fixed; left:0; top:0; z-index:96; pointer-events:none;
+  width:26px; height:26px; border-radius:50%;
+  border:1px solid rgba(255,32,46,.6);
+  box-shadow:0 0 14px rgba(255,32,46,.5), inset 0 0 8px rgba(255,32,46,.35);
+  transform:translate(calc(var(--cursor-x, -200px) - 13px), calc(var(--cursor-y, -200px) - 13px));
+  opacity:0; transition:opacity .5s ease;
+  will-change:transform;
+}
+.cursor-brasa::after{
+  content:""; position:absolute; inset:9px; border-radius:50%;
+  background:var(--sangre-viva); box-shadow:0 0 10px var(--sangre-viva);
+  animation:hud-latido 1.6s ease-in-out infinite;
+}
+body[data-cursor] .cursor-brasa{opacity:.9}
+@media (pointer:coarse){.cursor-brasa{display:none}}
 
 /* ---------- Grano de película de 35mm HD ---------- */
 .capa-grano{
@@ -81,9 +102,25 @@
 @keyframes derivar3{to{transform:translate(14vw,-16vh) scale(1.18) rotate(10deg)}}
 @keyframes derivar4{to{transform:translate(-12vw,18vh) scale(1.35) rotate(-12deg)}}
 
+/* ---------- Bruma de sangre: calor que ondula al pie de la pantalla ---------- */
+.capa-bruma{
+  position:fixed; left:-12%; right:-12%; bottom:-14vh; height:46vh;
+  z-index:1; pointer-events:none; mix-blend-mode:screen;
+  background:
+    radial-gradient(58% 80% at 28% 100%, rgba(179,14,22,.26), transparent 70%),
+    radial-gradient(46% 72% at 72% 100%, rgba(255,106,61,.12), transparent 70%),
+    radial-gradient(90% 40% at 50% 100%, rgba(120,10,16,.22), transparent 75%);
+  animation:bruma-ondula 18s ease-in-out infinite alternate;
+  will-change:transform;
+}
+@keyframes bruma-ondula{
+  from{transform:translate3d(-2%, 1.5vh, 0) scaleX(1.02)}
+  to{transform:translate3d(2%, -1.5vh, 0) scaleX(1.1)}
+}
+
 /* ---------- Capa de cenizas y chispas (Canvas) ---------- */
 .capa-cenizas{
-  position:fixed; inset:0; z-index:2; pointer-events:none; opacity:.92;
+  position:fixed; inset:0; z-index:2; pointer-events:none; opacity:.94;
 }
 
 /* ---------- Transición de tinta entre páginas ---------- */
@@ -103,18 +140,75 @@
 @keyframes tinta-entra{from{clip-path:circle(0% at 50% 50%)} to{clip-path:circle(98% at 50% 50%)}}
 @keyframes tinta-sale{from{clip-path:circle(98% at 50% 50%)} to{clip-path:circle(0% at 50% 50%)}}
 
-/* ---------- Aparición progresiva con desvanecimiento de tinta ---------- */
+/* ---------- Apertura del archivo (una vez por sesión) ----------
+   Se cierra sola por CSS a los ~2.4s aunque el JS no llegue; el
+   JS la adelanta a 1.2s y la deja saltar con clic o tecla. */
+.intro-archivo{
+  position:fixed; inset:0; z-index:120; display:grid; place-items:center;
+  background:
+    radial-gradient(60% 60% at 50% 45%, rgba(120,10,16,.35), transparent 70%),
+    radial-gradient(120% 100% at 50% 100%, rgba(30,8,12,.9), var(--negro) 70%);
+  cursor:pointer;
+  transition:opacity .55s var(--ent), visibility .55s;
+  animation:intro-auto .5s 2.4s var(--ent) forwards;
+}
+.intro-archivo[data-saliendo]{opacity:0; visibility:hidden; pointer-events:none}
+html[data-intro-vista] .intro-archivo{display:none}
+@keyframes intro-auto{to{opacity:0; visibility:hidden; pointer-events:none}}
+
+.intro-caja{
+  display:flex; flex-direction:column; align-items:center; gap:1.4rem;
+  transform:translateY(-2vh);
+}
+.intro-emblema{
+  width:clamp(88px, 12vw, 128px); height:auto;
+  filter:drop-shadow(0 0 30px rgba(255,32,46,.85)) drop-shadow(0 0 70px rgba(255,32,46,.35));
+  animation:intro-emblema 1.2s var(--sal) both, emblema-pulso 4s 1.2s ease-in-out infinite alternate;
+}
+@keyframes intro-emblema{
+  from{opacity:0; transform:scale(.55) rotate(-24deg); filter:blur(8px) drop-shadow(0 0 0 rgba(255,32,46,0))}
+  to{opacity:1; transform:scale(1) rotate(0); filter:blur(0) drop-shadow(0 0 30px rgba(255,32,46,.85))}
+}
+.intro-texto{
+  margin:0; font-family:var(--titular); font-size:.9rem; font-weight:600;
+  text-transform:uppercase; letter-spacing:.42em; color:var(--ceniza-clara);
+  text-shadow:0 0 14px rgba(255,32,46,.5);
+  animation:intro-texto .9s .25s var(--sal) both;
+}
+@keyframes intro-texto{from{opacity:0; letter-spacing:.9em; transform:translateY(8px)} to{opacity:1; letter-spacing:.42em; transform:none}}
+.intro-puntos::after{
+  content:"…"; display:inline-block; width:1.2em; text-align:left;
+  animation:intro-puntos 1.2s steps(3, end) infinite;
+}
+@keyframes intro-puntos{0%{content:"."}33%{content:".."}66%{content:"…"}100%{content:"."}}
+.intro-linea{
+  width:min(260px, 60vw); height:1px; background:rgba(255,255,255,.08); overflow:hidden; position:relative;
+}
+.intro-linea i{
+  position:absolute; inset:0; transform-origin:left; transform:scaleX(0);
+  background:linear-gradient(90deg, #7c0c11, var(--sangre-viva), #ffb3a7);
+  box-shadow:0 0 12px var(--sangre-viva);
+  animation:intro-carga 1.15s .15s var(--ent) forwards;
+}
+@keyframes intro-carga{to{transform:scaleX(1)}}
+
+/* ---------- Aparición progresiva con desvanecimiento de tinta ----------
+   Cada elemento lleva --i (índice entre hermanos, lo pone util.js)
+   para entrar escalonado, como cartas puestas sobre la mesa. */
 [data-revelar]{
   opacity:0; transform:translateY(28px) scale(.98);
   filter:blur(4px);
   transition:opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1), filter .7s ease;
+  transition-delay:min(calc(var(--i, 0) * 70ms), 560ms);
   will-change:opacity, transform, filter;
 }
 [data-revelar].visible{
   opacity:1; transform:none; filter:blur(0);
 }
 
-/* ---------- Efecto de inclinación 3D y brillo especular HD ---------- */
+/* ---------- Efecto de inclinación 3D y brillo especular HD ----------
+   El reflejo va en ::after para dejar libre ::before, que en
+   paneles, avisos y fichas dibuja las esquinas HUD. */
 .tilt-3d{
   transform-style:preserve-3d;
   transition:transform .18s cubic-bezier(.2,.7,.2,1), box-shadow .25s ease, border-color .3s ease;
@@ -127,9 +221,9 @@
   position:relative;
   overflow:hidden;
 }
-.brillo-especular::before{
+.brillo-especular::after{
   content:"";
-  position:absolute; inset:0; z-index:4; pointer-events:none;
+  position:absolute; inset:0; z-index:7; pointer-events:none;
   background:radial-gradient(
     380px circle at var(--sheen-x, -200px) var(--sheen-y, -200px),
     rgba(255,255,255,0.14) 0%,
@@ -139,7 +233,7 @@
   opacity:0;
   transition:opacity .25s ease;
 }
-.brillo-especular:hover::before{
+.brillo-especular:hover::after{
   opacity:1;
 }
 
@@ -195,14 +289,15 @@
   100%{transform:scale(2.4); opacity:0; box-shadow:0 0 28px rgba(255,32,46,0)}
 }
 
-/* ---------- Marco con borde rasgado e incandescente ---------- */
+/* ---------- Marco con borde rasgado e incandescente ----------
+   En ::after: el ::before del retrato es la retícula HUD. */
 .rasgado{position:relative}
-.rasgado::before{
+.rasgado::after{
   content:""; position:absolute; inset:-2px; z-index:4; pointer-events:none;
   border:1px solid rgba(255,32,46,.5); filter:url(#f-borde); opacity:.8;
   transition:border-color .3s, opacity .3s, box-shadow .3s;
 }
-.rasgado:hover::before{
+.rasgado:hover::after{
   border-color:rgba(255,32,46,1); opacity:1;
   box-shadow:0 0 20px rgba(255,32,46,.45);
 }
@@ -211,6 +306,7 @@
 .sin-imagen{
   position:absolute; inset:0; display:grid; place-items:center; overflow:hidden;
   background:
+    var(--textura-venas) center / 420px 420px,
     radial-gradient(85% 65% at 50% 15%, rgba(200,18,25,.42), transparent 72%),
     repeating-linear-gradient(115deg, #141116 0 10px, #0b0a0e 10px 20px);
 }
@@ -238,10 +334,294 @@
   transition:width .12s linear;
 }
 
+/* ============================================================
+   PORTADA — apertura cinematográfica
+   Las letras caen una a una, PARADOX sufre aberración cromática
+   cada pocos segundos, el sigilo gira detrás del emblema y las
+   chispas suben desde la sangre del fondo.
+   ============================================================ */
+
+/* Fondo profundo con paralaje al ratón (usa --cursor-x/y) */
+.heroe-fondo{
+  position:absolute; inset:0; z-index:0; pointer-events:none; overflow:hidden;
+}
+.heroe-venas,
+.heroe-resplandor{
+  position:absolute; inset:-8%; display:block; will-change:transform;
+}
+.heroe-venas{
+  background:var(--textura-venas) center / 620px 620px;
+  opacity:.85; mix-blend-mode:screen;
+  mask-image:radial-gradient(70% 70% at 50% 45%, #000 20%, transparent 100%);
+  -webkit-mask-image:radial-gradient(70% 70% at 50% 45%, #000 20%, transparent 100%);
+  transform:translate(calc((var(--cursor-x, 50vw) - 50vw) * -.028), calc((var(--cursor-y, 50vh) - 50vh) * -.028));
+}
+.heroe-resplandor{
+  background:
+    radial-gradient(42% 38% at 50% 52%, rgba(255,32,46,.30), transparent 70%),
+    radial-gradient(70% 55% at 50% 60%, rgba(140,12,20,.35), transparent 72%),
+    radial-gradient(30% 30% at 50% 50%, rgba(255,106,61,.10), transparent 70%);
+  animation:resplandor-respira 7s ease-in-out infinite alternate;
+  transform:translate(calc((var(--cursor-x, 50vw) - 50vw) * .018), calc((var(--cursor-y, 50vh) - 50vh) * .018));
+}
+@keyframes resplandor-respira{
+  from{opacity:.75; scale:1}
+  to{opacity:1; scale:1.06}
+}
+
+/* Sigilo arcano: tres anillos rotos que giran en sentidos opuestos */
+.heroe-sigilo{
+  position:relative; width:146px; height:146px; margin:0 auto 1.3rem;
+  display:grid; place-items:center;
+  animation:sigilo-entra 1.4s var(--sal) both;
+}
+@keyframes sigilo-entra{from{opacity:0; transform:scale(.6) rotate(-30deg); filter:blur(10px)} to{opacity:1; transform:none; filter:blur(0)}}
+.sigilo-anillo{
+  position:absolute; border-radius:50%; pointer-events:none;
+}
+.sigilo-anillo:nth-child(1){
+  inset:6px; border:1px dashed rgba(255,32,46,.55);
+  animation:girar 42s linear infinite;
+}
+.sigilo-anillo:nth-child(2){
+  inset:-6px; border:1px solid rgba(229,180,72,.32);
+  border-top-color:transparent; border-bottom-color:transparent;
+  box-shadow:0 0 18px -6px rgba(229,180,72,.4);
+  animation:girar 28s linear infinite reverse;
+}
+.sigilo-anillo:nth-child(3){
+  inset:-20px; border:1px solid rgba(255,32,46,.22);
+  border-left-color:transparent; border-right-color:transparent;
+  animation:girar 60s linear infinite;
+}
+.sigilo-anillo:nth-child(3)::before,
+.sigilo-anillo:nth-child(3)::after{
+  content:""; position:absolute; top:-3px; left:50%; width:5px; height:5px; border-radius:50%;
+  background:var(--sangre-viva); box-shadow:0 0 10px var(--sangre-viva); transform:translateX(-50%);
+}
+.sigilo-anillo:nth-child(3)::after{top:auto; bottom:-3px; background:var(--oro); box-shadow:0 0 10px var(--oro)}
+@keyframes girar{to{transform:rotate(360deg)}}
+
+.heroe-emblema-fondo{
+  width:102px; height:102px; position:relative; z-index:2;
+  filter:drop-shadow(0 0 30px rgba(255,32,46,0.85)) drop-shadow(0 0 70px rgba(255,32,46,0.35));
+  animation:emblema-pulso 4s ease-in-out infinite alternate;
+}
+@keyframes emblema-pulso{
+  0%{transform:scale(1) rotate(0deg); filter:drop-shadow(0 0 22px rgba(255,32,46,0.7))}
+  100%{transform:scale(1.07) rotate(3deg); filter:drop-shadow(0 0 44px rgba(255,32,46,1))}
+}
+
+/* Título: cada letra es un <i style="--i"> que cae con desenfoque */
+.heroe-linea-doom i,
+.heroe-linea-paradox i{
+  display:inline-block;
+  animation:letra-cae .95s var(--sal) both;
+  animation-delay:calc(var(--intro-espera, 0s) + .15s + var(--i, 0) * 75ms);
+}
+@keyframes letra-cae{
+  from{opacity:0; transform:translateY(-.35em) scale(1.25); filter:blur(14px)}
+  60%{filter:blur(0)}
+  to{opacity:1; transform:none; filter:blur(0)}
+}
+/* Si la apertura está en pantalla, toda la portada espera a que se aparte */
+html[data-intro-activa] .heroe{--intro-espera:1.1s}
+
+/* PARADOX respira sangre y sufre aberración cromática esporádica */
+.heroe-linea-paradox{
+  animation:paradox-brasa 5s 2.2s ease-in-out infinite alternate;
+}
+@keyframes paradox-brasa{
+  from{text-shadow:0 0 38px rgba(216,31,24,.6), 0 8px 30px rgba(0,0,0,.95)}
+  to{text-shadow:0 0 62px rgba(255,32,46,.95), 0 0 120px rgba(255,32,46,.35), 0 8px 30px rgba(0,0,0,.95)}
+}
+.heroe-linea-paradox::before,
+.heroe-linea-paradox::after{
+  content:attr(data-texto); position:absolute; inset:0; pointer-events:none;
+  opacity:0; mix-blend-mode:screen; text-shadow:none;
+}
+.heroe-linea-paradox::before{
+  color:rgba(64,224,208,.85);
+  clip-path:polygon(0 12%, 100% 12%, 100% 46%, 0 46%);
+  animation:paradox-glitch-a 9s 2.6s steps(1, end) infinite;
+}
+.heroe-linea-paradox::after{
+  color:rgba(255,80,60,.9);
+  clip-path:polygon(0 55%, 100% 55%, 100% 82%, 0 82%);
+  animation:paradox-glitch-b 9s 2.6s steps(1, end) infinite;
+}
+@keyframes paradox-glitch-a{
+  0%,100%{opacity:0; transform:translate(0,0)}
+  61%{opacity:1; transform:translate(-8px, -2px)}
+  62%{opacity:1; transform:translate(6px, 1px)}
+  63%{opacity:0}
+  88%{opacity:1; transform:translate(5px, 0)}
+  89%{opacity:0}
+}
+@keyframes paradox-glitch-b{
+  0%,100%{opacity:0; transform:translate(0,0)}
+  61%{opacity:1; transform:translate(7px, 2px)}
+  62%{opacity:1; transform:translate(-5px, -1px)}
+  63.5%{opacity:0}
+  88%{opacity:1; transform:translate(-6px, 1px)}
+  89%{opacity:0}
+}
+
+/* Lema, bajada y botones entran después del título */
+.heroe-tag-comunidad{animation:aparece-suave .9s calc(var(--intro-espera, 0s) + .05s) var(--sal) both}
+.heroe-sello{animation:sello-entra 1s calc(var(--intro-espera, 0s) + 1.05s) var(--sal) both}
+.heroe-bajada-clasica{animation:aparece-suave .9s calc(var(--intro-espera, 0s) + 1.3s) var(--sal) both}
+.heroe .botones{animation:aparece-suave .9s calc(var(--intro-espera, 0s) + 1.5s) var(--sal) both}
+.heroe-scroll{animation:aparece-suave 1s calc(var(--intro-espera, 0s) + 2.1s) var(--sal) both}
+@keyframes aparece-suave{from{opacity:0; transform:translateY(14px)} to{opacity:1; transform:none}}
+@keyframes sello-entra{from{opacity:0; transform:scaleX(.6); filter:blur(6px)} to{opacity:1; transform:none; filter:blur(0)}}
+
+/* Chispas que suben junto al título (CSS puro, solo transform/opacity) */
+.heroe-chispas{
+  position:absolute; inset:0; z-index:1; pointer-events:none; overflow:hidden;
+}
+.heroe-chispas i{
+  position:absolute; bottom:18%; left:var(--x, 50%);
+  width:3px; height:3px; border-radius:50%;
+  background:#ffc09a; box-shadow:0 0 8px 2px rgba(255,90,40,.85);
+  opacity:0;
+  animation:chispa-sube var(--d, 7s) linear infinite;
+  animation-delay:var(--r, 0s);
+}
+.heroe-chispas i:nth-child(1) {--x:22%; --d:8.5s; --r:-1s}
+.heroe-chispas i:nth-child(2) {--x:31%; --d:7.2s; --r:-3.5s; width:2px; height:2px}
+.heroe-chispas i:nth-child(3) {--x:38%; --d:9.4s; --r:-6s}
+.heroe-chispas i:nth-child(4) {--x:44%; --d:6.6s; --r:-2s; width:4px; height:4px}
+.heroe-chispas i:nth-child(5) {--x:50%; --d:8.1s; --r:-5s; width:2px; height:2px}
+.heroe-chispas i:nth-child(6) {--x:55%; --d:7.7s; --r:-.5s}
+.heroe-chispas i:nth-child(7) {--x:61%; --d:9s; --r:-4.2s; width:2px; height:2px}
+.heroe-chispas i:nth-child(8) {--x:67%; --d:6.9s; --r:-7s}
+.heroe-chispas i:nth-child(9) {--x:74%; --d:8.8s; --r:-2.8s; width:4px; height:4px}
+.heroe-chispas i:nth-child(10){--x:27%; --d:10s; --r:-8s; width:2px; height:2px}
+.heroe-chispas i:nth-child(11){--x:47%; --d:7.4s; --r:-6.6s}
+.heroe-chispas i:nth-child(12){--x:70%; --d:9.6s; --r:-1.6s; width:2px; height:2px}
+.heroe-chispas i:nth-child(13){--x:16%; --d:8.2s; --r:-4.8s}
+.heroe-chispas i:nth-child(14){--x:82%; --d:7.9s; --r:-3.1s; width:2px; height:2px}
+@keyframes chispa-sube{
+  0%{opacity:0; transform:translate3d(0,0,0) scale(.6)}
+  8%{opacity:1}
+  50%{transform:translate3d(18px,-24vh,0) scale(1)}
+  85%{opacity:.7}
+  100%{opacity:0; transform:translate3d(-14px,-52vh,0) scale(.3)}
+}
+
+/* ============================================================
+   PIE — humo que sube y brasas que se apagan
+   ============================================================ */
+.pie{overflow:hidden}
+.pie-humo{
+  position:absolute; left:-10%; right:-10%; bottom:-8%; height:78%;
+  z-index:1; pointer-events:none; opacity:.55;
+  filter:url(#f-humo-claro);
+  mask-image:linear-gradient(180deg, transparent 0%, #000 42%, #000 78%, rgba(0,0,0,.4) 100%);
+  -webkit-mask-image:linear-gradient(180deg, transparent 0%, #000 42%, #000 78%, rgba(0,0,0,.4) 100%);
+  animation:humo-sube 28s ease-in-out infinite alternate;
+  will-change:transform;
+}
+@keyframes humo-sube{
+  from{transform:translate3d(-2%, 2%, 0) scale(1.02)}
+  to{transform:translate3d(2.5%, -7%, 0) scale(1.12)}
+}
+.pie-brasas{
+  position:absolute; inset:0; z-index:1; pointer-events:none; overflow:hidden;
+}
+.pie-brasas i{
+  position:absolute; bottom:-4px; left:var(--x, 50%);
+  width:3px; height:3px; border-radius:50%;
+  background:#ffb98a; box-shadow:0 0 8px 2px rgba(255,80,40,.8);
+  opacity:0;
+  animation:brasa-pie var(--d, 9s) linear infinite;
+  animation-delay:var(--r, 0s);
+}
+.pie-brasas i:nth-child(1){--x:8%;  --d:9s;   --r:-2s}
+.pie-brasas i:nth-child(2){--x:19%; --d:11s;  --r:-6s; width:2px; height:2px}
+.pie-brasas i:nth-child(3){--x:31%; --d:8.4s; --r:-4s}
+.pie-brasas i:nth-child(4){--x:44%; --d:10s;  --r:-1s; width:4px; height:4px}
+.pie-brasas i:nth-child(5){--x:52%; --d:9.5s; --r:-7.5s; width:2px; height:2px}
+.pie-brasas i:nth-child(6){--x:63%; --d:8.8s; --r:-3s}
+.pie-brasas i:nth-child(7){--x:74%; --d:11.5s;--r:-5.2s; width:2px; height:2px}
+.pie-brasas i:nth-child(8){--x:86%; --d:9.2s; --r:-8.6s}
+.pie-brasas i:nth-child(9){--x:94%; --d:10.4s;--r:-.8s; width:2px; height:2px}
+@keyframes brasa-pie{
+  0%{opacity:0; transform:translate3d(0,0,0)}
+  10%{opacity:1}
+  100%{opacity:0; transform:translate3d(22px,-380px,0) scale(.4)}
+}
+
+/* ---------- Animaciones compartidas del sistema visual ---------- */
+@keyframes hud-latido{0%,100%{opacity:.35}50%{opacity:1}}
+@keyframes brasa-linea{
+  0%,100%{opacity:.55; transform:scaleX(.7)}
+  50%{opacity:1; transform:scaleX(1)}
+}
+@keyframes oro-brillo{to{background-position:-250% 0}}
+@keyframes lleno-flujo{to{background-position:100% 0}}
+@keyframes girar-barrido{from{transform:translate(-50%,-50%) rotate(0)} to{transform:translate(-50%,-50%) rotate(360deg)}}
+@keyframes barrido-escaner{
+  0%{transform:translateY(-120%); opacity:0}
+  10%{opacity:1}
+  100%{transform:translateY(680%); opacity:0}
+}
+@keyframes escaner-retrato{
+  0%{transform:translateY(0); opacity:0}
+  6%{opacity:.85}
+  94%{opacity:.85}
+  100%{transform:translateY(calc(var(--alto-escaner, 400px) - 2px)); opacity:0}
+}
+@keyframes brillo-barra{
+  0%{transform:translateX(-100%)}
+  60%,100%{transform:translateX(220%)}
+}
+@keyframes peligro-latido{
+  0%,100%{opacity:.7; transform:scale(1)}
+  50%{opacity:1; transform:scale(1.25)}
+}
+@keyframes latido-play{
+  0%{box-shadow:0 0 0 0 rgba(255,32,46,.7)}
+  100%{box-shadow:0 0 0 14px rgba(255,32,46,0)}
+}
+@keyframes parpadeo-titulo{
+  0%,100%{opacity:1}
+  41%{opacity:1} 42%{opacity:.78} 43%{opacity:1}
+  45%{opacity:.86} 46%{opacity:1}
+  77%{opacity:1} 78%{opacity:.8} 79%{opacity:1}
+}
+@keyframes lema-brasa{
+  from{text-shadow:0 0 18px rgba(255,32,46,.45), 0 0 50px rgba(255,32,46,.15)}
+  to{text-shadow:0 0 30px rgba(255,32,46,.85), 0 0 80px rgba(255,32,46,.35)}
+}
+@keyframes marca-latido{
+  0%,100%{filter:drop-shadow(0 0 8px rgba(255,32,46,.5))}
+  50%{filter:drop-shadow(0 0 16px rgba(255,32,46,.95))}
+}
+@keyframes brasa-texto{
+  from{text-shadow:0 0 12px rgba(255,32,46,.6)}
+  to{text-shadow:0 0 22px rgba(255,32,46,1), 0 0 40px rgba(255,32,46,.4)}
+}
+@keyframes cargando-linea{
+  0%{transform:translateX(-100%)}
+  100%{transform:translateX(200%)}
+}
+@keyframes paleta-entra{
+  from{opacity:0; transform:translateY(-14px) scale(.98)}
+  to{opacity:1; transform:none}
+}
+
 /* ---------- Modo de movimiento reducido ---------- */
 @media (prefers-reduced-motion:reduce){
-  .capa-grano, .capa-niebla i, .capa-vineta{animation:none}
-  .capa-cenizas, .capa-tinta, .onda-impacto, .punto-baliza{display:none}
+  .capa-grano, .capa-niebla i, .capa-vineta, .capa-bruma, .pie-humo, .pie-lema,
+  .marca-emblema, .nav a[aria-current="page"], .heroe-resplandor, .heroe-linea-paradox,
+  .heroe-emblema-fondo, .sigilo-anillo, .entrada-titulo, .contador::before{animation:none !important}
+  .capa-cenizas, .capa-tinta, .onda-impacto, .punto-baliza, .cursor-brasa, .intro-archivo,
+  .heroe-chispas, .pie-brasas, .retrato-escaner, .heroe-linea-paradox::before, .heroe-linea-paradox::after{display:none}
   .tilt-3d{transform:none !important}
-  [data-revelar]{opacity:1; transform:none; filter:none}
+  [data-revelar]{opacity:1; transform:none; filter:none; transition:none}
+  .heroe-linea-doom i, .heroe-linea-paradox i, .heroe-tag-comunidad, .heroe-sello,
+  .heroe-bajada-clasica, .heroe .botones, .heroe-scroll, .heroe-sigilo{animation:none; opacity:1; transform:none; filter:none}
+  .heroe-venas, .heroe-resplandor{transform:none}
 }

@@ -1,0 +1,81 @@
+{
+  "id": "slenderman",
+  "nombre": "Slenderman",
+  "alias": "La Entidad sin Rostro",
+  "origen": "Creepypasta",
+  "peligro": 5,
+  "estado": "canon",
+  "imagen": "",
+  "resumen": "La leyenda creepypasta por excelencia. Distorsiona la pantalla con estática, acecha en la niebla y atrapa presas con zarcillos dorsales.",
+  "descripcion": "Confirmado por S.U.A en la lista oficial de verdugos del 11/8/2026.\n\nEs la vara de medir del terror en Doom Paradox: el equipo de desarrollo tomó su estática e interferencia visual como punto de referencia directo para concebir el jumpscare de *I Faund You* de DPX.\n\nEn partida acecha de forma silenciosa e implacable: cuanto más cerca se encuentra de un pecador o más tiempo se le mire directamente, mayor es la distorsión de la cámara y el ruido blanco ensordecedor. Sus zarcillos dorsales inmovilizan a las víctimas a distancia para ejecutar ataques devastadores.",
+  "habilidades": [
+    {
+      "nombre": "Golpe de Zarcillo",
+      "tipo": "activa",
+      "enfriamiento": "M1",
+      "texto": "Un azote directo con sus tentáculos dorsales que causa 20 de daño."
+    },
+    {
+      "nombre": "Interferencia Estática",
+      "tipo": "pasiva",
+      "enfriamiento": "",
+      "texto": "Su presencia emite frecuencias residuales: a medida que Slenderman se acerca o entra en el foco de la cámara de un pecador, la pantalla del jugador se satura de estática, ruido blanco y distorsión de audio, reduciendo drásticamente la visibilidad."
+    },
+    {
+      "nombre": "Acecho en la Niebla",
+      "tipo": "activa",
+      "enfriamiento": "",
+      "texto": "Se camufla en el entorno y obtiene una gran bonificación de velocidad de movimiento mientras ningún pecador lo esté enfocando directamente con su cámara."
+    },
+    {
+      "nombre": "Zarcillos del Vacío",
+      "tipo": "activa",
+      "enfriamiento": "",
+      "texto": "Dispara sus tentáculos negros a media distancia para atrapar e inmovilizar a un pecador en fuga, arrastrándolo a gran velocidad hacia Slenderman."
+    },
+    {
+      "nombre": "Slender Jumpscare",
+      "tipo": "definitiva",
+      "enfriamiento": "",
+      "texto": "Se manifiesta súbitamente en la cara del pecador con un estallido atronador de estática que nubla la visión por 2.5 segundos, desorienta el control e inflige 22 de daño."
+    }
+  ],
+  "skins": [
+    {
+      "nombre": "The Operator",
+      "texto": "Inspirada en la icónica serie Marble Hornets, con esmoquin oscuro formal y el símbolo del círculo tachado."
+    },
+    {
+      "nombre": "Classic 2009",
+      "texto": "Basada en los fotomontajes originales de Something Awful creados por Victor Surge en 2009."
+    },
+    {
+      "nombre": "Proxies Master",
+      "texto": "Atuendo ritual desgastado con vendas y marcas ceremoniales de sus devotos acólitos."
+    },
+    {
+      "nombre": "Pale Gentleman",
+      "texto": "Traje victoriano andrajoso con corbata roja carmesí y zarcillos hiperalargados."
+    }
+  ],
+  "consejos": [
+    "Nunca mantengas la cámara fija en Slenderman: la estática se multiplicará hasta dejarte completamente a ciegas.",
+    "Guíate por el oído: el ruido blanco en tus auriculares te alertará de su proximidad mucho antes de tenerlo a la vista.",
+    "Muévete con giros rápidos y esquiva en zigzag para evitar que te alcancen sus Zarcillos del Vacío."
+  ],
+  "curiosidades": [
+    "Su estilo visual de susto sirvió de referencia directa para la habilidad I Faund You de DPX.",
+    "Es el líder indiscutible del grupo de Creepypastas clásicos del roster de Doom Paradox."
+  ],
+  "mapas": [],
+  "ost": [],
+  "pecadores": [],
+  "etiquetas": [
+    "creepypasta",
+    "estática",
+    "jumpscare",
+    "zarcillos"
+  ],
+  "actualizado": "2026-09-02",
+  "fuente": "S.U.A [SC], Discord #verdugos, 11/8/2026"
+}

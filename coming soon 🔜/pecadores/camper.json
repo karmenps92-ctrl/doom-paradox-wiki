@@ -1,0 +1,22 @@
+{
+  "id": "camper",
+  "nombre": "Camper",
+  "alias": "",
+  "origen": "Original",
+  "clase": "",
+  "estado": "borrador",
+  "imagen": "",
+  "resumen": "Apareció en la primera lista de pecadores y no en la segunda: falta confirmar si sigue dentro.",
+  "descripcion": "Camper figuraba en la lista de pecadores publicada el 11/8/2026 a las 18:21, pero no en la versión reenviada minutos después en #creación-personajes.\n\n**Pendiente de confirmar** con S.U.A si sigue en el roster.",
+  "habilidades": [],
+  "consejos": [],
+  "curiosidades": [],
+  "verdugos": [],
+  "mapas": [],
+  "ost": [],
+  "etiquetas": [
+    "por-confirmar"
+  ],
+  "actualizado": "2026-08-31",
+  "fuente": "#pecadores y #creación-personajes, 11/8/2026"
+}

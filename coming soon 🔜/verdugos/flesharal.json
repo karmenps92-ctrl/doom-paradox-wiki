@@ -1,0 +1,22 @@
+{
+  "id": "flesharal",
+  "nombre": "Flesharal",
+  "alias": "",
+  "origen": "Original",
+  "peligro": 3,
+  "estado": "borrador",
+  "imagen": "",
+  "resumen": "En el roster confirmado. Ficha pendiente de escribir.",
+  "descripcion": "Verdugo confirmado en la lista oficial del 11/8/2026.",
+  "habilidades": [],
+  "consejos": [],
+  "curiosidades": [],
+  "mapas": [],
+  "ost": [],
+  "pecadores": [],
+  "etiquetas": [
+    "ficha-pendiente"
+  ],
+  "actualizado": "2026-08-31",
+  "fuente": "#creación-personajes, 11/8/2026"
+}

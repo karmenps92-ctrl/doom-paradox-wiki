@@ -1,0 +1,25 @@
+{
+  "id": "pinguinikula",
+  "nombre": "Pingüinikula",
+  "alias": "",
+  "origen": "Original",
+  "clase": "",
+  "estado": "borrador",
+  "imagen": "",
+  "resumen": "Pecador confirmado. Su LMS es contra Ronn.",
+  "descripcion": "Pecador confirmado en la lista oficial del 11/8/2026. Ficha pendiente de escribir.",
+  "habilidades": [],
+  "consejos": [],
+  "curiosidades": [],
+  "verdugos": [
+    "ronn"
+  ],
+  "mapas": [],
+  "ost": [],
+  "etiquetas": [
+    "ficha-pendiente",
+    "lms"
+  ],
+  "actualizado": "2026-08-31",
+  "fuente": "#creación-personajes, 11/8/2026"
+}

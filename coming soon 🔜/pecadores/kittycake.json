@@ -1,0 +1,30 @@
+{
+  "id": "kittycake",
+  "nombre": "Kittycake",
+  "alias": "",
+  "origen": "Original",
+  "clase": "",
+  "estado": "canon",
+  "imagen": "",
+  "resumen": "Casi acabó comida por un bebé. Tiene una skin de amabilidad aprobada con estética de panadería.",
+  "descripcion": "Kittycake es uno de los pecadores con skin ya aprobada: la **skin de amabilidad**, un vestido con mandil de panadera de aire clásico, propuesta por gabo0422356 y aceptada por S.U.A.\n\nLa idea viene del color de la amabilidad en Undertale y Deltarune, trasladado a un diseño de repostería.",
+  "habilidades": [],
+  "skins": [
+    {
+      "nombre": "Amabilidad",
+      "texto": "Vestido y mandil de panadera con estética de cuento clásico. Concepto de gabo0422356, aprobado el 14/8/2026."
+    }
+  ],
+  "consejos": [],
+  "curiosidades": [
+    "Casi es comida por un bebé, accidentalmente."
+  ],
+  "verdugos": [],
+  "mapas": [],
+  "ost": [],
+  "etiquetas": [
+    "skin-aprobada"
+  ],
+  "actualizado": "2026-08-31",
+  "fuente": "#pecadores y #conceptos, 14-18/8/2026"
+}

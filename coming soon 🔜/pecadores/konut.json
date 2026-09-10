@@ -1,0 +1,30 @@
+{
+  "id": "konut",
+  "nombre": "Konut",
+  "alias": "El del traje elegante",
+  "origen": "Original",
+  "clase": "",
+  "estado": "canon",
+  "imagen": "",
+  "resumen": "Empresario de traje y rosa. Está en Doom Paradox porque le debe dinero a Domelí.",
+  "descripcion": "Konut es el pecador de traje elegante: se modelo con traje negro y una rosa colocada a mano.\n\nSu relación con el verdugo **Domelí** no es romántica por mucho que el equipo bromeara con ello: simplemente **le debe dinero**. De ahí sale su duelo de LMS.\n\nSu doblaje está asignado a magma_mp4.",
+  "habilidades": [],
+  "consejos": [],
+  "curiosidades": [
+    "El traje negro se eligió por votación informal del equipo el 11/7/2026."
+  ],
+  "verdugos": [
+    "domeli"
+  ],
+  "mapas": [],
+  "ost": [
+    "lms-elegante"
+  ],
+  "etiquetas": [
+    "lore",
+    "lms",
+    "casting"
+  ],
+  "actualizado": "2026-08-31",
+  "fuente": "#modelo-animación y #avisos, 11/7 - 20/8/2026"
+}

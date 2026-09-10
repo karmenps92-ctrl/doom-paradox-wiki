@@ -1,0 +1,22 @@
+{
+  "id": "roen",
+  "nombre": "Roen",
+  "alias": "",
+  "origen": "Original",
+  "clase": "",
+  "estado": "borrador",
+  "imagen": "",
+  "resumen": "Pecador confirmado. Ficha pendiente de escribir.",
+  "descripcion": "Pecador confirmado en la lista oficial del 11/8/2026.",
+  "habilidades": [],
+  "consejos": [],
+  "curiosidades": [],
+  "verdugos": [],
+  "mapas": [],
+  "ost": [],
+  "etiquetas": [
+    "ficha-pendiente"
+  ],
+  "actualizado": "2026-08-31",
+  "fuente": "#creación-personajes, 11/8/2026"
+}

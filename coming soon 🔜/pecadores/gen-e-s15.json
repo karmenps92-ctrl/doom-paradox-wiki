@@ -1,0 +1,27 @@
+{
+  "id": "gen-e-s15",
+  "nombre": "Gen-E-S15",
+  "alias": "",
+  "origen": "Original",
+  "clase": "",
+  "estado": "canon",
+  "imagen": "",
+  "resumen": "Uno de los tres únicos humanos de su academia, junto a Jeff y Wood Stone.",
+  "descripcion": "El lore de Gen-E-S15 conecta directamente con dos verdugos: en su universo, es junto a **Jeff** y **Wood Stone** uno de los tres únicos humanos de su academia.",
+  "habilidades": [],
+  "consejos": [],
+  "curiosidades": [
+    "Su academia solo tiene tres humanos matriculados, y dos de ellos acabaron del lado de los verdugos."
+  ],
+  "verdugos": [
+    "jeff-the-killer",
+    "wood-stone"
+  ],
+  "mapas": [],
+  "ost": [],
+  "etiquetas": [
+    "lore"
+  ],
+  "actualizado": "2026-08-31",
+  "fuente": "#pecadores, 18/8/2026"
+}

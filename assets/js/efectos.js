@@ -1,8 +1,9 @@
 /* ============================================================
-   DOOM PARADOX · WIKI — Motor de Efectos Visuales (VFX HD 3.0)
-   Partículas de brasas en 4 capas, física de vórtice con cursor,
-   iluminación volumétrica del vacío, tilt 3D con reflejo dinámico,
-   ondas de choque de sangre y efectos de sonido sintetizados.
+   DOOM PARADOX · WIKI — Motor de Efectos Visuales (VFX HD 3.4)
+   Brasas en 4 capas con sprites pre-renderizados, viento, estelas
+   y ráfagas; física de vórtice con el cursor; luz volumétrica del
+   vacío; tilt 3D con reflejo; apertura del archivo; cabecera que
+   se comprime al bajar; ondas de choque y sonido sintetizado.
    ============================================================ */
 
 import { $, $$ } from "./util.js";
@@ -81,8 +82,27 @@ export function sonidoUI(tipo = "click"){
   }catch(_){}
 }
 
-/* ---------------- Sistema de Cenizas, Brasas y Fuego HD ---------------- */
+/* ---------------- Sistema de Cenizas, Brasas y Fuego HD ----------------
+   Cada partícula se pinta con un sprite (degradado radial ya
+   rasterizado) en vez de shadowBlur: mismo bloom, una fracción
+   del coste. Las brasas se suman en modo "lighter" para que
+   brillen de verdad al cruzarse. */
 let chispasManuales = [];
+let dprGlobal = 1;
+
+const sprites = {};
+function sprite(nombre, nucleo, medio, borde){
+  const c = document.createElement("canvas");
+  const s = 64; c.width = c.height = s;
+  const g = c.getContext("2d");
+  const grad = g.createRadialGradient(s / 2, s / 2, 0, s / 2, s / 2, s / 2);
+  grad.addColorStop(0, nucleo);
+  grad.addColorStop(0.16, medio);
+  grad.addColorStop(0.42, borde);
+  grad.addColorStop(1, "rgba(0,0,0,0)");
+  g.fillStyle = grad; g.fillRect(0, 0, s, s);
+  sprites[nombre] = c;
+}
 
 export function cenizas(){
   const lienzo = $("#cenizas");
@@ -90,49 +110,53 @@ export function cenizas(){
   const ctx = lienzo.getContext("2d");
   let an = 0, al = 0, particulas = [], raf = 0, visible = true;
   let ratonX = -9999, ratonY = -9999, ratonVx = 0, ratonVy = 0, prevRatonX = 0, prevRatonY = 0;
-  let ultimoMovimiento = 0;
+  let ultimoMovimiento = 0, ultimaRafaga = 0, tiempo = 0;
+
+  sprite("chispa", "rgba(255,248,225,1)", "rgba(255,170,90,.95)", "rgba(255,70,35,.45)");
+  sprite("brasa",  "rgba(255,205,150,1)", "rgba(250,90,45,.9)",   "rgba(200,30,25,.35)");
+  sprite("ceniza", "rgba(215,208,205,1)", "rgba(180,172,170,.55)", "rgba(150,142,142,.12)");
+  sprite("polvo",  "rgba(160,150,160,.9)", "rgba(120,110,120,.4)", "rgba(90,82,92,.08)");
 
   function medir(){
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    an = lienzo.width  = Math.floor(window.innerWidth  * dpr);
-    al = lienzo.height = Math.floor(window.innerHeight * dpr);
+    dprGlobal = Math.min(window.devicePixelRatio || 1, 2);
+    an = lienzo.width  = Math.floor(window.innerWidth  * dprGlobal);
+    al = lienzo.height = Math.floor(window.innerHeight * dprGlobal);
     lienzo.style.width  = window.innerWidth + "px";
     lienzo.style.height = window.innerHeight + "px";
 
-    const baseCount = Math.round(Math.min(180, Math.max(70, window.innerWidth / 9)));
-    particulas = Array.from({ length: baseCount }, (_, i) => nueva(i < baseCount * 0.38, true));
+    const baseCount = Math.round(Math.min(230, Math.max(90, window.innerWidth / 7.5)));
+    particulas = Array.from({ length: baseCount }, (_, i) => nueva(i < baseCount * 0.4, true));
   }
 
   function nueva(esBrasa = false, inicio = false){
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = dprGlobal;
     // Capas: 0=polvo abisal de fondo, 1=ceniza intermedia, 2=brasa incandescente, 3=chispa de fuego viva
-    let capa = 1;
-    if (esBrasa) {
-      capa = Math.random() < 0.35 ? 3 : 2;
-    } else {
-      capa = Math.random() < 0.45 ? 0 : 1;
-    }
-
+    const capa = esBrasa ? (Math.random() < 0.32 ? 3 : 2) : (Math.random() < 0.45 ? 0 : 1);
+    const radio = capa === 3 ? Math.random() * 1.7 + 1.0
+                : capa === 2 ? Math.random() * 1.6 + 0.7
+                : capa === 1 ? Math.random() * 1.3 + 0.4
+                :              Math.random() * 0.9 + 0.25;
     return {
       capa,
       x: Math.random() * an,
-      y: inicio ? Math.random() * al : al + (15 + Math.random() * 30) * dpr,
-      r: (capa === 3 ? Math.random() * 2.8 + 1.2 : (capa === 2 ? Math.random() * 2.0 + 0.8 : (capa === 1 ? Math.random() * 1.4 + 0.4 : Math.random() * 0.8 + 0.2))) * dpr,
-      vy: -(Math.random() * (capa === 3 ? 0.95 : (capa === 2 ? 0.65 : (capa === 1 ? 0.35 : 0.18))) + 0.12) * dpr,
-      vx: (Math.random() - 0.5) * (capa >= 2 ? 0.6 : 0.3) * dpr,
-      a: Math.random() * 0.65 + (capa >= 2 ? 0.35 : 0.12),
+      y: inicio ? Math.random() * al : al + (10 + Math.random() * 40) * dpr,
+      r: radio * dpr,
+      vy: -(Math.random() * (capa === 3 ? 0.9 : capa === 2 ? 0.6 : capa === 1 ? 0.32 : 0.16) + 0.1) * dpr,
+      vx: (Math.random() - 0.5) * (capa >= 2 ? 0.5 : 0.25) * dpr,
+      a: Math.random() * 0.6 + (capa >= 2 ? 0.4 : 0.14),
       fase: Math.random() * Math.PI * 2,
-      faseVel: (Math.random() * 0.025 + 0.008),
+      faseVel: Math.random() * 0.025 + 0.008,
       brasa: capa >= 2,
-      vidaMax: Math.random() * 450 + 220,
+      chispaFuego: capa === 3,
+      vidaMax: Math.random() * 500 + 260,
       edad: inicio ? Math.random() * 350 : 0,
       temperatura: Math.random() * 0.6 + 0.4,
-      chispaFuego: capa === 3
+      osc: 0
     };
   }
 
   function actualizarRaton(e){
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = dprGlobal;
     const mx = e.clientX * dpr;
     const my = e.clientY * dpr;
     ratonVx = (mx - prevRatonX) * 0.35;
@@ -153,115 +177,148 @@ export function cenizas(){
         gravedad: 0.04 * dpr,
         vida: 0.8,
         decaimiento: 0.045,
-        rVal: 255,
-        gVal: Math.round(120 + Math.random() * 80),
-        bVal: 40
+        blanca: Math.random() < 0.3
       });
     }
   }
 
-  function pintar(){
+  /* Ráfaga: un puñado de chispas blancas que saltan desde abajo,
+     como un tronco que cruje en la hoguera. */
+  function rafaga(){
+    const dpr = dprGlobal;
+    const x = an * (0.1 + Math.random() * 0.8);
+    const n = 3 + Math.floor(Math.random() * 4);
+    for (let i = 0; i < n; i++){
+      chispasManuales.push({
+        x: x + (Math.random() - 0.5) * 30 * dpr,
+        y: al + 4 * dpr,
+        r: (Math.random() * 1.6 + 1.2) * dpr,
+        vx: (Math.random() - 0.5) * 2.2 * dpr,
+        vy: -(Math.random() * 3.2 + 2.6) * dpr,
+        gravedad: 0.022 * dpr,
+        vida: 1,
+        decaimiento: Math.random() * 0.006 + 0.006,
+        blanca: Math.random() < 0.55
+      });
+    }
+  }
+
+  function paso(p, viento, hayCursor, radioInteraccion, radioSq){
+    const dpr = dprGlobal;
+    p.edad++;
+    p.fase += p.faseVel;
+
+    // Movimiento sinusoidal natural + viento lento que cambia de dirección
+    p.osc = Math.sin(p.fase) * (p.capa >= 2 ? 0.75 : 0.4) * dpr;
+    const arrastre = p.capa === 0 ? 0.35 : p.capa === 1 ? 0.6 : 1;
+    p.x += p.vx + p.osc + viento * arrastre;
+    p.y += p.vy;
+
+    // Vórtice y repulsión física con el ratón
+    if (hayCursor) {
+      const dx = p.x - ratonX;
+      const dy = p.y - ratonY;
+      const distSq = dx * dx + dy * dy;
+      if (distSq < radioSq && distSq > 9) {
+        const dist = Math.sqrt(distSq);
+        const fuerza = (1 - dist / radioInteraccion) * 2.8;
+        const ang = Math.atan2(dy, dx);
+        p.x += Math.cos(ang) * fuerza * dpr + (-Math.sin(ang)) * fuerza * 1.2 * dpr + ratonVx * 0.18;
+        p.y += Math.sin(ang) * fuerza * dpr + (Math.cos(ang)) * fuerza * 1.2 * dpr + ratonVy * 0.18;
+        if (p.brasa) p.temperatura = Math.min(1, p.temperatura + 0.12);
+      }
+    }
+    if (p.brasa && p.temperatura > 0.4) p.temperatura -= 0.002;
+
+    // Reaparición si sale de los límites o se apaga
+    if (p.y < -20 * dpr || p.edad > p.vidaMax){
+      Object.assign(p, nueva(p.brasa, false));
+    }
+    if (p.x < -30 * dpr) p.x = an + 25 * dpr;
+    else if (p.x > an + 30 * dpr) p.x = -25 * dpr;
+  }
+
+  function alfaDe(p){
+    // Las brasas parpadean; todo se enciende al nacer y se apaga al morir
+    const parpadeo = 0.72 + Math.sin(p.fase * 3.2) * 0.28;
+    const vida = Math.min(1, p.edad / 40, (p.vidaMax - p.edad) / 90);
+    return Math.min(1, Math.max(0, p.a * parpadeo * vida));
+  }
+
+  function pintar(ahora){
+    tiempo = ahora || performance.now();
     ctx.clearRect(0, 0, an, al);
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = dprGlobal;
     const radioInteraccion = 140 * dpr;
     const radioSq = radioInteraccion * radioInteraccion;
     const hayCursor = (Date.now() - ultimoMovimiento) < 2000 && ratonX > 0;
+    const viento = (Math.sin(tiempo * 0.00035) * 0.22 + Math.sin(tiempo * 0.0011 + 1.7) * 0.08) * dpr;
 
-    // 1. Partículas ambientales principales
-    for (let i = 0; i < particulas.length; i++){
-      const p = particulas[i];
-      p.edad++;
-      p.fase += p.faseVel;
-
-      // Movimiento sinusoidal natural y turbulento
-      const osc = Math.sin(p.fase) * (p.capa >= 2 ? 0.75 : 0.4) * dpr;
-      p.x += p.vx + osc;
-      p.y += p.vy;
-
-      // Vórtice y repulsión física con el ratón
-      if (hayCursor) {
-        const dx = p.x - ratonX;
-        const dy = p.y - ratonY;
-        const distSq = dx * dx + dy * dy;
-        if (distSq < radioSq && distSq > 9) {
-          const dist = Math.sqrt(distSq);
-          const fuerza = (1 - dist / radioInteraccion) * 2.8;
-
-          // Componente radial (empuje) + tangencial (vórtice)
-          const ang = Math.atan2(dy, dx);
-          p.x += Math.cos(ang) * fuerza * dpr + (-Math.sin(ang)) * fuerza * 1.2 * dpr + ratonVx * 0.18;
-          p.y += Math.sin(ang) * fuerza * dpr + (Math.cos(ang)) * fuerza * 1.2 * dpr + ratonVy * 0.18;
-          if (p.brasa) p.temperatura = Math.min(1, p.temperatura + 0.12);
-        }
-      }
-
-      // Reaparición si sale de los límites
-      if (p.y < -20 * dpr || p.edad > p.vidaMax){
-        Object.assign(p, nueva(p.brasa, false));
-      }
-      if (p.x < -30 * dpr) p.x = an + 25 * dpr;
-      else if (p.x > an + 30 * dpr) p.x = -25 * dpr;
-
-      // Renderizado de capas con bloom
-      const parpadeo = 0.72 + Math.sin(p.fase * 3.2) * 0.28;
-      const alfa = Math.min(1, Math.max(0, p.a * parpadeo));
-
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-
-      if (p.chispaFuego){
-        // Fuego intenso: núcleo blanco amarillento con resplandor carmesí incandescente
-        const gVal = Math.round(140 + p.temperatura * 115);
-        ctx.fillStyle = `rgba(255,${gVal},50,${alfa.toFixed(3)})`;
-        ctx.shadowColor = `rgba(255,40,30,${(alfa * 0.95).toFixed(2)})`;
-        ctx.shadowBlur = 14 * dpr;
-        ctx.fill();
-        ctx.shadowBlur = 0;
-      } else if (p.brasa){
-        // Brasa viva carmesí / naranja
-        const rVal = Math.round(230 + p.temperatura * 25);
-        const gVal = Math.round(45 + p.temperatura * 65);
-        const bVal = Math.round(25 + p.temperatura * 30);
-        ctx.fillStyle = `rgba(${rVal},${gVal},${bVal},${alfa.toFixed(3)})`;
-        ctx.shadowColor = `rgba(226,35,26,${(alfa * 0.85).toFixed(2)})`;
-        ctx.shadowBlur = 10 * dpr;
-        ctx.fill();
-        ctx.shadowBlur = 0;
-      } else if (p.capa === 1){
-        // Ceniza intermedia crispada
-        ctx.fillStyle = `rgba(185,178,175,${(alfa * 0.5).toFixed(3)})`;
-        ctx.fill();
-      } else {
-        // Ceniza abisal de fondo
-        ctx.fillStyle = `rgba(130,122,130,${(alfa * 0.28).toFixed(3)})`;
-        ctx.fill();
-      }
+    if (tiempo - ultimaRafaga > 1800 + Math.random() * 2400){
+      ultimaRafaga = tiempo;
+      rafaga();
     }
 
-    // 2. Chispas generadas por interacciones / clics
+    // 1. Polvo y ceniza (mezcla normal)
+    ctx.globalCompositeOperation = "source-over";
+    for (let i = 0; i < particulas.length; i++){
+      const p = particulas[i];
+      if (p.brasa) continue;
+      paso(p, viento, hayCursor, radioInteraccion, radioSq);
+      const alfa = alfaDe(p) * (p.capa === 1 ? 0.55 : 0.3);
+      if (alfa <= 0.01) continue;
+      const s = p.r * 3.2;
+      ctx.globalAlpha = alfa;
+      ctx.drawImage(sprites[p.capa === 1 ? "ceniza" : "polvo"], p.x - s / 2, p.y - s / 2, s, s);
+    }
+
+    // 2. Brasas y chispas de fuego (mezcla aditiva: brillan al cruzarse)
+    ctx.globalCompositeOperation = "lighter";
+    ctx.lineCap = "round";
+    for (let i = 0; i < particulas.length; i++){
+      const p = particulas[i];
+      if (!p.brasa) continue;
+      paso(p, viento, hayCursor, radioInteraccion, radioSq);
+      const alfa = alfaDe(p);
+      if (alfa <= 0.01) continue;
+      ctx.globalAlpha = alfa;
+
+      if (p.chispaFuego){
+        // Estela corta detrás de la chispa: cuanto más caliente, más larga
+        const largo = 4 + p.temperatura * 4;
+        ctx.strokeStyle = `rgb(255,${Math.round(150 + p.temperatura * 90)},70)`;
+        ctx.lineWidth = Math.max(1, p.r * 0.8);
+        ctx.beginPath();
+        ctx.moveTo(p.x - (p.vx + p.osc) * largo, p.y - p.vy * largo);
+        ctx.lineTo(p.x, p.y);
+        ctx.stroke();
+      }
+
+      const s = p.r * (p.chispaFuego ? 9 + p.temperatura * 3 : 7);
+      ctx.drawImage(sprites[p.chispaFuego ? "chispa" : "brasa"], p.x - s / 2, p.y - s / 2, s, s);
+    }
+
+    // 3. Chispas generadas por interacciones, clics y ráfagas
     for (let i = chispasManuales.length - 1; i >= 0; i--){
       const c = chispasManuales[i];
-      c.x += c.vx;
+      c.x += c.vx + viento * 0.6;
       c.y += c.vy;
       c.vy += c.gravedad;
-      c.vx *= 0.96;
-      c.vy *= 0.96;
+      c.vx *= 0.97;
+      c.vy *= 0.985;
       c.vida -= c.decaimiento;
 
-      if (c.vida <= 0){
+      if (c.vida <= 0 || c.y < -20 * dpr){
         chispasManuales.splice(i, 1);
         continue;
       }
-
-      ctx.beginPath();
-      ctx.arc(c.x, c.y, Math.max(0.6, c.r * c.vida), 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${c.rVal},${c.gVal},${c.bVal},${(c.vida * 0.95).toFixed(2)})`;
-      ctx.shadowColor = "rgba(255,50,40,0.95)";
-      ctx.shadowBlur = 14 * dpr;
-      ctx.fill();
-      ctx.shadowBlur = 0;
+      ctx.globalAlpha = Math.min(1, c.vida * 1.1);
+      const s = Math.max(2, c.r * c.vida * 9);
+      ctx.drawImage(sprites[c.blanca ? "chispa" : "brasa"], c.x - s / 2, c.y - s / 2, s, s);
     }
 
+    ctx.globalAlpha = 1;
+    ctx.globalCompositeOperation = "source-over";
     raf = requestAnimationFrame(pintar);
   }
 
@@ -281,14 +338,13 @@ export function cenizas(){
 /* Lanza una ráfaga de chispas ardientes en una posición (pantalla en px) */
 export function crearChispas(clientX, clientY, cantidad = 16){
   if (reduce()) return;
-  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const dpr = dprGlobal;
   const px = clientX * dpr;
   const py = clientY * dpr;
 
   for (let i = 0; i < cantidad; i++){
     const angulo = Math.random() * Math.PI * 2;
     const velocidad = (Math.random() * 5.5 + 2.0) * dpr;
-    const esBlanco = Math.random() < 0.3;
 
     chispasManuales.push({
       x: px,
@@ -299,14 +355,14 @@ export function crearChispas(clientX, clientY, cantidad = 16){
       gravedad: 0.1 * dpr,
       vida: 1.0,
       decaimiento: Math.random() * 0.035 + 0.018,
-      rVal: esBlanco ? 255 : 245,
-      gVal: esBlanco ? 240 : Math.round(Math.random() * 110 + 50),
-      bVal: esBlanco ? 190 : 30
+      blanca: Math.random() < 0.3
     });
   }
 }
 
-/* ---------------- Luz del Vacío (Linterna interactiva HD) ---------------- */
+/* ---------------- Luz del Vacío (Linterna interactiva HD) ----------------
+   Publica --cursor-x / --cursor-y en :root con un retardo suave: de ahí
+   beben la linterna, la brasa del cursor y el paralaje de la portada. */
 export function luzVacio(){
   if (reduce()) return;
   let targetX = window.innerWidth / 2;
@@ -318,7 +374,10 @@ export function luzVacio(){
   window.addEventListener("mousemove", (e) => {
     targetX = e.clientX;
     targetY = e.clientY;
+    if (!document.body.dataset.cursor) document.body.dataset.cursor = "1";
   }, { passive: true });
+  document.documentElement.addEventListener("mouseleave", () => { delete document.body.dataset.cursor; });
+  document.documentElement.addEventListener("mouseenter", () => { document.body.dataset.cursor = "1"; });
 
   function animar(){
     if (!animando) return;
@@ -419,6 +478,63 @@ export function progresoLectura(){
   window.addEventListener("scroll", calc, { passive: true });
   window.addEventListener("resize", calc, { passive: true });
   calc();
+}
+
+/* ---------------- Cabecera que se comprime al bajar ----------------
+   body[data-compacta] rebaja --cabecera-alto; con histéresis para
+   que no titile cerca del umbral. */
+export function cabeceraCompacta(){
+  let compacta = false, pendiente = false;
+  const evaluar = () => {
+    pendiente = false;
+    const y = window.scrollY;
+    const debe = compacta ? y > 24 : y > 88;
+    if (debe !== compacta){
+      compacta = debe;
+      document.body.toggleAttribute("data-compacta", compacta);
+    }
+  };
+  window.addEventListener("scroll", () => {
+    if (pendiente) return;
+    pendiente = true;
+    requestAnimationFrame(evaluar);
+  }, { passive: true });
+  evaluar();
+}
+
+/* ---------------- Apertura del archivo ----------------
+   Se muestra una vez por sesión (sessionStorage "dp-intro"; el inline
+   de index.html la oculta antes de pintar si ya se vio). Dura ~1.2s
+   y se salta con clic o tecla. Mientras está en pantalla, html lleva
+   data-intro-activa y la portada retrasa la caída de sus letras. */
+export function introArchivo(){
+  const capa = $("#intro-archivo");
+  if (!capa) return;
+  const html = document.documentElement;
+  if (html.hasAttribute("data-intro-vista") || reduce()){
+    capa.remove();
+    html.setAttribute("data-intro-vista", "");
+    return;
+  }
+  try{ sessionStorage.setItem("dp-intro", "1"); }catch(_){}
+  html.setAttribute("data-intro-activa", "");
+
+  let cerrada = false;
+  const cerrar = () => {
+    if (cerrada) return;
+    cerrada = true;
+    capa.dataset.saliendo = "1";
+    removeEventListener("keydown", cerrar);
+    setTimeout(() => capa.remove(), 650);
+    // La portada sigue su coreografía; cuando termina, dejamos de retrasarla.
+    setTimeout(() => {
+      html.removeAttribute("data-intro-activa");
+      html.setAttribute("data-intro-vista", "");
+    }, 4500);
+  };
+  capa.addEventListener("click", cerrar, { once: true });
+  addEventListener("keydown", cerrar);
+  setTimeout(cerrar, 1250);
 }
 
 /* ---------------- Imágenes que aún no existen (reserva) ---------------- */

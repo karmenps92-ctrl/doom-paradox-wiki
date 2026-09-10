@@ -1,0 +1,23 @@
+{
+  "id": "jason-voorhees",
+  "nombre": "Jason Voorhees",
+  "alias": "",
+  "origen": "Invitado",
+  "peligro": 4,
+  "estado": "borrador",
+  "imagen": "",
+  "resumen": "Invitado del terror clásico dentro del roster confirmado.",
+  "descripcion": "Aparece en la lista oficial de verdugos del 11/8/2026. Ficha pendiente de escribir.",
+  "habilidades": [],
+  "consejos": [],
+  "curiosidades": [],
+  "mapas": [],
+  "ost": [],
+  "pecadores": [],
+  "etiquetas": [
+    "invitado",
+    "ficha-pendiente"
+  ],
+  "actualizado": "2026-08-31",
+  "fuente": "#creación-personajes, 11/8/2026"
+}

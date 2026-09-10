@@ -46,7 +46,7 @@ export async function vistaFicha(raiz, sec, id){
           </p>
 
           <div class="entrada-cabeza">
-            <div class="retrato rasgado">${imagen(e.imagen, nombre, iniciales(nombre))}</div>
+            <div class="retrato rasgado">${imagen(e.imagen, nombre, iniciales(nombre))}<i class="retrato-escaner" aria-hidden="true"></i></div>
 
             <div class="entrada-info">
               <div class="insignias" style="position:static;margin-bottom:1rem;display:flex;flex-direction:row;flex-wrap:wrap;gap:.5rem">

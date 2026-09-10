@@ -1,0 +1,27 @@
+{
+  "id": "jeff-the-killer",
+  "nombre": "Jeff The Killer",
+  "alias": "Jeff",
+  "origen": "Creepypasta",
+  "peligro": 4,
+  "estado": "borrador",
+  "imagen": "",
+  "resumen": "En el roster confirmado. Aparece también en el lore de la academia de Gen-E-S15.",
+  "descripcion": "Aparece en la lista oficial de verdugos del 11/8/2026.\n\nEn el lore de los pecadores se le nombra como uno de los tres únicos humanos de la academia de Gen-E-S15, junto a Wood Stone.",
+  "habilidades": [],
+  "consejos": [],
+  "curiosidades": [
+    "Comparte lore de academia con Gen-E-S15 y Wood Stone."
+  ],
+  "mapas": [],
+  "ost": [],
+  "pecadores": [
+    "gen-e-s15"
+  ],
+  "etiquetas": [
+    "creepypasta",
+    "ficha-pendiente"
+  ],
+  "actualizado": "2026-08-31",
+  "fuente": "#creación-personajes y #pecadores, 11-18/8/2026"
+}

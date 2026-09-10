@@ -1,0 +1,27 @@
+{
+  "id": "jane-doe",
+  "nombre": "Jane Doe",
+  "alias": "",
+  "origen": "Roblox clásico",
+  "clase": "",
+  "estado": "canon",
+  "imagen": "",
+  "resumen": "La otra mitad del mito. Su LMS contra John Doe tiene tema propio: Lazos rotos.",
+  "descripcion": "Jane Doe entra como pecadora mientras su contraparte, John Doe, es verdugo. El enfrentamiento entre ambos es uno de los LMS con música ya compuesta: **Lazos rotos**.",
+  "habilidades": [],
+  "consejos": [],
+  "curiosidades": [],
+  "verdugos": [
+    "john-doe"
+  ],
+  "mapas": [],
+  "ost": [
+    "lazos-rotos"
+  ],
+  "etiquetas": [
+    "clásico",
+    "lms"
+  ],
+  "actualizado": "2026-08-31",
+  "fuente": "#música-doblaje, 20-21/8/2026"
+}

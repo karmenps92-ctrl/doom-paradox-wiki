@@ -24,9 +24,11 @@
 <link rel="icon" href="assets/img/emblema.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Barlow+Condensed:wght@400;500;600&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/estilo.css?v=3.3">
-<link rel="stylesheet" href="assets/css/efectos.css?v=3.3">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Barlow+Condensed:wght@400;500;600;700;800&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/estilo.css?v=3.4">
+<link rel="stylesheet" href="assets/css/efectos.css?v=3.4">
+<!-- La apertura del archivo solo se ve una vez por sesión: se decide antes del primer pintado -->
+<script>try{if(sessionStorage.getItem("dp-intro"))document.documentElement.setAttribute("data-intro-vista","")}catch(e){}</script>
 </head>
 <body data-ruta="">
 
@@ -45,12 +47,27 @@
       <feTurbulence type="fractalNoise" baseFrequency="0.008" numOctaves="5" seed="11" result="h"/>
       <feColorMatrix in="h" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1 0 0 0 -0.35"/>
     </filter>
+    <filter id="f-humo-claro" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.006 0.011" numOctaves="4" seed="17" result="h"/>
+      <feColorMatrix in="h" type="matrix" values="0 0 0 0 .62  0 0 0 0 .55  0 0 0 0 .66  1.6 0 0 0 -.62"/>
+    </filter>
   </defs>
 </svg>
 
+<!-- Apertura del archivo (una vez por sesión; clic o tecla para saltarla) -->
+<div class="intro-archivo" id="intro-archivo" aria-hidden="true">
+  <div class="intro-caja">
+    <img class="intro-emblema" src="assets/img/emblema.svg" alt="" width="120" height="120">
+    <p class="intro-texto">Abriendo el archivo<span class="intro-puntos"></span></p>
+    <div class="intro-linea"><i></i></div>
+  </div>
+</div>
+
 <!-- Capas atmosféricas -->
 <div class="capa-luz-vacio" id="luz-vacio" aria-hidden="true"></div>
+<div class="cursor-brasa" aria-hidden="true"></div>
 <div class="capa-niebla" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<div class="capa-bruma" aria-hidden="true"></div>
 <canvas id="cenizas" class="capa-cenizas" aria-hidden="true"></canvas>
 <div class="capa-grano" aria-hidden="true"></div>
 <div class="capa-vineta" aria-hidden="true"></div>
@@ -95,6 +112,7 @@
 
 <footer class="pie">
   <div class="pie-humo" aria-hidden="true"></div>
+  <div class="pie-brasas" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
   <div class="pie-cuerpo">
     <p class="pie-lema">«Todo pecado encuentra su verdugo.»</p>
     <nav class="pie-nav" aria-label="Pie">
@@ -121,7 +139,7 @@
   </div>
 </div>
 
-<script type="module" src="assets/js/app.js?v=3.3"></script>
+<script type="module" src="assets/js/app.js?v=3.4"></script>
 <noscript>
   <div class="sin-js">Esta wiki necesita JavaScript para leer el archivo. Los datos en bruto están en la carpeta <code>/datos</code> del repositorio.</div>
 </noscript>

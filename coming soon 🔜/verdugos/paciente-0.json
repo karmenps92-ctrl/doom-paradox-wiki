@@ -1,0 +1,26 @@
+{
+  "id": "paciente-0",
+  "nombre": "Paciente 0",
+  "alias": "",
+  "origen": "Creepypasta",
+  "peligro": 4,
+  "estado": "canon",
+  "imagen": "",
+  "resumen": "Su chase theme es uno de los que quedan en la lista de composición.",
+  "descripcion": "Verdugo basado en creepypasta. Su tema de persecución estaba pendiente de empezar a fecha de agosto de 2026.\n\nSu duelo de LMS es contra Andrómeda.",
+  "habilidades": [],
+  "consejos": [],
+  "curiosidades": [],
+  "mapas": [],
+  "ost": [
+    "chase-paciente-0"
+  ],
+  "pecadores": [
+    "andromeda"
+  ],
+  "etiquetas": [
+    "lms"
+  ],
+  "actualizado": "2026-08-31",
+  "fuente": "#música-doblaje, 17-21/8/2026"
+}

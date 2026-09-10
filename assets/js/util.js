@@ -101,11 +101,22 @@ export function alPrincipio(){
   window.scrollTo({ top: 0, behavior: "auto" });
 }
 
-/* Observador que revela elementos al entrar en pantalla. */
+/* Observador que revela elementos al entrar en pantalla.
+   Cada elemento recibe --i con su posicion entre los hermanos que
+   tambien se revelan: el CSS lo convierte en un retardo escalonado,
+   asi las rejillas entran como cartas puestas una a una. */
 let observador;
 export function revelar(raiz = document){
+  const pendientes = $$("[data-revelar]", raiz);
+  pendientes.forEach(el => {
+    if (el.style.getPropertyValue("--i")) return;
+    let i = 0, h = el.previousElementSibling;
+    while (h){ if (h.hasAttribute("data-revelar")) i++; h = h.previousElementSibling; }
+    el.style.setProperty("--i", String(i));
+  });
+
   if (!("IntersectionObserver" in window)) {
-    $$("[data-revelar]", raiz).forEach(el => el.classList.add("visible"));
+    pendientes.forEach(el => el.classList.add("visible"));
     return;
   }
   observador ||= new IntersectionObserver((entradas) => {
@@ -115,7 +126,6 @@ export function revelar(raiz = document){
       observador.unobserve(e.target);
     });
   }, { rootMargin: "0px 0px -8% 0px", threshold: .08 });
-  const pendientes = $$("[data-revelar]", raiz);
   pendientes.forEach(el => observador.observe(el));
   // Red de seguridad: si el navegador congela las animaciones (pestana en
   // segundo plano, ahorro de energia), el contenido nunca queda invisible.

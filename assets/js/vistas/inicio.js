@@ -50,13 +50,24 @@ export async function vistaInicio(raiz){
   raiz.innerHTML = `
     <!-- HERO CINEMATOGRÁFICO -->
     <section class="heroe">
+      <div class="heroe-fondo" aria-hidden="true">
+        <i class="heroe-resplandor"></i>
+        <i class="heroe-venas"></i>
+      </div>
+      <div class="heroe-chispas" aria-hidden="true">${"<i></i>".repeat(14)}</div>
       <div class="heroe-inner">
+        <div class="heroe-sigilo" aria-hidden="true">
+          <i class="sigilo-anillo"></i><i class="sigilo-anillo"></i><i class="sigilo-anillo"></i>
+          <img class="heroe-emblema-fondo" src="assets/img/emblema.svg" alt="" width="110" height="110" decoding="async">
+        </div>
         <p class="heroe-tag-comunidad"><span class="heroe-tag-raya"></span>ARCHIVO DE LA COMUNIDAD</p>
-        <h1 class="heroe-titulo-clasico">
-          <span class="heroe-linea-doom">DOOM</span>
-          <span class="heroe-linea-paradox">PARADOX</span>
+        <h1 class="heroe-titulo-clasico" aria-label="Doom Paradox">
+          <span class="heroe-linea-doom" aria-hidden="true">${letras("DOOM")}</span>
+          <span class="heroe-linea-paradox" data-texto="PARADOX" aria-hidden="true">${letras("PARADOX", 4)}</span>
         </h1>
-        <p class="heroe-lema-clasico">${esc(SITIO.lema).toUpperCase()}</p>
+        <div class="heroe-sello">
+          <p class="heroe-lema-clasico">${esc(SITIO.lema).toUpperCase()}</p>
+        </div>
         <p class="heroe-bajada-clasica">${esc(SITIO.descripcion)}</p>
         <div class="botones">
           <a class="boton" data-variante="lleno" href="#/verdugos">Entrar al Archivo</a>
@@ -80,13 +91,13 @@ export async function vistaInicio(raiz){
               <div class="pod-valor">${conteo[s.id]}</div>
               <div class="pod-barra"><i style="width:${Math.min(100, Math.max(15, (conteo[s.id] / 24) * 100))}%"></i></div>
             </a>`).join("")}
-          <div class="pod-stat" style="border-color:var(--oro);background:linear-gradient(145deg,rgba(35,26,14,0.9),rgba(14,10,8,0.95))">
+          <div class="pod-stat" data-tono="oro">
             <div class="pod-encabezado">
-              <span class="pod-nombre" style="color:var(--oro-vivo)">Total Fichas</span>
-              <span class="pod-icono" style="background:rgba(229,180,72,0.2);color:var(--oro)">✦</span>
+              <span class="pod-nombre">Total Fichas</span>
+              <span class="pod-icono">✦</span>
             </div>
-            <div class="pod-valor" style="color:var(--oro-vivo);text-shadow:0 0 24px rgba(229,180,72,0.8)">${total}</div>
-            <div class="pod-barra"><i style="background:linear-gradient(90deg,#967320,var(--oro));box-shadow:0 0 8px var(--oro)"></i></div>
+            <div class="pod-valor">${total}</div>
+            <div class="pod-barra"><i></i></div>
           </div>
         </div>
       </div>
@@ -96,6 +107,7 @@ export async function vistaInicio(raiz){
     <section class="seccion" data-revelar>
       <div class="contenedor">
         <div class="altar-lore">
+          <i class="altar-marca" aria-hidden="true"></i>
           <p class="etiqueta"><span class="raya"></span>La Premisa de la Entidad</p>
           <p class="cita-bloque">
             «Un infierno manejado por una entidad lovecraftiana que disfruta y se alimenta del sufrimiento humano.»
@@ -166,4 +178,9 @@ function tarjeta(sec, e, idx = 0){
 export function iniciales(nombre = ""){
   const p = String(nombre).replace(/^(el|la|los|las)\s+/i, "").split(/\s+/);
   return ((p[0]?.[0] || "") + (p[1]?.[0] || p[0]?.[1] || "")).toUpperCase();
+}
+
+/* Cada letra en su propio <i> con --i para la caída escalonada del título. */
+function letras(texto, desde = 0){
+  return [...texto].map((l, i) => `<i style="--i:${desde + i}">${esc(l)}</i>`).join("");
 }

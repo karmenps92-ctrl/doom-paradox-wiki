@@ -1,0 +1,25 @@
+{
+  "id": "andromeda",
+  "nombre": "Andrómeda",
+  "alias": "",
+  "origen": "Original",
+  "clase": "",
+  "estado": "borrador",
+  "imagen": "",
+  "resumen": "Pecadora confirmada. Su LMS es contra Paciente 0.",
+  "descripcion": "Pecadora confirmada en la lista oficial del 11/8/2026. Ficha pendiente de escribir.",
+  "habilidades": [],
+  "consejos": [],
+  "curiosidades": [],
+  "verdugos": [
+    "paciente-0"
+  ],
+  "mapas": [],
+  "ost": [],
+  "etiquetas": [
+    "ficha-pendiente",
+    "lms"
+  ],
+  "actualizado": "2026-08-31",
+  "fuente": "#creación-personajes, 11/8/2026"
+}

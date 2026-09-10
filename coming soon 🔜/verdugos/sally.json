@@ -1,0 +1,49 @@
+{
+  "id": "sally",
+  "nombre": "Sally",
+  "alias": "La niña que no quiere jugar sola",
+  "origen": "Original",
+  "peligro": 3,
+  "estado": "canon",
+  "imagen": "",
+  "resumen": "Cambia por completo según juegue sola o acompañada: con peluche pega más fuerte, sin el se pone a jugar.",
+  "descripcion": "## Doble estado\nSally es una niña, y el juego lo usa como mecánica. Si es la única verduga de la partida se pone triste y **desbloquea su oso de peluche**: se vuelve más lenta, pero pega más fuerte y sus ataques cargan más rápido.\n\nSi hay otro verdugo con ella, se ilumina, el peluche desaparece y se dedica a *jugar* con los pecadores: su ataque pasa a ser la ahorcada.\n\n## Diseño\nSe construyo con un cuerpo R15 dentro de un juego configurado en R6, con heridas visibles. Concepto y modelo de cyn_rebelcream, aprobado por S.U.A.",
+  "habilidades": [
+    {
+      "nombre": "Oso de peluche",
+      "tipo": "pasiva",
+      "enfriamiento": "",
+      "texto": "Solo mientras sea la única verduga de la partida. Sally se vuelve más lenta a cambio de más daño y de ataques que cargan más rápido."
+    },
+    {
+      "nombre": "La ahorcada",
+      "tipo": "activa",
+      "enfriamiento": "",
+      "texto": "Cuando hay otro verdugo en partida, Sally se ilumina, pierde el peluche y ataca jugando a la ahorcada con los pecadores."
+    },
+    {
+      "nombre": "La pelota",
+      "tipo": "secreta",
+      "enfriamiento": "",
+      "texto": "Lanza una pelota a un pecador y juegan durante 20 segundos: un minijuego de ritmo o de pulsar en el momento exacto. Con menos de 5 aciertos recibes 20 de daño. Mientras dura el juego, ese pecador es inmune: ni el otro verdugo puede tocarlo, porque está bajo la protección de Sally."
+    }
+  ],
+  "consejos": [
+    "Si eres el pecador con la pelota, aguanta los 20 segundos: eres intocable mientras juegues bien.",
+    "Sally sola pega más pero se mueve peor: usa las distancias largas."
+  ],
+  "curiosidades": [
+    "Fue propuesta y diseñada por cyn_rebelcream; S.U.A la había aceptado semanas antes y se le había olvidado.",
+    "Su cuerpo mezcla piezas R15 aunque el juego esté configurado en R6."
+  ],
+  "mapas": [],
+  "ost": [],
+  "pecadores": [],
+  "etiquetas": [
+    "dual",
+    "minijuego",
+    "protección"
+  ],
+  "actualizado": "2026-08-31",
+  "fuente": "#verdugos, 20/8/2026"
+}

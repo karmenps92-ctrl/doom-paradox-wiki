@@ -1,0 +1,27 @@
+{
+  "id": "latt",
+  "nombre": "Latt",
+  "alias": "",
+  "origen": "Original",
+  "clase": "",
+  "estado": "canon",
+  "imagen": "",
+  "resumen": "Personaje trans: el único miembro del reparto que pertenece a la comunidad LGBT.",
+  "descripcion": "S.U.A lo publicó como el primero de los *inutidatos* de los pecadores: Latt es **trans género** y, de momento, el único personaje del reparto que pertenece a la comunidad LGBT.\n\nSu duelo de LMS es contra Flowers.",
+  "habilidades": [],
+  "consejos": [],
+  "curiosidades": [
+    "Es el único personaje del reparto que pertenece a la comunidad LGBT."
+  ],
+  "verdugos": [
+    "flowers"
+  ],
+  "mapas": [],
+  "ost": [],
+  "etiquetas": [
+    "lore",
+    "lms"
+  ],
+  "actualizado": "2026-08-31",
+  "fuente": "#pecadores, 18/8/2026"
+}

@@ -1,0 +1,25 @@
+{
+  "id": "benny",
+  "nombre": "Benny",
+  "alias": "",
+  "origen": "Original",
+  "clase": "",
+  "estado": "borrador",
+  "imagen": "",
+  "resumen": "Pecador confirmado. Su LMS es contra 0_0.",
+  "descripcion": "Pecador confirmado en la lista oficial del 11/8/2026. Ficha pendiente de escribir.",
+  "habilidades": [],
+  "consejos": [],
+  "curiosidades": [],
+  "verdugos": [
+    "0-0"
+  ],
+  "mapas": [],
+  "ost": [],
+  "etiquetas": [
+    "ficha-pendiente",
+    "lms"
+  ],
+  "actualizado": "2026-08-31",
+  "fuente": "#creación-personajes, 11/8/2026"
+}

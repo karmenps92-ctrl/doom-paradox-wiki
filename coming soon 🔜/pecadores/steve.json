@@ -1,0 +1,25 @@
+{
+  "id": "steve",
+  "nombre": "Steve",
+  "alias": "",
+  "origen": "Invitado",
+  "clase": "",
+  "estado": "canon",
+  "imagen": "",
+  "resumen": "Su duelo de LMS es el más evidente del juego: contra Herobrine.",
+  "descripcion": "Pecador confirmado en la lista oficial. Su enfrentamiento de LMS es contra Herobrine.",
+  "habilidades": [],
+  "consejos": [],
+  "curiosidades": [],
+  "verdugos": [
+    "herobrine"
+  ],
+  "mapas": [],
+  "ost": [],
+  "etiquetas": [
+    "invitado",
+    "lms"
+  ],
+  "actualizado": "2026-08-31",
+  "fuente": "#música-doblaje, 21/8/2026"
+}

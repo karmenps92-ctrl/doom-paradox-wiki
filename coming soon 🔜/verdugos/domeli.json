@@ -1,0 +1,27 @@
+{
+  "id": "domeli",
+  "nombre": "Domelí",
+  "alias": "",
+  "origen": "Original",
+  "peligro": 3,
+  "estado": "canon",
+  "imagen": "",
+  "resumen": "Ligado a Konut por una deuda: su duelo de LMS es personal.",
+  "descripcion": "Domelí tiene una relación directa con el pecador Konut, el del traje elegante: **Konut le debe dinero**. Ese vínculo es el que sostiene su enfrentamiento de LMS.",
+  "habilidades": [],
+  "consejos": [],
+  "curiosidades": [],
+  "mapas": [],
+  "ost": [
+    "lms-elegante"
+  ],
+  "pecadores": [
+    "konut"
+  ],
+  "etiquetas": [
+    "lms",
+    "relación"
+  ],
+  "actualizado": "2026-08-31",
+  "fuente": "#avisos, 20/8/2026"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "0-0",
+  "nombre": "0_0",
+  "alias": "",
+  "origen": "Original",
+  "peligro": 3,
+  "estado": "borrador",
+  "imagen": "",
+  "resumen": "En el roster confirmado. Su LMS es contra Benny.",
+  "descripcion": "Verdugo confirmado en la lista oficial del 11/8/2026.",
+  "habilidades": [],
+  "consejos": [],
+  "curiosidades": [],
+  "mapas": [],
+  "ost": [],
+  "pecadores": [
+    "benny"
+  ],
+  "etiquetas": [
+    "ficha-pendiente"
+  ],
+  "actualizado": "2026-08-31",
+  "fuente": "#creación-personajes, 11/8/2026"
+}
